@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWC Master Plan v5 | B2B 50% + B2C 50% | Jun 15–Jul 9</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ind:#050090;--lime:#c0f100;--ink:#1B1B23;--paper:#FBF8FF;
+  --viral:#16a34a;--viral-bg:#dcfce7;--viral-bd:#86efac;
+  --value:#1d4ed8;--value-bg:#dbeafe;--value-bd:#93c5fd;
+  --sales:#b91c1c;--sales-bg:#fee2e2;--sales-bd:#fca5a5;
+  --auth:#6d28d9;--auth-bg:#ede9fe;--auth-bd:#c4b5fd;
+  --b2b:#0a66c2;--b2b-bg:#e5f3fa;--b2b-bd:#7dd3fc;
+  --b2c:#e1306c;--b2c-bg:#fff0f5;--b2c-bd:#f9a8d4;
+  --ph1:#1e3a8a;--ph1bg:#dbeafe;
+  --ph2:#92400e;--ph2bg:#fef3c7;
+  --ph3:#991b1b;--ph3bg:#fee2e2;
+  --ph4:#5b21b6;--ph4bg:#ede9fe;
+  --border:#e5e7eb;--gray:#6b7280;
+  --l2:#0369a1;--l2bg:#e0f2fe;
+  --l3:#7c3aed;--l3bg:#ede9fe;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;color:var(--ink);background:#f5f5f7}
+.subnav{background:#0a0060;padding:5px 16px;display:flex;gap:6px;align-items:center;font-size:11px;flex-wrap:wrap;position:sticky;top:0;z-index:999}
+.topbar{background:var(--ind);color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:31px;z-index:100;flex-wrap:wrap;gap:8px}
+.brand{font-weight:800;font-size:14px;letter-spacing:1px}.brand span{color:var(--lime)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.15);color:#fff;transition:.15s}
+.tab.active,.tab:hover{background:var(--lime);color:var(--ink)}
+.page{display:none}.page.active{display:block}
+.header{padding:16px 20px;background:#fff;border-bottom:1px solid var(--border)}
+.header h1{font-size:17px;font-weight:800;margin-bottom:3px}
+.header p{font-size:12px;color:var(--gray)}
+.meta-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.rp{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.rp-v{background:var(--viral-bg);color:var(--viral)}
+.rp-val{background:var(--value-bg);color:var(--value)}
+.rp-s{background:var(--sales-bg);color:var(--sales)}
+.rp-a{background:var(--auth-bg);color:var(--auth)}
+.rp-b2b{background:var(--b2b-bg);color:var(--b2b)}
+.rp-b2c{background:var(--b2c-bg);color:var(--b2c)}
+.target-pill{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#fef3c7;color:#92400e}
+.callout{margin:10px 16px;padding:10px 14px;border-radius:8px;font-size:11px;line-height:1.6;border-left:3px solid}
+.callout-amber{background:#fffbeb;border-color:#f59e0b;color:#92400e}
+.callout-blue{background:#eff6ff;border-color:#3b82f6;color:#1e40af}
+.callout-green{background:#f0fdf4;border-color:#22c55e;color:#166534}
+.callout-b2b{background:#e5f3fa;border-color:#0a66c2;color:#0a66c2}
+.callout b{font-weight:700}
+.table-wrap{overflow-x:auto;padding:0 16px 20px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+thead th{background:var(--ink);color:#fff;padding:8px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;text-align:left}
+.phase-row td{font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.7px;padding:6px 12px}
+.ph1 td{background:var(--ph1bg);color:var(--ph1)}
+.ph2 td{background:var(--ph2bg);color:var(--ph2)}
+.ph3 td{background:var(--ph3bg);color:var(--ph3)}
+.ph4 td{background:var(--ph4bg);color:var(--ph4)}
+tbody tr.data-row{cursor:pointer;border-bottom:1px solid var(--border);transition:.1s}
+tbody tr.data-row:hover{background:#f8f7ff}
+tbody tr.data-row.open{background:#f0f0ff}
+td{padding:8px 10px;vertical-align:top;font-size:12px}
+.td-date{font-weight:700;white-space:nowrap;font-size:11px}
+.td-id{font-weight:700;color:var(--ind);font-size:11px}
+.td-title{font-weight:600;min-width:180px;line-height:1.4}
+.td-hook{color:#374151;min-width:200px;line-height:1.4;font-style:italic;font-size:11px}
+.td-hook::before{content:'★ ';color:#f59e0b;font-style:normal}
+.badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700}
+.bv{background:var(--viral-bg);color:var(--viral);border:1px solid var(--viral-bd)}
+.bval{background:var(--value-bg);color:var(--value);border:1px solid var(--value-bd)}
+.bs{background:var(--sales-bg);color:var(--sales);border:1px solid var(--sales-bd)}
+.ba{background:var(--auth-bg);color:var(--auth);border:1px solid var(--auth-bd)}
+.bl2{background:var(--l2bg);color:var(--l2);border:1px solid #7dd3fc;font-size:9px}
+.bl3{background:var(--l3bg);color:var(--l3);border:1px solid #c4b5fd;font-size:9px}
+.bboth{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;font-size:9px}
+.bb2b{background:var(--b2b-bg);color:var(--b2b);border:1px solid var(--b2b-bd);font-size:9px;font-weight:800}
+.bb2c{background:var(--b2c-bg);color:var(--b2c);border:1px solid var(--b2c-bd);font-size:9px;font-weight:800}
+.ad-test{font-size:11px;color:#d97706;font-weight:700}
+.ad-always{font-size:11px;color:#b91c1c;font-weight:700}
+.expand-row{display:none}
+.expand-row.show{display:table-row}
+.expand-cell{background:#f8f7ff;padding:14px 16px;border-bottom:2px solid var(--ind)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:900px){.exp-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.exp-grid{grid-template-columns:1fr}}
+.exp-block{background:#fff;border-radius:8px;padding:12px;border:1px solid var(--border)}
+.exp-block h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--gray);margin-bottom:6px}
+.exp-block p{font-size:12px;line-height:1.6;color:#374151}
+.hook-a{border-left:3px solid #3b82f6}
+.hook-b{border-left:3px solid #8b5cf6}
+.hook-c{border-left:3px solid #10b981}
+.caption-block{border-left:3px solid var(--ind);grid-column:1/-1}
+.canva-block{border-left:3px solid var(--lime)}
+.cta-block{border-left:3px solid var(--sales);text-align:center}
+.cta-block a{display:inline-block;background:var(--ind);color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;text-decoration:none;margin-top:6px}
+/* ER */
+.er-section{padding:16px}
+.er-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
+.er-card{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border)}
+.er-card h3{font-size:12px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.er-inputs{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:8px}
+.er-inputs label{font-size:10px;color:var(--gray);display:block;margin-bottom:2px}
+.er-inputs input{width:100%;border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;background:#f9fafb}
+.er-result{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-radius:6px;background:#f9fafb}
+.er-num{font-size:18px;font-weight:800;color:var(--ind)}
+.er-verdict{font-size:11px;font-weight:700}
+.er-boost{color:#16a34a}.er-stop{color:#b91c1c}.er-wait{color:#d97706}
+.er-tip{font-size:10px;color:var(--gray);margin-top:6px}
+/* SPEND */
+.spend-section{padding:16px}
+.budget-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+.bcard{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border);text-align:center}
+.bcard .amount{font-size:22px;font-weight:800;color:var(--ind)}
+.bcard .label{font-size:11px;color:var(--gray);margin-top:2px}
+.bcard .note{font-size:10px;color:#9ca3af;margin-top:4px}
+.spend-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:16px}
+.spend-table th{background:var(--ink);color:#fff;padding:8px 12px;font-size:10px;font-weight:700;text-align:left}
+.spend-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:top}
+.sop-table{width:100%;border-collapse:collapse;margin-top:12px}
+.sop-table th{background:#f3f4f6;padding:7px 10px;font-size:10px;font-weight:700;text-align:left;border-bottom:2px solid var(--border)}
+.sop-table td{padding:7px 10px;border-bottom:1px solid var(--border);font-size:11px}
+/* BUDGET BARS */
+.budget-row-detail{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:8px}
+.budget-channel-name{font-size:13px;font-weight:700;flex:2}
+.budget-note-sm{font-size:11px;color:var(--gray);margin-top:2px}
+.budget-bar-wrap{flex:3;height:8px;background:#f0f0f0;border-radius:4px;overflow:hidden}
+.budget-bar-fill{height:100%;border-radius:4px}
+.budget-pct-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;color:#fff;min-width:44px;text-align:center}
+.budget-amount-num{font-size:15px;font-weight:800;color:var(--ind);min-width:48px;text-align:right}
+/* HOOK LIBRARY */
+.hl-section{padding:16px}
+.hl-segment-title{font-size:13px;font-weight:800;margin:16px 0 8px;padding-left:8px;border-left:4px solid var(--ind);color:var(--ink)}
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px;margin-bottom:8px}
+.hcard{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border)}
+.hcard-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.hook-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:10px}
+.ht-contradiction{background:#fef3c7;color:#92400e}
+.ht-confession{background:#fee2e2;color:#991b1b}
+.ht-number{background:#dbeafe;color:#1e40af}
+.ht-before-after{background:#d1fae5;color:#065f46}
+.ht-question{background:#ede9fe;color:#6d28d9}
+.ht-data{background:#e0f2fe;color:#0369a1}
+.ht-identity{background:#fce7f3;color:#9d174d}
+.ht-social-proof{background:#fef9c3;color:#713f12}
+.hlevel-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px}
+.hcard h3{font-size:12px;font-weight:700;margin-bottom:6px;line-height:1.4}
+.hcard .formula{font-size:11px;color:#6b7280;font-style:italic;margin-bottom:8px;padding:6px 8px;background:#f9fafb;border-radius:6px;border-left:2px solid var(--border)}
+.hcard .example{font-size:11px;color:#374151;line-height:1.6;margin-bottom:6px}
+.hcard .why{font-size:10px;color:#6b7280;line-height:1.4}
+.hcard .platforms{font-size:10px;color:#9ca3af;margin-top:6px;border-top:1px solid #f3f4f6;padding-top:6px}
+.perf-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.perf-tag{font-size:10px;padding:2px 7px;border-radius:8px;background:#f3f4f6;color:#374151;font-weight:600}
+/* CHECKLIST */
+.ck-section{padding:16px}
+.ck-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.ck-stat{background:#fff;border-radius:10px;padding:12px;border:1px solid var(--border);text-align:center}
+.ck-stat .num{font-size:22px;font-weight:800;color:var(--ind)}
+.ck-stat .lbl{font-size:10px;color:var(--gray);margin-top:2px}
+.ck-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.ck-filter{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--ink)}
+.ck-filter.on{background:var(--ind);color:#fff;border-color:var(--ind)}
+.ck-phase{margin-bottom:14px}
+.ck-phase-head{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-radius:8px 8px 0 0;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;user-select:none}
+.ck-ph-prep{background:#dbeafe;color:#1e3a8a}.ck-ph-launch{background:#dcfce7;color:#14532d}
+.ck-ph-ads{background:#fef3c7;color:#92400e}.ck-ph-review{background:#ede9fe;color:#5b21b6}
+.ck-ph-close{background:#fee2e2;color:#991b1b}
+.ck-phase-body{background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden}
+.ck-row{display:grid;grid-template-columns:22px 60px 1fr 55px 55px 70px;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #f3f4f6;font-size:11px}
+.ck-row:last-child{border-bottom:none}
+.ck-row.hidden{display:none}
+.ck-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-done{background:#16a34a}.dot-progress{background:#f59e0b}.dot-todo{background:#d1d5db}.dot-blocked{background:#ef4444}
+.ck-status{font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;white-space:nowrap}
+.st-done{background:#dcfce7;color:#16a34a}.st-prog{background:#fef3c7;color:#d97706}
+.st-todo{background:#f3f4f6;color:#6b7280}.st-block{background:#fee2e2;color:#ef4444}
+.ck-pri{font-size:9px;font-weight:800;padding:2px 5px;border-radius:5px;white-space:nowrap}
+.pri-crit{background:#fee2e2;color:#b91c1c}.pri-imp{background:#dbeafe;color:#1d4ed8}
+.pri-b2b{background:#e5f3fa;color:#0a66c2}.pri-daily{background:#d1fae5;color:#065f46}
+.pri-prep{background:#f3f4f6;color:#6b7280}
+.ck-owner{font-size:10px;color:var(--gray);font-weight:600}
+.ck-date{font-size:10px;color:var(--gray)}
+.ck-task{line-height:1.4;color:#374151;font-size:11px}
+.progress-bar{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:4px}
+.progress-fill{height:100%;border-radius:2px;background:var(--ind);transition:.3s}
+/* FINANCE */
+.fin-section{padding:16px}
+.fin-alert{background:#fff3cd;border:2px solid #f59e0b;border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+.fin-alert-crit{background:#fee2e2;border-color:#ef4444}
+.fin-alert-icon{font-size:24px;flex-shrink:0}
+.fin-alert-body h3{font-size:13px;font-weight:800;margin-bottom:4px}
+.fin-alert-body p{font-size:12px;line-height:1.5;color:#374151}
+.fin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.fin-card{background:#fff;border-radius:10px;padding:12px;border:1px solid var(--border);text-align:center}
+.fin-card .num{font-size:18px;font-weight:800;color:var(--ind)}
+.fin-card .lbl{font-size:10px;color:var(--gray);margin-top:2px}
+.fin-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:16px}
+.fin-table th{background:var(--ink);color:#fff;padding:8px 10px;font-size:10px;font-weight:700;text-align:left}
+.fin-table td{padding:7px 10px;border-bottom:1px solid var(--border);font-size:11px}
+.fin-table tr:last-child td{border-bottom:none}
+.tax-done{background:#f0fdf4}.tax-overdue{background:#fff1f2}.tax-pending{background:#fff}
+.tax-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px}
+.tx-done{background:#dcfce7;color:#16a34a}.tx-overdue{background:#fee2e2;color:#ef4444}
+.tx-pending{background:#f3f4f6;color:#6b7280}
+.fin-h2{font-size:13px;font-weight:800;margin:16px 0 8px;padding-left:8px;border-left:4px solid var(--ind)}
+/* LINKEDIN PLAN */
+.li-section{padding:16px}
+.li-week{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.li-week-header{background:#0a66c2;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.li-week-header h3{font-size:14px;font-weight:700}
+.li-week-body{padding:16px 20px}
+.li-post-row{display:flex;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #f0f0f0}
+.li-post-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.li-day{font-size:11px;font-weight:800;color:#0a66c2;min-width:50px}
+.li-format{font-size:11px;font-weight:700;padding:2px 7px;border-radius:4px;background:#e5f3fa;color:#0a66c2;min-width:80px;text-align:center;height:fit-content}
+.li-hook{font-size:13px;font-weight:600;flex:1}
+.li-target{font-size:11px;color:var(--gray);margin-top:4px}
+.outreach-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.outreach-table th{background:var(--ind);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700}
+.outreach-table td{padding:10px 14px;border-bottom:1px solid #f0f0f0}
+.outreach-table tr:last-child td{border-bottom:none}
+.outreach-table tr:nth-child(even) td{background:#fafafa}
+/* EMAIL PLAN */
+.email-section{padding:16px}
+.email-seq{display:flex;gap:0;overflow-x:auto;padding-bottom:8px;margin-bottom:20px}
+.email-step{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;min-width:200px;position:relative}
+.email-step::after{content:"→";position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--ind);z-index:1}
+.email-step:last-child::after{display:none}
+.email-step+.email-step{margin-left:16px}
+.email-step .day{font-size:11px;font-weight:800;color:var(--ind);text-transform:uppercase;margin-bottom:8px}
+.email-step .subject{font-size:13px;font-weight:700;margin-bottom:6px;line-height:1.4}
+.email-step .desc{font-size:12px;color:var(--gray);line-height:1.5}
+.email-step .cta-tag{font-size:11px;font-weight:700;color:#fff;background:var(--ind);padding:4px 10px;border-radius:4px;display:inline-block;margin-top:10px}
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.kpi-card .kpi-num{font-size:26px;font-weight:900;color:var(--ind)}
+.kpi-card .kpi-unit{font-size:12px;color:var(--gray);margin-top:2px}
+.kpi-card .kpi-label{font-size:12px;font-weight:600;color:var(--ink);margin-top:6px}
+/* LIST BUILDING */
+.lb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.lb-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px}
+.lb-card .lb-num{width:28px;height:28px;background:var(--b2b-bg);color:var(--b2b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-bottom:10px}
+.lb-card h3{font-size:13px;font-weight:700;margin-bottom:6px}
+.lb-card p{font-size:12px;color:var(--gray);line-height:1.5}
+.lb-card .est{font-size:12px;font-weight:700;color:var(--b2b);margin-top:8px}
+/* SCORE */
+.score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+.score-card{background:#fff;border-radius:10px;padding:12px;border:1px solid var(--border)}
+.score-card h4{font-size:11px;font-weight:700;margin-bottom:6px}
+.score-card li{font-size:11px;color:#374151;line-height:1.7;margin-left:14px}
+.trigger-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:16px}
+.trigger-table th{background:var(--ink);color:#fff;padding:8px 12px;font-size:10px;font-weight:700;text-align:left}
+.trigger-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:11px;vertical-align:top}
+.tw{display:inline-block;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:700;margin:2px}
+.tw-l2{background:#e0f2fe;color:#0369a1}
+.tw-l3{background:#ede9fe;color:#7c3aed}
+.tw-g{background:#d1fae5;color:#065f46}
+@media(max-width:768px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .lb-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="subnav">
+  <span style="color:#c0f100;font-weight:800;font-size:12px;margin-right:6px">🃏 TWC</span>
+  <a href="TWC-Ops-Hub.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.2);font-weight:700">🏠 Hub</a>
+  <a href="twc-master-plan-v5.html" style="color:#050090;text-decoration:none;padding:3px 10px;border-radius:12px;background:#c0f100;font-weight:800">🗺️ v5 Master</a>
+  <a href="TWC-Ad-Campaign-Brief-v4.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">💰 Ads Brief</a>
+  <span style="color:rgba(255,255,255,.5);font-size:10px;margin-left:4px">v5 unified — B2B 50% + B2C 50%</span>
+</div>
+
+<div class="topbar">
+  <div class="brand">🃏 THE WILD <span>CARD</span> — Master Plan v5</div>
+  <div class="tabs">
+    <button class="tab active" onclick="showPage('cal',this)">📅 Content Calendar</button>
+    <button class="tab" onclick="showPage('er',this)">📊 ER Tracker</button>
+    <button class="tab" onclick="showPage('spend',this)">💰 Ad Spend</button>
+    <button class="tab" onclick="showPage('hooks',this)">📚 Hook Library</button>
+    <button class="tab" onclick="showPage('linkedin',this)">🔗 LinkedIn B2B</button>
+    <button class="tab" onclick="showPage('email',this)">📧 Email B2B</button>
+    <button class="tab" onclick="showPage('checklist',this)">✅ Checklist 30D</button>
+    <button class="tab" onclick="showPage('finance',this)">💼 Finance</button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 1: CONTENT CALENDAR -->
+<!-- ============================================================ -->
+<div id="cal" class="page active">
+<div class="header">
+  <h1>Content Calendar v5 — Jun 15 – Jul 9, 2026</h1>
+  <p>Kick off Jun 15 · Soft Launch Jun 20 · Full Launch Jun 27 · <strong>B2B 50% + B2C 50% — Product focus: Session 1 + Corporate</strong></p>
+  <div class="meta-row">
+    <span class="rp rp-b2b">🔗 B2B 50% — LinkedIn + Decision Makers</span>
+    <span class="rp rp-b2c">📱 B2C 50% — FB/IG + L2/L3 cá nhân</span>
+    <span class="rp rp-v">Viral 32%</span><span class="rp rp-val">Value 26%</span>
+    <span class="rp rp-s">Sales 26%</span><span class="rp rp-a">Authority 16%</span>
+    <span class="target-pill">🎯 B2B: Marketing Director, CMO, Agency Owner</span>
+    <span class="target-pill">📍 B2C: L2+L3 · HCM+HN · 20–40yo</span>
+  </div>
+</div>
+<div class="callout callout-b2b"><b>🔄 v5 Change vs v4:</b> Budget reallocated — LinkedIn tăng từ 7.7% → 35% (B2B-first). FB/IG giảm nhưng vẫn giữ cho B2C. <b>Mỗi post được tag rõ B2B hoặc B2C</b> để team biết channel & targeting khác nhau.</div>
+<div class="callout callout-amber"><b>⚠️ FB Organic Distribution:</b> Facebook KHÔNG tự distribute organic tới cold audience. <b>Mọi FB/IG post = $15 test budget (3 ngày)</b>. Stop nếu ER &lt; 3% sau 48h. Boost thêm $50 nếu ER &gt; 5%.</div>
+<div class="callout callout-blue"><b>🎯 B2B Targeting (LinkedIn):</b> Job title: Marketing Manager, Brand Manager, Marketing Director, CMO, Agency Owner · Company size: 20+ · Location: HCM + HN · Industry: Advertising, FMCG, Retail, E-commerce</div>
+<div class="table-wrap">
+<table><thead><tr>
+  <th>Ngày</th><th>ID</th><th>Định Dạng</th><th>Tiêu Đề</th>
+  <th>Hook ★</th><th>Track</th><th>Level</th><th>Loại</th><th>Ad</th><th>Platform</th><th>CTA</th>
+</tr></thead><tbody id="calBody"></tbody></table>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 2: ER TRACKER -->
+<!-- ============================================================ -->
+<div id="er" class="page">
+<div class="header"><h1>📊 Performance Tracker</h1>
+<p>Nhập số liệu sau 48h mỗi bài · ER &gt; 5% FB/IG → Boost +$50 · ER &gt; 3% LinkedIn → Boost · ER &lt; 3% → Stop</p></div>
+<div class="er-section">
+<div class="callout callout-green"><b>✅ Test Protocol v5:</b> TẤT CẢ FB/IG posts chạy $15 test · LinkedIn posts chạy $10 test. Nhập data → tự tính ER → quyết định boost / hold / stop.</div>
+<div class="callout callout-b2b"><b>🔗 LinkedIn B2B threshold:</b> ER &gt; 3% → Boost $30 | ER &gt; 5% → Boost $50 + InMail follow-up | ER &lt; 2% → Stop, rewrite hook.</div>
+<div class="er-grid" id="erGrid"></div></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 3: AD SPEND (REVISED v5) -->
+<!-- ============================================================ -->
+<div id="spend" class="page">
+<div class="header"><h1>💰 Ad Spend — v5 Revised (B2B 50% / B2C 50%)</h1>
+<p>Total $1,300 · LinkedIn tăng từ $100 → $450 · FB/IG giảm từ $800 → $420 · Email mới thêm $100</p></div>
+<div class="spend-section">
+
+<div class="callout callout-b2b"><b>📌 v5 vs v4 Key Change:</b> LinkedIn budget tăng 4.5× (từ $100 lên $450). FB/IG budget giảm nhưng tập trung hơn vào B2C audience thực sự. Email channel $100 mới thêm cho B2B nurture.</div>
+
+<div class="budget-grid">
+  <div class="bcard"><div class="amount" style="color:#0a66c2">$450</div><div class="label">LinkedIn Total</div><div class="note">35% · Sponsored + InMail</div></div>
+  <div class="bcard"><div class="amount" style="color:#1877f2">$420</div><div class="label">FB/IG Total</div><div class="note">32% · Test + Boost</div></div>
+  <div class="bcard"><div class="amount" style="color:var(--ind)">$200</div><div class="label">Retargeting</div><div class="note">15% · LI + Web</div></div>
+  <div class="bcard"><div class="amount" style="color:#e05d44">$100</div><div class="label">Email B2B</div><div class="note">8% · Tools + Setup</div></div>
+  <div class="bcard"><div class="amount" style="color:#556b00">$130</div><div class="label">Always-On Sales</div><div class="note">10% · S1 + Corporate</div></div>
+  <div class="bcard"><div class="amount" style="color:#16a34a">$1,300</div><div class="label">TOTAL</div><div class="note">On budget ✓</div></div>
+</div>
+
+<!-- Detailed breakdown -->
+<h3 style="font-size:13px;font-weight:700;margin-bottom:12px">📊 Budget Breakdown Chi Tiết</h3>
+
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">🔗 LinkedIn Sponsored Content</div><div class="budget-note-sm">Target: Marketing Director, CMO, Brand Manager, Agency Owner · Company 20+ · HCM+HN</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:20%;background:#0a66c2"></div></div>
+  <span class="budget-pct-badge" style="background:#0a66c2">20%</span>
+  <div class="budget-amount-num">$260</div>
+</div>
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">📨 LinkedIn InMail</div><div class="budget-note-sm">Cold outreach tới Marketing Leads · 50-80 sends/tuần · Personalized sequence</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:15%;background:#0a66c2"></div></div>
+  <span class="budget-pct-badge" style="background:#0a66c2">15%</span>
+  <div class="budget-amount-num">$190</div>
+</div>
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">📘 FB/IG Testing ($15/post)</div><div class="budget-note-sm">B2C targeting: L2/L3 · Office workers 25-40 · HCM+HN · ~14 posts test</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:16%;background:#1877f2"></div></div>
+  <span class="budget-pct-badge" style="background:#1877f2">16%</span>
+  <div class="budget-amount-num">$210</div>
+</div>
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">📘 FB/IG Boost Winners</div><div class="budget-note-sm">Chỉ boost ER &gt; 5% · Max 3-4 posts · $50/post · Scale tốt nhất</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:16%;background:#1877f2"></div></div>
+  <span class="budget-pct-badge" style="background:#1877f2">16%</span>
+  <div class="budget-amount-num">$210</div>
+</div>
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">🔄 Retargeting (LinkedIn + Website)</div><div class="budget-note-sm">Nurture B2B visitors + B2C warm audience · Session 1 + Corporate CTA</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:15%;background:var(--ind)"></div></div>
+  <span class="budget-pct-badge" style="background:var(--ind)">15%</span>
+  <div class="budget-amount-num">$200</div>
+</div>
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">📧 Email Marketing + Tools</div><div class="budget-note-sm">Brevo/Mailchimp setup + B2B nurture sequence · List building tools</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:8%;background:#e05d44"></div></div>
+  <span class="budget-pct-badge" style="background:#e05d44">8%</span>
+  <div class="budget-amount-num">$100</div>
+</div>
+<div class="budget-row-detail">
+  <div style="flex:2"><div class="budget-channel-name">🎯 Always-On Sales</div><div class="budget-note-sm">Session 1 evergreen ($80) + Corporate page evergreen ($50) · 24/7</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:10%;background:#556b00"></div></div>
+  <span class="budget-pct-badge" style="background:#556b00">10%</span>
+  <div class="budget-amount-num">$130</div>
+</div>
+
+<!-- Before vs After comparison -->
+<h3 style="font-size:13px;font-weight:700;margin:20px 0 12px">🔄 v4 vs v5 — Budget Shift</h3>
+<table class="spend-table"><thead><tr><th>Channel</th><th>v4 Amount</th><th>v5 Amount</th><th>Change</th><th>Lý do</th></tr></thead>
+<tbody>
+<tr><td><b>LinkedIn (total)</b></td><td>$100 (7.7%)</td><td style="color:#16a34a;font-weight:700">$450 (35%)</td><td style="color:#16a34a">↑ +$350</td><td>B2B priority — decision makers trên LinkedIn</td></tr>
+<tr><td><b>FB/IG Testing</b></td><td>$270 (21%)</td><td>$210 (16%)</td><td style="color:#b91c1c">↓ -$60</td><td>Giảm số posts test, tập trung quality hơn</td></tr>
+<tr><td><b>FB/IG Boost</b></td><td>$530 (41%)</td><td>$210 (16%)</td><td style="color:#b91c1c">↓ -$320</td><td>Chỉ boost B2C winners, không boost B2B content</td></tr>
+<tr><td><b>Always-On Sales</b></td><td>$300 (23%)</td><td>$130 (10%)</td><td style="color:#b91c1c">↓ -$170</td><td>Redirect sang LinkedIn Sponsored (higher CPL nhưng B2B qualified)</td></tr>
+<tr><td><b>Retargeting</b></td><td>$100 (7.7%)</td><td>$200 (15%)</td><td style="color:#16a34a">↑ +$100</td><td>Retarget cả B2B (LI) + B2C (FB) warm audience</td></tr>
+<tr><td><b>Email</b></td><td>$0 (0%)</td><td style="color:#16a34a;font-weight:700">$100 (8%)</td><td style="color:#16a34a">↑ NEW</td><td>B2B nurture sequence — essential cho corporate close</td></tr>
+<tr style="background:#e0e7ff;font-weight:700"><td>TOTAL</td><td>$1,300</td><td>$1,300</td><td>—</td><td>Same budget, shifted to B2B-first</td></tr>
+</tbody></table>
+
+<!-- Weekly plan -->
+<h3 style="font-size:13px;font-weight:700;margin-bottom:8px">📅 Weekly Spend Plan v5</h3>
+<table class="spend-table"><thead><tr><th>Tuần</th><th>Phase</th><th>B2B Focus</th><th>B2C Focus</th><th>Total Est.</th><th>Mục tiêu</th></tr></thead>
+<tbody>
+<tr><td><b>W1</b> Jun 15–19</td><td>Pre-Launch A/B</td><td>LI test $30 (A2 post)</td><td>FB/IG test $60 (3 posts)</td><td>$90–150</td><td>Test B2B hook · Chọn winner cho W2</td></tr>
+<tr style="background:#fffbeb"><td><b>W2</b> Jun 20–26</td><td>Soft Launch 🚀</td><td>LI $60 + InMail start</td><td>FB/IG test $90 + boost $50</td><td>$200–300</td><td>Scale hook winners · Session 1 + Corporate CTA live</td></tr>
+<tr><td><b>W3</b> Jun 27–30</td><td>Full Launch 🔥</td><td>LI Sponsored $80 + InMail</td><td>Retarget warm B2C $100</td><td>$260–360</td><td>Retarget both B2B+B2C warm · Urgency</td></tr>
+<tr style="background:#fffbeb"><td><b>W4</b> Jul 1–9</td><td>July Close 🎯</td><td>LI Corporate push $100</td><td>FB/IG close B2C $80</td><td>$210–310</td><td>Corporate discovery calls · B2C cohort close</td></tr>
+<tr style="background:#e0e7ff;font-weight:700"><td>TOTAL</td><td>—</td><td>~$450 B2B</td><td>~$420 B2C + $200 retarget + $230 other</td><td>~$1,300</td><td></td></tr>
+</tbody></table>
+
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB 4: HOOK LIBRARY -->
+<!-- ============================================================ -->
+<div id="hooks" class="page">
+<div class="header"><h1>📚 Campaign Hook Library v5</h1>
+<p>B2C: L2 Experimenter + L3 Practitioner · B2B: Marketing Director, CMO, Agency Owner · HCM+HN</p></div>
+<div class="hl-section">
+
+<div class="callout callout-blue"><b>Audience Split v5:</b> <b>B2C L2 (~38%)</b>: dùng AI không nhất quán, bắt đầu từ đầu mỗi lần, không có template. <b>B2C L3 (~15%)</b>: AI work cho cá nhân nhưng chưa scale ra team. <b>B2B Decision Makers</b>: cần ROI, budget justification, team-wide solution.</div>
+
+<div class="hl-segment-title">🔵 Trigger Words theo Segment</div>
+<table class="trigger-table"><thead><tr><th>Segment</th><th>Pain Triggers</th><th>Aspiration Triggers</th></tr></thead>
+<tbody>
+<tr><td><span class="badge bl2">L2 Experimenter</span></td>
+<td><span class="tw tw-l2">không nhất quán</span><span class="tw tw-l2">bắt đầu lại từ đầu</span><span class="tw tw-l2">mất thời gian</span><span class="tw tw-l2">không biết sai ở đâu</span></td>
+<td><span class="tw tw-g">có hệ thống</span><span class="tw tw-g">template</span><span class="tw tw-g">workflow</span></td></tr>
+<tr><td><span class="badge bl3">L3 Practitioner</span></td>
+<td><span class="tw tw-l3">chỉ mình tôi biết</span><span class="tw tw-l3">team chưa theo kịp</span><span class="tw tw-l3">khi tôi nghỉ</span></td>
+<td><span class="tw tw-g">scale ra team</span><span class="tw tw-g">SOP chung</span><span class="tw tw-g">lợi thế tổ chức</span></td></tr>
+<tr><td><span class="badge bb2b">B2B Director+</span></td>
+<td><span class="tw tw-l3">đội ngũ chưa dùng AI</span><span class="tw tw-l3">cạnh tranh đang tiến</span><span class="tw tw-l3">ROI chưa rõ</span><span class="tw tw-l3">sếp hỏi budget</span></td>
+<td><span class="tw tw-g">lợi thế cạnh tranh</span><span class="tw tw-g">ROI đo được</span><span class="tw tw-g">team capability</span></td></tr>
+</tbody></table>
+
+<div class="hl-segment-title" style="border-color:#e1306c">📱 Hook Formulas — B2C: L2 Experimenter (FB/IG Primary)</div>
+<div class="hl-grid" id="hooksL2"></div>
+
+<div class="hl-segment-title" style="border-color:#7c3aed">🖥️ Hook Formulas — B2C: L3 Practitioner (LinkedIn/FB)</div>
+<div class="hl-grid" id="hooksL3"></div>
+
+<div class="hl-segment-title" style="border-color:#0a66c2">🔗 Hook Formulas — B2B: Decision Makers (LinkedIn Primary)</div>
+<div class="hl-grid" id="hooksB2B"></div>
+
+<div class="hl-segment-title">📏 Hook Scoring Rubric</div>
+<div class="score-grid">
+<div class="score-card"><h4>🔴 Phải có (5đ mỗi)</h4><ul>
+<li>Đọc 3 giây biết target là ai</li><li>Có trigger word đúng segment</li>
+<li>Không cần context để hiểu</li><li>Tạo ngay 1 câu hỏi trong đầu</li></ul></div>
+<div class="score-card"><h4>🟡 Nên có (3đ mỗi)</h4><ul>
+<li>Có số cụ thể (%, phút, người)</li><li>Có personal (tôi / bạn / team)</li>
+<li>Có contrast (before/after)</li><li>Platform-native format</li></ul></div>
+<div class="score-card"><h4>🟢 Bonus B2B (2đ mỗi)</h4><ul>
+<li>Có ROI / số tiền cụ thể</li><li>Nhắm decision maker role</li>
+<li>Controversial / polarizing</li><li>Vietnam context cụ thể</li></ul></div>
+<div class="score-card"><h4>⚫ Loại ngay nếu</h4><ul>
+<li>Generic ("AI là tương lai")</li><li>Không rõ target B2B hay B2C</li>
+<li>Quá dài (&gt;15 từ cho FB)</li><li>Jargon không cần thiết</li></ul></div>
+</div>
+<div class="callout callout-green"><b>✅ Threshold:</b> Hook cần ≥ <b>25/35 điểm</b> trước khi test $15. Dưới ngưỡng → rewrite trước. B2B hooks cần thêm ROI clarity để pass LinkedIn ad review.</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB 5: LINKEDIN B2B PLAN -->
+<!-- ============================================================ -->
+<div id="linkedin" class="page">
+<div class="header">
+  <h1>🔗 LinkedIn B2B Playbook — 4 tuần</h1>
+  <p>3 posts/tuần · Personal profile ưu tiên · Content + Outreach + Sponsored Ads · Target: Marketing Director, CMO, Agency Owner</p>
+</div>
+<div class="li-section">
+
+<div class="callout callout-b2b"><b>LinkedIn Algorithm 2026:</b> Ưu tiên Carousels (24.42% ER) + Video native + Document posts (6.6% ER). Personal profile > Company page — 8× engagement. 2-3 posts/tuần substantive > daily shallow posts. Hook phải fit trong 210 ký tự trước "See more".</div>
+<div class="callout callout-green"><b>✅ Phân biệt rõ:</b> LinkedIn posts trong calendar có tag <span class="badge bb2b">B2B</span> đều map tới plan 4 tuần này. Posts dưới đây là LinkedIn-exclusive content — không post lên FB/IG (except những bài có tag cả 2 platform).</div>
+
+<div class="li-week">
+  <div class="li-week-header">
+    <h3>Tuần 1 (Jun 15–19) — Awareness: Định vị vấn đề B2B</h3>
+    <span style="font-size:12px;opacity:.8">Mục tiêu: profile visit + connection growth</span>
+  </div>
+  <div class="li-week-body">
+    <div class="li-post-row">
+      <div class="li-day">THỨ 5<br>Jun 18</div>
+      <div class="li-format">Contrarian</div>
+      <div>
+        <div class="li-hook">A2: "Sai lầm lớn nhất khi train team AI: bắt đầu từ prompts. Tôi sẽ nói ngược với mọi AI trainer."</div>
+        <div class="li-target">Target: Marketing Director, L&D Manager · Hook: contrarian · CTA: "DM để nhận framework đúng" → /corporate</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="li-week">
+  <div class="li-week-header">
+    <h3>Tuần 2 (Jun 20–26) — Consideration: Chứng minh giá trị</h3>
+    <span style="font-size:12px;opacity:.8">Mục tiêu: profile DMs + link clicks</span>
+  </div>
+  <div class="li-week-body">
+    <div class="li-post-row">
+      <div class="li-day">THỨ 2<br>Jun 22</div>
+      <div class="li-format">Data Viral</div>
+      <div>
+        <div class="li-hook">V1: "Tôi vừa audit AI usage của 50 marketing team VN. Đây là sự thật không ai nói."</div>
+        <div class="li-target">Carousel 10 slides · Data reveal · Marketing Director/CMO · CTA: "Level của team bạn là gì?"</div>
+      </div>
+    </div>
+    <div class="li-post-row">
+      <div class="li-day">THỨ 5<br>Jun 25</div>
+      <div class="li-format">Founder Story</div>
+      <div>
+        <div class="li-hook">C7-P2: "10 năm marketing top FMCG — nhưng khi AI xuất hiện, tôi không biết bắt đầu từ đâu. The Wild Card ra đời từ đó."</div>
+        <div class="li-target">Personal narrative · Trust building · B2B decision makers · CTA: /corporate</div>
+      </div>
+    </div>
+    <div class="li-post-row">
+      <div class="li-day">THỨ 6<br>Jun 26</div>
+      <div class="li-format">Engagement</div>
+      <div>
+        <div class="li-hook">V10: "Hỏi thật: team bạn đang ở đâu với AI? L1 / L2 / L3 / L4 — comment xuống nhé."</div>
+        <div class="li-target">Engagement post · Audience segmentation · Leads to discovery conversation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="li-week">
+  <div class="li-week-header">
+    <h3>Tuần 3 (Jun 27–Jul 2) — Intent: Authority + tranh luận</h3>
+    <span style="font-size:12px;opacity:.8">Mục tiêu: inbound DMs + discovery calls</span>
+  </div>
+  <div class="li-week-body">
+    <div class="li-post-row">
+      <div class="li-day">THỨ 2<br>Jun 28</div>
+      <div class="li-format">Hot Take</div>
+      <div>
+        <div class="li-hook">"Mua ChatGPT cho cả team là lãng phí ngân sách nhất bạn có thể làm năm 2026."</div>
+        <div class="li-target">Controversial · Invites disagreement from both sides · Shows expertise · Agency owners sẽ tag nhau</div>
+      </div>
+    </div>
+    <div class="li-post-row">
+      <div class="li-day">THỨ 5<br>Jul 2</div>
+      <div class="li-format">Data Carousel</div>
+      <div>
+        <div class="li-hook">V4: "Đây là prompt tôi dùng để viết toàn bộ brief campaign trong 7 phút." (kèm screenshot thực)</div>
+        <div class="li-target">Practical value · High save rate · "Steal this prompt" format · CTA: /corporate workshop</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="li-week">
+  <div class="li-week-header">
+    <h3>Tuần 4 (Jul 3–9) — Conversion: Direct sell + case study</h3>
+    <span style="font-size:12px;opacity:.8">Mục tiêu: discovery calls + proposals sent</span>
+  </div>
+  <div class="li-week-body">
+    <div class="li-post-row">
+      <div class="li-day">THỨ 3<br>Jul 7</div>
+      <div class="li-format">Corporate CTA</div>
+      <div>
+        <div class="li-hook">L4: "1 người học AI = lợi thế cá nhân. Cả team học AI cùng framework = lợi thế cạnh tranh. Session 1 corporate batch tháng tới."</div>
+        <div class="li-target">B2B direct offer · Specific outcome list · "DM để nhận proposal" CTA · Urgency scarcity</div>
+      </div>
+    </div>
+    <div class="li-post-row">
+      <div class="li-day">THỨ 5<br>Jul 9</div>
+      <div class="li-format">Founder Close</div>
+      <div>
+        <div class="li-hook">C7: "ROI calculator: nếu team 10 người tiết kiệm 8h/tuần nhờ AI, đó là bao nhiêu $/năm? (bài dài — đọc hết nhé)"</div>
+        <div class="li-target">Decision maker math · Tags CFO/CEO thinking · Closes on ROI logic · Final CTA both B2B + B2C</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Outreach SOP -->
+<div style="margin-top:8px">
+<div class="hl-segment-title" style="border-color:#0a66c2">📨 LinkedIn Outreach SOP — 20 connections/ngày</div>
+<table class="outreach-table">
+  <tr><th>Bước</th><th>Action</th><th>Message Template</th><th>Timing</th></tr>
+  <tr>
+    <td><b>1</b></td><td>Connect request</td>
+    <td>"Hi [Name], thấy bạn đang lead marketing team tại [Company]. Tôi đang research về AI adoption trong marketing VN — muốn kết nối để exchange insights."</td>
+    <td>Ngay khi gửi</td>
+  </tr>
+  <tr>
+    <td><b>2</b></td><td>Value DM (sau accept)</td>
+    <td>"Cảm ơn bạn đã connect! Tôi vừa làm report nhỏ về AI Maturity trong marketing teams VN — gửi bạn xem thử, không có ý pitch gì cả." [attach AI Maturity PDF]</td>
+    <td>24h sau accept</td>
+  </tr>
+  <tr>
+    <td><b>3</b></td><td>Soft qualify</td>
+    <td>"Bạn thấy team mình đang ở level nào? Tụi mình đang làm pilot với vài team để build case study về AI adoption — nếu quan tâm tôi chia sẻ thêm."</td>
+    <td>3-4 ngày sau</td>
+  </tr>
+  <tr>
+    <td><b>4</b></td><td>Discovery invite</td>
+    <td>"Nếu muốn bàn thêm về việc build AI capability cho team — tôi có 20 phút free tuần này. Không phải sales call, just sharing what's working."</td>
+    <td>7 ngày sau</td>
+  </tr>
+  <tr>
+    <td><b>5</b></td><td>Final follow-up</td>
+    <td>"Bỏ qua nếu timing không phù hợp — chỉ muốn để lại link này phòng khi cần: [link /corporate]"</td>
+    <td>14 ngày sau</td>
+  </tr>
+</table>
+</div>
+
+<!-- B2B KPIs -->
+<div style="margin-top:20px">
+<div class="hl-segment-title" style="border-color:#0a66c2">🎯 B2B KPIs — Tháng đầu tiên</div>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-num">15-20</div><div class="kpi-unit">B2B leads/tháng</div><div class="kpi-label">Marketing Manager+<br>từ LinkedIn + Email</div></div>
+  <div class="kpi-card"><div class="kpi-num">4-5</div><div class="kpi-unit">discovery calls</div><div class="kpi-label">Corporate booking<br>từ LI + Email</div></div>
+  <div class="kpi-card"><div class="kpi-num">1-2</div><div class="kpi-unit">closed deals</div><div class="kpi-label">Corporate Session 1<br>tháng đầu (realistic)</div></div>
+  <div class="kpi-card"><div class="kpi-num">$65</div><div class="kpi-unit">target CPL</div><div class="kpi-label">Cost per B2B lead<br>LinkedIn benchmark VN</div></div>
+</div>
+<div class="callout callout-amber"><b>⚠️ B2B Sales Cycle:</b> 3-6 tuần từ first touch đến close. LI content build awareness → InMail/Email qualify → Discovery call → Proposal → Close. Tháng 1 xây pipeline, tháng 2-3 mới expect consistent closes từ B2B. Song song đó B2C session-1 sales vẫn chạy.</div>
+</div>
+
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB 6: EMAIL B2B PLAN -->
+<!-- ============================================================ -->
+<div id="email" class="page">
+<div class="header">
+  <h1>📧 Email Marketing B2B</h1>
+  <p>5-email nurture sequence · List building từ LinkedIn + Website · Target: Marketing Manager, HR Training Lead, Agency Owner</p>
+</div>
+<div class="email-section">
+
+<div class="callout callout-b2b"><b>B2B Email Benchmark 2026:</b> Open rate 42.35% · CTR trung bình 6% · AI personalization tăng CTR +13%. Target: Marketing Manager, CMO, HR L&D, Agency Owner.</div>
+
+<!-- List Building -->
+<div class="hl-segment-title" style="border-color:#0a66c2">📋 List Building Strategy — 3 nguồn chính</div>
+<div class="lb-grid">
+  <div class="lb-card">
+    <div class="lb-num">L1</div>
+    <h3>LinkedIn Lead Gen Form</h3>
+    <p>Attach lead gen form vào LinkedIn Sponsored posts. Offer: "AI Maturity Assessment PDF + Checklist" cho Marketing Manager. Auto-sync email vào Brevo.</p>
+    <div class="est">~15-20 leads/tháng</div>
+  </div>
+  <div class="lb-card">
+    <div class="lb-num">L2</div>
+    <h3>Website Popup — /corporate</h3>
+    <p>Exit-intent popup trên trang corporate: "Nhận ROI Calculator: team 10 người tiết kiệm bao nhiêu $/năm nếu dùng AI?" → Email capture.</p>
+    <div class="est">~8-12 leads/tháng</div>
+  </div>
+  <div class="lb-card">
+    <div class="lb-num">L3</div>
+    <h3>Workshop Attendee Nurture</h3>
+    <p>Người tham dự public session có company email domain (@company.com) → auto-segment vào B2B sequence sau buổi học.</p>
+    <div class="est">~5-8 leads/batch</div>
+  </div>
+</div>
+
+<!-- Email Sequence -->
+<div class="hl-segment-title" style="border-color:#0a66c2">📧 5-Email Corporate Nurture Sequence</div>
+<p style="font-size:12px;color:var(--gray);margin-bottom:12px;padding:0 0 0 2px">Trigger: Lead magnet download hoặc /corporate page visit + email capture. Frequency: 1 email/3-4 ngày.</p>
+<div class="email-seq">
+  <div class="email-step">
+    <div class="day">Email 1 · Ngay lập tức</div>
+    <div class="subject">📊 AI Maturity Report của bạn đây — cộng 1 insight bất ngờ</div>
+    <div class="desc">Deliver lead magnet. Chia sẻ stat shock: "70% marketing team cần AI training nhưng không được cung cấp." Kết thúc với: "Team bạn đang ở level nào?"</div>
+    <span class="cta-tag">Welcome + Value</span>
+  </div>
+  <div class="email-step">
+    <div class="day">Email 2 · Ngày 3</div>
+    <div class="subject">⚠️ Doanh nghiệp VN đang mất 40% ROI AI vì lý do này</div>
+    <div class="desc">Agitate pain: EY finding về lost productivity. Concrete example team làm sai. Build urgency không hard sell. CTA: "Đọc thêm về common mistakes."</div>
+    <span class="cta-tag">Pain + Education</span>
+  </div>
+  <div class="email-step">
+    <div class="day">Email 3 · Ngày 7</div>
+    <div class="subject">🔥 Case study: Team [X] từ 3 ngày/brief xuống 40 phút</div>
+    <div class="desc">Real story (anonymized). Before/after numbers cụ thể. Highlight transformation. Soft CTA: "Bạn muốn xem team mình làm được không?" → Link discovery call.</div>
+    <span class="cta-tag">Social Proof</span>
+  </div>
+  <div class="email-step">
+    <div class="day">Email 4 · Ngày 11</div>
+    <div class="subject">💡 Session 1 Foundation of AI — dành riêng cho corporate teams</div>
+    <div class="desc">Introduce product properly. Outcomes cụ thể. Format (1 ngày, 5-20 người, customize được). ROI calculator đính kèm. CTA: "Book demo 20 phút."</div>
+    <span class="cta-tag">Product Offer</span>
+  </div>
+  <div class="email-step">
+    <div class="day">Email 5 · Ngày 16</div>
+    <div class="subject">📅 Còn 3 slot corporate tháng này — và 1 câu hỏi</div>
+    <div class="desc">Urgency + scarcity (genuine). Ask qualifying question: "Đội bạn bao nhiêu người? Ngành gì?" → Micro-commitment. Final CTA: "Reply email này" hoặc "Book trực tiếp."</div>
+    <span class="cta-tag">Close + Urgency</span>
+  </div>
+</div>
+
+<!-- Email specs -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+  <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px">
+    <h3 style="font-size:13px;font-weight:700;margin-bottom:10px">🛠️ Tool recommendation</h3>
+    <p style="font-size:12px;margin-bottom:8px"><b>Brevo (free tier)</b> — 300 emails/ngày free, automation + sequences. Đủ cho phase đầu (&lt;500 contacts).</p>
+    <p style="font-size:12px"><b>Mailchimp Essentials $13/mo</b> — khi list &gt; 500 contacts, cần A/B testing và analytics tốt hơn.</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+      <span class="badge bval">SPF/DKIM setup</span>
+      <span class="badge bval">Custom domain send</span>
+      <span class="badge bval">Unsubscribe compliant</span>
+    </div>
+  </div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px">
+    <h3 style="font-size:13px;font-weight:700;margin-bottom:10px">✍️ Subject line best practices B2B VN</h3>
+    <div style="font-size:12px;display:flex;flex-direction:column;gap:6px">
+      <div>✅ Dùng số cụ thể: "40 phút", "3 tháng", "$X tiết kiệm"</div>
+      <div>✅ Emoji 1 cái đầu dòng: tăng open rate 6-9%</div>
+      <div>✅ Personalize [Name] hoặc [Company]</div>
+      <div>✅ Subject dưới 50 ký tự cho mobile</div>
+      <div>❌ Tránh: "FREE", "URGENT", "Click here" → spam filter</div>
+      <div>❌ Tránh ALL CAPS trong subject</div>
+    </div>
+  </div>
+</div>
+
+<!-- Email KPIs -->
+<div class="hl-segment-title" style="border-color:#0a66c2">📊 Email KPIs Target</div>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-num">42%</div><div class="kpi-unit">open rate target</div><div class="kpi-label">B2B industry avg<br>(global benchmark)</div></div>
+  <div class="kpi-card"><div class="kpi-num">6%</div><div class="kpi-unit">CTR target</div><div class="kpi-label">Click-to-link<br>per email</div></div>
+  <div class="kpi-card"><div class="kpi-num">15%</div><div class="kpi-unit">reply rate</div><div class="kpi-label">Email 5 qualification<br>replies</div></div>
+  <div class="kpi-card"><div class="kpi-num">2-3</div><div class="kpi-unit">demos/tháng</div><div class="kpi-label">Discovery calls<br>booked từ sequence</div></div>
+</div>
+<div class="callout callout-green"><b>🎯 B2B Conversion Funnel:</b> 50 email leads → 42% open → 6% click → 15% reply → 3 demos → 1 corporate close/tháng. Tháng 1 xây list, tháng 2-3 expect consistent closes. Song song B2C funnel vẫn chạy qua /session-1.</div>
+
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB 7: CHECKLIST 30 DAYS -->
+<!-- ============================================================ -->
+<div id="checklist" class="page">
+<div class="header">
+  <h1>✅ 30-Day Execution Checklist</h1>
+  <p>Source: <a href="https://docs.google.com/spreadsheets/d/1kwzqSVf7x4e_cqnHsWprlmqgGg_jw0vHhUvVlZ7ioow/edit" target="_blank" style="color:var(--ind);font-weight:700">TWC Checklist Google Sheet ↗</a> · Owners: Yen + Nghi</p>
+</div>
+<div class="ck-section">
+<div class="ck-summary" id="ckSummary"></div>
+<div class="ck-filters" id="ckFilters">
+  <span style="font-size:11px;font-weight:700;align-self:center;color:var(--gray)">Filter:</span>
+  <button class="ck-filter on" onclick="filterCk('all',this)">All</button>
+  <button class="ck-filter" onclick="filterCk('Yen',this)">Yen</button>
+  <button class="ck-filter" onclick="filterCk('Nghi',this)">Nghi</button>
+  <button class="ck-filter" onclick="filterCk('Both',this)">Both</button>
+  <button class="ck-filter" style="margin-left:8px" onclick="filterCkPri('CRIT',this)">🔴 CRIT only</button>
+</div>
+<div id="ckPhases"></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 8: FINANCE -->
+<!-- ============================================================ -->
+<div id="finance" class="page">
+<div class="header">
+  <h1>💼 Finance & Compliance Hub</h1>
+  <p>Sources: <a href="https://docs.google.com/spreadsheets/d/1DtvsKhdFX9MM5FNHauf_1Vwji2btAduA4TFZ5gZzVCo/edit" target="_blank" style="color:var(--ind);font-weight:700">Thu Chi Sheet ↗</a> · <a href="https://docs.google.com/spreadsheets/d/1kwzqSVf7x4e_cqnHsWprlmqgGg_jw0vHhUvVlZ7ioow/edit?gid=375307468" target="_blank" style="color:var(--ind);font-weight:700">Budget Tracker ↗</a></p>
+</div>
+<div class="fin-section">
+
+<!-- CRITICAL ALERT: Vốn điều lệ -->
+<div class="fin-alert fin-alert-crit">
+  <div class="fin-alert-icon">🚨</div>
+  <div class="fin-alert-body">
+    <h3>CRITICAL OVERDUE — Vốn điều lệ 300,000,000 ₫</h3>
+    <p>Deadline <strong>15/04/2026 đã QUA</strong>. Yen Vo: còn thiếu 150,000,000 ₫ · Nghi Phan: còn thiếu 150,000,000 ₫.<br>
+    Mức phạt: <strong>10–20 triệu ₫ / bị truy cứu pháp lý</strong>. Nội dung CK: <em>"Góp vốn điều lệ - [Tên] - Công ty TNHH Lá Bài Tẩy"</em>.<br>
+    Hành động ngay: chuyển khoản đủ 300tr HOẶC làm thủ tục giảm vốn điều lệ.</p>
+  </div>
+</div>
+
+<!-- Tax Deadline Q2 Warning -->
+<div class="fin-alert">
+  <div class="fin-alert-icon">⚠️</div>
+  <div class="fin-alert-body">
+    <h3>Sắp đến hạn — Khai thuế Q2/2026</h3>
+    <p>Deadline <strong>30/07/2026</strong>: Nộp tờ khai GTGT + TNDN Q2. Phạt nếu trễ: 200k–1tr mỗi loại. Chuẩn bị sớm.</p>
+  </div>
+</div>
+
+<!-- KPI Cards -->
+<div class="fin-grid">
+  <div class="fin-card"><div class="num" style="color:#b91c1c">150M</div><div class="lbl">₫ Yen còn thiếu vốn</div></div>
+  <div class="fin-card"><div class="num" style="color:#b91c1c">150M</div><div class="lbl">₫ Nghi còn thiếu vốn</div></div>
+  <div class="fin-card"><div class="num">5,050,000</div><div class="lbl">₫ Tổng chi Q1 2026</div></div>
+  <div class="fin-card"><div class="num" style="color:#16a34a">0</div><div class="lbl">₫ Tổng thu (chưa phát sinh)</div></div>
+  <div class="fin-card"><div class="num">$65</div><div class="lbl">Tool spend/tháng (USD)</div></div>
+  <div class="fin-card"><div class="num">$1,300</div><div class="lbl">Ad spend tháng 6 (USD)</div></div>
+</div>
+
+<!-- Tax Deadlines -->
+<div class="fin-h2">📅 Tax Deadlines 2026</div>
+<div style="overflow-x:auto;margin-bottom:16px">
+<table class="fin-table">
+  <thead><tr><th>Deadline</th><th>Công việc</th><th>Loại</th><th>Mức phạt</th><th>Trạng thái</th></tr></thead>
+  <tbody>
+    <tr class="tax-overdue"><td>15/04/2026</td><td>Góp đủ vốn điều lệ 300tr hoặc giảm vốn</td><td>Pháp lý</td><td>10–20tr / truy cứu</td><td><span class="tax-badge tx-overdue">🚨 OVERDUE</span></td></tr>
+    <tr class="tax-done"><td>30/04/2026</td><td>Tờ khai GTGT Q1/2026</td><td>Thuế GTGT</td><td>200k–1tr</td><td><span class="tax-badge tx-done">✅ Đã nộp</span></td></tr>
+    <tr class="tax-done"><td>30/04/2026</td><td>Tờ khai TNDN Q1/2026</td><td>Thuế TNDN</td><td>200k–1tr</td><td><span class="tax-badge tx-done">✅ Đã nộp</span></td></tr>
+    <tr class="tax-pending"><td>30/07/2026</td><td>Tờ khai GTGT Q2/2026</td><td>Thuế GTGT</td><td>200k–1tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>30/07/2026</td><td>Tờ khai TNDN Q2/2026</td><td>Thuế TNDN</td><td>200k–1tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>30/10/2026</td><td>Tờ khai GTGT Q3/2026</td><td>Thuế GTGT</td><td>200k–1tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>30/10/2026</td><td>Tờ khai TNDN Q3/2026</td><td>Thuế TNDN</td><td>200k–1tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>30/01/2027</td><td>Tờ khai GTGT Q4/2026</td><td>Thuế GTGT</td><td>200k–1tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>30/01/2027</td><td>Tờ khai TNDN Q4/2026</td><td>Thuế TNDN</td><td>200k–1tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>31/03/2027</td><td>Quyết toán TNDN năm 2026</td><td>Quyết toán</td><td>0.03%/ngày</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+    <tr class="tax-pending"><td>31/03/2027</td><td>Báo cáo tài chính năm 2026</td><td>BCTC</td><td>4.5–15tr</td><td><span class="tax-badge tx-pending">⏳ Chưa</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Transaction Log -->
+<div class="fin-h2">📋 Giao dịch thực tế</div>
+<div style="overflow-x:auto;margin-bottom:16px">
+<table class="fin-table">
+  <thead><tr><th>Ngày</th><th>Loại</th><th>Danh mục</th><th>Mô tả</th><th>Số tiền</th><th>Hóa đơn</th><th>Số HĐ</th></tr></thead>
+  <tbody>
+    <tr><td>15/01/2026</td><td>Chi</td><td>Pháp lý</td><td>Phí đăng ký doanh nghiệp</td><td>100,000 ₫</td><td><span class="tax-badge tx-done">Có</span></td><td>HD001</td></tr>
+    <tr><td>20/01/2026</td><td>Chi</td><td>SaaS</td><td>Đăng ký Google Workspace</td><td>3,500,000 ₫</td><td><span class="tax-badge tx-done">Có</span></td><td>HD002</td></tr>
+    <tr><td>05/02/2026</td><td>Chi</td><td>Pháp lý</td><td>Chữ ký số (USB Token)</td><td>1,200,000 ₫</td><td><span class="tax-badge tx-done">Có</span></td><td>HD003</td></tr>
+    <tr><td>10/02/2026</td><td>Chi</td><td>Văn phòng</td><td>In ấn, văn phòng phẩm</td><td>350,000 ₫</td><td><span class="tax-badge tx-overdue">Không</span></td><td>—</td></tr>
+    <tr style="background:#f9fafb;font-weight:700"><td colspan="4">TỔNG CHI Q1</td><td>5,150,000 ₫</td><td colspan="2">3/4 có HĐ đỏ</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Monthly P&L -->
+<div class="fin-h2">📊 Monthly P&L (ad budget — USD)</div>
+<div style="overflow-x:auto;margin-bottom:16px">
+<table class="fin-table">
+  <thead><tr><th>Tháng</th><th>Thu (dự kiến)</th><th>Chi tools (USD)</th><th>Chi ads (USD)</th><th>P&L</th></tr></thead>
+  <tbody>
+    <tr><td>Jun 2026</td><td>—</td><td>$65</td><td>$1,300</td><td style="color:#b91c1c;font-weight:700">–$1,365</td></tr>
+    <tr><td>Jul 2026</td><td>—</td><td>$65</td><td>$1,520 (if ROAS ≥1.77×)</td><td style="color:#6b7280">Depends on Jun</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Budget breakdown from checklist -->
+<div class="fin-h2">💰 Ad Budget Breakdown (Jun)</div>
+<div style="overflow-x:auto;margin-bottom:16px">
+<table class="fin-table">
+  <thead><tr><th>Line item</th><th>Amount</th><th>Timeline</th><th>Owner</th></tr></thead>
+  <tbody>
+    <tr><td>Facebook/IG Awareness (Ad Set 1)</td><td>$800</td><td>Jun 15 – Jun 30 (~$50/day)</td><td>Nghi</td></tr>
+    <tr><td>Facebook/IG Retargeting (Ad Set 2)</td><td>$400</td><td>Launch Jun 9 after Cohort 1</td><td>Nghi</td></tr>
+    <tr><td>LinkedIn InMail</td><td>$100</td><td>Week 3, ~1,000 sends</td><td>Nghi</td></tr>
+    <tr style="background:#f9fafb;font-weight:700"><td>TOTAL AD SPEND</td><td>$1,300</td><td></td><td></td></tr>
+    <tr><td>Tools (fixed monthly)</td><td>$65</td><td>Canva $15 + Claude $20 + ChatGPT $20 + Calendly $10</td><td>Nghi/Yen</td></tr>
+    <tr style="background:#fef3c7;font-weight:700"><td>TOTAL JUNE SPEND</td><td>$1,365</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+// ============================================================
+// POSTS DATA — v5 (50% B2B / 50% B2C)
+// b2b:true = LinkedIn B2B post, CTA corporate
+// b2b:false = FB/IG B2C post, CTA session-1
+// b2b:'both' = dual channel
+// ============================================================
+const posts=[
+{date:'Mon Jun 15',phase:'Pre-Launch',cls:'ph1',id:'A1',b2b:false,
+ fmt:'Hook',title:'ChatGPT đang treat bạn như stranger — bạn chưa biết điều này',
+ hook:'ChatGPT của bạn không biết bạn là ai. Và đó chính là vấn đề.',
+ h2:'[L3] AI đang work cho bạn — nhưng chưa work cho team khi bạn không có mặt.',
+ h3:'Tại sao output AI của bạn luôn generic? Vì bạn chưa bao giờ giới thiệu bản thân.',
+ cap:'Bạn mở ChatGPT, gõ prompt, nhận kết quả generic. Làm lại, vẫn generic.\n\nVấn đề không phải prompt ngắn hay dài. Vấn đề là AI đang treat bạn như người lạ — vì bạn chưa bao giờ giới thiệu bản thân.\n\nSession 1 Foundation of AI dạy cách build "AI Identity Layer" — để mọi prompt có context ngay từ đầu.\n\n👉 thewildcard.vn/session-1',
+ canva:'Dark indigo, oversized "?", lime accent, dot grid. Text: "ChatGPT không biết bạn là ai." 1080×1080 + 9:16.',
+ level:'L2',platform:'FB + IG Reels',type:'Viral',ad:'🟡 $15 test A/B',cta:'session-1'},
+
+{date:'Wed Jun 17',phase:'Pre-Launch',cls:'ph1',id:'A5',b2b:false,
+ fmt:'Sai Lầm',title:'3 lỗi prompt 90% marketer Vietnam đang mắc — và cách sửa ngay',
+ hook:'Bạn đang mắc lỗi số mấy? 3 lỗi tôi thấy ở mọi marketer khi học CRAFT.',
+ h2:'AI trả lời dở không phải vì AI dở. Mà vì prompt đang thiếu 3 thứ này.',
+ h3:'Tôi review 200+ prompt của marketers VN. Cùng 3 lỗi lặp lại ở tất cả.',
+ cap:'Sau khi review prompt của 200+ marketer, tôi thấy 3 lỗi xuất hiện ở gần như mọi người:\n\n❌ Lỗi 1: Không có context về bản thân\n❌ Lỗi 2: Không chỉ định output format\n❌ Lỗi 3: Không có tone anchor\n\nBa lỗi này là lý do output AI luôn cần rewrite.\n\nSession 1 bắt đầu bằng việc fix đúng 3 lỗi này.\n👉 thewildcard.vn/session-1',
+ canva:'3-panel carousel: cover dark "3 LỖI PROMPT", panel 2-4 lime fix. High contrast.',
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test A/B',cta:'session-1'},
+
+{date:'Thu Jun 18',phase:'Pre-Launch',cls:'ph1',id:'A2',b2b:true,
+ fmt:'B2B Contrarian',title:'Sai lầm lớn nhất của AI training cho team: bắt đầu từ prompts',
+ hook:'Sai lầm lớn nhất khi train team AI: bắt đầu từ prompts. Tôi sẽ nói ngược với mọi AI trainer.',
+ h2:'Tôi sẽ nói ngược: prompt không phải vấn đề của team bạn.',
+ h3:'Team viết prompt tệ không phải vì thiếu kỹ thuật. Đây là lý do thực sự.',
+ cap:'Mọi AI training programme bắt đầu bằng: "Cách viết prompt tốt hơn."\n\nĐây là sai lầm.\n\nTeam của bạn cần hiểu:\n— AI là tool cần context, không phải oracle\n— Cách structure thinking trước khi prompt\n— Cách build workflow quanh AI, không chỉ quanh prompt\n\nKhi cả team hiểu điều này → output đồng đều, không phụ thuộc vào 1-2 người giỏi.\n\nSession 1 Foundation of AI bắt đầu từ đây — dành cho toàn team, không phải cá nhân.\n👉 thewildcard.vn/corporate',
+ canva:'LinkedIn 1200×627. Bold: "THINK FIRST. PROMPT SECOND." Indigo background, lime underline. Professional tone.',
+ level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+
+{date:'Fri Jun 19',phase:'Pre-Launch',cls:'ph1',id:'A8',b2b:false,
+ fmt:'Before/After',title:'BEFORE vs AFTER: Cùng 1 brief — khác hoàn toàn về thời gian',
+ hook:'BEFORE: 2 tiếng, 3 vòng revise. AFTER: 18 phút, approved ngay. Cùng 1 người — khác 1 system.',
+ h2:'Brief A mất 45 phút. Brief B mất 12 phút. Chỉ 1 thứ khác nhau.',
+ h3:'Tôi so sánh brief viết tay vs AI co-write. Kết quả làm tôi bất ngờ về chính mình.',
+ cap:'BEFORE: Blank doc → 45 phút viết → 3 rounds revise với agency\nAFTER: 4-step AI workflow → 12 phút → agency approved lần đầu\n\nKhác biệt: bạn biết chính xác mình cần gì trước khi ngồi vào.\n\n👉 thewildcard.vn/session-1',
+ canva:'Split: BEFORE dark red vs AFTER lime. Bold contrast. 1080×1080.',
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1'},
+
+{date:'Sat Jun 20',phase:'Soft Launch',cls:'ph2',id:'L1',b2b:'both',
+ fmt:'Launch',title:'The Wild Card chính thức mở cửa — Cohort 2 đăng ký hôm nay',
+ hook:'Không phải khoá học AI. Là chương trình Gen AI training đầu tiên cho brand teams VN.',
+ h2:'The Wild Card chính thức mở cửa. Đây là nơi marketer VN học AI theo cách thật.',
+ h3:'Chúng tôi đã chờ đủ lâu để làm đúng. Hôm nay mở đăng ký Cohort 2.',
+ cap:'The Wild Card — Gen AI Training for Brand Teams Vietnam — chính thức mở Cohort 2.\n\nBắt đầu từ Session 1: Foundation of AI.\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team (5+ người): thewildcard.vn/corporate\n\n👉 Chọn path phù hợp với bạn.',
+ canva:'Dark ink, large lime "WE\'RE LIVE", URL prominent. TWC logo. Both CTAs visible.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both'},
+
+{date:'Mon Jun 22',phase:'Soft Launch',cls:'ph2',id:'V1-B2B',b2b:true,
+ fmt:'B2B Data Reveal',title:'Tôi vừa audit AI usage của 50 marketing team VN — sự thật không ai nói',
+ hook:'Tôi vừa audit AI usage của 50 marketing team VN. Đây là sự thật không ai nói.',
+ h2:'Khoảng cách AI giữa "team dùng" và "team thực sự hiệu quả" lớn hơn bạn nghĩ rất nhiều.',
+ h3:'50 marketing teams. 4 tuần. Đây là 5 pattern tôi thấy lặp lại ở tất cả.',
+ cap:'Tôi vừa audit AI adoption của 50 marketing team lớn tại HCM và HN.\n\nVà đây là sự thật từ research toàn cầu lẫn VN:\n— 70% marketing team cần AI training — nhưng công ty không cung cấp\n— 95% GenAI projects thất bại trong 6 tháng đầu\n— Chỉ 6% doanh nghiệp đạt mức "AI high performer"\n— 40% ROI của AI bị mất vì training không đủ (EY Work Reimagined Survey, 2025)\n\nVấn đề không phải thiếu tool. Vấn đề là AI chỉ work cho 1-2 người, không scale ra cả team.\n\nTeam bạn đang ở đâu? L1 / L2 / L3 / L4 — comment xuống nhé.\n\n👉 Full framework tại thewildcard.vn/corporate',
+ canva:'LinkedIn Carousel 10 slides: Cover "50 TEAMS. 4 TUẦN. SỰ THẬT." · Slides 1-8 data points · Slide 9 framework · Slide 10 CTA. Dark indigo + lime.',
+ level:'L3',platform:'LinkedIn + FB',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+
+{date:'Wed Jun 24',phase:'Soft Launch',cls:'ph2',id:'A4',b2b:false,
+ fmt:'Checklist',title:'Save bài này: CRAFT Checklist — 5 yếu tố của mọi prompt hoàn hảo',
+ hook:'Save bài này — checklist 5 yếu tố bạn cần check trước khi gửi bất kỳ prompt nào.',
+ h2:'Prompt tệ không phải vì câu từ sai. Mà vì thiếu đúng 1 trong 5 yếu tố này.',
+ h3:'CRAFT Framework trong 1 carousel — copy và dùng ngay hôm nay.',
+ cap:'C = Context: AI biết bạn là ai không?\nR = Role: Đã assign role chưa?\nA = Action: Output cụ thể bạn muốn?\nF = Format: Chỉ định format chưa?\nT = Tone: Tone phù hợp chưa?\n\nSession 1 dạy cách apply CRAFT vào brief thật.\n👉 thewildcard.vn/session-1',
+ canva:'5-slide carousel: cover dark "CRAFT CHECKLIST", each slide 1 letter lime. Save-worthy.',
+ level:'L2',platform:'FB + IG Carousel',type:'Value',ad:'🟡 $15 test',cta:'session-1'},
+
+{date:'Thu Jun 25',phase:'Soft Launch',cls:'ph2',id:'C7-P2',b2b:true,
+ fmt:'Founder Story',title:'Tôi xây The Wild Card vì tôi đã từng là người bị bỏ lại — Founder Post',
+ hook:'10 năm marketing top FMCG — nhưng khi AI xuất hiện, tôi không biết bắt đầu từ đâu.',
+ h2:'Tôi xây The Wild Card không phải vì thấy market opportunity. Mà vì tôi từng bị bỏ lại.',
+ h3:'Có khoảnh khắc tôi nhận ra: AI training cho marketer VN đang bị làm sai hoàn toàn.',
+ cap:'10 năm. FMCG. Top brands Vietnam.\n\nTôi đã từng tự tin nhất phòng về marketing. Rồi AI xuất hiện.\n\nMọi "AI course" tôi tìm đều dạy tool — không ai dạy cách think. Không ai dạy cách build AI workflow cho cả team.\n\nThe Wild Card ra đời từ sự thất vọng đó.\n\nNếu bạn đang lead một marketing team và thấy AI đang tạo ra khoảng cách giữa người giỏi và phần còn lại — tôi build Session 1 cho bạn.\n\n👉 thewildcard.vn/corporate',
+ canva:'LinkedIn: ink bg, founder photo, white quote, lime accent. Human, not corporate. 1200×627.',
+ level:'L3',platform:'LinkedIn',type:'Authority',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+
+{date:'Fri Jun 26',phase:'Soft Launch',cls:'ph2',id:'B1',b2b:false,
+ fmt:'Hook',title:'Báo cáo Nielsen 50 trang — AI đọc và surface insights trong 3 phút',
+ hook:'50 trang Nielsen data. 3 phút. Top 5 insights ready để present. Đây là cách.',
+ h2:'Lần đầu upload Nielsen vào AI, tôi ngồi im 2 phút — nó tìm ra thứ team bỏ qua 3 tháng.',
+ h3:'Insight team mất 2 tuần. AI mất 3 phút. Và còn thêm 1 pattern bạn chưa thấy.',
+ cap:'Cách dùng AI để đọc báo cáo Nielsen — không phải "ask AI tóm tắt":\n\n→ Upload PDF + chỉ định role cụ thể\n→ Ask AI extract 5 insights relevant đến current challenge\n→ Ask AI identify 1 pattern team chưa mention\n\n50 trang → 3 phút → presentation-ready.\n\n👉 thewildcard.vn/session-1',
+ canva:'Dark bg, glowing data viz, "50 trang → 3 phút → 5 insights". Lime accent.',
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1'},
+
+{date:'Sat Jun 27',phase:'Full Launch',cls:'ph3',id:'C1',b2b:false,
+ fmt:'Hook',title:'Team bạn đang ở Level 1. Đối thủ của bạn đang ở Level 3.',
+ hook:'Level 1: Vài người dùng AI cá nhân. Level 3: AI là lợi thế cạnh tranh. Bạn đang ở đâu?',
+ h2:'Khoảng cách AI không đo bằng tool. Đo bằng tháng. Và đối thủ bắt đầu trước 6 tháng.',
+ h3:'Trong khi team bạn học prompt cơ bản — đối thủ đã có AI workflow toàn quy trình.',
+ cap:'AI maturity của team:\n\nLevel 1: Vài cá nhân thử nghiệm\nLevel 2: Một số workflow, không nhất quán\nLevel 3: AI embedded vào daily work\nLevel 4: AI là lợi thế cạnh tranh đo được\n\nBước đầu tiên lên L3: Session 1 — cả team cùng 1 framework.\n\n👉 thewildcard.vn/session-1',
+ canva:'4-level staircase: L1 gray → L4 lime. Dark ink bg. 1080×1080.',
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1'},
+
+{date:'Mon Jun 28',phase:'Full Launch',cls:'ph3',id:'L2-post',b2b:'both',
+ fmt:'Full Open',title:'Tất cả chương trình The Wild Card — đăng ký mở ngay hôm nay',
+ hook:'3 chương trình. 1 starting point. Bắt đầu bằng Session 1.',
+ h2:'Full launch. Tất cả chương trình đã mở đăng ký.',
+ h3:'Bạn đã follow từ đầu. Hôm nay là lúc chọn.',
+ cap:'The Wild Card mở đầy đủ chương trình:\n\n→ Session 1: Foundation of AI (cá nhân + corporate)\n→ Session 2: Turn Data Into Decisions\n→ Session 3: AI for Agency Work\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team: thewildcard.vn/corporate\n\nBắt đầu từ đâu? Session 1 — foundation của toàn bộ.',
+ canva:'3-program grid. Each with icon + target. TWC brand colors. Both CTAs.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both'},
+
+{date:'Wed Jul 1',phase:'Full Launch',cls:'ph3',id:'A9',b2b:false,
+ fmt:'Myth vs Fact',title:'MYTH vs FACT: 5 điều về AI mà marketer hay tin sai',
+ hook:'"AI tốt thì output tự tốt." — MYTH. Và đây là lý do output của bạn đang tệ.',
+ h2:'5 điều về AI bạn tưởng đúng — nhưng đang cản bạn dùng AI hiệu quả.',
+ h3:'AI không thần kỳ. Nhưng mạnh hơn bạn nghĩ — nếu bạn không tin vào 5 myth này.',
+ cap:'5 MYTH phổ biến:\n\nMYTH 1: "AI tốt thì tự cho output tốt" → FACT: AI chỉ tốt bằng context bạn cho\nMYTH 2: "Cần biết nhiều tool" → FACT: 1 tool đúng > 10 tool sai\nMYTH 3: "AI thay thế sáng tạo" → FACT: AI amplify thinking\nMYTH 4: "Phải biết code" → FACT: Tư duy prompting quan trọng hơn\nMYTH 5: "Học AI mất nhiều thời gian" → FACT: Foundation đúng = 90 phút. Session 1.\n\n👉 thewildcard.vn/session-1',
+ canva:'5-slide carousel: MYTH red vs FACT lime. Save-worthy.',
+ level:'L2',platform:'FB + IG',type:'Value',ad:'🟡 $15 test',cta:'session-1'},
+
+{date:'Thu Jul 2',phase:'Full Launch',cls:'ph3',id:'L3-post',b2b:'both',
+ fmt:'Urgency',title:'48 tiếng cuối — Cohort 2 đóng đăng ký Session 1',
+ hook:'48 tiếng nữa Cohort 2 đóng. Nếu bạn đang cân nhắc — đây là câu hỏi cuối.',
+ h2:'Còn [X] chỗ. Sau 48 tiếng — list đóng, không exception.',
+ h3:'Tháng 7 này bạn muốn là người đang học AI — hay đã biết dùng AI trong công việc rồi?',
+ cap:'48 tiếng nữa Cohort 2 đóng đăng ký.\n\nSau 90 phút Session 1 bạn sẽ biết:\n✓ Tại sao output AI không nhất quán và cách fix\n✓ CRAFT framework\n✓ 4-step brief writing workflow\n✓ Cách build personal AI system\n\nCá nhân: thewildcard.vn/session-1\nCorporate team 5+: thewildcard.vn/corporate',
+ canva:'Countdown style: red/lime. Bold "48 GIỜ CUỐI". Both CTAs.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both'},
+
+{date:'Fri Jul 3',phase:'July Close',cls:'ph4',id:'B3',b2b:false,
+ fmt:'Case Study',title:'Từ 4 tiếng xuống 40 phút: Monthly performance report với AI',
+ hook:'4 tiếng → 40 phút. Monthly report. Cùng data, cùng người, khác 1 workflow.',
+ h2:'Số liệu thật Cohort 1: report từ 4h xuống 40 phút. Nhanh 6×.',
+ h3:'Không phải AI làm thay. Là AI làm cùng — đúng cách.',
+ cap:'Case thật — Insight Manager FMCG HCM:\n\nTRƯỚC: 4 tiếng, copy-paste thủ công\nSAU Session 1+2: 40 phút, AI handle reformat, 80% thời gian cho insights\n\nCùng deadline, chất lượng cao hơn, không làm thêm giờ.\n\n👉 thewildcard.vn/session-1',
+ canva:'Before/After: "4H → 40MIN". Large numbers. TWC brand.',
+ level:'L2+L3',platform:'FB + IG',type:'Authority',ad:'🟡 $15 test',cta:'session-1'},
+
+{date:'Mon Jul 6',phase:'July Close',cls:'ph4',id:'B2',b2b:true,
+ fmt:'B2B Contrarian',title:'Data analyst không còn là người đọc data giỏi nhất trong phòng',
+ hook:'Brand manager với AI đọc data tốt hơn data analyst không dùng AI. Đây là lý do.',
+ h2:'Data Analyst không còn là người giỏi nhất phòng về data. Kỹ năng AI xóa lợi thế độc quyền.',
+ h3:'Khi AI democratize data skill — ai học AI trước sẽ có lợi thế. Bất kể title.',
+ cap:'Thực tế mà ít ai nói thẳng:\n\nBrand Manager biết dùng AI để analyze data → đặt được câu hỏi tốt hơn, surface insight nhanh hơn.\n\nAI democratize khả năng phân tích. Từ "chỉ data team mới làm được" thành "ai cũng có thể làm được".\n\nĐây không phải về replace. Là về ai học AI trước sẽ có lợi thế.\n\nTeam của bạn đã sẵn sàng chưa?\n👉 thewildcard.vn/corporate',
+ canva:'Bold: "The playing field just changed." Dark bg, LI professional. 1200×627.',
+ level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+
+{date:'Tue Jul 7',phase:'July Close',cls:'ph4',id:'L4-post',b2b:true,
+ fmt:'Corporate CTA',title:'Khi cả team cùng nói 1 ngôn ngữ AI — Corporate AI Training',
+ hook:'1 người học AI = 1 người nhanh. Cả team học AI cùng framework = lợi thế cạnh tranh.',
+ h2:'Thứ thay đổi năng lực cả team: khi tất cả cùng dùng 1 AI system.',
+ h3:'Corporate AI Training — không phải về tool. Là về shared workflow và ROI đo được.',
+ cap:'Khi chỉ 1–2 người biết dùng AI:\n→ Workflow phụ thuộc vào số ít\n→ Risk cao khi người đó rời team\n\nKhi cả team học AI theo cùng framework:\n→ Shared language, shared prompt library\n→ AI advantage trở thành tài sản của team\n\nBắt đầu từ Session 1 Foundation cho toàn team.\n👉 thewildcard.vn/corporate',
+ canva:'Team visual → shared AI workflow → results. Professional. LinkedIn 1200×627.',
+ level:'L3',platform:'LinkedIn + FB',type:'Sales',ad:'🔴 Always Ads',cta:'corporate'},
+
+{date:'Thu Jul 9',phase:'July Close',cls:'ph4',id:'C7',b2b:'both',
+ fmt:'Founder Close',title:'Tại sao tôi xây The Wild Card — và điều tôi muốn mọi marketer Vietnam biết',
+ hook:'10 năm marketing top FMCG dạy tôi điều gì mà trường đại học không dạy — và AI đang thay đổi tất cả.',
+ h2:'Tôi xây The Wild Card không phải vì market opportunity. Mà vì tôi từng bị bỏ lại.',
+ h3:'Bài viết dài. Nếu bạn là marketer VN đang tìm hướng với AI — đọc hết nhé.',
+ cap:'10 năm. FMCG. Top brands Vietnam.\n\nRồi AI xuất hiện và lần đầu tiên tôi không biết bắt đầu từ đâu.\n\nKhông phải thiếu curiosity. Mà vì mọi AI course đều dạy tool — không ai dạy cách think.\n\nThe Wild Card ra đời từ sự thất vọng đó.\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team: thewildcard.vn/corporate',
+ canva:'LI: founder photo, personal quote lime accent, TWC logo. Human, authentic.',
+ level:'L2+L3',platform:'LinkedIn',type:'Authority',ad:'🟡 $10 test LinkedIn',cta:'both'},
+];
+
+// Hook Library
+const hooksL2=[
+{type:'Contradiction',tc:'ht-contradiction',name:'Contradiction Hook',
+ formula:'[Niềm tin phổ biến] — nhưng thực ra điều ngược lại mới đúng',
+ examples:['ChatGPT trả lời dở không phải vì AI dở — mà vì bạn đang hỏi sai.','Vấn đề không phải prompt của bạn quá ngắn. Vấn đề là bạn chưa bao giờ giới thiệu bản thân với AI.','Dùng AI nhiều hơn không giúp bạn giỏi hơn. Dùng đúng cách trong 20 phút mới giúp.'],
+ why:'L2 đang có niềm tin sai → disrupts → muốn biết mình sai ở đâu',
+ plat:'FB + IG Reels · Hook 3 giây đầu · Không cần context setup',
+ perfs:['Scroll-stop ★★★★★','Share ★★★★']},
+{type:'Confession',tc:'ht-confession',name:'Confession Hook',
+ formula:'Tôi cũng đã [làm điều sai này] — cho đến khi [khoảnh khắc thay đổi]',
+ examples:['Tôi đã viết cùng 1 prompt 7 lần trong 1 buổi sáng. Tất cả cho kết quả khác nhau. Đây là lý do.','Tôi từng nghĩ AI dở vì nó không hiểu context. Hóa ra tôi chưa bao giờ cho nó context.'],
+ why:'L2 đang có cùng experience → "đó chính là tôi" moment → trust ngay',
+ plat:'FB personal post · IG Caption · Không phù hợp LinkedIn formal',
+ perfs:['Relate ★★★★★','Comment ★★★★★']},
+{type:'Number',tc:'ht-number',name:'Number / List Hook',
+ formula:'[Số] lỗi/bước mà [nhóm cụ thể] đang [làm sai/bỏ qua]',
+ examples:['3 lỗi prompt mà 90% marketer Việt Nam đang mắc — và cách sửa trong 5 phút.','5 thứ cần có trong mọi prompt trước khi nhấn Enter. Số 3 thì 80% người bỏ qua.'],
+ why:'L2 muốn quick wins cụ thể — số lượng cụ thể = cảm giác có thể làm được ngay',
+ plat:'FB + IG Carousel · Rất phù hợp save/share · Evergreen',
+ perfs:['Save ★★★★★','Evergreen ★★★★★']},
+{type:'Before/After',tc:'ht-before-after',name:'Before / After Hook',
+ formula:'BEFORE: [đau/chậm] · AFTER: [nhanh/tốt] — chỉ thay đổi 1 thứ',
+ examples:['BEFORE: Brief mất 2 tiếng, 3 vòng revise. AFTER: 18 phút, approved ngay. Cùng 1 người — khác 1 hệ thống.','Báo cáo Nielsen 50 trang: 4 tiếng đọc thủ công vs 12 phút với AI.'],
+ why:'Visualizable transformation → L2 có thể imagine mình trong "after" state',
+ plat:'FB static/carousel · IG side-by-side · High shareability',
+ perfs:['Desire ★★★★★','Boost ROI ★★★★']},
+];
+
+const hooksL3=[
+{type:'Identity Shift',tc:'ht-identity',name:'Identity Shift Hook',
+ formula:'[AI skill của bạn] là lợi thế cá nhân. Nhưng lợi thế cá nhân không scale được.',
+ examples:['Bạn dùng AI giỏi hơn 90% team. Nhưng khi bạn nghỉ phép 1 tuần — cái advantage đó đi đâu?','AI đang work rất tốt cho bạn. Câu hỏi là: nó có work khi bạn không có mặt không?'],
+ why:'L3 proud about their skill → reframe as organizational risk → creates new goal',
+ plat:'LinkedIn primary · FB cho senior audience',
+ perfs:['LinkedIn ER ★★★★★','Share ★★★★★']},
+{type:'Data Drop',tc:'ht-data',name:'Data Drop Hook',
+ formula:'[Số liệu cụ thể] trong [timeframe] — con số này thay đổi cách bạn nghĩ về [vấn đề]',
+ examples:['95% GenAI projects thất bại trong 6 tháng đầu. 40% ROI AI bị mất vì training không đủ. (EY Work Reimagined Survey, 2025)','1 người dùng AI giỏi trong team = 1× advantage. Cả team dùng AI = 10× advantage.'],
+ why:'L3 is data-oriented → data validates decision to scale',
+ plat:'LinkedIn · FB cho Director audience',
+ perfs:['B2B CTR ★★★★★','DM/Lead ★★★★']},
+];
+
+const hooksB2B=[
+{type:'ROI Frame',tc:'ht-data',name:'ROI / Business Case Hook',
+ formula:'[Team size] × [hours saved/week] × [cost/hour] = [$ saved/year]. Đây là math mà sếp cần.',
+ examples:['Team 10 người. Mỗi người tiết kiệm 8h/tuần với AI. Đó là 80 giờ/tuần — bao nhiêu $ một năm cho công ty bạn?','93% AI budget của doanh nghiệp vào tool. 7% vào training. Đây là lý do 95% AI project thất bại.','ROI của AI training đo được trong 30 ngày. Nhưng [stat — cần source] công ty không biết cách đo.'],
+ why:'Decision makers cần justify budget lên C-suite → ROI math là ngôn ngữ của họ',
+ plat:'LinkedIn Carousel · Document post · Sponsored Content',
+ perfs:['B2B Conversion ★★★★★','CFO Appeal ★★★★★']},
+{type:'FOMO B2B',tc:'ht-social-proof',name:'Competitive FOMO Hook',
+ formula:'Đối thủ của bạn đang [làm điều này]. Khoảng cách [metric]. Thời gian để catch up: [số].',
+ examples:['Marketing agency nào chưa build AI workflow riêng năm 2026 sẽ không tồn tại đến 2028.','Team đối thủ của bạn đang tăng productivity 3× bằng AI. Khoảng cách này không tự thu hẹp.','Mỗi tháng không train team = 1 tháng đối thủ đang tăng khoảng cách với bạn.'],
+ why:'B2B decision makers bị motivate bởi competitive threat — không muốn là người tụt hậu',
+ plat:'LinkedIn · B2B Sponsored · InMail subject line',
+ perfs:['Urgency ★★★★★','Click Rate ★★★★']},
+{type:'Contrarian B2B',tc:'ht-contradiction',name:'Contrarian Expert Hook',
+ formula:'Điều không ai trong [lĩnh vực] nói với bạn: [counterintuitive insight có evidence]',
+ examples:['Mua ChatGPT cho cả team là lãng phí ngân sách nhất bạn có thể làm.','AI training 1 ngày = vứt tiền. Training AI đúng cách cần ít nhất 3 tháng.','AI training không giúp được gì nếu team chưa biết làm marketing bài bản.'],
+ why:'B2B audience tự coi mình là sophisticated → contrarian challenges them → must engage',
+ plat:'LinkedIn personal profile post · High comment bait',
+ perfs:['Comment ★★★★★','Authority ★★★★★']},
+{type:'Pain Agitate',tc:'ht-question',name:'B2B Pain Agitate Hook',
+ formula:'[% specific stat]: [problem]. Công ty bạn có đang là [X%] đó không?',
+ examples:['70% marketing team cần AI training nhưng công ty không cung cấp. Team bạn đang ở nhóm nào?','Chỉ mình tôi biết dùng AI — team không theo kịp. Đây là vấn đề của 1 người hay của cả tổ chức?','Đã mua tool AI nhưng không ai dùng hiệu quả. ROI = 0. Đây là câu chuyện của bạn không?'],
+ why:'B2B buyers qualify themselves when they see their exact pain described → high intent signals',
+ plat:'LinkedIn · B2B Email subject · Lead gen form headline',
+ perfs:['Self-qualify ★★★★★','Lead Quality ★★★★★']},
+];
+
+// Build calendar
+function lvBadge(l){
+  if(l==='L2') return '<span class="badge bl2">L2 Exp.</span>';
+  if(l==='L3') return '<span class="badge bl3">L3 Prac.</span>';
+  return '<span class="badge bboth">L2+L3</span>';
+}
+function typBadge(t){
+  if(t==='Viral') return '<span class="badge bv">Viral</span>';
+  if(t==='Value') return '<span class="badge bval">Value</span>';
+  if(t==='Sales') return '<span class="badge bs">Sales</span>';
+  return '<span class="badge ba">Auth.</span>';
+}
+function adBadge(a){
+  return a.startsWith('🔴')||a.includes('Always')?
+    `<span class="ad-always">${a}</span>`:`<span class="ad-test">${a}</span>`;
+}
+function trackBadge(b2b){
+  if(b2b===true) return '<span class="badge bb2b">🔗 B2B</span>';
+  if(b2b===false) return '<span class="badge bb2c">📱 B2C</span>';
+  return '<span class="badge bboth">B2B+B2C</span>';
+}
+
+const tbody=document.getElementById('calBody');
+let curPhase='';
+const phLabels={
+  'Pre-Launch':'🌱 PHASE 1 — PRE-LAUNCH · Jun 15–19 · A/B Test Week · 3 B2C + 1 B2B post',
+  'Soft Launch':'🚀 PHASE 2 — SOFT LAUNCH · Jun 20–26 · All posts $10-15 test · 3 B2B + 3 B2C + 1 Both',
+  'Full Launch':'🔥 PHASE 3 — FULL LAUNCH · Jun 27–Jul 2 · Scale winners · Retarget both · 2 Both + 2 B2C',
+  'July Close':'🎯 PHASE 4 — JULY CLOSE · Jul 3–9 · Corporate push + B2C close · 2 B2B + 1 B2C + 1 Both'};
+
+posts.forEach((p,i)=>{
+  if(p.phase!==curPhase){
+    curPhase=p.phase;
+    const ph=document.createElement('tr');
+    ph.className=`phase-row ${p.cls}`;
+    ph.innerHTML=`<td colspan="11">${phLabels[p.phase]}</td>`;
+    tbody.appendChild(ph);
+  }
+  const tr=document.createElement('tr');
+  tr.className='data-row';tr.id=`r${i}`;tr.onclick=()=>toggle(i);
+  const ctaUrls = p.cta==='corporate' ? 'thewildcard.vn/corporate'
+    : p.cta==='both' ? 'thewildcard.vn/session-1 + /corporate'
+    : 'thewildcard.vn/session-1';
+  tr.innerHTML=`<td class="td-date">${p.date}</td>
+    <td class="td-id">${p.id}</td>
+    <td style="font-size:11px;color:var(--gray)">${p.fmt}</td>
+    <td class="td-title">${p.title}</td>
+    <td class="td-hook">${p.hook}</td>
+    <td>${trackBadge(p.b2b)}</td>
+    <td>${lvBadge(p.level)}</td>
+    <td>${typBadge(p.type)}</td>
+    <td>${adBadge(p.ad)}</td>
+    <td style="font-size:11px;white-space:nowrap">${p.platform}</td>
+    <td style="font-size:10px">${ctaUrls}</td>`;
+  tbody.appendChild(tr);
+  const ex=document.createElement('tr');
+  ex.className='expand-row';ex.id=`e${i}`;
+  const ctaLink = p.cta==='corporate' ? 'https://thewildcard.vn/corporate'
+    : p.cta==='both' ? 'https://thewildcard.vn/corporate'
+    : 'https://thewildcard.vn/session-1';
+  const ctaLabel = p.cta==='corporate' ? 'Book Corporate Demo'
+    : p.cta==='both' ? 'Session 1 + Corporate'
+    : 'Reserve Session 1';
+  ex.innerHTML=`<td colspan="11" class="expand-cell"><div class="exp-grid">
+    <div class="exp-block hook-a"><h4>★ Hook A — Recommended</h4><p>${p.hook}</p></div>
+    <div class="exp-block hook-b"><h4>Hook B</h4><p>${p.h2}</p></div>
+    <div class="exp-block hook-c"><h4>Hook C</h4><p>${p.h3}</p></div>
+    <div class="exp-block caption-block"><h4>📝 Caption Draft</h4><p style="white-space:pre-line">${p.cap}</p></div>
+    <div class="exp-block canva-block"><h4>🎨 Canva Prompt</h4><p>${p.canva}</p></div>
+    <div class="exp-block cta-block"><h4>CTA → ${p.cta==='corporate'?'Corporate':'Session 1'}</h4>
+      <p>Track: ${trackBadge(p.b2b)}</p>
+      <a href="${ctaLink}" target="_blank">→ ${ctaLabel}</a></div>
+  </div></td>`;
+  tbody.appendChild(ex);
+});
+
+// ER Grid
+const erGrid=document.getElementById('erGrid');
+posts.forEach((p,i)=>{
+  const isLI=p.platform.includes('LinkedIn')&&!p.platform.includes('FB');
+  const thr=isLI?3:5;
+  const card=document.createElement('div');
+  card.className='er-card';
+  card.innerHTML=`<h3>${p.id} — ${p.date} <small style="font-size:10px;color:var(--gray);font-weight:400">${p.platform.split('+')[0].trim()} ${trackBadge(p.b2b)}</small></h3>
+    <div class="er-inputs">
+      <div><label>Reach</label><input type="number" id="rr${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+      <div><label>Likes</label><input type="number" id="rl${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+      <div><label>Comments</label><input type="number" id="rc${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+      <div><label>Shares</label><input type="number" id="rs${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+    </div>
+    <div class="er-result">
+      <div class="er-num" id="en${i}">—</div>
+      <div class="er-verdict" id="ev${i}"></div>
+    </div>
+    <div class="er-tip">Threshold: ER &gt; ${thr}% → Boost +$50 | ER 3–${thr}% → Hold | ER &lt; 3% → Stop ads</div>`;
+  erGrid.appendChild(card);
+});
+
+// Hook cards
+function buildHookCards(data,containerId){
+  const el=document.getElementById(containerId);
+  data.forEach(h=>{
+    el.innerHTML+=`<div class="hcard">
+      <div class="hcard-head"><span class="hook-type ${h.tc}">${h.type}</span></div>
+      <h3>${h.name}</h3>
+      <div class="formula">${h.formula}</div>
+      <div class="example">${h.examples.map(e=>`★ ${e}`).join('<br>')}</div>
+      <div class="why">💡 ${h.why}</div>
+      <div class="platforms">📱 ${h.plat}</div>
+      <div class="perf-row">${h.perfs.map(p=>`<span class="perf-tag">${p}</span>`).join('')}</div>
+    </div>`;
+  });
+}
+buildHookCards(hooksL2,'hooksL2');
+buildHookCards(hooksL3,'hooksL3');
+buildHookCards(hooksB2B,'hooksB2B');
+
+function toggle(i){
+  const ex=document.getElementById(`e${i}`);
+  const ro=document.getElementById(`r${i}`);
+  const open=ex.classList.contains('show');
+  ex.classList.toggle('show',!open);
+  ro.classList.toggle('open',!open);
+}
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+function calcER(i,thr){
+  const r=+document.getElementById(`rr${i}`).value||0;
+  const l=+document.getElementById(`rl${i}`).value||0;
+  const c=+document.getElementById(`rc${i}`).value||0;
+  const s=+document.getElementById(`rs${i}`).value||0;
+  if(!r){document.getElementById(`en${i}`).textContent='—';document.getElementById(`ev${i}`).textContent='';return;}
+  const er=((l+c+s)/r*100).toFixed(2);
+  document.getElementById(`en${i}`).textContent=er+'%';
+  const v=document.getElementById(`ev${i}`);
+  if(er>=thr){v.textContent='✅ BOOST +$50';v.className='er-verdict er-boost';}
+  else if(er>=3){v.textContent='⏸ HOLD';v.className='er-verdict er-wait';}
+  else{v.textContent='🛑 STOP ADS';v.className='er-verdict er-stop';}
+}
+
+// ============================================================
+// CHECKLIST DATA & RENDERER
+// [phase_key, date, task, priority, owner, status]
+// priority: CRIT IMP B2B DAILY PREP
+// owner: Yen Nghi Both
+// status: Done In-Progress To-Do
+// ============================================================
+const phases=[
+{key:'PREP',label:'🛠️ PREP — Jun 1–14',cls:'ck-ph-prep',tasks:[
+['Jun 4','Activate Canva Pro — set up brand kit','PREP','Yen','Done'],
+['Jun 4','Create master Canva template set (FB/IG/story/carousel/ad)','PREP','Yen','Done'],
+['Jun 4','Sign up Buffer — connect FB + IG + LinkedIn','PREP','Yen','Done'],
+['Jun 4','Calibrate payment solutions (PayOS)','CRIT','Both','Done'],
+['Jun 4','Build landing page: hero + CTA','CRIT','Nghi','Done'],
+['Jun 4','Add product grid section (A1/A2/B/C)','CRIT','Nghi','Done'],
+['Jun 4','Add FAQ section (4 objections)','IMP','Nghi','Done'],
+['Jun 4','Build Contact page (Tally + WA + Calendly)','CRIT','Nghi','Done'],
+['Jun 4','Create TWC brand asset kit','PREP','Yen','Done'],
+['Jun 4','Send AI maturity assessment for testing','CRIT','Both','In-Progress'],
+['Jun 5','Review and finalize AI maturity assessment','CRIT','Both','In-Progress'],
+['Jun 9','Build content calendar in GSheets/Notion','IMP','Yen','In-Progress'],
+['Jun 9','Map all 30 days: Mon/Wed/Fri slots + milestones','IMP','Yen','In-Progress'],
+['Jun 9','Buy hosting + configure DNS (Matbao)','CRIT','Nghi','In-Progress'],
+['Jun 9','Set up decision log on SharePoint','IMP','Nghi','Done'],
+['Jun 9','Arrange folder logic on SharePoint','IMP','Nghi','In-Progress'],
+['Jun 9','Deploy placeholder TWC site','CRIT','Nghi','To-Do'],
+['Jun 9','Set up Cloudflare: DNS + proxy + SSL','PREP','Nghi','To-Do'],
+['Jun 9','Sign up Brevo — import warm contacts, confirm domain','PREP','Yen','To-Do'],
+['Jun 9','Install GA4 — confirm data stream active','PREP','Nghi','To-Do'],
+['Jun 9','Set up Hotjar / Microsoft Clarity heatmap','PREP','Nghi','To-Do'],
+['Jun 9','Log all tools + billing in Notion Tech Stack','PREP','Both','To-Do'],
+['Jun 9','Consult media for asset mix (TA×platform×format)','CRIT','Yen','To-Do'],
+['Jun 9','Decide platform to run classes (Teams)','CRIT','Yen','To-Do'],
+['Jun 9','Design AI maturity assessment report for Email','CRIT','Nghi','To-Do'],
+['Jun 5','Write 6 captions ABM segment (3 pain + 3 benefit)','CRIT','Yen','To-Do'],
+['Jun 5','Write 4 captions BM/Senior BM segment + LinkedIn version','CRIT','Yen','To-Do'],
+['Jun 5','Design 6 FB/IG graphics (master templates)','CRIT','Yen','To-Do'],
+['Jun 5','Design Ad Creative A — Arc B hook (9pm ITM deck)','CRIT','Yen','To-Do'],
+['Jun 5','Design Ad Creative B — Arc D hook (Brief bị sửa)','CRIT','Yen','To-Do'],
+['Jun 9','Send 5 personal WA DMs for Cohort 1 seats','CRIT','Yen','To-Do'],
+['Jun 9','Install Facebook Pixel on LP header','CRIT','Both','To-Do'],
+['Jun 4','Set up UTM parameters (fb_awareness/fb_retarget/li_inmail/organic)','PREP','Yen','To-Do'],
+['Jun 5','Finalize web copy all 4 audience paths EN+VI','CRIT','Both','To-Do'],
+['Jun 9','Create playbook: How to schedule training','CRIT','Nghi','In-Progress'],
+['Jun 9','Create playbook: How to process payments','CRIT','Nghi','In-Progress'],
+['Jun 9','Create playbook: How to approve refunds','CRIT','Nghi','To-Do'],
+['Jun 9','Create playbook: How to vibe code website','IMP','Nghi','Done'],
+['Jun 9','UI/UX review: mobile responsiveness + CTA contrast','IMP','Both','To-Do'],
+['Jun 9','Deploy finalized site — confirm custom domain','CRIT','Nghi','To-Do'],
+['Jun 5','Booking consent checkbox on Calendly','CRIT','Nghi','To-Do'],
+['Jun 5','Marketing consent checkbox on lead form','CRIT','Nghi','To-Do'],
+['Jun 5','Add cookie banner (Decree 13/2023)','CRIT','Nghi','To-Do'],
+['Jun 5','Draft Privacy Policy page','IMP','Nghi','To-Do'],
+['Jun 9','File MOIT e-commerce notification at online.gov.vn','CRIT','Yen','To-Do'],
+['Jun 5','Prepare MOIT filing docs (ĐKKD cert + domain + product)','CRIT','Yen','To-Do'],
+['Jun 5','Display MOIT logo in footer once confirmed','IMP','Nghi','To-Do'],
+['Jun 9','Set up QR Code for payment','CRIT','Yen','To-Do'],
+['Jun 5','Test LP form: fill → confirmation email → tracked','CRIT','Both','To-Do'],
+['Jun 4','Verify Facebook Pixel (Meta Pixel Helper)','CRIT','Yen','To-Do'],
+['Jun 9','Test WhatsApp booking flow end-to-end','PREP','Nghi','To-Do'],
+['Jun 5','External review Ad Creatives A + B','IMP','Both','To-Do'],
+['Jun 9','Schedule first 2 weeks in Buffer (Jun 15–29)','IMP','Yen','To-Do'],
+['Jun 5','Write 1 LinkedIn post (EN, CEO/Director angle) — Jun 15','B2B','Yen','To-Do'],
+['Jun 4','Draft B proposal template: half-day $2K + full-day $3.5K','B2B','Both','To-Do'],
+['Jun 5','Build Dashboard 1 — ICAT Campaign Brief Builder','CRIT','Yen','To-Do'],
+['Jun 5','Build Dashboard 2 — AI Ad Copy Generator','CRIT','Yen','To-Do'],
+['Jun 5','Build Dashboard 3 — TWC Client Insight Tracker','IMP','Yen','To-Do'],
+['Jun 5','Create Claude Skill 1 — FMCG Brief Reviewer','CRIT','Yen','To-Do'],
+['Jun 5','Create Claude Skill 2 — Marketing Deck Narrator','IMP','Yen','To-Do'],
+['Jun 5','Test all 3 dashboards + 2 skills (demo-ready)','CRIT','Both','To-Do'],
+['Jun 5','Design 10 pre-launch organic posts (Jun 5–14)','CRIT','Yen','To-Do'],
+['Jun 5','Record 90-sec founder video (Why I built TWC)','IMP','Yen','To-Do'],
+['Jun 5','Design Jun 15 Soft Launch post — queue 9am','CRIT','Yen','To-Do'],
+['Jun 5','Prepare A1 Workshop deck (20 slides, 2 live demos)','CRIT','Yen','To-Do'],
+['Jun 6–8','End-to-end test LP form → confirmation → tracking','CRIT','Both','To-Do'],
+['Jun 6–8','Test PayOS checkout (iOS + Android)','CRIT','Both','To-Do'],
+['Jun 6–8','Test Calendly C1 booking + consent + reminder','CRIT','Nghi','To-Do'],
+['Jun 6–8','Verify Meta Pixel on all pages (PageView + Lead events)','CRIT','Yen','To-Do'],
+['Jun 6–8','Confirm GA4 events firing (DebugView)','IMP','Nghi','To-Do'],
+['Jun 6–8','Mobile UX test on 3 phones (iPhone + 2 Android)','CRIT','Both','To-Do'],
+['Jun 6–8','MOIT filing status check','IMP','Yen','To-Do'],
+['Jun 6–8','Publish 1 organic test post — baseline engagement','IMP','Yen','To-Do'],
+['Jun 6–8','Post LinkedIn piece Jun 6 (AI search engine angle)','B2B','Yen','To-Do'],
+['Jun 6–8','Set up Facebook Ads Manager (portfolio + payment)','PREP','Yen','To-Do'],
+['Jun 6–8','Upload Ad Creatives A+B to Ads Manager (preview mode)','IMP','Yen','To-Do'],
+['Jun 6–8','External mobile UX review (2 people)','IMP','Both','To-Do'],
+['Jun 9–14','Finalize A1 Workshop deck — Zoom dry-run','CRIT','Yen','To-Do'],
+['Jun 9–14','Package A2 curriculum: outline + pre-work + deliverables','IMP','Yen','To-Do'],
+['Jun 9–14','Draft B corporate proposal template','B2B','Yen','To-Do'],
+['Jun 9–14','Send Zoom link + invite to Cohort 1 attendees (48h before)','CRIT','Yen','To-Do'],
+['Jun 9–14','Brief Cohort 1: bring 1 real artifact (report/brief/plan)','IMP','Yen','To-Do'],
+['Jun 9–14','Soft Launch Gate check Jun 14 (site + MOIT + PayOS + consent)','CRIT','Both','To-Do'],
+['Jun 9–14','Schedule Buffer posts Jun 15–30','IMP','Yen','To-Do'],
+]},
+{key:'LAUNCH',label:'🚀 SOFT LAUNCH — Jun 15',cls:'ck-ph-launch',tasks:[
+['Jun 15','Publish Soft Launch post FB + IG + LinkedIn 9am','CRIT','Both','To-Do'],
+['Jun 15','Confirm Ad Set 1 (Awareness $800) active + spending','CRIT','Yen','To-Do'],
+['Jun 15','Verify A/B test: Creative A vs B both live','CRIT','Yen','To-Do'],
+['Jun 15','WA blast to 30 Cohort 1 contacts + warm network','IMP','Yen','To-Do'],
+]},
+{key:'W1',label:'📣 WEEK 1 ADS — Jun 15–18',cls:'ck-ph-ads',tasks:[
+['Jun 15–16','Confirm Ad Set 1 active + CPM $2.50–$7.40 range','CRIT','Yen','To-Do'],
+['Jun 15–16','Post Cohort 1 recap Stories: screenshot + next Jun 23','IMP','Yen','To-Do'],
+['Jun 17–18','48h ad check: note CTR diff between A and B','PREP','Yen','To-Do'],
+['Jun 17–18','If creative CTR <0.5% after 48h → pause + replace','IMP','Yen','To-Do'],
+]},
+{key:'W2',label:'📣 WEEK 2 — Jun 9–15 (Cohort 1 + Testimonials)',cls:'ck-ph-ads',tasks:[
+['Jun 9','Run A1 Workshop (2h) — FMCG AI foundation + Claude Project live','CRIT','Yen','To-Do'],
+['Jun 9','Record session via Zoom cloud (testimonials + retargeting)','CRIT','Yen','To-Do'],
+['Jun 9','Send Typeform feedback survey within 2h of workshop end','CRIT','Yen','To-Do'],
+['Jun 9','Post live recap Stories: photo + "Cohort 1 just wrapped 🔥"','IMP','Yen','To-Do'],
+['Jun 9','Launch Ad Set 2 (Retargeting $400) after Cohort 1','CRIT','Yen','To-Do'],
+['Jun 10–11','Follow up top 3 attendees — request video/written testimonial','CRIT','Yen','To-Do'],
+['Jun 10–11','Review Typeform — pick 5 usable quotes for LP + ads','PREP','Yen','To-Do'],
+['Jun 10–11','Update LP with ≥2 real testimonials (photo + name + company)','CRIT','Yen','To-Do'],
+['Jun 10–11','Send 5 B outreach WA/LinkedIn DMs: team training angle','B2B','Yen','To-Do'],
+['Jun 10–11','Book first C1 consulting call — confirm Calendly slots','B2B','Yen','To-Do'],
+]},
+{key:'MID',label:'🔍 MID-CAMPAIGN REVIEW — Jun 13',cls:'ck-ph-review',tasks:[
+['Jun 13','Gate: CTR ≥1%? CPL ≤$5? ≥3 testimonials? Fix if NOT','CRIT','Both','To-Do'],
+['Jun 13','Pull data: reach / warm leads / conversions vs targets','CRIT','Both','To-Do'],
+['Jun 13','Pause underperforming creative, double budget to winner','IMP','Yen','To-Do'],
+['Jun 13','Update retargeting ad (Set 2) with Cohort 1 testimonials','IMP','Yen','To-Do'],
+]},
+{key:'W3',label:'📣 WEEK 3 ADS — Jun 16–22 (B2B Intensify)',cls:'ck-ph-ads',tasks:[
+['Jun 16–18','Launch LinkedIn InMail campaign ($100, 1,000 sends)','B2B','Yen','To-Do'],
+['Jun 16–18','Run C1 consulting calls — send C2/B proposal within 24h','B2B','Yen','To-Do'],
+['Jun 16–18','WA outreach to 3 Senior BM contacts: team training + A2 pricing','B2B','Yen','To-Do'],
+['Jun 16–18','Draft Jun 23 full launch post (B/C/A2 all open + urgency)','IMP','Yen','To-Do'],
+['Jun 16–18','A2 checkout page live + PayOS working + confirmation tested','CRIT','Nghi','To-Do'],
+['Jun 19–20','Gate Jun 20: ≥200 warm leads → proceed Jun 23 full launch','CRIT','Both','To-Do'],
+['Jun 19–20','Write + queue Jun 23–30 posts in Buffer','PREP','Yen','To-Do'],
+['Jun 19–20','Prepare WA/email blast for Jun 23 announcement','IMP','Yen','To-Do'],
+]},
+{key:'W4',label:'📣 WEEK 4 ADS — Jun 23–30 (Full Launch + Close)',cls:'ck-ph-ads',tasks:[
+['Jun 23','Publish Full Launch post FB + IG + LinkedIn 9am','CRIT','Both','To-Do'],
+['Jun 23','Send WA blast to 200+ warm leads','CRIT','Yen','To-Do'],
+['Jun 23','Make Calendly C1 link visible on LP + all bio links','CRIT','Nghi','To-Do'],
+['Jun 23','Monitor DMs every 2h — respond all inquiries same day','IMP','Both','To-Do'],
+['Jun 24–29','Personal DM to all warm leads not yet converted','CRIT','Both','To-Do'],
+['Jun 24–29','Answer ALL objections in comments/DMs within 2h','DAILY','Both','To-Do'],
+['Jun 24–29','5 DMs/day + post 1 content/day (social proof + urgency)','DAILY','Both','To-Do'],
+['Jun 24–29','Complete 2nd C1 consulting call — send C2/B follow-up 24h','B2B','Nghi','To-Do'],
+['Jun 28–29','Post "48 hours left" urgency content FB + IG Stories','IMP','Yen','To-Do'],
+['Jun 28–29','Personal DM every warm lead not converted: June pricing ends Jun 30','IMP','Both','To-Do'],
+]},
+{key:'CLOSE',label:'📊 MONTH CLOSE — Jun 30',cls:'ck-ph-close',tasks:[
+['Jun 30','Pull final numbers: reach / clicks / warm leads / conversions','CRIT','Both','To-Do'],
+['Jun 30','Calculate actual ROAS: revenue ÷ $1,300 (target ≥1.77×)','CRIT','Both','To-Do'],
+['Jun 30','Write 1-page June retro: wins / misses / top 3 learnings','IMP','Both','To-Do'],
+['Jun 30','Set July ad budget ($1,520 if ROAS≥1.77× / review if <1.5×)','IMP','Both','To-Do'],
+['Jun 30','Confirm A2 Session 1 dates + book B workshops','IMP','Nghi','To-Do'],
+['Jun 30','Update LP: new testimonials + Cohort 2 open seats','IMP','Nghi','To-Do'],
+]},
+];
+
+let ckOwnerFilter='all',ckPriFilter=null;
+
+function renderChecklist(){
+  const totalTasks=phases.reduce((a,p)=>a+p.tasks.length,0);
+  const done=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='Done').length,0);
+  const prog=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='In-Progress').length,0);
+  const todo=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='To-Do').length,0);
+  document.getElementById('ckSummary').innerHTML=`
+    <div class="ck-stat"><div class="num">${totalTasks}</div><div class="lbl">Total tasks</div></div>
+    <div class="ck-stat"><div class="num" style="color:#16a34a">${done}</div><div class="lbl">✅ Done</div></div>
+    <div class="ck-stat"><div class="num" style="color:#d97706">${prog}</div><div class="lbl">🔄 In Progress</div></div>
+    <div class="ck-stat"><div class="num" style="color:#6b7280">${todo}</div><div class="lbl">⬜ To Do</div></div>
+    <div class="ck-stat"><div class="num">${Math.round(done/totalTasks*100)}%</div><div class="lbl">Complete</div></div>`;
+  const phasesEl=document.getElementById('ckPhases');
+  phasesEl.innerHTML=phases.map(ph=>{
+    const vis=ph.tasks.filter(t=>{
+      if(ckOwnerFilter!=='all'&&t[3]!==ckOwnerFilter&&!(ckOwnerFilter==='Both'&&t[3]==='Both')) return false;
+      if(ckPriFilter&&t[2]!==ckPriFilter) return false;
+      return true;
+    });
+    const phDone=ph.tasks.filter(t=>t[4]==='Done').length;
+    const phTotal=ph.tasks.length;
+    const pct=Math.round(phDone/phTotal*100);
+    const rows=vis.map(t=>{
+      const dotCls=t[4]==='Done'?'dot-done':t[4]==='In-Progress'?'dot-progress':t[4]==='Blocked'?'dot-blocked':'dot-todo';
+      const stCls=t[4]==='Done'?'st-done':t[4]==='In-Progress'?'st-prog':t[4]==='Blocked'?'st-block':'st-todo';
+      const stTxt=t[4]==='Done'?'✅ Done':t[4]==='In-Progress'?'🔄 In Progress':t[4]==='Blocked'?'🔴 Blocked':'⬜ To Do';
+      const priCls=t[2]==='CRIT'?'pri-crit':t[2]==='IMP'?'pri-imp':t[2]==='B2B'?'pri-b2b':t[2]==='DAILY'?'pri-daily':'pri-prep';
+      return `<div class="ck-row">
+        <div class="ck-dot ${dotCls}"></div>
+        <div class="ck-date">${t[0]}</div>
+        <div class="ck-task">${t[1]}</div>
+        <div><span class="ck-pri ${priCls}">${t[2]}</span></div>
+        <div class="ck-owner">${t[3]}</div>
+        <div><span class="ck-status ${stCls}">${stTxt}</span></div>
+      </div>`;
+    }).join('');
+    return `<div class="ck-phase">
+      <div class="ck-phase-head ${ph.cls}" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+        <span>${ph.label}</span>
+        <span>${phDone}/${phTotal} · ${pct}%</span>
+      </div>
+      <div class="ck-phase-body" style="display:block">
+        <div class="progress-bar" style="margin:0"><div class="progress-fill" style="width:${pct}%"></div></div>
+        ${rows||'<div style="padding:10px 14px;font-size:11px;color:#9ca3af;font-style:italic">No tasks match current filter</div>'}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterCk(owner,btn){
+  ckOwnerFilter=owner;
+  document.querySelectorAll('#ckFilters .ck-filter').forEach(b=>{if(!b.textContent.includes('CRIT'))b.classList.remove('on')});
+  btn.classList.add('on');
+  renderChecklist();
+}
+function filterCkPri(pri,btn){
+  ckPriFilter=ckPriFilter===pri?null:pri;
+  btn.classList.toggle('on',!!ckPriFilter);
+  renderChecklist();
+}
+
+renderChecklist();
+</script>
+</body>
+</html>
