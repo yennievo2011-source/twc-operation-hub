@@ -165,12 +165,16 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 .ck-ph-ads{background:#fef3c7;color:#92400e}.ck-ph-review{background:#ede9fe;color:#5b21b6}
 .ck-ph-close{background:#fee2e2;color:#991b1b}
 .ck-phase-body{background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden}
-.ck-row{display:grid;grid-template-columns:22px 60px 1fr 55px 55px 70px;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #f3f4f6;font-size:11px}
+.ck-table-header{display:grid;grid-template-columns:22px 65px 1fr 60px 60px 80px 60px;align-items:center;gap:8px;padding:5px 12px;background:#f9fafb;border-bottom:2px solid var(--border);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--gray)}
+.ck-sort-btn{cursor:pointer;padding:2px 4px;border-radius:4px;border:none;background:none;font-size:10px;font-weight:700;color:var(--gray);display:inline-flex;align-items:center;gap:2px}
+.ck-sort-btn:hover{background:#e5e7eb;color:var(--ink)}
+.ck-sort-btn.active{color:var(--ind)}
+.ck-row{display:grid;grid-template-columns:22px 65px 1fr 60px 60px 80px 60px;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #f3f4f6;font-size:11px}
 .ck-row:last-child{border-bottom:none}
 .ck-row.hidden{display:none}
 .ck-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .dot-done{background:#16a34a}.dot-progress{background:#f59e0b}.dot-todo{background:#d1d5db}.dot-blocked{background:#ef4444}
-.ck-status{font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;white-space:nowrap}
+.ck-status{font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;white-space:nowrap;cursor:pointer}
 .st-done{background:#dcfce7;color:#16a34a}.st-prog{background:#fef3c7;color:#d97706}
 .st-todo{background:#f3f4f6;color:#6b7280}.st-block{background:#fee2e2;color:#ef4444}
 .ck-pri{font-size:9px;font-weight:800;padding:2px 5px;border-radius:5px;white-space:nowrap}
@@ -182,6 +186,12 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 .ck-task{line-height:1.4;color:#374151;font-size:11px}
 .progress-bar{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:4px}
 .progress-fill{height:100%;border-radius:2px;background:var(--ind);transition:.3s}
+.ck-action-btn{font-size:10px;padding:2px 6px;border-radius:6px;cursor:pointer;border:1px solid;font-weight:600;background:transparent}
+.ck-edit-btn{color:#0369a1;border-color:#7dd3fc}.ck-edit-btn:hover{background:#e0f2fe}
+.ck-del-btn{color:#b91c1c;border-color:#fca5a5}.ck-del-btn:hover{background:#fee2e2}
+.ck-edit-inline{display:none;padding:8px 12px;background:#f8f7ff;border-bottom:2px solid var(--ind)}
+.ck-edit-inline.show{display:block}
+.ck-row:hover{background:#f8f7ff}
 /* FINANCE */
 .fin-section{padding:16px}
 .fin-alert{background:#fff3cd;border:2px solid #f59e0b;border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
@@ -202,6 +212,33 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 .tx-done{background:#dcfce7;color:#16a34a}.tx-overdue{background:#fee2e2;color:#ef4444}
 .tx-pending{background:#f3f4f6;color:#6b7280}
 .fin-h2{font-size:13px;font-weight:800;margin:16px 0 8px;padding-left:8px;border-left:4px solid var(--ind)}
+/* INTERACTIVE FORMS */
+.form-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;background:#f8f7ff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.form-field{display:flex;flex-direction:column;gap:3px;min-width:100px;flex:1}
+.form-field label{font-size:10px;font-weight:700;color:var(--gray);text-transform:uppercase}
+.form-field input,.form-field select{border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:12px;background:#fff;color:var(--ink)}
+.form-field input:focus,.form-field select:focus{outline:2px solid var(--ind);border-color:var(--ind)}
+.btn-add{padding:6px 16px;background:var(--ind);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;align-self:flex-end}
+.btn-add:hover{background:#0a0090}
+.btn-sm{padding:4px 10px;background:#f3f4f6;color:var(--ink);border:1px solid var(--border);border-radius:12px;font-size:11px;font-weight:600;cursor:pointer}
+.btn-sm:hover{background:var(--border)}
+.btn-danger{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+/* FB API */
+.api-section{background:#fff;border:1px solid #0a66c2;border-radius:12px;padding:16px;margin-bottom:16px}
+.api-section h3{font-size:13px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.api-metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px}
+.api-metric{background:#f8f7ff;border-radius:8px;padding:10px;text-align:center;border:1px solid var(--border)}
+.api-metric .val{font-size:20px;font-weight:800;color:var(--ind)}
+.api-metric .key{font-size:10px;color:var(--gray);margin-top:2px}
+.api-status{font-size:11px;padding:6px 10px;border-radius:6px;margin-top:8px}
+.api-ok{background:#f0fdf4;color:#16a34a}.api-err{background:#fee2e2;color:#b91c1c}.api-load{background:#fef3c7;color:#d97706}
+/* Checklist row interactive */
+.ck-row{cursor:pointer}
+.ck-row:hover{background:#f0f0ff}
+.ck-add-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--ind);cursor:pointer;border-top:1px dashed var(--border);background:none;border-left:none;border-right:none;border-bottom:none;width:100%;text-align:left}
+.ck-add-btn:hover{background:#f0f0ff}
+.ck-add-form{padding:10px 14px;background:#f8f7ff;border-top:1px solid var(--border);display:none}
+.ck-add-form.show{display:block}
 /* LINKEDIN PLAN */
 .li-section{padding:16px}
 .li-week{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
@@ -281,6 +318,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
     <button class="tab" onclick="showPage('linkedin',this)">🔗 LinkedIn B2B</button>
     <button class="tab" onclick="showPage('email',this)">📧 Email B2B</button>
     <button class="tab" onclick="showPage('checklist',this)">✅ Checklist 30D</button>
+    <button class="tab" onclick="showPage('ailib',this)">🤖 AI Library</button>
     <button class="tab" onclick="showPage('finance',this)">💼 Finance</button>
   </div>
 </div>
@@ -307,7 +345,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="table-wrap">
 <table><thead><tr>
   <th>Ngày</th><th>ID</th><th>Định Dạng</th><th>Tiêu Đề</th>
-  <th>Hook ★</th><th>Track</th><th>Level</th><th>Loại</th><th>Ad</th><th>Platform</th><th>CTA</th>
+  <th>Hook ★</th><th>Track</th><th>Level</th><th>Loại</th><th>Visual</th><th>Ad</th><th>Platform</th><th>CTA</th>
 </tr></thead><tbody id="calBody"></tbody></table>
 </div>
 </div>
@@ -331,6 +369,67 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="header"><h1>💰 Ad Spend — v5 Revised (B2B 50% / B2C 50%)</h1>
 <p>Total $1,300 · LinkedIn tăng từ $100 → $450 · FB/IG giảm từ $800 → $420 · Email mới thêm $100</p></div>
 <div class="spend-section">
+
+<!-- FB API LIVE DATA -->
+<div class="api-section">
+  <h3>📡 Live FB/IG Insights <span style="font-size:10px;font-weight:400;color:var(--gray)">(Facebook Graph API)</span></h3>
+  <div class="form-row" style="background:#fff;border:none;padding:0;margin-bottom:8px">
+    <div class="form-field" style="flex:3">
+      <label>FB Access Token</label>
+      <input type="password" id="fbToken" placeholder="EAAxxxxx... (từ Meta Business Suite)" oninput="saveFBConfig()">
+    </div>
+    <div class="form-field" style="flex:2">
+      <label>Ad Account ID</label>
+      <input type="text" id="fbAccountId" placeholder="act_1234567890" oninput="saveFBConfig()">
+    </div>
+    <div class="form-field" style="max-width:140px">
+      <label>Date Range</label>
+      <select id="fbDateRange">
+        <option value="last_7d">Last 7 days</option>
+        <option value="last_14d">Last 14 days</option>
+        <option value="last_30d" selected>Last 30 days</option>
+        <option value="this_month">This month</option>
+      </select>
+    </div>
+    <button class="btn-add" onclick="fetchFBInsights()">🔄 Fetch Live Data</button>
+  </div>
+  <div id="fbStatus" class="api-status" style="display:none"></div>
+  <div class="api-metrics" id="fbMetrics" style="display:none">
+    <div class="api-metric"><div class="val" id="fm-spend">—</div><div class="key">Spend (USD)</div></div>
+    <div class="api-metric"><div class="val" id="fm-impressions">—</div><div class="key">Impressions</div></div>
+    <div class="api-metric"><div class="val" id="fm-reach">—</div><div class="key">Reach</div></div>
+    <div class="api-metric"><div class="val" id="fm-clicks">—</div><div class="key">Clicks</div></div>
+    <div class="api-metric"><div class="val" id="fm-ctr">—</div><div class="key">CTR</div></div>
+    <div class="api-metric"><div class="val" id="fm-cpm">—</div><div class="key">CPM</div></div>
+    <div class="api-metric"><div class="val" id="fm-cpc">—</div><div class="key">CPC</div></div>
+    <div class="api-metric"><div class="val" id="fm-freq">—</div><div class="key">Frequency</div></div>
+  </div>
+  <p style="font-size:10px;color:#9ca3af;margin-top:8px">Token lấy tại: Meta Business Suite → Settings → Ad Accounts → Access Token. Token sẽ expire sau 60 ngày — cần refresh thủ công. LinkedIn API cần backend (CORS restriction), dùng manual entry bên dưới.</p>
+</div>
+
+<!-- MANUAL DAILY SPEND LOG -->
+<div class="api-section" style="border-color:var(--border)">
+  <h3>📝 Manual Daily Spend Log <span style="font-size:10px;font-weight:400;color:var(--gray)">(lưu local, sync khi push GitHub)</span></h3>
+  <div class="form-row" style="background:#fff;border:none;padding:0;margin-bottom:8px">
+    <div class="form-field" style="max-width:110px"><label>Ngày</label><input type="date" id="sl-date"></div>
+    <div class="form-field" style="max-width:120px"><label>Channel</label>
+      <select id="sl-channel">
+        <option>FB/IG Test</option><option>FB/IG Boost</option>
+        <option>LinkedIn Sponsored</option><option>LinkedIn InMail</option>
+        <option>Retargeting</option><option>Always-On</option>
+      </select></div>
+    <div class="form-field" style="max-width:90px"><label>Spend ($)</label><input type="number" id="sl-spend" placeholder="0.00" step="0.01"></div>
+    <div class="form-field" style="max-width:90px"><label>Impressions</label><input type="number" id="sl-impressions" placeholder="0"></div>
+    <div class="form-field" style="max-width:80px"><label>Clicks</label><input type="number" id="sl-clicks" placeholder="0"></div>
+    <div class="form-field" style="max-width:80px"><label>Leads</label><input type="number" id="sl-leads" placeholder="0"></div>
+    <button class="btn-add" onclick="addSpendLog()">+ Add</button>
+  </div>
+  <div style="overflow-x:auto"><table class="fin-table" id="spendLogTable">
+    <thead><tr><th>Ngày</th><th>Channel</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>CPL</th><th>Leads</th><th></th></tr></thead>
+    <tbody id="spendLogBody"></tbody>
+    <tfoot id="spendLogFoot"></tfoot>
+  </table></div>
+</div>
 
 <div class="callout callout-b2b"><b>📌 v5 vs v4 Key Change:</b> LinkedIn budget tăng 4.5× (từ $100 lên $450). FB/IG budget giảm nhưng tập trung hơn vào B2C audience thực sự. Email channel $100 mới thêm cho B2B nurture.</div>
 
@@ -487,10 +586,10 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   <div class="li-week-body">
     <div class="li-post-row">
       <div class="li-day">THỨ 5<br>Jun 18</div>
-      <div class="li-format">Contrarian</div>
+      <div class="li-format">Assessment Drive</div>
       <div>
-        <div class="li-hook">A2: "Sai lầm lớn nhất khi train team AI: bắt đầu từ prompts. Tôi sẽ nói ngược với mọi AI trainer."</div>
-        <div class="li-target">Target: Marketing Director, L&D Manager · Hook: contrarian · CTA: "DM để nhận framework đúng" → /corporate</div>
+        <div class="li-hook">A2: "Team marketing của bạn đang dùng AI ở mức độ nào? Mình có 1 assessment nhỏ — 5 câu hỏi, 2 phút, bạn biết ngay mình đang đứng ở đâu."</div>
+        <div class="li-target">Target: Marketing Manager, Director · Hook: curiosity/value · CTA nhẹ: "Link trong comment — không có gì để pitch cả" → AI Maturity Assessment → /corporate</div>
       </div>
     </div>
   </div>
@@ -504,18 +603,18 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   <div class="li-week-body">
     <div class="li-post-row">
       <div class="li-day">THỨ 2<br>Jun 22</div>
-      <div class="li-format">Data Viral</div>
+      <div class="li-format">Exclusive Report</div>
       <div>
-        <div class="li-hook">V1: "Tôi vừa audit AI usage của 50 marketing team VN. Đây là sự thật không ai nói."</div>
-        <div class="li-target">Carousel 10 slides · Data reveal · Marketing Director/CMO · CTA: "Level của team bạn là gì?"</div>
+        <div class="li-hook">V1-B2B: "Mình vừa compile một report về Marketing Skillset trong Gen AI Era 2026 — chia sẻ miễn phí, không cần điền gì cả. Link trong comment."</div>
+        <div class="li-target">Document Post hoặc Carousel 8 slides · 5 skills declining + 5 rising · Marketing Director/CMO · CTA: thân tình "Nếu có gì muốn discuss thêm thì comment nhé 🙂"</div>
       </div>
     </div>
     <div class="li-post-row">
       <div class="li-day">THỨ 5<br>Jun 25</div>
       <div class="li-format">Founder Story</div>
       <div>
-        <div class="li-hook">C7-P2: "10 năm marketing top FMCG — nhưng khi AI xuất hiện, tôi không biết bắt đầu từ đâu. The Wild Card ra đời từ đó."</div>
-        <div class="li-target">Personal narrative · Trust building · B2B decision makers · CTA: /corporate</div>
+        <div class="li-hook">C7-P2: "10 năm marketing — và điều tôi muốn làm nhất là trao lại kiến thức cho thế hệ marketer mới đang bước vào thời đại AI."</div>
+        <div class="li-target">Personal narrative · Inspiring, not complaining · Trust building · CTA nhẹ: "DM mình nếu bạn muốn trao đổi thêm" → /corporate</div>
       </div>
     </div>
     <div class="li-post-row">
@@ -667,33 +766,33 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="email-seq">
   <div class="email-step">
     <div class="day">Email 1 · Ngay lập tức</div>
-    <div class="subject">📊 AI Maturity Report của bạn đây — cộng 1 insight bất ngờ</div>
-    <div class="desc">Deliver lead magnet. Chia sẻ stat shock: "70% marketing team cần AI training nhưng không được cung cấp." Kết thúc với: "Team bạn đang ở level nào?"</div>
-    <span class="cta-tag">Welcome + Value</span>
+    <div class="subject">Xin chào [Name] — đây là report bạn vừa đăng ký nhận 😊</div>
+    <div class="desc">Mở đầu thân tình như người quen. Deliver report + thêm 1 observation cá nhân: "Điều mình thấy thú vị nhất khi làm report này là..." Kết bằng câu hỏi mở, không CTA cứng: "Team bạn đang ở đâu với AI?"</div>
+    <span class="cta-tag">Welcome + Deliver</span>
   </div>
   <div class="email-step">
     <div class="day">Email 2 · Ngày 3</div>
-    <div class="subject">⚠️ Doanh nghiệp VN đang mất 40% ROI AI vì lý do này</div>
-    <div class="desc">Agitate pain: EY finding về lost productivity. Concrete example team làm sai. Build urgency không hard sell. CTA: "Đọc thêm về common mistakes."</div>
-    <span class="cta-tag">Pain + Education</span>
+    <div class="subject">Mình muốn chia sẻ 1 điều mình hay thấy ở các team...</div>
+    <div class="desc">Tone tâm sự — "Gần đây khi nói chuyện với nhiều marketing team, mình hay nghe một câu..." Chia sẻ observation thật, không frame là "pain agitate". Cuối tự nhiên: "Bạn có gặp điều tương tự không?"</div>
+    <span class="cta-tag">Chia sẻ + Kết nối</span>
   </div>
   <div class="email-step">
     <div class="day">Email 3 · Ngày 7</div>
-    <div class="subject">🔥 Case study: Team [X] từ 3 ngày/brief xuống 40 phút</div>
-    <div class="desc">Real story (anonymized). Before/after numbers cụ thể. Highlight transformation. Soft CTA: "Bạn muốn xem team mình làm được không?" → Link discovery call.</div>
-    <span class="cta-tag">Social Proof</span>
+    <div class="subject">Một câu chuyện ngắn mình muốn kể bạn nghe (3 phút đọc)</div>
+    <div class="desc">Case study anonymous nhưng storytelling cá nhân: "Một bạn trong network của mình..." Before/after thật. Không pitch — kết bằng: "Mình thấy câu chuyện này relate được nhiều người lắm."</div>
+    <span class="cta-tag">Story + Inspire</span>
   </div>
   <div class="email-step">
     <div class="day">Email 4 · Ngày 11</div>
-    <div class="subject">💡 Session 1 Foundation of AI — dành riêng cho corporate teams</div>
-    <div class="desc">Introduce product properly. Outcomes cụ thể. Format (1 ngày, 5-20 người, customize được). ROI calculator đính kèm. CTA: "Book demo 20 phút."</div>
-    <span class="cta-tag">Product Offer</span>
+    <div class="subject">Nếu bạn đang tự hỏi "vậy thì làm gì tiếp theo?" — mình có thể giúp</div>
+    <div class="desc">Giới thiệu Session 1 nhẹ nhàng: "Mình đang làm một chương trình cho team từ 5 người trở lên — nếu bạn thấy relevant, mình happy chia sẻ thêm." CTA: "Reply cho mình biết team bạn đang ở đâu nhé."</div>
+    <span class="cta-tag">Soft Introduce</span>
   </div>
   <div class="email-step">
     <div class="day">Email 5 · Ngày 16</div>
-    <div class="subject">📅 Còn 3 slot corporate tháng này — và 1 câu hỏi</div>
-    <div class="desc">Urgency + scarcity (genuine). Ask qualifying question: "Đội bạn bao nhiêu người? Ngành gì?" → Micro-commitment. Final CTA: "Reply email này" hoặc "Book trực tiếp."</div>
-    <span class="cta-tag">Close + Urgency</span>
+    <div class="subject">1 câu hỏi thôi — trả lời nhanh được không? 😊</div>
+    <div class="desc">Hỏi thẳng, thân tình: "Mình muốn hiểu hơn về team bạn — bạn đang gặp khó khăn gì nhất với AI trong công việc?" Micro-commitment. Nếu phù hợp mình sẽ kết nối để chia sẻ thêm — không cần gì cả.</div>
+    <span class="cta-tag">Conversation Starter</span>
   </div>
 </div>
 
@@ -757,7 +856,83 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div>
 
 <!-- ============================================================ -->
-<!-- TAB 8: FINANCE -->
+<!-- TAB 8: AI LIBRARY -->
+<!-- ============================================================ -->
+<div id="ailib" class="page">
+<div class="header">
+  <h1>🤖 AI Library — Prompt & Visual Reference</h1>
+  <p>Lưu prompt works + visual references từ posts FB/IG/TikTok · Input URL để extract & save · Filter theo platform, loại, performance</p>
+</div>
+<div style="padding:16px">
+
+<div class="callout callout-blue"><b>💡 Cách dùng:</b> Paste URL bài post FB/IG/TikTok bạn đọc được (không cần login). Điền thông tin thủ công hoặc để AI Library lưu lại. Tất cả data lưu local — không upload server.</div>
+
+<!-- Add entry form -->
+<div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px">
+  <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;color:var(--ind)">+ Thêm vào Library</h3>
+  <div class="form-row" style="background:transparent;border:none;padding:0;margin-bottom:8px">
+    <div class="form-field" style="flex:3"><label>🔗 URL Post (FB / IG / TikTok)</label>
+      <input type="url" id="al-url" placeholder="https://www.facebook.com/..." oninput="alExtractMeta()"></div>
+    <div class="form-field" style="max-width:110px"><label>Platform</label>
+      <select id="al-platform"><option>Facebook</option><option>Instagram</option><option>TikTok</option><option>LinkedIn</option><option>Twitter/X</option></select></div>
+    <div class="form-field" style="max-width:110px"><label>Loại</label>
+      <select id="al-type"><option>Prompt</option><option>Visual Reference</option><option>Hook</option><option>Caption</option><option>Strategy</option></select></div>
+  </div>
+  <div class="form-row" style="background:transparent;border:none;padding:0;margin-bottom:8px">
+    <div class="form-field" style="flex:2"><label>Tiêu đề / Mô tả ngắn</label>
+      <input type="text" id="al-title" placeholder="VD: Hook contradiction về AI tool hoạt động tốt..."></div>
+    <div class="form-field" style="max-width:110px"><label>Visual Type</label>
+      <select id="al-vt"><option value="">— chọn —</option><option value="typo">Typography</option><option value="anim">Animation</option><option value="real">Real Person</option></select></div>
+    <div class="form-field" style="max-width:110px"><label>Performance</label>
+      <select id="al-perf"><option value="">— chọn —</option><option value="high">High 🔥</option><option value="mid">Medium ⭐</option><option value="low">Low 📉</option></select></div>
+  </div>
+  <div class="form-row" style="background:transparent;border:none;padding:0;margin-bottom:8px">
+    <div class="form-field" style="flex:1"><label>📝 Prompt / Nội dung đáng note</label>
+      <textarea id="al-prompt" placeholder="Paste prompt hoặc ghi lại điểm đặc biệt của bài post này..." style="width:100%;border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:12px;height:70px;resize:vertical;background:#fff"></textarea></div>
+  </div>
+  <div class="form-row" style="background:transparent;border:none;padding:0;margin-bottom:0">
+    <div class="form-field" style="flex:1"><label>🎨 Visual Notes (màu sắc, layout, style đặc biệt...)</label>
+      <textarea id="al-visual" placeholder="VD: Dark bg, lime accent, oversized typography, minimal text, 9:16 Reel format..." style="width:100%;border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:12px;height:55px;resize:vertical;background:#fff"></textarea></div>
+    <div class="form-field" style="max-width:110px"><label>Tags (dấu phẩy)</label>
+      <input type="text" id="al-tags" placeholder="ai, hook, b2c"></div>
+    <button class="btn-add" onclick="alAddEntry()" style="align-self:flex-end">+ Save vào Library</button>
+  </div>
+</div>
+
+<!-- Filter bar -->
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
+  <span style="font-size:11px;font-weight:700;color:var(--gray)">Filter:</span>
+  <select id="al-filter-platform" onchange="alRender()" style="border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;background:#fff">
+    <option value="">Tất cả platform</option>
+    <option>Facebook</option><option>Instagram</option><option>TikTok</option><option>LinkedIn</option>
+  </select>
+  <select id="al-filter-type" onchange="alRender()" style="border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;background:#fff">
+    <option value="">Tất cả loại</option>
+    <option>Prompt</option><option>Visual Reference</option><option>Hook</option><option>Caption</option><option>Strategy</option>
+  </select>
+  <select id="al-filter-vt" onchange="alRender()" style="border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;background:#fff">
+    <option value="">Tất cả visual</option>
+    <option value="typo">Typography</option><option value="anim">Animation</option><option value="real">Real Person</option>
+  </select>
+  <select id="al-filter-perf" onchange="alRender()" style="border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;background:#fff">
+    <option value="">Tất cả performance</option>
+    <option value="high">High 🔥</option><option value="mid">Medium ⭐</option><option value="low">Low 📉</option>
+  </select>
+  <input type="text" id="al-search" oninput="alRender()" placeholder="🔍 Search..." style="border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:11px;min-width:160px">
+  <span id="al-count" style="font-size:11px;color:var(--gray);margin-left:4px"></span>
+</div>
+
+<!-- Library grid -->
+<div id="al-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"></div>
+<div id="al-empty" style="display:none;text-align:center;padding:40px;color:#9ca3af;font-size:13px">
+  Chưa có entry nào. Thêm bài post đầu tiên vào library 👆
+</div>
+
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 9: FINANCE -->
 <!-- ============================================================ -->
 <div id="finance" class="page">
 <div class="header">
@@ -819,16 +994,29 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 
 <!-- Transaction Log -->
 <div class="fin-h2">📋 Giao dịch thực tế</div>
+<div class="form-row">
+  <div class="form-field" style="max-width:120px"><label>Ngày</label><input type="date" id="tx-date"></div>
+  <div class="form-field" style="max-width:80px"><label>Loại</label>
+    <select id="tx-type"><option value="Chi">Chi</option><option value="Thu">Thu</option></select></div>
+  <div class="form-field"><label>Danh mục</label>
+    <select id="tx-cat">
+      <option>Phần mềm / SaaS</option><option>Pháp lý / Hành chính</option>
+      <option>Quảng cáo / Marketing</option><option>Freelancer / CTV</option>
+      <option>Đi lại, tiếp khách</option><option>Văn phòng phẩm</option>
+      <option>Góp vốn điều lệ</option><option>Doanh thu khóa học</option><option>Chi phí khác</option>
+    </select></div>
+  <div class="form-field" style="flex:2"><label>Mô tả</label><input type="text" id="tx-desc" placeholder="Mô tả giao dịch..."></div>
+  <div class="form-field" style="max-width:130px"><label>Số tiền (₫)</label><input type="number" id="tx-amount" placeholder="0" step="1000"></div>
+  <div class="form-field" style="max-width:80px"><label>HĐ đỏ?</label>
+    <select id="tx-invoice"><option value="Có">Có</option><option value="Không">Không</option></select></div>
+  <div class="form-field" style="max-width:90px"><label>Số HĐ</label><input type="text" id="tx-invoiceno" placeholder="HD00x"></div>
+  <button class="btn-add" onclick="addTransaction()">+ Add</button>
+</div>
 <div style="overflow-x:auto;margin-bottom:16px">
 <table class="fin-table">
-  <thead><tr><th>Ngày</th><th>Loại</th><th>Danh mục</th><th>Mô tả</th><th>Số tiền</th><th>Hóa đơn</th><th>Số HĐ</th></tr></thead>
-  <tbody>
-    <tr><td>15/01/2026</td><td>Chi</td><td>Pháp lý</td><td>Phí đăng ký doanh nghiệp</td><td>100,000 ₫</td><td><span class="tax-badge tx-done">Có</span></td><td>HD001</td></tr>
-    <tr><td>20/01/2026</td><td>Chi</td><td>SaaS</td><td>Đăng ký Google Workspace</td><td>3,500,000 ₫</td><td><span class="tax-badge tx-done">Có</span></td><td>HD002</td></tr>
-    <tr><td>05/02/2026</td><td>Chi</td><td>Pháp lý</td><td>Chữ ký số (USB Token)</td><td>1,200,000 ₫</td><td><span class="tax-badge tx-done">Có</span></td><td>HD003</td></tr>
-    <tr><td>10/02/2026</td><td>Chi</td><td>Văn phòng</td><td>In ấn, văn phòng phẩm</td><td>350,000 ₫</td><td><span class="tax-badge tx-overdue">Không</span></td><td>—</td></tr>
-    <tr style="background:#f9fafb;font-weight:700"><td colspan="4">TỔNG CHI Q1</td><td>5,150,000 ₫</td><td colspan="2">3/4 có HĐ đỏ</td></tr>
-  </tbody>
+  <thead><tr><th>Ngày</th><th>Loại</th><th>Danh mục</th><th>Mô tả</th><th>Số tiền</th><th>HĐ</th><th>Số HĐ</th><th></th></tr></thead>
+  <tbody id="txBody"></tbody>
+  <tfoot id="txFoot"></tfoot>
 </table>
 </div>
 
@@ -876,54 +1064,54 @@ const posts=[
  hook:'ChatGPT của bạn không biết bạn là ai. Và đó chính là vấn đề.',
  h2:'[L3] AI đang work cho bạn — nhưng chưa work cho team khi bạn không có mặt.',
  h3:'Tại sao output AI của bạn luôn generic? Vì bạn chưa bao giờ giới thiệu bản thân.',
- cap:'Bạn mở ChatGPT, gõ prompt, nhận kết quả generic. Làm lại, vẫn generic.\n\nVấn đề không phải prompt ngắn hay dài. Vấn đề là AI đang treat bạn như người lạ — vì bạn chưa bao giờ giới thiệu bản thân.\n\nSession 1 Foundation of AI dạy cách build "AI Identity Layer" — để mọi prompt có context ngay từ đầu.\n\n👉 thewildcard.vn/session-1',
- canva:'Dark indigo, oversized "?", lime accent, dot grid. Text: "ChatGPT không biết bạn là ai." 1080×1080 + 9:16.',
- level:'L2',platform:'FB + IG Reels',type:'Viral',ad:'🟡 $15 test A/B',cta:'session-1'},
+ cap:'Bạn mở ChatGPT, gõ prompt, nhận kết quả generic. Làm lại, vẫn generic.\n\nVấn đề không phải prompt ngắn hay dài. Vấn đề là AI đang treat bạn như người lạ — vì bạn chưa bao giờ giới thiệu bản thân.\n\nNếu bạn muốn biết cách fix điều này — Session 1 Foundation of AI dạy đúng phần này, trong 90 phút, bằng case thật.\n\n🔗 Tìm hiểu thêm: thewildcard.vn/session-1',
+ canva:'[TYPOGRAPHY] Dark indigo, oversized "?", lime accent, dot grid. Text: "ChatGPT không biết bạn là ai." 1080×1080 + 9:16 Reels cover. Format: Static + Reels (text overlay).',
+ level:'L2',platform:'FB + IG Reels',type:'Viral',ad:'🟡 $15 test A/B',cta:'session-1',vt:'typo'},
 
 {date:'Wed Jun 17',phase:'Pre-Launch',cls:'ph1',id:'A5',b2b:false,
  fmt:'Sai Lầm',title:'3 lỗi prompt 90% marketer Vietnam đang mắc — và cách sửa ngay',
  hook:'Bạn đang mắc lỗi số mấy? 3 lỗi tôi thấy ở mọi marketer khi học CRAFT.',
  h2:'AI trả lời dở không phải vì AI dở. Mà vì prompt đang thiếu 3 thứ này.',
  h3:'Tôi review 200+ prompt của marketers VN. Cùng 3 lỗi lặp lại ở tất cả.',
- cap:'Sau khi review prompt của 200+ marketer, tôi thấy 3 lỗi xuất hiện ở gần như mọi người:\n\n❌ Lỗi 1: Không có context về bản thân\n❌ Lỗi 2: Không chỉ định output format\n❌ Lỗi 3: Không có tone anchor\n\nBa lỗi này là lý do output AI luôn cần rewrite.\n\nSession 1 bắt đầu bằng việc fix đúng 3 lỗi này.\n👉 thewildcard.vn/session-1',
- canva:'3-panel carousel: cover dark "3 LỖI PROMPT", panel 2-4 lime fix. High contrast.',
- level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test A/B',cta:'session-1'},
+ cap:'Sau khi review prompt của 200+ marketer, tôi thấy 3 lỗi xuất hiện ở gần như mọi người:\n\n❌ Lỗi 1: Không có context về bản thân\n❌ Lỗi 2: Không chỉ định output format\n❌ Lỗi 3: Không có tone anchor\n\nBa lỗi này là lý do output AI luôn cần rewrite.\n\nCó một cách fix cả 3 lỗi này — mình học được trong Session 1. Nếu bạn tò mò thì link ở bio nhé 👆',
+ canva:'[TYPOGRAPHY] Carousel 4 slides: Cover dark "3 LỖI PROMPT" (lime text, indigo bg), Slide 2-4 mỗi lỗi 1 slide với icon X đỏ + fix lime. High contrast. Format: FB Carousel + IG Carousel.',
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test A/B',cta:'session-1',vt:'typo'},
 
 {date:'Thu Jun 18',phase:'Pre-Launch',cls:'ph1',id:'A2',b2b:true,
- fmt:'B2B Contrarian',title:'Sai lầm lớn nhất của AI training cho team: bắt đầu từ prompts',
- hook:'Sai lầm lớn nhất khi train team AI: bắt đầu từ prompts. Tôi sẽ nói ngược với mọi AI trainer.',
- h2:'Tôi sẽ nói ngược: prompt không phải vấn đề của team bạn.',
- h3:'Team viết prompt tệ không phải vì thiếu kỹ thuật. Đây là lý do thực sự.',
- cap:'Mọi AI training programme bắt đầu bằng: "Cách viết prompt tốt hơn."\n\nĐây là sai lầm.\n\nTeam của bạn cần hiểu:\n— AI là tool cần context, không phải oracle\n— Cách structure thinking trước khi prompt\n— Cách build workflow quanh AI, không chỉ quanh prompt\n\nKhi cả team hiểu điều này → output đồng đều, không phụ thuộc vào 1-2 người giỏi.\n\nSession 1 Foundation of AI bắt đầu từ đây — dành cho toàn team, không phải cá nhân.\n👉 thewildcard.vn/corporate',
- canva:'LinkedIn 1200×627. Bold: "THINK FIRST. PROMPT SECOND." Indigo background, lime underline. Professional tone.',
- level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+ fmt:'B2B Assessment Drive',title:'Team bạn đang ở Level mấy với AI? — 2 phút để biết ngay',
+ hook:'Tôi có 1 câu hỏi nhỏ: team marketing của bạn đang dùng AI ở mức độ nào?',
+ h2:'Tôi đã phát triển 1 AI Maturity Framework cho marketing teams VN — muốn thử không?',
+ h3:'Không cần chuẩn bị gì. Chỉ 5 câu hỏi — 2 phút — bạn biết ngay mình đang đứng ở đâu.',
+ cap:'Sau vài tháng làm việc với nhiều marketing team VN, tôi nhận ra một điều:\n\nHầu hết mọi người không biết mình đang ở đâu trong hành trình AI.\n\nNên tôi làm một assessment nhỏ — 5 câu hỏi, 2 phút, miễn phí.\n\nKết quả sẽ cho bạn biết:\n→ Team đang ở Level nào (L1→L4)\n→ Gap lớn nhất cần fill\n→ Bước tiếp theo cụ thể\n\nNếu bạn lead marketing team và tò mò — link trong comment. Không có gì để pitch cả, mình chỉ muốn data 😊',
+ canva:'[TYPOGRAPHY] LinkedIn 1200×627. 4-level bar chart: L1→L4, từ gray đến lime. Bold: "Team bạn đang ở đâu?" Indigo bg, professional.',
+ level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $10 test LinkedIn',cta:'corporate',vt:'typo'},
 
 {date:'Fri Jun 19',phase:'Pre-Launch',cls:'ph1',id:'A8',b2b:false,
  fmt:'Before/After',title:'BEFORE vs AFTER: Cùng 1 brief — khác hoàn toàn về thời gian',
  hook:'BEFORE: 2 tiếng, 3 vòng revise. AFTER: 18 phút, approved ngay. Cùng 1 người — khác 1 system.',
  h2:'Brief A mất 45 phút. Brief B mất 12 phút. Chỉ 1 thứ khác nhau.',
  h3:'Tôi so sánh brief viết tay vs AI co-write. Kết quả làm tôi bất ngờ về chính mình.',
- cap:'BEFORE: Blank doc → 45 phút viết → 3 rounds revise với agency\nAFTER: 4-step AI workflow → 12 phút → agency approved lần đầu\n\nKhác biệt: bạn biết chính xác mình cần gì trước khi ngồi vào.\n\n👉 thewildcard.vn/session-1',
- canva:'Split: BEFORE dark red vs AFTER lime. Bold contrast. 1080×1080.',
- level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1'},
+ cap:'BEFORE: Blank doc → 45 phút viết → 3 rounds revise với agency\nAFTER: 4-step AI workflow → 12 phút → agency approved lần đầu\n\nKhác biệt: bạn biết chính xác mình cần gì trước khi ngồi vào.\n\nMình học cái này ở Session 1 — nếu bạn muốn xem flow cụ thể thì có thể ghé thewildcard.vn/session-1 để đọc thêm 🙂',
+ canva:'[ANIMATION] Split screen Before/After: Left BEFORE dark red → Right AFTER lime, bold numbers "45MIN → 12MIN". Animated transition. Format: IG Reels 9:16 + FB static 1:1.',
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1',vt:'anim'},
 
 {date:'Sat Jun 20',phase:'Soft Launch',cls:'ph2',id:'L1',b2b:'both',
  fmt:'Launch',title:'The Wild Card chính thức mở cửa — Cohort 2 đăng ký hôm nay',
  hook:'Không phải khoá học AI. Là chương trình Gen AI training đầu tiên cho brand teams VN.',
  h2:'The Wild Card chính thức mở cửa. Đây là nơi marketer VN học AI theo cách thật.',
  h3:'Chúng tôi đã chờ đủ lâu để làm đúng. Hôm nay mở đăng ký Cohort 2.',
- cap:'The Wild Card — Gen AI Training for Brand Teams Vietnam — chính thức mở Cohort 2.\n\nBắt đầu từ Session 1: Foundation of AI.\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team (5+ người): thewildcard.vn/corporate\n\n👉 Chọn path phù hợp với bạn.',
- canva:'Dark ink, large lime "WE\'RE LIVE", URL prominent. TWC logo. Both CTAs visible.',
- level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both'},
+ cap:'The Wild Card — Gen AI Training for Brand Teams Vietnam — chính thức mở Cohort 2.\n\nBắt đầu từ Session 1: Foundation of AI.\n\nCho cá nhân muốn nâng cấp cách làm việc với AI: thewildcard.vn/session-1\nCho corporate team (5+ người) muốn build AI capability chung: thewildcard.vn/corporate\n\nChọn path phù hợp với bạn — hoặc DM mình nếu chưa chắc nên bắt đầu từ đâu 🙂',
+ canva:'[REAL PERSON] Founder photo + TWC brand overlay, large lime "WE\'RE LIVE", URL prominent. Authentic, không quá corporate. Format: FB 1:1 + IG Stories 9:16.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both',vt:'real'},
 
 {date:'Mon Jun 22',phase:'Soft Launch',cls:'ph2',id:'V1-B2B',b2b:true,
- fmt:'B2B Data Reveal',title:'Tôi vừa audit AI usage của 50 marketing team VN — sự thật không ai nói',
- hook:'Tôi vừa audit AI usage của 50 marketing team VN. Đây là sự thật không ai nói.',
- h2:'Khoảng cách AI giữa "team dùng" và "team thực sự hiệu quả" lớn hơn bạn nghĩ rất nhiều.',
- h3:'50 marketing teams. 4 tuần. Đây là 5 pattern tôi thấy lặp lại ở tất cả.',
- cap:'Tôi vừa audit AI adoption của 50 marketing team lớn tại HCM và HN.\n\nVà đây là sự thật từ research toàn cầu lẫn VN:\n— 70% marketing team cần AI training — nhưng công ty không cung cấp\n— 95% GenAI projects thất bại trong 6 tháng đầu\n— Chỉ 6% doanh nghiệp đạt mức "AI high performer"\n— 40% ROI của AI bị mất vì training không đủ (EY Work Reimagined Survey, 2025)\n\nVấn đề không phải thiếu tool. Vấn đề là AI chỉ work cho 1-2 người, không scale ra cả team.\n\nTeam bạn đang ở đâu? L1 / L2 / L3 / L4 — comment xuống nhé.\n\n👉 Full framework tại thewildcard.vn/corporate',
- canva:'LinkedIn Carousel 10 slides: Cover "50 TEAMS. 4 TUẦN. SỰ THẬT." · Slides 1-8 data points · Slide 9 framework · Slide 10 CTA. Dark indigo + lime.',
- level:'L3',platform:'LinkedIn + FB',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+ fmt:'B2B MKT Skillset Report',title:'Exclusive: Marketing Skillset trong Gen AI Era — Report 2026',
+ hook:'Mình vừa compile một report về những kỹ năng marketing đang thay đổi trong thời đại Gen AI. Chia sẻ miễn phí cho ai cần.',
+ h2:'Gen AI không replace marketer — nhưng đang thay đổi hoàn toàn kỹ năng cần có. Report 2026.',
+ h3:'5 marketing skills sẽ mất giá trị. 5 skills mới trở nên thiết yếu. Data từ VN + Global.',
+ cap:'Mình vừa xong một report nhỏ về marketing skillset trong thời đại Gen AI — tổng hợp từ data global lẫn những gì mình quan sát trực tiếp ở market VN.\n\nMột số điều đáng chú ý:\n→ Kỹ năng "execution" đang được AI augment — người giỏi "thinking" sẽ có lợi thế lớn\n→ Brief writing, campaign strategy, insight synthesis vẫn là core — nhưng cần AI layer\n→ Marketer biết dùng AI không phải người biết nhiều tool nhất — mà là người có mental model đúng\n\nReport gồm 12 trang, mình để link trong comment. Không cần điền email, không cần gì cả — cứ lấy về đọc thôi 🙂\n\nNếu có gì muốn discuss thêm thì comment xuống nhé.',
+ canva:'[TYPOGRAPHY] LinkedIn Document Post hoặc Carousel 8 slides: Cover "MKT SKILLSET IN GEN AI ERA 2026" (dark indigo + lime). Slides: 5 skills declining, 5 skills rising, VN context, framework. Professional, data-driven.',
+ level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $10 test LinkedIn',cta:'corporate',vt:'typo'},
 
 {date:'Wed Jun 24',phase:'Soft Launch',cls:'ph2',id:'A4',b2b:false,
  fmt:'Checklist',title:'Save bài này: CRAFT Checklist — 5 yếu tố của mọi prompt hoàn hảo',
@@ -931,26 +1119,26 @@ const posts=[
  h2:'Prompt tệ không phải vì câu từ sai. Mà vì thiếu đúng 1 trong 5 yếu tố này.',
  h3:'CRAFT Framework trong 1 carousel — copy và dùng ngay hôm nay.',
  cap:'C = Context: AI biết bạn là ai không?\nR = Role: Đã assign role chưa?\nA = Action: Output cụ thể bạn muốn?\nF = Format: Chỉ định format chưa?\nT = Tone: Tone phù hợp chưa?\n\nSession 1 dạy cách apply CRAFT vào brief thật.\n👉 thewildcard.vn/session-1',
- canva:'5-slide carousel: cover dark "CRAFT CHECKLIST", each slide 1 letter lime. Save-worthy.',
- level:'L2',platform:'FB + IG Carousel',type:'Value',ad:'🟡 $15 test',cta:'session-1'},
+ canva:'[TYPOGRAPHY] Carousel 6 slides: Cover dark "CRAFT CHECKLIST" (lime headline), each slide 1 letter big + explanation. Minimalist, save-worthy. Format: FB Carousel + IG Carousel.',
+ level:'L2',platform:'FB + IG Carousel',type:'Value',ad:'🟡 $15 test',cta:'session-1',vt:'typo'},
 
 {date:'Thu Jun 25',phase:'Soft Launch',cls:'ph2',id:'C7-P2',b2b:true,
- fmt:'Founder Story',title:'Tôi xây The Wild Card vì tôi đã từng là người bị bỏ lại — Founder Post',
- hook:'10 năm marketing top FMCG — nhưng khi AI xuất hiện, tôi không biết bắt đầu từ đâu.',
- h2:'Tôi xây The Wild Card không phải vì thấy market opportunity. Mà vì tôi từng bị bỏ lại.',
- h3:'Có khoảnh khắc tôi nhận ra: AI training cho marketer VN đang bị làm sai hoàn toàn.',
- cap:'10 năm. FMCG. Top brands Vietnam.\n\nTôi đã từng tự tin nhất phòng về marketing. Rồi AI xuất hiện.\n\nMọi "AI course" tôi tìm đều dạy tool — không ai dạy cách think. Không ai dạy cách build AI workflow cho cả team.\n\nThe Wild Card ra đời từ sự thất vọng đó.\n\nNếu bạn đang lead một marketing team và thấy AI đang tạo ra khoảng cách giữa người giỏi và phần còn lại — tôi build Session 1 cho bạn.\n\n👉 thewildcard.vn/corporate',
- canva:'LinkedIn: ink bg, founder photo, white quote, lime accent. Human, not corporate. 1200×627.',
- level:'L3',platform:'LinkedIn',type:'Authority',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+ fmt:'Founder Story',title:'Tại sao tôi bỏ corporate để đi dạy — và điều tôi muốn trao lại cho thế hệ marketer mới',
+ hook:'Tôi đã có tất cả những gì người ta gọi là "thành công" trong marketing. Nhưng câu hỏi lớn nhất tôi tự hỏi là: mình đã học được gì đáng để truyền lại không?',
+ h2:'10 năm marketing — và điều tôi muốn làm nhất là trao lại kiến thức cho người mới bước vào nghề.',
+ h3:'Thế hệ marketer đang bước vào ngành trong thời điểm chưa từng có. Họ xứng đáng được học đúng cách.',
+ cap:'Mình đã làm marketing ở những brand lớn hơn 10 năm.\n\nVà khi Gen AI bắt đầu thay đổi ngành — mình nhận ra một điều không phải về AI, mà về người:\n\nThế hệ marketer trẻ đang bước vào nghề trong giai đoạn khó nhất và thú vị nhất của ngành. Họ cần học không chỉ cách dùng tool, mà cách think trong thời đại mới.\n\nMình build The Wild Card vì muốn đóng góp điều đó — không phải vì thấy "market opportunity", mà vì đây là thứ mình muốn ai đó đã dạy mình từ sớm hơn.\n\nNhiều thứ mình học được từ công việc thực tế mà trường không dạy — marketing thinking, cách làm việc với dữ liệu, cách thuyết phục stakeholder. Bây giờ thêm AI layer vào đó.\n\nNếu bạn đang bắt đầu hoặc đang phát triển trong ngành marketing — và muốn bắt đầu đúng với AI — mình ở đây.\n\n👉 thewildcard.vn/corporate',
+ canva:'[REAL PERSON] LinkedIn 1200×627: founder photo (candid/teaching vibe), quote overlay: "Tôi muốn trao lại những gì mình học được." Lime accent, ink bg. Warm and human.',
+ level:'L3',platform:'LinkedIn',type:'Authority',ad:'🟡 $10 test LinkedIn',cta:'corporate',vt:'real'},
 
 {date:'Fri Jun 26',phase:'Soft Launch',cls:'ph2',id:'B1',b2b:false,
  fmt:'Hook',title:'Báo cáo Nielsen 50 trang — AI đọc và surface insights trong 3 phút',
  hook:'50 trang Nielsen data. 3 phút. Top 5 insights ready để present. Đây là cách.',
  h2:'Lần đầu upload Nielsen vào AI, tôi ngồi im 2 phút — nó tìm ra thứ team bỏ qua 3 tháng.',
  h3:'Insight team mất 2 tuần. AI mất 3 phút. Và còn thêm 1 pattern bạn chưa thấy.',
- cap:'Cách dùng AI để đọc báo cáo Nielsen — không phải "ask AI tóm tắt":\n\n→ Upload PDF + chỉ định role cụ thể\n→ Ask AI extract 5 insights relevant đến current challenge\n→ Ask AI identify 1 pattern team chưa mention\n\n50 trang → 3 phút → presentation-ready.\n\n👉 thewildcard.vn/session-1',
- canva:'Dark bg, glowing data viz, "50 trang → 3 phút → 5 insights". Lime accent.',
- level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1'},
+ cap:'Cách dùng AI để đọc báo cáo Nielsen — không phải "ask AI tóm tắt":\n\n→ Upload PDF + chỉ định role cụ thể\n→ Ask AI extract 5 insights relevant đến current challenge\n→ Ask AI identify 1 pattern team chưa mention\n\n50 trang → 3 phút → presentation-ready.\n\nMình dạy cách làm điều này cụ thể hơn trong Session 1 nếu bạn muốn thử apply với data thật của mình 🙂 thewildcard.vn/session-1',
+ canva:'[ANIMATION] Dark bg, animated data flow visualization, bold numbers "50 trang → 3 phút → 5 insights". Lime accent glow. Format: IG Reels + FB video.',
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1',vt:'anim'},
 
 {date:'Sat Jun 27',phase:'Full Launch',cls:'ph3',id:'C1',b2b:false,
  fmt:'Hook',title:'Team bạn đang ở Level 1. Đối thủ của bạn đang ở Level 3.',
@@ -958,8 +1146,8 @@ const posts=[
  h2:'Khoảng cách AI không đo bằng tool. Đo bằng tháng. Và đối thủ bắt đầu trước 6 tháng.',
  h3:'Trong khi team bạn học prompt cơ bản — đối thủ đã có AI workflow toàn quy trình.',
  cap:'AI maturity của team:\n\nLevel 1: Vài cá nhân thử nghiệm\nLevel 2: Một số workflow, không nhất quán\nLevel 3: AI embedded vào daily work\nLevel 4: AI là lợi thế cạnh tranh đo được\n\nBước đầu tiên lên L3: Session 1 — cả team cùng 1 framework.\n\n👉 thewildcard.vn/session-1',
- canva:'4-level staircase: L1 gray → L4 lime. Dark ink bg. 1080×1080.',
- level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1'},
+ canva:'[ANIMATION] Animated staircase: L1 gray → L2 → L3 → L4 lime glow, each step lights up. Dark ink bg. 1080×1080 + 9:16. Format: IG Reels + FB video (5s loop).',
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',cta:'session-1',vt:'anim'},
 
 {date:'Mon Jun 28',phase:'Full Launch',cls:'ph3',id:'L2-post',b2b:'both',
  fmt:'Full Open',title:'Tất cả chương trình The Wild Card — đăng ký mở ngay hôm nay',
@@ -967,8 +1155,8 @@ const posts=[
  h2:'Full launch. Tất cả chương trình đã mở đăng ký.',
  h3:'Bạn đã follow từ đầu. Hôm nay là lúc chọn.',
  cap:'The Wild Card mở đầy đủ chương trình:\n\n→ Session 1: Foundation of AI (cá nhân + corporate)\n→ Session 2: Turn Data Into Decisions\n→ Session 3: AI for Agency Work\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team: thewildcard.vn/corporate\n\nBắt đầu từ đâu? Session 1 — foundation của toàn bộ.',
- canva:'3-program grid. Each with icon + target. TWC brand colors. Both CTAs.',
- level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both'},
+ canva:'[TYPOGRAPHY] 3-program grid layout: S1/S2/S3 each with icon + tagline + target audience. TWC brand colors (indigo + lime). Both CTAs. Format: FB 1:1 + LinkedIn 1200×627.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both',vt:'typo'},
 
 {date:'Wed Jul 1',phase:'Full Launch',cls:'ph3',id:'A9',b2b:false,
  fmt:'Myth vs Fact',title:'MYTH vs FACT: 5 điều về AI mà marketer hay tin sai',
@@ -976,8 +1164,8 @@ const posts=[
  h2:'5 điều về AI bạn tưởng đúng — nhưng đang cản bạn dùng AI hiệu quả.',
  h3:'AI không thần kỳ. Nhưng mạnh hơn bạn nghĩ — nếu bạn không tin vào 5 myth này.',
  cap:'5 MYTH phổ biến:\n\nMYTH 1: "AI tốt thì tự cho output tốt" → FACT: AI chỉ tốt bằng context bạn cho\nMYTH 2: "Cần biết nhiều tool" → FACT: 1 tool đúng > 10 tool sai\nMYTH 3: "AI thay thế sáng tạo" → FACT: AI amplify thinking\nMYTH 4: "Phải biết code" → FACT: Tư duy prompting quan trọng hơn\nMYTH 5: "Học AI mất nhiều thời gian" → FACT: Foundation đúng = 90 phút. Session 1.\n\n👉 thewildcard.vn/session-1',
- canva:'5-slide carousel: MYTH red vs FACT lime. Save-worthy.',
- level:'L2',platform:'FB + IG',type:'Value',ad:'🟡 $15 test',cta:'session-1'},
+ canva:'[TYPOGRAPHY] Carousel 6 slides: Cover "5 MYTH VỀ AI" (dark bg), each slide MYTH (red) vs FACT (lime) side-by-side. High contrast, bold type. Save-worthy. Format: FB Carousel + IG Carousel.',
+ level:'L2',platform:'FB + IG',type:'Value',ad:'🟡 $15 test',cta:'session-1',vt:'typo'},
 
 {date:'Thu Jul 2',phase:'Full Launch',cls:'ph3',id:'L3-post',b2b:'both',
  fmt:'Urgency',title:'48 tiếng cuối — Cohort 2 đóng đăng ký Session 1',
@@ -985,8 +1173,8 @@ const posts=[
  h2:'Còn [X] chỗ. Sau 48 tiếng — list đóng, không exception.',
  h3:'Tháng 7 này bạn muốn là người đang học AI — hay đã biết dùng AI trong công việc rồi?',
  cap:'48 tiếng nữa Cohort 2 đóng đăng ký.\n\nSau 90 phút Session 1 bạn sẽ biết:\n✓ Tại sao output AI không nhất quán và cách fix\n✓ CRAFT framework\n✓ 4-step brief writing workflow\n✓ Cách build personal AI system\n\nCá nhân: thewildcard.vn/session-1\nCorporate team 5+: thewildcard.vn/corporate',
- canva:'Countdown style: red/lime. Bold "48 GIỜ CUỐI". Both CTAs.',
- level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both'},
+ canva:'[ANIMATION] Countdown timer animation: red/lime flashing, bold "48 GIỜ CUỐI". Both CTAs visible. Format: IG Stories + FB video.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',cta:'both',vt:'anim'},
 
 {date:'Fri Jul 3',phase:'July Close',cls:'ph4',id:'B3',b2b:false,
  fmt:'Case Study',title:'Từ 4 tiếng xuống 40 phút: Monthly performance report với AI',
@@ -994,8 +1182,8 @@ const posts=[
  h2:'Số liệu thật Cohort 1: report từ 4h xuống 40 phút. Nhanh 6×.',
  h3:'Không phải AI làm thay. Là AI làm cùng — đúng cách.',
  cap:'Case thật — Insight Manager FMCG HCM:\n\nTRƯỚC: 4 tiếng, copy-paste thủ công\nSAU Session 1+2: 40 phút, AI handle reformat, 80% thời gian cho insights\n\nCùng deadline, chất lượng cao hơn, không làm thêm giờ.\n\n👉 thewildcard.vn/session-1',
- canva:'Before/After: "4H → 40MIN". Large numbers. TWC brand.',
- level:'L2+L3',platform:'FB + IG',type:'Authority',ad:'🟡 $15 test',cta:'session-1'},
+ canva:'[REAL PERSON] Split: Before (stressed person at desk, clock 4H) vs After (confident, clock 40MIN). Real/relatable vibe. TWC brand lime accent. Format: FB 1:1 + IG Reels 9:16.',
+ level:'L2+L3',platform:'FB + IG',type:'Authority',ad:'🟡 $15 test',cta:'session-1',vt:'real'},
 
 {date:'Mon Jul 6',phase:'July Close',cls:'ph4',id:'B2',b2b:true,
  fmt:'B2B Contrarian',title:'Data analyst không còn là người đọc data giỏi nhất trong phòng',
@@ -1003,8 +1191,8 @@ const posts=[
  h2:'Data Analyst không còn là người giỏi nhất phòng về data. Kỹ năng AI xóa lợi thế độc quyền.',
  h3:'Khi AI democratize data skill — ai học AI trước sẽ có lợi thế. Bất kể title.',
  cap:'Thực tế mà ít ai nói thẳng:\n\nBrand Manager biết dùng AI để analyze data → đặt được câu hỏi tốt hơn, surface insight nhanh hơn.\n\nAI democratize khả năng phân tích. Từ "chỉ data team mới làm được" thành "ai cũng có thể làm được".\n\nĐây không phải về replace. Là về ai học AI trước sẽ có lợi thế.\n\nTeam của bạn đã sẵn sàng chưa?\n👉 thewildcard.vn/corporate',
- canva:'Bold: "The playing field just changed." Dark bg, LI professional. 1200×627.',
- level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate'},
+ canva:'[TYPOGRAPHY] Bold: "The playing field just changed." Dark bg, lime accent, LinkedIn professional. 1200×627. Single-image impactful typography.',
+ level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $10 test LinkedIn',cta:'corporate',vt:'typo'},
 
 {date:'Tue Jul 7',phase:'July Close',cls:'ph4',id:'L4-post',b2b:true,
  fmt:'Corporate CTA',title:'Khi cả team cùng nói 1 ngôn ngữ AI — Corporate AI Training',
@@ -1012,17 +1200,17 @@ const posts=[
  h2:'Thứ thay đổi năng lực cả team: khi tất cả cùng dùng 1 AI system.',
  h3:'Corporate AI Training — không phải về tool. Là về shared workflow và ROI đo được.',
  cap:'Khi chỉ 1–2 người biết dùng AI:\n→ Workflow phụ thuộc vào số ít\n→ Risk cao khi người đó rời team\n\nKhi cả team học AI theo cùng framework:\n→ Shared language, shared prompt library\n→ AI advantage trở thành tài sản của team\n\nBắt đầu từ Session 1 Foundation cho toàn team.\n👉 thewildcard.vn/corporate',
- canva:'Team visual → shared AI workflow → results. Professional. LinkedIn 1200×627.',
- level:'L3',platform:'LinkedIn + FB',type:'Sales',ad:'🔴 Always Ads',cta:'corporate'},
+ canva:'[REAL PERSON] Team photo (diverse, working together) → shared AI workflow diagram → results metrics. Professional, warm. LinkedIn 1200×627 + FB 1:1.',
+ level:'L3',platform:'LinkedIn + FB',type:'Sales',ad:'🔴 Always Ads',cta:'corporate',vt:'real'},
 
 {date:'Thu Jul 9',phase:'July Close',cls:'ph4',id:'C7',b2b:'both',
- fmt:'Founder Close',title:'Tại sao tôi xây The Wild Card — và điều tôi muốn mọi marketer Vietnam biết',
- hook:'10 năm marketing top FMCG dạy tôi điều gì mà trường đại học không dạy — và AI đang thay đổi tất cả.',
- h2:'Tôi xây The Wild Card không phải vì market opportunity. Mà vì tôi từng bị bỏ lại.',
- h3:'Bài viết dài. Nếu bạn là marketer VN đang tìm hướng với AI — đọc hết nhé.',
- cap:'10 năm. FMCG. Top brands Vietnam.\n\nRồi AI xuất hiện và lần đầu tiên tôi không biết bắt đầu từ đâu.\n\nKhông phải thiếu curiosity. Mà vì mọi AI course đều dạy tool — không ai dạy cách think.\n\nThe Wild Card ra đời từ sự thất vọng đó.\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team: thewildcard.vn/corporate',
- canva:'LI: founder photo, personal quote lime accent, TWC logo. Human, authentic.',
- level:'L2+L3',platform:'LinkedIn',type:'Authority',ad:'🟡 $10 test LinkedIn',cta:'both'},
+ fmt:'Founder Close',title:'Điều tôi muốn mọi marketer trẻ Việt Nam biết khi bước vào thời đại AI',
+ hook:'Nếu mình được nói một điều với marketer đang bắt đầu trong thời đại này — đây là điều đó.',
+ h2:'Thế hệ marketer hôm nay có lợi thế mà thế hệ trước không có. Đừng để lãng phí.',
+ h3:'Bài viết dài — mình muốn chia sẻ thật về những gì mình học được và muốn trao lại.',
+ cap:'Mình làm marketing hơn 10 năm.\n\nVà khi nhìn lại, điều mình tự hào nhất không phải campaign nào, brand nào — mà là những lần mình giúp được ai đó hiểu rõ hơn về nghề.\n\nGen AI đang tạo ra một thời điểm chưa từng có trong ngành marketing. Không phải để thay thế marketer — mà để nâng cấp những người biết cách học.\n\nThế hệ marketer trẻ hôm nay có một lợi thế: họ có thể học AI đúng cách ngay từ đầu, không cần unlearn những thói quen cũ.\n\nThe Wild Card ra đời để đồng hành trong hành trình đó.\n\nKhông phải vì mình thấy "market opportunity". Mà vì đây là thứ mình muốn đóng góp lại cho ngành — và cho người trẻ đang bước vào.\n\nNếu bạn là marketer đang muốn build AI skills đúng cách:\n→ Cá nhân: thewildcard.vn/session-1\n→ Corporate team: thewildcard.vn/corporate\n\nCòn nếu chưa chắc bắt đầu từ đâu — cứ DM mình, mình sẽ chia sẻ thêm 🙂',
+ canva:'[REAL PERSON] LinkedIn 1200×627 + FB 1:1: founder photo (warm, teaching moment), quote: "Tôi muốn mọi marketer trẻ VN có cơ hội học AI đúng cách." Lime text, ink bg. TWC logo nhỏ.',
+ level:'L2+L3',platform:'LinkedIn + FB',type:'Authority',ad:'🟡 $10 test LinkedIn',cta:'both',vt:'real'},
 ];
 
 // Hook Library
@@ -1116,6 +1304,12 @@ function trackBadge(b2b){
   if(b2b===false) return '<span class="badge bb2c">📱 B2C</span>';
   return '<span class="badge bboth">B2B+B2C</span>';
 }
+function vtBadge(vt){
+  if(vt==='typo') return '<span style="display:inline-block;padding:2px 7px;border-radius:8px;font-size:9px;font-weight:800;background:#e0e7ff;color:#3730a3;border:1px solid #c7d2fe">Ⓣ Typo</span>';
+  if(vt==='anim') return '<span style="display:inline-block;padding:2px 7px;border-radius:8px;font-size:9px;font-weight:800;background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8">▶ Anim</span>';
+  if(vt==='real') return '<span style="display:inline-block;padding:2px 7px;border-radius:8px;font-size:9px;font-weight:800;background:#dcfce7;color:#166534;border:1px solid #86efac">👤 Real</span>';
+  return '<span style="font-size:9px;color:#9ca3af">—</span>';
+}
 
 const tbody=document.getElementById('calBody');
 let curPhase='';
@@ -1146,6 +1340,7 @@ posts.forEach((p,i)=>{
     <td>${trackBadge(p.b2b)}</td>
     <td>${lvBadge(p.level)}</td>
     <td>${typBadge(p.type)}</td>
+    <td>${vtBadge(p.vt)}</td>
     <td>${adBadge(p.ad)}</td>
     <td style="font-size:11px;white-space:nowrap">${p.platform}</td>
     <td style="font-size:10px">${ctaUrls}</td>`;
@@ -1163,7 +1358,7 @@ posts.forEach((p,i)=>{
     <div class="exp-block hook-b"><h4>Hook B</h4><p>${p.h2}</p></div>
     <div class="exp-block hook-c"><h4>Hook C</h4><p>${p.h3}</p></div>
     <div class="exp-block caption-block"><h4>📝 Caption Draft</h4><p style="white-space:pre-line">${p.cap}</p></div>
-    <div class="exp-block canva-block"><h4>🎨 Canva Prompt</h4><p>${p.canva}</p></div>
+    <div class="exp-block canva-block"><h4>🎨 Canva Prompt ${vtBadge(p.vt)}</h4><p>${p.canva}</p></div>
     <div class="exp-block cta-block"><h4>CTA → ${p.cta==='corporate'?'Corporate':'Session 1'}</h4>
       <p>Track: ${trackBadge(p.b2b)}</p>
       <a href="${ctaLink}" target="_blank">→ ${ctaLabel}</a></div>
@@ -1395,51 +1590,212 @@ const phases=[
 ]},
 ];
 
+// ============================================================
+// CHECKLIST — localStorage state + sort + edit + delete
+// ============================================================
 let ckOwnerFilter='all',ckPriFilter=null;
+let ckSort={col:null,dir:1}; // col: 'date'|'task'|'pri'|'owner'|'status'
+const CK_KEY='twc_ck_state';
+const CK_CUSTOM_KEY='twc_ck_custom'; // custom tasks added by user
+
+function getCkState(){try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}')}catch{return{}}}
+function setCkState(s){localStorage.setItem(CK_KEY,JSON.stringify(s))}
+function getCkCustom(){try{return JSON.parse(localStorage.getItem(CK_CUSTOM_KEY)||'{}')}catch{return{}}}
+function setCkCustom(c){localStorage.setItem(CK_CUSTOM_KEY,JSON.stringify(c))}
+
+function toggleCkStatus(phKey,idx,event){
+  if(event) event.stopPropagation();
+  const s=getCkState();
+  const k=`${phKey}_${idx}`;
+  const cycle={'To-Do':'In-Progress','In-Progress':'Done','Done':'To-Do'};
+  const ph=phases.find(p=>p.key===phKey);
+  const cur=s[k]||ph.tasks[idx][4];
+  s[k]=cycle[cur]||'To-Do';
+  setCkState(s);
+  renderChecklist();
+}
+
+function deleteCkTask(phKey,idx,event){
+  if(event) event.stopPropagation();
+  if(!confirm('Xoá task này?')) return;
+  const ph=phases.find(p=>p.key===phKey);
+  ph.tasks.splice(idx,1);
+  // also clean up state keys above this index
+  const s=getCkState();
+  const newS={};
+  Object.keys(s).forEach(k=>{
+    const [pk,i]=k.split('_');
+    if(pk===phKey){
+      const ni=parseInt(i);
+      if(ni<idx) newS[k]=s[k];
+      else if(ni>idx) newS[`${pk}_${ni-1}`]=s[k];
+    } else newS[k]=s[k];
+  });
+  setCkState(newS);
+  renderChecklist();
+}
+
+function showEditCk(phKey,idx,event){
+  if(event) event.stopPropagation();
+  const ph=phases.find(p=>p.key===phKey);
+  const t=ph.tasks[idx];
+  const editId=`ck-edit-${phKey}-${idx}`;
+  const existing=document.getElementById(editId);
+  if(existing){existing.classList.toggle('show');return;}
+  // find the row element and insert after it
+  const rowEl=document.getElementById(`ckrow-${phKey}-${idx}`);
+  if(!rowEl) return;
+  const editDiv=document.createElement('div');
+  editDiv.className='ck-edit-inline show';
+  editDiv.id=editId;
+  editDiv.innerHTML=`<div class="form-row" style="background:transparent;border:none;padding:0">
+    <div class="form-field" style="max-width:90px"><label>Ngày</label><input type="text" id="ck-e-date-${phKey}-${idx}" value="${t[0]||''}"></div>
+    <div class="form-field" style="flex:3"><label>Task</label><input type="text" id="ck-e-task-${phKey}-${idx}" value="${t[1]||''}"></div>
+    <div class="form-field" style="max-width:80px"><label>Priority</label>
+      <select id="ck-e-pri-${phKey}-${idx}">
+        ${['CRIT','IMP','B2B','DAILY','PREP'].map(v=>`<option${v===t[2]?' selected':''}>${v}</option>`).join('')}
+      </select></div>
+    <div class="form-field" style="max-width:80px"><label>Owner</label>
+      <select id="ck-e-owner-${phKey}-${idx}">
+        ${['Yen','Nghi','Both'].map(v=>`<option${v===t[3]?' selected':''}>${v}</option>`).join('')}
+      </select></div>
+    <div class="form-field" style="max-width:90px"><label>Status</label>
+      <select id="ck-e-status-${phKey}-${idx}">
+        ${['To-Do','In-Progress','Done'].map(v=>`<option${v===t[4]?' selected':''}>${v}</option>`).join('')}
+      </select></div>
+    <button class="btn-add" style="height:28px;align-self:flex-end" onclick="saveCkEdit('${phKey}',${idx})">💾 Save</button>
+    <button class="btn-sm" style="height:28px;align-self:flex-end" onclick="document.getElementById('${editId}').classList.remove('show')">✕</button>
+  </div>`;
+  rowEl.insertAdjacentElement('afterend',editDiv);
+}
+
+function saveCkEdit(phKey,idx){
+  const ph=phases.find(p=>p.key===phKey);
+  ph.tasks[idx][0]=document.getElementById(`ck-e-date-${phKey}-${idx}`).value;
+  ph.tasks[idx][1]=document.getElementById(`ck-e-task-${phKey}-${idx}`).value;
+  ph.tasks[idx][2]=document.getElementById(`ck-e-pri-${phKey}-${idx}`).value;
+  ph.tasks[idx][3]=document.getElementById(`ck-e-owner-${phKey}-${idx}`).value;
+  ph.tasks[idx][4]=document.getElementById(`ck-e-status-${phKey}-${idx}`).value;
+  // persist status to state
+  const s=getCkState();
+  s[`${phKey}_${idx}`]=ph.tasks[idx][4];
+  setCkState(s);
+  renderChecklist();
+}
+
+function sortCk(col,event){
+  if(event) event.stopPropagation();
+  if(ckSort.col===col) ckSort.dir*=-1;
+  else{ckSort.col=col;ckSort.dir=1;}
+  renderChecklist();
+}
+
+const priOrder={'CRIT':0,'IMP':1,'B2B':2,'DAILY':3,'PREP':4};
+const stOrder={'In-Progress':0,'To-Do':1,'Done':2};
+
+function addCkTask(phKey){
+  const date=document.getElementById(`ck-add-date-${phKey}`).value;
+  const task=document.getElementById(`ck-add-task-${phKey}`).value.trim();
+  const pri=document.getElementById(`ck-add-pri-${phKey}`).value;
+  const owner=document.getElementById(`ck-add-owner-${phKey}`).value;
+  if(!task)return;
+  const ph=phases.find(p=>p.key===phKey);
+  ph.tasks.push([date||'—',task,pri,owner,'To-Do']);
+  document.getElementById(`ck-add-form-${phKey}`).classList.remove('show');
+  renderChecklist();
+}
 
 function renderChecklist(){
+  const s=getCkState();
+  phases.forEach(ph=>{
+    ph.tasks.forEach((t,i)=>{
+      const k=`${ph.key}_${i}`;
+      if(s[k])t[4]=s[k];
+    });
+  });
   const totalTasks=phases.reduce((a,p)=>a+p.tasks.length,0);
   const done=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='Done').length,0);
   const prog=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='In-Progress').length,0);
-  const todo=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='To-Do').length,0);
+  const todo=totalTasks-done-prog;
   document.getElementById('ckSummary').innerHTML=`
     <div class="ck-stat"><div class="num">${totalTasks}</div><div class="lbl">Total tasks</div></div>
     <div class="ck-stat"><div class="num" style="color:#16a34a">${done}</div><div class="lbl">✅ Done</div></div>
     <div class="ck-stat"><div class="num" style="color:#d97706">${prog}</div><div class="lbl">🔄 In Progress</div></div>
     <div class="ck-stat"><div class="num" style="color:#6b7280">${todo}</div><div class="lbl">⬜ To Do</div></div>
     <div class="ck-stat"><div class="num">${Math.round(done/totalTasks*100)}%</div><div class="lbl">Complete</div></div>`;
+
+  const sortArrow=(col)=>ckSort.col===col?(ckSort.dir===1?' ↑':' ↓'):'';
+  const colHeader=(label,col)=>`<button class="ck-sort-btn${ckSort.col===col?' active':''}" onclick="sortCk('${col}',event)">${label}${sortArrow(col)}</button>`;
+
   const phasesEl=document.getElementById('ckPhases');
   phasesEl.innerHTML=phases.map(ph=>{
-    const vis=ph.tasks.filter(t=>{
-      if(ckOwnerFilter!=='all'&&t[3]!==ckOwnerFilter&&!(ckOwnerFilter==='Both'&&t[3]==='Both')) return false;
+    let vis=ph.tasks.map((t,i)=>({t,i})).filter(({t})=>{
+      if(ckOwnerFilter!=='all'&&t[3]!==ckOwnerFilter) return false;
       if(ckPriFilter&&t[2]!==ckPriFilter) return false;
       return true;
     });
+    // Apply sort
+    if(ckSort.col){
+      vis.sort((a,b)=>{
+        let av,bv;
+        if(ckSort.col==='date'){av=a.t[0];bv=b.t[0];}
+        else if(ckSort.col==='task'){av=a.t[1];bv=b.t[1];}
+        else if(ckSort.col==='pri'){av=priOrder[a.t[2]]??9;bv=priOrder[b.t[2]]??9;return(av-bv)*ckSort.dir;}
+        else if(ckSort.col==='owner'){av=a.t[3];bv=b.t[3];}
+        else if(ckSort.col==='status'){av=stOrder[a.t[4]]??9;bv=stOrder[b.t[4]]??9;return(av-bv)*ckSort.dir;}
+        return(av<bv?-1:av>bv?1:0)*ckSort.dir;
+      });
+    }
     const phDone=ph.tasks.filter(t=>t[4]==='Done').length;
     const phTotal=ph.tasks.length;
     const pct=Math.round(phDone/phTotal*100);
-    const rows=vis.map(t=>{
+    const rows=vis.map(({t,i})=>{
       const dotCls=t[4]==='Done'?'dot-done':t[4]==='In-Progress'?'dot-progress':t[4]==='Blocked'?'dot-blocked':'dot-todo';
       const stCls=t[4]==='Done'?'st-done':t[4]==='In-Progress'?'st-prog':t[4]==='Blocked'?'st-block':'st-todo';
-      const stTxt=t[4]==='Done'?'✅ Done':t[4]==='In-Progress'?'🔄 In Progress':t[4]==='Blocked'?'🔴 Blocked':'⬜ To Do';
+      const stTxt=t[4]==='Done'?'✅ Done':t[4]==='In-Progress'?'🔄 In Prog':t[4]==='Blocked'?'🔴 Blocked':'⬜ To Do';
       const priCls=t[2]==='CRIT'?'pri-crit':t[2]==='IMP'?'pri-imp':t[2]==='B2B'?'pri-b2b':t[2]==='DAILY'?'pri-daily':'pri-prep';
-      return `<div class="ck-row">
-        <div class="ck-dot ${dotCls}"></div>
+      return `<div class="ck-row" id="ckrow-${ph.key}-${i}">
+        <div class="ck-dot ${dotCls}" onclick="toggleCkStatus('${ph.key}',${i},event)" title="Click để đổi status" style="cursor:pointer"></div>
         <div class="ck-date">${t[0]}</div>
         <div class="ck-task">${t[1]}</div>
         <div><span class="ck-pri ${priCls}">${t[2]}</span></div>
         <div class="ck-owner">${t[3]}</div>
-        <div><span class="ck-status ${stCls}">${stTxt}</span></div>
+        <div><span class="ck-status ${stCls}" onclick="toggleCkStatus('${ph.key}',${i},event)" title="Click để đổi status">${stTxt}</span></div>
+        <div style="display:flex;gap:3px">
+          <button class="ck-action-btn ck-edit-btn" onclick="showEditCk('${ph.key}',${i},event)" title="Edit">✏️</button>
+          <button class="ck-action-btn ck-del-btn" onclick="deleteCkTask('${ph.key}',${i},event)" title="Delete">🗑</button>
+        </div>
       </div>`;
     }).join('');
     return `<div class="ck-phase">
-      <div class="ck-phase-head ${ph.cls}" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+      <div class="ck-phase-head ${ph.cls}" onclick="this.parentElement.querySelector('.ck-phase-body').style.display=this.parentElement.querySelector('.ck-phase-body').style.display==='none'?'block':'none'">
         <span>${ph.label}</span>
         <span>${phDone}/${phTotal} · ${pct}%</span>
       </div>
       <div class="ck-phase-body" style="display:block">
         <div class="progress-bar" style="margin:0"><div class="progress-fill" style="width:${pct}%"></div></div>
-        ${rows||'<div style="padding:10px 14px;font-size:11px;color:#9ca3af;font-style:italic">No tasks match current filter</div>'}
+        <div class="ck-table-header">
+          <div></div>
+          <div>${colHeader('Ngày','date')}</div>
+          <div>${colHeader('Task','task')}</div>
+          <div>${colHeader('Pri','pri')}</div>
+          <div>${colHeader('Owner','owner')}</div>
+          <div>${colHeader('Status','status')}</div>
+          <div style="font-size:10px;font-weight:700;color:var(--gray)">Actions</div>
+        </div>
+        ${rows||'<div style="padding:10px 14px;font-size:11px;color:#9ca3af;font-style:italic">No tasks match filter</div>'}
+        <button class="ck-add-btn" onclick="event.stopPropagation();document.getElementById('ck-add-form-${ph.key}').classList.toggle('show')">+ Thêm task mới</button>
+        <div class="ck-add-form" id="ck-add-form-${ph.key}">
+          <div class="form-row" style="background:transparent;border:none;padding:0">
+            <div class="form-field" style="max-width:100px"><label>Ngày</label><input type="text" id="ck-add-date-${ph.key}" placeholder="Jun 15"></div>
+            <div class="form-field" style="flex:3"><label>Task</label><input type="text" id="ck-add-task-${ph.key}" placeholder="Mô tả công việc..."></div>
+            <div class="form-field" style="max-width:90px"><label>Priority</label>
+              <select id="ck-add-pri-${ph.key}"><option>CRIT</option><option>IMP</option><option>B2B</option><option>DAILY</option><option>PREP</option></select></div>
+            <div class="form-field" style="max-width:90px"><label>Owner</label>
+              <select id="ck-add-owner-${ph.key}"><option>Yen</option><option>Nghi</option><option>Both</option></select></div>
+            <button class="btn-add" style="height:28px;align-self:flex-end" onclick="addCkTask('${ph.key}')">+ Add</button>
+          </div>
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -1457,7 +1813,272 @@ function filterCkPri(pri,btn){
   renderChecklist();
 }
 
+// ============================================================
+// FINANCE — localStorage transactions
+// ============================================================
+const TX_KEY='twc_transactions';
+const DEFAULT_TX=[
+  {date:'2026-01-15',type:'Chi',cat:'Pháp lý / Hành chính',desc:'Phí đăng ký doanh nghiệp',amount:100000,invoice:'Có',invoiceno:'HD001'},
+  {date:'2026-01-20',type:'Chi',cat:'Phần mềm / SaaS',desc:'Đăng ký Google Workspace',amount:3500000,invoice:'Có',invoiceno:'HD002'},
+  {date:'2026-02-05',type:'Chi',cat:'Pháp lý / Hành chính',desc:'Chữ ký số (USB Token)',amount:1200000,invoice:'Có',invoiceno:'HD003'},
+  {date:'2026-02-10',type:'Chi',cat:'Văn phòng phẩm',desc:'In ấn, văn phòng phẩm',amount:350000,invoice:'Không',invoiceno:'—'},
+];
+function getTx(){try{const d=JSON.parse(localStorage.getItem(TX_KEY));return d&&d.length?d:JSON.parse(JSON.stringify(DEFAULT_TX))}catch{return JSON.parse(JSON.stringify(DEFAULT_TX))}}
+function saveTx(arr){localStorage.setItem(TX_KEY,JSON.stringify(arr))}
+
+function addTransaction(){
+  const arr=getTx();
+  const date=document.getElementById('tx-date').value;
+  const type=document.getElementById('tx-type').value;
+  const cat=document.getElementById('tx-cat').value;
+  const desc=document.getElementById('tx-desc').value.trim();
+  const amount=parseFloat(document.getElementById('tx-amount').value)||0;
+  const invoice=document.getElementById('tx-invoice').value;
+  const invoiceno=document.getElementById('tx-invoiceno').value.trim()||'—';
+  if(!desc||!amount)return alert('Điền Mô tả và Số tiền.');
+  arr.push({date:date||new Date().toISOString().split('T')[0],type,cat,desc,amount,invoice,invoiceno});
+  arr.sort((a,b)=>a.date.localeCompare(b.date));
+  saveTx(arr);
+  document.getElementById('tx-desc').value='';
+  document.getElementById('tx-amount').value='';
+  document.getElementById('tx-invoiceno').value='';
+  renderTransactions();
+}
+function deleteTx(idx){
+  const arr=getTx();arr.splice(idx,1);saveTx(arr);renderTransactions();
+}
+function renderTransactions(){
+  const arr=getTx();
+  const fmt=n=>n.toLocaleString('vi-VN')+'₫';
+  const body=document.getElementById('txBody');
+  const foot=document.getElementById('txFoot');
+  if(!body)return;
+  body.innerHTML=arr.map((t,i)=>`<tr>
+    <td>${t.date}</td><td><span class="tax-badge ${t.type==='Thu'?'tx-done':'tx-pending'}">${t.type}</span></td>
+    <td>${t.cat}</td><td>${t.desc}</td>
+    <td style="font-weight:700;color:${t.type==='Thu'?'#16a34a':'#b91c1c'}">${t.type==='Thu'?'+':'-'}${fmt(t.amount)}</td>
+    <td><span class="tax-badge ${t.invoice==='Có'?'tx-done':'tx-overdue'}">${t.invoice}</span></td>
+    <td>${t.invoiceno}</td>
+    <td><button class="btn-sm btn-danger" onclick="deleteTx(${i})">✕</button></td>
+  </tr>`).join('');
+  const totalChi=arr.filter(t=>t.type==='Chi').reduce((a,t)=>a+t.amount,0);
+  const totalThu=arr.filter(t=>t.type==='Thu').reduce((a,t)=>a+t.amount,0);
+  foot.innerHTML=`<tr style="background:#f9fafb;font-weight:700">
+    <td colspan="4">TỔNG</td>
+    <td>Thu: <span style="color:#16a34a">+${fmt(totalThu)}</span> · Chi: <span style="color:#b91c1c">-${fmt(totalChi)}</span> · P&L: <span style="${totalThu-totalChi>=0?'color:#16a34a':'color:#b91c1c'}">${fmt(totalThu-totalChi)}</span></td>
+    <td colspan="3">${arr.filter(t=>t.invoice==='Có').length}/${arr.length} có HĐ đỏ</td>
+  </tr>`;
+}
+
+// ============================================================
+// AD SPEND LOG — localStorage
+// ============================================================
+const SL_KEY='twc_spend_log';
+function getSpendLog(){try{return JSON.parse(localStorage.getItem(SL_KEY)||'[]')}catch{return[]}}
+function saveSpendLog(arr){localStorage.setItem(SL_KEY,JSON.stringify(arr))}
+
+function addSpendLog(){
+  const arr=getSpendLog();
+  const date=document.getElementById('sl-date').value||new Date().toISOString().split('T')[0];
+  const channel=document.getElementById('sl-channel').value;
+  const spend=parseFloat(document.getElementById('sl-spend').value)||0;
+  const impressions=parseInt(document.getElementById('sl-impressions').value)||0;
+  const clicks=parseInt(document.getElementById('sl-clicks').value)||0;
+  const leads=parseInt(document.getElementById('sl-leads').value)||0;
+  if(!spend)return;
+  arr.push({date,channel,spend,impressions,clicks,leads});
+  arr.sort((a,b)=>a.date.localeCompare(b.date));
+  saveSpendLog(arr);
+  document.getElementById('sl-spend').value='';
+  document.getElementById('sl-impressions').value='';
+  document.getElementById('sl-clicks').value='';
+  document.getElementById('sl-leads').value='';
+  renderSpendLog();
+}
+function deleteSpendEntry(idx){const arr=getSpendLog();arr.splice(idx,1);saveSpendLog(arr);renderSpendLog();}
+function renderSpendLog(){
+  const arr=getSpendLog();
+  const body=document.getElementById('spendLogBody');
+  const foot=document.getElementById('spendLogFoot');
+  if(!body)return;
+  body.innerHTML=arr.map((e,i)=>{
+    const ctr=e.impressions?((e.clicks/e.impressions)*100).toFixed(2)+'%':'—';
+    const cpl=e.leads?(e.spend/e.leads).toFixed(2):'—';
+    return `<tr>
+      <td>${e.date}</td><td>${e.channel}</td>
+      <td style="font-weight:700">$${e.spend.toFixed(2)}</td>
+      <td>${e.impressions.toLocaleString()}</td><td>${e.clicks.toLocaleString()}</td>
+      <td>${ctr}</td><td>${cpl?'$'+cpl:'—'}</td><td>${e.leads}</td>
+      <td><button class="btn-sm btn-danger" onclick="deleteSpendEntry(${i})">✕</button></td>
+    </tr>`;
+  }).join('');
+  if(arr.length){
+    const totSpend=arr.reduce((a,e)=>a+e.spend,0);
+    const totImpr=arr.reduce((a,e)=>a+e.impressions,0);
+    const totClicks=arr.reduce((a,e)=>a+e.clicks,0);
+    const totLeads=arr.reduce((a,e)=>a+e.leads,0);
+    foot.innerHTML=`<tr style="background:#f9fafb;font-weight:700">
+      <td colspan="2">TOTAL (${arr.length} entries)</td>
+      <td>$${totSpend.toFixed(2)}</td><td>${totImpr.toLocaleString()}</td>
+      <td>${totClicks.toLocaleString()}</td>
+      <td>${totImpr?((totClicks/totImpr)*100).toFixed(2)+'%':'—'}</td>
+      <td>${totLeads?'$'+(totSpend/totLeads).toFixed(2):'—'}</td>
+      <td>${totLeads}</td><td></td>
+    </tr>`;
+  }
+}
+
+// ============================================================
+// FB GRAPH API
+// ============================================================
+function saveFBConfig(){
+  localStorage.setItem('twc_fb_token',document.getElementById('fbToken').value);
+  localStorage.setItem('twc_fb_account',document.getElementById('fbAccountId').value);
+}
+function loadFBConfig(){
+  const t=localStorage.getItem('twc_fb_token');const a=localStorage.getItem('twc_fb_account');
+  if(t)document.getElementById('fbToken').value=t;
+  if(a)document.getElementById('fbAccountId').value=a;
+}
+async function fetchFBInsights(){
+  const token=document.getElementById('fbToken').value.trim();
+  const accountId=document.getElementById('fbAccountId').value.trim().replace('act_','');
+  const datePreset=document.getElementById('fbDateRange').value;
+  const statusEl=document.getElementById('fbStatus');
+  const metricsEl=document.getElementById('fbMetrics');
+  if(!token||!accountId){statusEl.className='api-status api-err';statusEl.style.display='block';statusEl.textContent='⚠️ Điền Token và Account ID trước.';return;}
+  statusEl.className='api-status api-load';statusEl.style.display='block';statusEl.textContent='⏳ Đang fetch từ Facebook...';
+  metricsEl.style.display='none';
+  try{
+    const url=`https://graph.facebook.com/v19.0/act_${accountId}/insights?fields=spend,impressions,reach,clicks,cpm,cpc,ctr,frequency&date_preset=${datePreset}&access_token=${token}`;
+    const res=await fetch(url);
+    const data=await res.json();
+    if(data.error){throw new Error(data.error.message);}
+    const d=data.data&&data.data[0];
+    if(!d){throw new Error('No data returned. Check account ID and that campaigns are running.');}
+    document.getElementById('fm-spend').textContent='$'+parseFloat(d.spend||0).toFixed(2);
+    document.getElementById('fm-impressions').textContent=parseInt(d.impressions||0).toLocaleString();
+    document.getElementById('fm-reach').textContent=parseInt(d.reach||0).toLocaleString();
+    document.getElementById('fm-clicks').textContent=parseInt(d.clicks||0).toLocaleString();
+    document.getElementById('fm-ctr').textContent=parseFloat(d.ctr||0).toFixed(2)+'%';
+    document.getElementById('fm-cpm').textContent='$'+parseFloat(d.cpm||0).toFixed(2);
+    document.getElementById('fm-cpc').textContent='$'+parseFloat(d.cpc||0).toFixed(2);
+    document.getElementById('fm-freq').textContent=parseFloat(d.frequency||0).toFixed(2);
+    metricsEl.style.display='grid';
+    statusEl.className='api-status api-ok';statusEl.textContent='✅ Live data fetched — '+new Date().toLocaleTimeString('vi-VN');
+  }catch(e){
+    statusEl.className='api-status api-err';statusEl.textContent='❌ Error: '+e.message;
+  }
+}
+
+// ============================================================
+// AI LIBRARY
+// ============================================================
+const AL_KEY='twc_ai_library';
+function alGet(){try{return JSON.parse(localStorage.getItem(AL_KEY)||'[]')}catch{return[]}}
+function alSave(arr){localStorage.setItem(AL_KEY,JSON.stringify(arr))}
+
+function alExtractMeta(){
+  const url=document.getElementById('al-url').value.trim();
+  if(!url) return;
+  if(url.includes('facebook.com')||url.includes('fb.com')) document.getElementById('al-platform').value='Facebook';
+  else if(url.includes('instagram.com')) document.getElementById('al-platform').value='Instagram';
+  else if(url.includes('tiktok.com')) document.getElementById('al-platform').value='TikTok';
+  else if(url.includes('linkedin.com')) document.getElementById('al-platform').value='LinkedIn';
+  else if(url.includes('twitter.com')||url.includes('x.com')) document.getElementById('al-platform').value='Twitter/X';
+}
+
+function alAddEntry(){
+  const url=document.getElementById('al-url').value.trim();
+  const title=document.getElementById('al-title').value.trim();
+  if(!title){alert('Cần điền Tiêu đề / Mô tả ngắn.');return;}
+  const entry={
+    id:Date.now(),
+    url,
+    platform:document.getElementById('al-platform').value,
+    type:document.getElementById('al-type').value,
+    vt:document.getElementById('al-vt').value,
+    perf:document.getElementById('al-perf').value,
+    title,
+    prompt:document.getElementById('al-prompt').value.trim(),
+    visual:document.getElementById('al-visual').value.trim(),
+    tags:document.getElementById('al-tags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    date:new Date().toLocaleDateString('vi-VN')
+  };
+  const arr=alGet();arr.unshift(entry);alSave(arr);
+  // clear form
+  ['al-url','al-title','al-prompt','al-visual','al-tags'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('al-vt').value='';document.getElementById('al-perf').value='';
+  alRender();
+}
+
+function alDelete(id){
+  if(!confirm('Xoá entry này?')) return;
+  const arr=alGet().filter(e=>e.id!==id);alSave(arr);alRender();
+}
+
+const vtLabel={typo:'Ⓣ Typography',anim:'▶ Animation',real:'👤 Real Person','':{label:'—'}};
+const vtStyle={typo:'background:#e0e7ff;color:#3730a3',anim:'background:#fce7f3;color:#9d174d',real:'background:#dcfce7;color:#166534'};
+const perfLabel={high:'🔥 High',mid:'⭐ Medium',low:'📉 Low','':{label:'—'}};
+const perfStyle={high:'background:#dcfce7;color:#166534',mid:'background:#fef3c7;color:#92400e',low:'background:#fee2e2;color:#b91c1c'};
+
+function alRender(){
+  const arr=alGet();
+  const fp=document.getElementById('al-filter-platform').value;
+  const ft=document.getElementById('al-filter-type').value;
+  const fvt=document.getElementById('al-filter-vt').value;
+  const fperf=document.getElementById('al-filter-perf').value;
+  const fs=(document.getElementById('al-search').value||'').toLowerCase();
+  const filtered=arr.filter(e=>{
+    if(fp&&e.platform!==fp) return false;
+    if(ft&&e.type!==ft) return false;
+    if(fvt&&e.vt!==fvt) return false;
+    if(fperf&&e.perf!==fperf) return false;
+    if(fs&&!((e.title+e.prompt+e.visual+(e.tags||[]).join(' ')).toLowerCase().includes(fs))) return false;
+    return true;
+  });
+  document.getElementById('al-count').textContent=`${filtered.length} / ${arr.length} entries`;
+  const grid=document.getElementById('al-grid');
+  const empty=document.getElementById('al-empty');
+  if(!filtered.length){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=filtered.map(e=>{
+    const vtS=vtStyle[e.vt]||'background:#f3f4f6;color:#6b7280';
+    const vtL=e.vt?({typo:'Ⓣ Typography',anim:'▶ Animation',real:'👤 Real Person'}[e.vt]||e.vt):'—';
+    const pfS=perfStyle[e.perf]||'background:#f3f4f6;color:#6b7280';
+    const pfL=e.perf?({high:'🔥 High',mid:'⭐ Medium',low:'📉 Low'}[e.perf]||e.perf):'—';
+    return `<div style="background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border);display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
+        <div style="font-size:12px;font-weight:700;line-height:1.4;flex:1">${e.title}</div>
+        <button onclick="alDelete(${e.id})" style="font-size:10px;padding:2px 7px;background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;border-radius:8px;cursor:pointer;flex-shrink:0">✕</button>
+      </div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap">
+        <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;background:#e5f3fa;color:#0a66c2">${e.platform}</span>
+        <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;background:#ede9fe;color:#6d28d9">${e.type}</span>
+        ${e.vt?`<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;${vtS}">${vtL}</span>`:''}
+        ${e.perf?`<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;${pfS}">${pfL}</span>`:''}
+      </div>
+      ${e.url?`<a href="${e.url}" target="_blank" style="font-size:10px;color:var(--ind);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🔗 ${e.url}</a>`:''}
+      ${e.prompt?`<div style="font-size:11px;line-height:1.6;background:#f8f7ff;border-radius:6px;padding:8px;border-left:3px solid var(--ind)"><b style="font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px">Prompt / Note</b><br>${e.prompt.replace(/\n/g,'<br>')}</div>`:''}
+      ${e.visual?`<div style="font-size:11px;line-height:1.6;background:#f0fdf4;border-radius:6px;padding:8px;border-left:3px solid #22c55e"><b style="font-size:10px;color:#166534;text-transform:uppercase;letter-spacing:.5px">Visual Notes</b><br>${e.visual.replace(/\n/g,'<br>')}</div>`:''}
+      ${e.tags&&e.tags.length?`<div style="display:flex;gap:4px;flex-wrap:wrap">${e.tags.map(t=>`<span style="font-size:10px;padding:1px 7px;border-radius:10px;background:#f3f4f6;color:#374151">#${t}</span>`).join('')}</div>`:''}
+      <div style="font-size:10px;color:#9ca3af;margin-top:2px">Saved ${e.date}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// INIT
+// ============================================================
 renderChecklist();
+renderTransactions();
+renderSpendLog();
+loadFBConfig();
+alRender();
+// Set today's date as default
+const today=new Date().toISOString().split('T')[0];
+document.getElementById('sl-date').value=today;
+document.getElementById('tx-date').value=today;
 </script>
 </body>
 </html>
