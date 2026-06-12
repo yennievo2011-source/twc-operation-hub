@@ -844,12 +844,39 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="ck-section">
 <div class="ck-summary" id="ckSummary"></div>
 <div class="ck-filters" id="ckFilters">
-  <span style="font-size:11px;font-weight:700;align-self:center;color:var(--gray)">Filter:</span>
+  <span style="font-size:11px;font-weight:700;align-self:center;color:var(--gray)">Quick:</span>
   <button class="ck-filter on" onclick="filterCk('all',this)">All</button>
   <button class="ck-filter" onclick="filterCk('Yen',this)">Yen</button>
   <button class="ck-filter" onclick="filterCk('Nghi',this)">Nghi</button>
   <button class="ck-filter" onclick="filterCk('Both',this)">Both</button>
   <button class="ck-filter" style="margin-left:8px" onclick="filterCkPri('CRIT',this)">🔴 CRIT only</button>
+  <button class="ck-filter" style="margin-left:4px;background:#f3f4f6;color:#374151" onclick="resetCkColFilters()">↺ Reset</button>
+</div>
+<div id="ckColFilters" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;align-items:center">
+  <span style="font-size:11px;font-weight:700;color:var(--gray)">Cột:</span>
+  <select id="ckf-date" onchange="applyCkColFilter()" style="border:1px solid var(--border);border-radius:16px;padding:3px 10px;font-size:11px;background:#fff">
+    <option value="">📅 Ngày (tất cả)</option>
+  </select>
+  <select id="ckf-pri" onchange="applyCkColFilter()" style="border:1px solid var(--border);border-radius:16px;padding:3px 10px;font-size:11px;background:#fff">
+    <option value="">🏷 Priority (tất cả)</option>
+    <option value="CRIT">🔴 CRIT</option>
+    <option value="IMP">🟠 IMP</option>
+    <option value="B2B">🔵 B2B</option>
+    <option value="DAILY">🟢 DAILY</option>
+    <option value="PREP">⚪ PREP</option>
+  </select>
+  <select id="ckf-owner" onchange="applyCkColFilter()" style="border:1px solid var(--border);border-radius:16px;padding:3px 10px;font-size:11px;background:#fff">
+    <option value="">👤 Owner (tất cả)</option>
+    <option value="Yen">Yen</option>
+    <option value="Nghi">Nghi</option>
+    <option value="Both">Both</option>
+  </select>
+  <select id="ckf-status" onchange="applyCkColFilter()" style="border:1px solid var(--border);border-radius:16px;padding:3px 10px;font-size:11px;background:#fff">
+    <option value="">✅ Status (tất cả)</option>
+    <option value="In-Progress">⏳ In-Progress</option>
+    <option value="To-Do">◻ To-Do</option>
+    <option value="Done">✅ Done</option>
+  </select>
 </div>
 <div id="ckPhases"></div>
 </div>
@@ -871,8 +898,11 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px">
   <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;color:var(--ind)">+ Thêm vào Library</h3>
   <div class="form-row" style="background:transparent;border:none;padding:0;margin-bottom:8px">
-    <div class="form-field" style="flex:3"><label>🔗 URL Post (FB / IG / TikTok)</label>
-      <input type="url" id="al-url" placeholder="https://www.facebook.com/..." oninput="alExtractMeta()"></div>
+    <div class="form-field" style="flex:3"><label>🔗 URL Post (tuỳ chọn — FB / IG / TikTok)</label>
+      <input type="url" id="al-url" placeholder="https://www.facebook.com/... (để trống nếu upload ảnh)" oninput="alExtractMeta()"></div>
+    <div class="form-field" style="max-width:160px"><label>🖼 Upload ảnh (tuỳ chọn)</label>
+      <input type="file" id="al-img-file" accept="image/*" onchange="alPreviewImg(this)" style="font-size:11px;border:1px solid var(--border);border-radius:6px;padding:3px 6px;width:100%;background:#fff;cursor:pointer">
+      <div id="al-img-preview" style="display:none;margin-top:4px"><img id="al-img-thumb" style="max-width:100%;max-height:80px;border-radius:6px;border:1px solid var(--border)" src=""><button onclick="alClearImg()" style="display:block;font-size:10px;margin-top:3px;color:#b91c1c;background:none;border:none;cursor:pointer">✕ Xoá ảnh</button></div></div>
     <div class="form-field" style="max-width:110px"><label>Platform</label>
       <select id="al-platform"><option>Facebook</option><option>Instagram</option><option>TikTok</option><option>LinkedIn</option><option>Twitter/X</option></select></div>
     <div class="form-field" style="max-width:110px"><label>Loại</label>
@@ -1594,6 +1624,7 @@ const phases=[
 // CHECKLIST — localStorage state + sort + edit + delete
 // ============================================================
 let ckOwnerFilter='all',ckPriFilter=null;
+let ckColFilter={date:'',pri:'',owner:'',status:''};
 let ckSort={col:null,dir:1}; // col: 'date'|'task'|'pri'|'owner'|'status'
 const CK_KEY='twc_ck_state';
 const CK_CUSTOM_KEY='twc_ck_custom'; // custom tasks added by user
@@ -1732,6 +1763,10 @@ function renderChecklist(){
     let vis=ph.tasks.map((t,i)=>({t,i})).filter(({t})=>{
       if(ckOwnerFilter!=='all'&&t[3]!==ckOwnerFilter) return false;
       if(ckPriFilter&&t[2]!==ckPriFilter) return false;
+      if(ckColFilter.date&&t[0]!==ckColFilter.date) return false;
+      if(ckColFilter.pri&&t[2]!==ckColFilter.pri) return false;
+      if(ckColFilter.owner&&t[3]!==ckColFilter.owner) return false;
+      if(ckColFilter.status&&t[4]!==ckColFilter.status) return false;
       return true;
     });
     // Apply sort
@@ -1799,6 +1834,7 @@ function renderChecklist(){
       </div>
     </div>`;
   }).join('');
+  populateCkDateFilter();
 }
 
 function filterCk(owner,btn){
@@ -1811,6 +1847,28 @@ function filterCkPri(pri,btn){
   ckPriFilter=ckPriFilter===pri?null:pri;
   btn.classList.toggle('on',!!ckPriFilter);
   renderChecklist();
+}
+function applyCkColFilter(){
+  ckColFilter.date=document.getElementById('ckf-date').value;
+  ckColFilter.pri=document.getElementById('ckf-pri').value;
+  ckColFilter.owner=document.getElementById('ckf-owner').value;
+  ckColFilter.status=document.getElementById('ckf-status').value;
+  renderChecklist();
+}
+function resetCkColFilters(){
+  ckColFilter={date:'',pri:'',owner:'',status:''};
+  ['ckf-date','ckf-pri','ckf-owner','ckf-status'].forEach(id=>document.getElementById(id).value='');
+  renderChecklist();
+}
+function populateCkDateFilter(){
+  const dates=new Set();
+  phases.forEach(ph=>{ph.tasks.forEach(t=>{if(t[0]&&t[0]!=='—')dates.add(t[0]);});});
+  const sel=document.getElementById('ckf-date');
+  const cur=sel.value;
+  // keep first option
+  while(sel.options.length>1) sel.remove(1);
+  [...dates].sort().forEach(d=>{const o=new Option(d,d);sel.add(o);});
+  if(cur) sel.value=cur;
 }
 
 // ============================================================
@@ -1988,6 +2046,27 @@ function alExtractMeta(){
   else if(url.includes('twitter.com')||url.includes('x.com')) document.getElementById('al-platform').value='Twitter/X';
 }
 
+let alImgData=''; // base64 of uploaded image
+
+function alPreviewImg(input){
+  const file=input.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    alImgData=e.target.result;
+    document.getElementById('al-img-thumb').src=alImgData;
+    document.getElementById('al-img-preview').style.display='block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function alClearImg(){
+  alImgData='';
+  document.getElementById('al-img-file').value='';
+  document.getElementById('al-img-preview').style.display='none';
+  document.getElementById('al-img-thumb').src='';
+}
+
 function alAddEntry(){
   const url=document.getElementById('al-url').value.trim();
   const title=document.getElementById('al-title').value.trim();
@@ -1995,6 +2074,7 @@ function alAddEntry(){
   const entry={
     id:Date.now(),
     url,
+    img:alImgData||'',
     platform:document.getElementById('al-platform').value,
     type:document.getElementById('al-type').value,
     vt:document.getElementById('al-vt').value,
@@ -2009,6 +2089,7 @@ function alAddEntry(){
   // clear form
   ['al-url','al-title','al-prompt','al-visual','al-tags'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('al-vt').value='';document.getElementById('al-perf').value='';
+  alClearImg();
   alRender();
 }
 
@@ -2058,6 +2139,7 @@ function alRender(){
         ${e.vt?`<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;${vtS}">${vtL}</span>`:''}
         ${e.perf?`<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;${pfS}">${pfL}</span>`:''}
       </div>
+      ${e.img?`<img src="${e.img}" style="max-width:100%;max-height:160px;border-radius:8px;object-fit:cover;border:1px solid var(--border)">`:''}
       ${e.url?`<a href="${e.url}" target="_blank" style="font-size:10px;color:var(--ind);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">🔗 ${e.url}</a>`:''}
       ${e.prompt?`<div style="font-size:11px;line-height:1.6;background:#f8f7ff;border-radius:6px;padding:8px;border-left:3px solid var(--ind)"><b style="font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px">Prompt / Note</b><br>${e.prompt.replace(/\n/g,'<br>')}</div>`:''}
       ${e.visual?`<div style="font-size:11px;line-height:1.6;background:#f0fdf4;border-radius:6px;padding:8px;border-left:3px solid #22c55e"><b style="font-size:10px;color:#166534;text-transform:uppercase;letter-spacing:.5px">Visual Notes</b><br>${e.visual.replace(/\n/g,'<br>')}</div>`:''}
