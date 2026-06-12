@@ -1,0 +1,4 @@
+node_modules/
+.env
+output/
+lib/_orig_package.json.bak
