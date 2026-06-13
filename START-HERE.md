@@ -173,10 +173,12 @@ database_id Notion đã điền sẵn. Xem `n8n-workflows/README.md` để biế
 
 ---
 
-## Việc hằng ngày sau khi chạy (chỉ 3 thứ)
-1. **Email `[Duyệt]...`** → mở Notion → `Approved` (OK) hoặc `Revise` + feedback
+## Việc hằng ngày sau khi chạy (chỉ 3 thứ) — v3
+1. **Email `[Duyệt]...`** (3 options A/B/C) → mở Notion → set **`chosen_option` = A/B/C** (pick bản thích nhất) + dán `visual_url`. Muốn sửa: `review_decision = Revise` + `revise_feedback`.
 2. **Digest 9AM** nhắc nhập ER LinkedIn → mở LinkedIn xem số → nhập `er_li`
-3. **Digest** liệt kê Boost/Kill → OK
+3. **Dashboard** đẹp xem ở: https://yennievo2011-source.github.io/twc-operation-hub/dashboard/ (read-only, tự cập nhật 9AM)
+
+> v3: Content sinh **3 options** mỗi post (3 angle khác nhau) + chấm human_score chống văn phong AI. Gate = pick 1/3, không phải duyệt 1 bản.
 
 ## Khi tắt máy
 Automation dừng (dữ liệu an toàn ở Notion). Bật lại: `npm start` + `npx n8n` → chạy tiếp.
