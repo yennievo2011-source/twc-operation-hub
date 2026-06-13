@@ -1,0 +1,15 @@
+{
+  "name": "twc-agent-service",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "TWC marketing agent HTTP service — wraps files.zip agents for n8n",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
+    "plan": "node plan-week.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "express": "^4.19.0"
+  }
+}

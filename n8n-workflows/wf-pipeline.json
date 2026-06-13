@@ -1,0 +1,211 @@
+{
+  "name": "WF-Pipeline v3 (TWC)",
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [ { "field": "minutes", "minutesInterval": 5 } ] } },
+      "id": "trigger",
+      "name": "Mỗi 5 phút",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [ 0, 300 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/47b1e8e3dbf94ce5bfc2ff6a23519af9/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"or\": [\n      { \"property\": \"pipeline_status\", \"select\": { \"equals\": \"Draft\" } },\n      { \"property\": \"pipeline_status\", \"select\": { \"equals\": \"Revise\" } },\n      { \"and\": [ { \"property\": \"pipeline_status\", \"select\": { \"equals\": \"Pending Review\" } }, { \"property\": \"chosen_option\", \"select\": { \"is_not_empty\": true } } ] }\n    ]\n  }\n}"
+      },
+      "id": "query",
+      "name": "Query Notion (actionable)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 220, 300 ]
+    },
+    {
+      "parameters": { "fieldToSplitOut": "results", "options": {} },
+      "id": "split",
+      "name": "Tách từng post",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [ 440, 300 ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            { "conditions": { "options": { "caseSensitive": true }, "conditions": [ { "leftValue": "={{ $json.properties.chosen_option.select && $json.properties.chosen_option.select.name }}", "rightValue": "", "operator": { "type": "string", "operation": "notEmpty" } } ] }, "renameOutput": true, "outputKey": "Publish" },
+            { "conditions": { "options": { "caseSensitive": true }, "conditions": [ { "leftValue": "={{ $json.properties.pipeline_status.select.name }}", "rightValue": "Draft", "operator": { "type": "string", "operation": "equals" } } ] }, "renameOutput": true, "outputKey": "Draft" },
+            { "conditions": { "options": { "caseSensitive": true }, "conditions": [ { "leftValue": "={{ $json.properties.pipeline_status.select.name }}", "rightValue": "Revise", "operator": { "type": "string", "operation": "equals" } } ] }, "renameOutput": true, "outputKey": "Revise" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "switch",
+      "name": "Switch (Publish/Draft/Revise)",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [ 660, 300 ]
+    },
+
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $json.id }}",
+        "authentication": "genericCredentialType", "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "{ \"properties\": { \"pipeline_status\": { \"select\": { \"name\": \"Generating\" } } } }"
+      },
+      "id": "set_generating",
+      "name": "→ Generating",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2,
+      "position": [ 900, 120 ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const p = $json.properties;\nconst txt = (rt) => (rt && rt[0] && rt[0].plain_text) || \"\";\nreturn {\n  page_id: $json.id,\n  post: {\n    post_id: txt(p.post_id.title),\n    audience: p.audience?.select?.name || \"\",\n    platform: (p.platforms?.multi_select || []).map(o => o.name).join(\"+\"),\n    content_type: txt(p.content_type?.rich_text),\n    ad_budget: txt(p.ad_budget?.rich_text) || \"none\",\n    title: txt(p.post_id.title)\n  },\n  revise_feedback: txt(p.revise_feedback?.rich_text) || null\n};"
+      },
+      "id": "build_post",
+      "name": "Build post object",
+      "type": "n8n-nodes-base.code", "typeVersion": 2,
+      "position": [ 1120, 120 ]
+    },
+    {
+      "parameters": {
+        "method": "POST", "url": "http://localhost:8787/generate",
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ post: $json.post, revise_feedback: $json.revise_feedback }) }}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "call_generate",
+      "name": "Call /generate (3 options)",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2,
+      "position": [ 1340, 120 ], "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('Build post object').item.json.page_id }}",
+        "authentication": "genericCredentialType", "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: {\n  options_json: { rich_text: [ { text: { content: JSON.stringify($json.options || []).slice(0,1990) } } ] },\n  recommended_option: $json.recommended ? { select: { name: $json.recommended } } : { select: null },\n  hook_line: { rich_text: [ { text: { content: ($json.options?.[0]?.hook_line || '').toString().slice(0,1900) } } ] },\n  hook_score: { number: $json.options?.[0]?.hook_score || 0 },\n  pipeline_status: { select: { name: 'Pending Review' } }\n} }) }}"
+      },
+      "id": "save_content",
+      "name": "Lưu 3 options + Pending Review",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2,
+      "position": [ 1560, 120 ]
+    },
+    {
+      "parameters": {
+        "sendTo": "yennievo2011@gmail.com",
+        "subject": "=[Duyệt] {{ $('Build post object').item.json.post.post_id }} — pick 1/3 (★ {{ $('Call /generate (3 options)').item.json.recommended }})",
+        "message": "=Post {{ $('Build post object').item.json.post.post_id }} — 3 options:\n\n{{ ($('Call /generate (3 options)').item.json.options || []).map(o => `[${o.label}] ${o.hook_angle} · hook ${o.hook_score}/35 · human ${o.human_score}/10\\n\"${o.hook_line}\"`).join('\\n\\n') }}\n\n★ Recommended: {{ $('Call /generate (3 options)').item.json.recommended }} — {{ $('Call /generate (3 options)').item.json.recommended_reason }}\n\nMở Notion, set chosen_option = A/B/C + dán visual_url:\nhttps://www.notion.so/{{ $('Build post object').item.json.page_id.replaceAll('-','') }}",
+        "options": {}
+      },
+      "id": "email_review",
+      "name": "Email duyệt (pick 1/3)",
+      "type": "n8n-nodes-base.gmail", "typeVersion": 2.1,
+      "position": [ 1780, 120 ]
+    },
+
+    {
+      "parameters": {
+        "jsCode": "// Gate: Yên đã set chosen_option. Lấy caption + visual của option đó.\nconst p = $json.properties;\nconst txt = (rt) => (rt && rt[0] && rt[0].plain_text) || \"\";\nconst chosen = p.chosen_option?.select?.name;\nlet options = [];\ntry { options = JSON.parse(txt(p.options_json?.rich_text) || '[]'); } catch (e) {}\nconst opt = options.find(o => o.label === chosen) || options[0] || {};\nconst now = new Date();\nconst due = new Date(now.getTime() + 48*60*60*1000).toISOString().slice(0,10);\nreturn {\n  page_id: $json.id,\n  post_id: txt(p.post_id.title),\n  platform: (p.platforms?.multi_select || []).map(o => o.name).join('+'),\n  chosen,\n  caption: opt.caption || '',\n  visual: opt.visual || null,\n  human_score: opt.human_score ?? null,\n  er_check_due: due\n};"
+      },
+      "id": "build_publish",
+      "name": "Build publish (chosen option)",
+      "type": "n8n-nodes-base.code", "typeVersion": 2,
+      "position": [ 900, 340 ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ⚠️ TODO — ĐĂNG BÀI: thay bằng call Meta Graph / LinkedIn API thật.\n// Input có: caption, visual.template, visual.model, platform, post_id.\n// Tạm đánh dấu published để test luồng.\nreturn { ...$json, publish_note: 'TODO: nối Meta/LinkedIn API. Caption + visual đã sẵn ở input.' };"
+      },
+      "id": "publish_todo",
+      "name": "⚠️ TODO Đăng FB/IG/LinkedIn",
+      "type": "n8n-nodes-base.code", "typeVersion": 2,
+      "position": [ 1120, 340 ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $json.page_id }}",
+        "authentication": "genericCredentialType", "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: {\n  caption: { rich_text: [ { text: { content: ($json.caption || '').toString().slice(0,1900) } } ] },\n  human_score: { number: $json.human_score || 0 },\n  publish_status: { rich_text: [ { text: { content: $json.publish_note } } ] },\n  er_status: { select: { name: 'Pending' } },\n  pipeline_status: { select: { name: 'Published' } },\n  er_check_due: { date: { start: $json.er_check_due } }\n} }) }}"
+      },
+      "id": "set_published",
+      "name": "→ Published + er_check_due",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2,
+      "position": [ 1340, 340 ]
+    },
+
+    {
+      "parameters": {
+        "jsCode": "const p = $json.properties;\nconst txt = (rt) => (rt && rt[0] && rt[0].plain_text) || \"\";\nreturn {\n  page_id: $json.id,\n  post: {\n    post_id: txt(p.post_id.title),\n    audience: p.audience?.select?.name || \"\",\n    platform: (p.platforms?.multi_select || []).map(o => o.name).join(\"+\"),\n    ad_budget: txt(p.ad_budget?.rich_text) || \"none\",\n    title: txt(p.post_id.title)\n  },\n  revise_feedback: txt(p.revise_feedback?.rich_text) || \"\"\n};"
+      },
+      "id": "build_revise",
+      "name": "Build post (revise)",
+      "type": "n8n-nodes-base.code", "typeVersion": 2,
+      "position": [ 900, 560 ]
+    },
+    {
+      "parameters": {
+        "method": "POST", "url": "http://localhost:8787/generate",
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ post: $json.post, revise_feedback: $json.revise_feedback }) }}",
+        "options": { "timeout": 120000 }
+      },
+      "id": "regen",
+      "name": "Call /generate (revise)",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2,
+      "position": [ 1120, 560 ], "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('Build post (revise)').item.json.page_id }}",
+        "authentication": "genericCredentialType", "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: {\n  options_json: { rich_text: [ { text: { content: JSON.stringify($json.options || []).slice(0,1990) } } ] },\n  recommended_option: $json.recommended ? { select: { name: $json.recommended } } : { select: null },\n  review_decision: { select: null },\n  pipeline_status: { select: { name: 'Pending Review' } }\n} }) }}"
+      },
+      "id": "save_revise",
+      "name": "Lưu revise + Pending Review",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2,
+      "position": [ 1340, 560 ]
+    }
+  ],
+  "connections": {
+    "Mỗi 5 phút": { "main": [ [ { "node": "Query Notion (actionable)", "type": "main", "index": 0 } ] ] },
+    "Query Notion (actionable)": { "main": [ [ { "node": "Tách từng post", "type": "main", "index": 0 } ] ] },
+    "Tách từng post": { "main": [ [ { "node": "Switch (Publish/Draft/Revise)", "type": "main", "index": 0 } ] ] },
+    "Switch (Publish/Draft/Revise)": { "main": [
+      [ { "node": "Build publish (chosen option)", "type": "main", "index": 0 } ],
+      [ { "node": "→ Generating", "type": "main", "index": 0 } ],
+      [ { "node": "Build post (revise)", "type": "main", "index": 0 } ]
+    ] },
+    "→ Generating": { "main": [ [ { "node": "Build post object", "type": "main", "index": 0 } ] ] },
+    "Build post object": { "main": [ [ { "node": "Call /generate (3 options)", "type": "main", "index": 0 } ] ] },
+    "Call /generate (3 options)": { "main": [ [ { "node": "Lưu 3 options + Pending Review", "type": "main", "index": 0 } ] ] },
+    "Lưu 3 options + Pending Review": { "main": [ [ { "node": "Email duyệt (pick 1/3)", "type": "main", "index": 0 } ] ] },
+    "Build publish (chosen option)": { "main": [ [ { "node": "⚠️ TODO Đăng FB/IG/LinkedIn", "type": "main", "index": 0 } ] ] },
+    "⚠️ TODO Đăng FB/IG/LinkedIn": { "main": [ [ { "node": "→ Published + er_check_due", "type": "main", "index": 0 } ] ] },
+    "Build post (revise)": { "main": [ [ { "node": "Call /generate (revise)", "type": "main", "index": 0 } ] ] },
+    "Call /generate (revise)": { "main": [ [ { "node": "Lưu revise + Pending Review", "type": "main", "index": 0 } ] ] }
+  }
+}

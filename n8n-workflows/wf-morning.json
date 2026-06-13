@@ -1,0 +1,165 @@
+{
+  "name": "WF-Morning (TWC)",
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [ { "field": "cronExpression", "expression": "0 9 * * *" } ] }
+      },
+      "id": "trigger",
+      "name": "9AM hằng ngày",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [ 0, 300 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/47b1e8e3dbf94ce5bfc2ff6a23519af9/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ filter: { and: [ { property: 'er_status', select: { equals: 'Pending' } }, { property: 'er_check_due', date: { on_or_before: new Date().toISOString().slice(0,10) } } ] } }) }}"
+      },
+      "id": "query_er",
+      "name": "Query: ER cần check",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 220, 300 ]
+    },
+    {
+      "parameters": { "fieldToSplitOut": "results", "options": {} },
+      "id": "split",
+      "name": "Tách từng post",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [ 440, 300 ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Chọn ER nguồn: LinkedIn dùng er_li (Yên nhập tay); FB/IG dùng er_fb.\nconst p = $json.properties;\nconst txt = (rt) => (rt && rt[0] && rt[0].plain_text) || \"\";\nconst platforms = (p.platforms?.multi_select || []).map(o => o.name);\nconst isLI = platforms.includes(\"LinkedIn\");\nconst er = isLI ? (p.er_li?.number) : (p.er_fb?.number ?? p.er_ig?.number);\nconst budget = txt(p.ad_budget?.rich_text).includes(\"10\") ? 10 : 15;\nreturn {\n  page_id: $json.id,\n  post_id: txt(p.post_id.title),\n  platform: isLI ? \"LinkedIn\" : \"FB+IG\",\n  er: (er === undefined || er === null) ? null : er,\n  budget,\n  er_missing: (er === undefined || er === null)\n};"
+      },
+      "id": "build_er",
+      "name": "Build ER input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [ 660, 300 ]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": { "caseSensitive": true }, "conditions": [ { "leftValue": "={{ $json.er_missing }}", "rightValue": "", "operator": { "type": "boolean", "operation": "false" } } ] }
+      },
+      "id": "has_er",
+      "name": "Có ER chưa?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [ 880, 300 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8787/er-decision",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ post_id: $json.post_id, platform: $json.platform, er: $json.er, budget: $json.budget }) }}",
+        "options": { "timeout": 60000 }
+      },
+      "id": "call_decision",
+      "name": "Call /er-decision",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 1100, 200 ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $('Build ER input').item.json.page_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Notion-Version", "value": "2022-06-28" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: {\n  decision: { select: { name: $json.decision === 'STOP' ? 'Stop' : $json.decision === 'KILL' ? 'Kill' : $json.decision === 'BOOST' ? 'Boost' : 'Hold' } },\n  learning: { rich_text: [ { text: { content: ($json.reason || '').toString().slice(0,1900) } } ] },\n  er_status: { select: { name: $json.decision === 'BOOST' ? 'Boosted' : 'Checked' } }\n} }) }}"
+      },
+      "id": "save_decision",
+      "name": "Lưu quyết định",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 1320, 200 ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "aggregate",
+      "name": "Gom kết quả",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [ 1540, 300 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8787/digest",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ date: new Date().toISOString().slice(0,10), posts: $json.data || [], erData: [] }) }}",
+        "options": { "timeout": 60000 }
+      },
+      "id": "call_digest",
+      "name": "Call /digest (dashboard)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 1700, 300 ]
+    },
+    {
+      "parameters": {
+        "command": "cd \"/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service\" && node publish-dashboard.js"
+      },
+      "id": "publish_dash",
+      "name": "Publish dashboard → Pages",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [ 1900, 300 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.brevo.com/v3/smtp/email",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Content-Type", "value": "application/json" }, { "name": "accept", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ sender: { name: 'TWC Pipeline', email: 'yennievo2011@gmail.com' }, to: [ { email: 'yennievo2011@gmail.com', name: 'Yên' } ], subject: 'TWC Digest ' + new Date().toISOString().slice(0,10), textContent: ($('Call /digest (dashboard)').item.json.briefing_text || 'Không có ER cần xử lý hôm nay.') + '\\n\\nDashboard: https://yennievo2011-source.github.io/twc-operation-hub/dashboard/' } ) }}"
+      },
+      "id": "send_digest",
+      "name": "Gửi digest (Brevo)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 1980, 300 ]
+    }
+  ],
+  "connections": {
+    "9AM hằng ngày": { "main": [ [ { "node": "Query: ER cần check", "type": "main", "index": 0 } ] ] },
+    "Query: ER cần check": { "main": [ [ { "node": "Tách từng post", "type": "main", "index": 0 } ] ] },
+    "Tách từng post": { "main": [ [ { "node": "Build ER input", "type": "main", "index": 0 } ] ] },
+    "Build ER input": { "main": [ [ { "node": "Có ER chưa?", "type": "main", "index": 0 } ] ] },
+    "Có ER chưa?": { "main": [
+      [ { "node": "Call /er-decision", "type": "main", "index": 0 } ],
+      [ { "node": "Gom kết quả", "type": "main", "index": 0 } ]
+    ] },
+    "Call /er-decision": { "main": [ [ { "node": "Lưu quyết định", "type": "main", "index": 0 } ] ] },
+    "Lưu quyết định": { "main": [ [ { "node": "Gom kết quả", "type": "main", "index": 0 } ] ] },
+    "Gom kết quả": { "main": [ [ { "node": "Call /digest (dashboard)", "type": "main", "index": 0 } ] ] },
+    "Call /digest (dashboard)": { "main": [ [ { "node": "Publish dashboard → Pages", "type": "main", "index": 0 } ] ] },
+    "Publish dashboard → Pages": { "main": [ [ { "node": "Gửi digest (Brevo)", "type": "main", "index": 0 } ] ] }
+  }
+}
