@@ -6,7 +6,10 @@
 
 import express from "express";
 import { applyAdRule } from "./lib/02_GROUND_TRUTH.js";
-import { runContentAgent, runAdsAgent, runMasterPlanner } from "./lib/05_RUN.js";
+import { runContentAgent } from "./lib/contentAgent.js";
+import { runDesignAgentBatch } from "./lib/designAgent.js";
+import { runMasterPlanner } from "./lib/masterPlannerAgent.js";
+import { runAdsAgent } from "./lib/adsPlanning.js";
 
 export const app = express();
 app.use(express.json({ limit: "1mb" }));
@@ -24,42 +27,76 @@ app.post("/er-decision", (req, res) => {
   res.json(result);
 });
 
-// ─── /generate — Content Agent + Ads Agent (copy mode) ─────────────
+// ─── /generate — Content (3 options) + Design spec + Ads (v3) ──────
 app.post("/generate", async (req, res) => {
   const post = req.body?.post;
   if (!post || !post.post_id) {
     return res.status(400).json({ error: "post (kèm post_id) là bắt buộc" });
   }
-  const feedback = req.body?.revise_feedback || null;
   try {
-    const planContext = { post, ...(feedback && { revise_feedback: feedback }) };
-    const content = await runContentAgent(planContext, [post]);
-    const posts = Array.isArray(content) ? content : [content];
-    const first = posts[0] || null;
+    const content = await runContentAgent([post], req.body?.planning_summary || {});
+    const cp = (content || [])[0];
+    if (!cp) return res.status(200).json({ _failed: true, error: "content empty" });
+
+    const designs = await runDesignAgentBatch(content);
+    const design = designs.find((d) => d.post_id === cp.post_id);
 
     const hasBudget = post.ad_budget && post.ad_budget !== "none";
-    const ads = hasBudget && first ? await runAdsAgent(posts) : { ad_copies: [] };
+    const ads = hasBudget ? await runAdsAgent([cp]) : { ad_copies: [] };
+    const adCopy = ads.ad_copies?.find((a) => a.post_id === cp.post_id);
+
+    const options = (cp.options || []).map((opt) => {
+      const dv = design?.options?.[opt.label];
+      return {
+        label: opt.label,
+        hook_angle: opt.hook_angle,
+        hook_line: opt.hook_line,
+        caption: opt.caption,
+        cta: opt.cta,
+        hook_score: opt.hook_score,
+        human_score: opt._filter?.caption_human_score ?? null,
+        passes_threshold: opt.passes_threshold,
+        visual: dv
+          ? {
+              template: dv.canva_spec.source_template.design_id,
+              model: dv.higgsfield.model,
+              key_text: dv.key_text,
+              note: dv.canva_spec.slides?.[0]?.designer_note,
+              prompt: dv.higgsfield.prompt,
+            }
+          : null,
+        ad: adCopy?.[`variation_${opt.label.toLowerCase()}`] || null,
+      };
+    });
 
     res.json({
-      post_id: post.post_id,
-      content: first,
-      ads: ads.ad_copies?.[0] || null,
+      post_id: cp.post_id,
+      recommended: cp.recommended_option,
+      recommended_reason: cp.recommended_reason,
+      design_minutes: design?.time_estimate?.total_min || 0,
+      options,
     });
   } catch (e) {
     // Trả 200 với cờ _failed để n8n không retry mù (idempotency)
-    res.status(200).json({ _failed: true, error: String(e), content: null, ads: null });
+    res.status(200).json({ _failed: true, error: String(e) });
   }
 });
 
-// ─── /digest — Master Planner → briefing text cho email 9AM ────────
+// ─── /digest — Master Planner v3 → dashboard JSON ──────────────────
 app.post("/digest", async (req, res) => {
-  const { posts, date } = req.body || {};
+  const { posts, plan, designs, ads, erData } = req.body || {};
   if (!Array.isArray(posts)) {
     return res.status(400).json({ error: "posts (array) là bắt buộc" });
   }
   try {
-    const out = await runMasterPlanner({ date: date || null }, posts, {});
-    res.json({ briefing_text: out.briefing_text || "", raw: out });
+    const dashboard = await runMasterPlanner({
+      planOutput: plan || { campaign_phase: "ph1" },
+      contentOutput: posts,
+      designOutput: designs || [],
+      adsOutput: ads || { ad_copies: [] },
+      erData: erData || [],
+    });
+    res.json({ dashboard, briefing_text: dashboard?.briefing_text || "" });
   } catch (e) {
     res.status(200).json({ _failed: true, briefing_text: "Digest failed: " + String(e) });
   }
