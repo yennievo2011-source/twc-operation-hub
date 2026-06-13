@@ -5,6 +5,7 @@
 // ═══════════════════════════════════════════════════════════════════
 
 import express from "express";
+import fs from "fs";
 import { applyAdRule } from "./lib/02_GROUND_TRUTH.js";
 import { runContentAgent } from "./lib/contentAgent.js";
 import { runDesignAgentBatch } from "./lib/designAgent.js";
@@ -96,6 +97,11 @@ app.post("/digest", async (req, res) => {
       adsOutput: ads || { ad_copies: [] },
       erData: erData || [],
     });
+    // Ghi ra file để publish-dashboard.js render + push GitHub Pages
+    try {
+      if (!fs.existsSync("./output")) fs.mkdirSync("./output", { recursive: true });
+      fs.writeFileSync("./output/latest-dashboard.json", JSON.stringify({ dashboard }, null, 2));
+    } catch (e) { console.error("write dashboard file:", e); }
     res.json({ dashboard, briefing_text: dashboard?.briefing_text || "" });
   } catch (e) {
     res.status(200).json({ _failed: true, briefing_text: "Digest failed: " + String(e) });

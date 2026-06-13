@@ -109,14 +109,24 @@
         "url": "http://localhost:8787/digest",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ date: new Date().toISOString().slice(0,10), posts: $json.data || [] }) }}",
+        "jsonBody": "={{ JSON.stringify({ date: new Date().toISOString().slice(0,10), posts: $json.data || [], erData: [] }) }}",
         "options": { "timeout": 60000 }
       },
       "id": "call_digest",
-      "name": "Call /digest",
+      "name": "Call /digest (dashboard)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [ 1760, 300 ]
+      "position": [ 1700, 300 ]
+    },
+    {
+      "parameters": {
+        "command": "cd \"/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service\" && node publish-dashboard.js"
+      },
+      "id": "publish_dash",
+      "name": "Publish dashboard → Pages",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [ 1900, 300 ]
     },
     {
       "parameters": {
@@ -128,7 +138,7 @@
         "headerParameters": { "parameters": [ { "name": "Content-Type", "value": "application/json" }, { "name": "accept", "value": "application/json" } ] },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ sender: { name: 'TWC Pipeline', email: 'yennievo2011@gmail.com' }, to: [ { email: 'yennievo2011@gmail.com', name: 'Yên' } ], subject: 'TWC Digest ' + new Date().toISOString().slice(0,10), textContent: ($json.briefing_text || 'Không có ER cần xử lý hôm nay.') } ) }}"
+        "jsonBody": "={{ JSON.stringify({ sender: { name: 'TWC Pipeline', email: 'yennievo2011@gmail.com' }, to: [ { email: 'yennievo2011@gmail.com', name: 'Yên' } ], subject: 'TWC Digest ' + new Date().toISOString().slice(0,10), textContent: ($('Call /digest (dashboard)').item.json.briefing_text || 'Không có ER cần xử lý hôm nay.') + '\\n\\nDashboard: https://yennievo2011-source.github.io/twc-operation-hub/dashboard/' } ) }}"
       },
       "id": "send_digest",
       "name": "Gửi digest (Brevo)",
@@ -148,7 +158,8 @@
     ] },
     "Call /er-decision": { "main": [ [ { "node": "Lưu quyết định", "type": "main", "index": 0 } ] ] },
     "Lưu quyết định": { "main": [ [ { "node": "Gom kết quả", "type": "main", "index": 0 } ] ] },
-    "Gom kết quả": { "main": [ [ { "node": "Call /digest", "type": "main", "index": 0 } ] ] },
-    "Call /digest": { "main": [ [ { "node": "Gửi digest (Brevo)", "type": "main", "index": 0 } ] ] }
+    "Gom kết quả": { "main": [ [ { "node": "Call /digest (dashboard)", "type": "main", "index": 0 } ] ] },
+    "Call /digest (dashboard)": { "main": [ [ { "node": "Publish dashboard → Pages", "type": "main", "index": 0 } ] ] },
+    "Publish dashboard → Pages": { "main": [ [ { "node": "Gửi digest (Brevo)", "type": "main", "index": 0 } ] ] }
   }
 }
