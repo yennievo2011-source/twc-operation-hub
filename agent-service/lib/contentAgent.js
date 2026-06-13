@@ -130,7 +130,7 @@ CTA: DM / link in comment — không "tìm hiểu thêm".
 // ─── AGENT FUNCTION ───────────────────────────────────────────────
 async function callContentAPI(input) {
   const res = await client.messages.create({
-    model:      "claude-sonnet-4-20250514",
+    model:      "claude-sonnet-4-6",
     max_tokens: 5000,
     system:     CONTENT_SYSTEM,
     messages: [{

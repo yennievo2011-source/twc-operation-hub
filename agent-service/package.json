@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "TWC marketing agent HTTP service — wraps files.zip agents for n8n",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --env-file-if-exists=.env server.js",
     "test": "node --test test/*.test.js",
-    "plan": "node plan-week.js"
+    "plan": "node --env-file-if-exists=.env plan-week.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",

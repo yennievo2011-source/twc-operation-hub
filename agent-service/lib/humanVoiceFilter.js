@@ -192,7 +192,7 @@ ${text}`;
 
   try {
     const res = await client.messages.create({
-      model:      "claude-sonnet-4-20250514",
+      model:      "claude-sonnet-4-6",
       max_tokens: 1000,
       system:     HUMAN_VOICE_SYSTEM,
       messages:   [{ role: "user", content: prompt }],

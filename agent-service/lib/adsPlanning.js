@@ -13,7 +13,7 @@ export async function runPlanningAgent(brief) {
   return runSafe(
     async (input) => {
       const res = await client.messages.create({
-        model: "claude-sonnet-4-20250514", max_tokens: 3000,
+        model: "claude-sonnet-4-6", max_tokens: 3000,
         system: PLANNING_PROMPT,
         messages: [{ role: "user", content: JSON.stringify(input) }],
       });
@@ -28,7 +28,7 @@ export async function runAdsAgent(contentOutput) {
   return runSafe(
     async (input) => {
       const res = await client.messages.create({
-        model: "claude-sonnet-4-20250514", max_tokens: 3000,
+        model: "claude-sonnet-4-6", max_tokens: 3000,
         system: ADS_PROMPT,
         messages: [{ role: "user", content: `Generate ad copy (COPY MODE — 3 variations A/B/C) for:\n${JSON.stringify(input)}` }],
       });
