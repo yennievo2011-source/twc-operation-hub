@@ -120,12 +120,17 @@
     },
     {
       "parameters": {
-        "command": "cd \"/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service\" && node publish-dashboard.js"
+        "method": "POST",
+        "url": "http://localhost:8787/publish-dashboard",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ dashboard: $('Call /digest (dashboard)').item.json.dashboard }) }}",
+        "options": { "timeout": 60000 }
       },
       "id": "publish_dash",
       "name": "Publish dashboard → Pages",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [ 1900, 300 ]
     },
     {

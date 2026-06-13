@@ -11,6 +11,8 @@ import { runContentAgent } from "./lib/contentAgent.js";
 import { runDesignAgentBatch } from "./lib/designAgent.js";
 import { runMasterPlanner } from "./lib/masterPlannerAgent.js";
 import { runAdsAgent } from "./lib/adsPlanning.js";
+import { buildDashboardHtml } from "./lib/renderDashboard.js";
+import { putFileToGitHub } from "./lib/publishToGitHub.js";
 
 export const app = express();
 app.use(express.json({ limit: "1mb" }));
@@ -105,6 +107,32 @@ app.post("/digest", async (req, res) => {
     res.json({ dashboard, briefing_text: dashboard?.briefing_text || "" });
   } catch (e) {
     res.status(200).json({ _failed: true, briefing_text: "Digest failed: " + String(e) });
+  }
+});
+
+// ─── /publish-dashboard — render HTML + đẩy GitHub Pages (cloud-ready) ──
+// Body: { dashboard } (hoặc bỏ trống → đọc output/latest-dashboard.json)
+// Env: GITHUB_TOKEN, GH_REPO (vd "yennievo2011-source/twc-operation-hub")
+app.post("/publish-dashboard", async (req, res) => {
+  try {
+    let dashboard = req.body?.dashboard;
+    if (!dashboard) {
+      const raw = JSON.parse(fs.readFileSync("./output/latest-dashboard.json", "utf8"));
+      dashboard = raw.dashboard || raw;
+    }
+    const html = buildDashboardHtml(dashboard);
+    const repo = process.env.GH_REPO;
+    const token = process.env.GITHUB_TOKEN;
+    if (!repo || !token) {
+      return res.status(200).json({ _skipped: true, reason: "GH_REPO/GITHUB_TOKEN chưa set — bỏ qua push" });
+    }
+    const url = await putFileToGitHub({
+      repo, token, filePath: "dashboard/index.html", content: html,
+      message: "chore: update dashboard", branch: "main",
+    });
+    res.json({ ok: true, committed: url, live: `https://${repo.split("/")[0]}.github.io/${repo.split("/")[1]}/dashboard/` });
+  } catch (e) {
+    res.status(200).json({ _failed: true, error: String(e) });
   }
 });
 
