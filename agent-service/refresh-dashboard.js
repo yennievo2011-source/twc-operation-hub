@@ -34,6 +34,8 @@ const posts = rows.map((r) => {
     spend: num(p.spend) || 0,
     er: num(p.er_fb) ?? num(p.er_ig) ?? num(p.er_li),
     decision: p.decision?.select?.name,
+    visual_url: p.visual_url?.url || null,
+    design_url: p.design_url?.url || null,
   };
 });
 
@@ -42,8 +44,9 @@ const worked = posts.filter((x) => x.decision === "Boost").map((x) => ({ post_id
 const failed = posts.filter((x) => ["Kill", "Stop"].includes(x.decision)).map((x) => ({ post_id: x.post_id, platform: x.platform, er: x.er, why_failed: "ER dưới ngưỡng", action: x.decision }));
 
 const review = posts.filter((x) => x.status === "Pending Review").map((x) => ({
-  post_id: x.post_id, platform: x.platform, recommended: x.recommended,
+  post_id: x.post_id, platform: x.platform, status: x.status, recommended: x.recommended,
   recommended_reason: "đề xuất bởi agent",
+  visual_url: x.visual_url, design_url: x.design_url,
   options: [{ label: x.recommended || "A", hook_angle: "recommended", hook_line: x.hook_line, hook_score: x.hook_score, human_score: x.human_score }],
 }));
 
