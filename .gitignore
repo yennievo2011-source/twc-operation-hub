@@ -1,0 +1,14 @@
+node_modules/
+agent-service/node_modules/
+agent-service/output/
+.env
+agent-service/.env
+.DS_Store
+*.xlsx
+*.docx
+*.pptx
+*.pdf
+*.mp4
+*.jpg
+*.png
+*.py

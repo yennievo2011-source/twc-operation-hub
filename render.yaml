@@ -17,8 +17,10 @@ services:
     healthCheckPath: /health
     envVars:
       - key: ANTHROPIC_API_KEY
-        sync: false          # Render hỏi khi apply
+        sync: false          # Set in Render dashboard — do not commit value
+      - key: GITHUB_TOKEN
+        sync: false          # Set in Render dashboard — do not commit value
       - key: GH_REPO
         value: yennievo2011-source/twc-operation-hub
-      - key: GITHUB_TOKEN
-        sync: false          # Render hỏi khi apply
+      - key: NODE_ENV
+        value: production
