@@ -1,0 +1,24 @@
+# render.yaml — Render.com Blueprint (đơn giản hơn Railway)
+# Deploy: render.com → New → Blueprint → chọn repo twc-operation-hub → Apply.
+# Chỉ cần điền ANTHROPIC_API_KEY + GITHUB_TOKEN (Render hỏi khi apply).
+#
+# Lưu ý: n8n cần server có ổ đĩa bền (Render disk = trả phí) — khuyến nghị
+# dùng n8n Cloud (managed, miễn ops) cho phần automation; service dưới đây
+# là agent-service (bộ não AI).
+
+services:
+  - type: web
+    name: twc-agent-service
+    runtime: node
+    rootDir: agent-service
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false          # Render hỏi khi apply
+      - key: GH_REPO
+        value: yennievo2011-source/twc-operation-hub
+      - key: GITHUB_TOKEN
+        sync: false          # Render hỏi khi apply
