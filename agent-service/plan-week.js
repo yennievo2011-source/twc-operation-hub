@@ -10,7 +10,7 @@
 // Yên review rồi copy rows vào Notion (pipeline_status = Draft).
 // ═══════════════════════════════════════════════════════════════════
 
-import { runPlanningAgent } from "./lib/05_RUN.js";
+import { runPlanningAgent } from "./lib/adsPlanning.js";
 import fs from "fs";
 
 const brief = process.argv[2] || "W1 Jun 15-19 2026 — Pre-Launch A/B Test";
