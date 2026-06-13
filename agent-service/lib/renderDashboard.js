@@ -11,8 +11,16 @@ const optionCard = (o, rec) => `
       <span class="pill">hook ${esc(o.hook_score)}/35</span>
       <span class="pill">human ${esc(o.human_score)}/10</span>
       ${o.label === rec ? '<span class="pill lime">★ recommended</span>' : ""}</div>
-    <div class="hook">"${esc(o.hook_line)}"</div>
-    <div class="muted">${esc(o.visual_concept || o.visual?.note || "")}</div>
+    <div class="optgrid">
+      <div class="optvis">
+        ${o.visual_url ? `<img src="${esc(o.visual_url)}" alt="${esc(o.label)}" loading="lazy"/>` : `<div class="noimg">visual</div>`}
+        ${o.design_url ? `<a class="btn" href="${esc(o.design_url)}" target="_blank">✏️ Edit visual</a>` : ""}
+      </div>
+      <div class="optbody">
+        <div class="hook">"${esc(o.hook_line)}"</div>
+        ${o.caption ? `<details><summary>Xem full caption</summary><pre>${esc(o.caption)}</pre></details>` : ""}
+      </div>
+    </div>
   </div>`;
 
 const visualBlock = (p) => {
@@ -26,11 +34,8 @@ const visualBlock = (p) => {
 const postBlock = (p) => `
   <div class="card post">
     <div class="h2">${esc(p.post_id)} · ${esc(p.platform)} ${p.date ? "· " + esc(p.date) : ""} ${p.status ? `<span class="pill">${esc(p.status)}</span>` : ""}</div>
-    <div class="muted">Recommended: Option ${esc(p.recommended)} — ${esc(p.recommended_reason)}</div>
-    <div class="postgrid">
-      ${visualBlock(p)}
-      <div>${(p.options || []).map((o) => optionCard(o, p.recommended)).join("")}</div>
-    </div>
+    <div class="muted">Recommended: Option ${esc(p.recommended)} — ${esc(p.recommended_reason)} ${p.design_url ? `· <a href="${esc(p.design_url)}" target="_blank">mở design chính</a>` : ""}</div>
+    ${(p.options || []).map((o) => optionCard(o, p.recommended)).join("")}
   </div>`;
 
 const adRow = (a) => `<li><b>${esc(a.post_id)}</b> (${esc(a.platform)}) ER ${esc(a.er)}% — ${esc(a.why_worked || a.why_failed || "")} <i>${esc(a.action || "")}</i></li>`;
@@ -50,6 +55,9 @@ h1{color:var(--ind);font-size:20px}.h2{color:var(--ind);font-weight:800;margin-b
 .visual{width:200px;flex:0 0 200px}.visual img{width:100%;border-radius:10px;border:1px solid #e5e7eb}
 .visual .btn{display:block;text-align:center;margin-top:6px;background:var(--ind);color:#fff;padding:6px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700}
 .noimg{width:100%;aspect-ratio:4/5;background:#eee;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px}
+.optgrid{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}.optvis{flex:0 0 140px;width:140px}.optvis img{width:100%;border-radius:8px;border:1px solid #e5e7eb}.optbody{flex:1;min-width:200px}
+.optvis .btn{display:block;text-align:center;margin-top:5px;background:var(--ind);color:#fff;padding:5px;border-radius:7px;text-decoration:none;font-size:11px;font-weight:700}
+details{margin-top:6px;font-size:12px}summary{cursor:pointer;color:var(--ind);font-weight:600}details pre{white-space:pre-wrap;font-family:inherit;background:#f7f7fb;padding:8px;border-radius:6px;margin-top:4px}
 .hdsd{background:#0a0060;color:#fff;border-radius:12px;padding:18px;margin-top:18px}.hdsd h2{color:var(--lime);margin:0 0 8px}.hdsd ol{margin:6px 0;padding-left:20px;line-height:1.7}.hdsd code{background:rgba(255,255,255,.15);padding:1px 5px;border-radius:4px}
 .pill{display:inline-block;background:#eef;border-radius:10px;padding:1px 8px;font-size:11px;margin-left:6px;color:var(--ind)}
 .pill.lime{background:var(--lime);color:var(--ink)}
@@ -77,7 +85,7 @@ ${d.briefing_text ? `<div class="card"><b>💬 Briefing</b><pre>${esc(d.briefing
 <div class="hdsd">
   <h2>📖 HDSD — Quy trình chuẩn 1 bài post (cho team)</h2>
   <ol>
-    <li><b>Lên lịch:</b> thêm row vào Notion "TWC Content Pipeline", set <code>pipeline_status = Draft</code> (hoặc chạy <code>node plan-week.js</code> đầu tuần).</li>
+    <li><b>Lên lịch (bắt đầu 1 bài):</b> Vào Notion "TWC Content Pipeline" → bấm <b>New</b> tạo 1 dòng mới = 1 bài post. Điền: <code>post_id</code> (tên bài, vd FB-W2-01), <code>date</code> (ngày đăng), <code>platforms</code> (FB/IG/LinkedIn), <code>ad_budget</code>. Đặt <code>pipeline_status = Draft</code>. Đây là cách bạn "đặt hàng" 1 bài — AI thấy dòng Draft sẽ tự viết. (Hoặc chạy <code>node plan-week.js</code> để AI tự tạo ~6 dòng cho cả tuần.)</li>
     <li><b>AI viết:</b> hệ thống tự sinh <b>3 caption options A/B/C</b> + hook score + human score, đổi status → <code>Pending Review</code>, gửi email duyệt.</li>
     <li><b>Pick nội dung:</b> mở row → đọc 3 options → set <code>chosen_option = A/B/C</code> (theo recommended hoặc tự chọn). Muốn sửa: <code>review_decision = Revise</code> + ghi <code>revise_feedback</code>.</li>
     <li><b>Visual chuẩn brand:</b> mở link <code>design_url</code> (Canva brand template — đúng logo/font/màu) → gõ hook đã pick → Download PNG. KHÔNG dùng AI gen tự do (lệch brand).</li>
