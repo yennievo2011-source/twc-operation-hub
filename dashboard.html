@@ -313,19 +313,60 @@ L1 Soft Launch ngày 20 — còn 6 ngày. Visual chưa có. Đây là deadline k
 Tóm lại: 1 việc duy nhất hôm nay — post A1 trước 12h, set reminder 48h check ER. Còn lại làm sau.</pre></div>
 
 <div class="hdsd">
-  <h2>📖 HDSD — Quy trình chuẩn 1 bài post (cho team)</h2>
-  <ol>
-    <li><b>Lên lịch (bắt đầu 1 bài):</b> Vào Notion "TWC Content Pipeline" → bấm <b>New</b> tạo 1 dòng mới = 1 bài post. Điền: <code>post_id</code> (tên bài, vd FB-W2-01), <code>date</code> (ngày đăng), <code>platforms</code> (FB/IG/LinkedIn), <code>ad_budget</code>. Đặt <code>pipeline_status = Draft</code>. Đây là cách bạn "đặt hàng" 1 bài — AI thấy dòng Draft sẽ tự viết. (Hoặc chạy <code>node plan-week.js</code> để AI tự tạo ~6 dòng cho cả tuần.)</li>
-    <li><b>AI viết:</b> hệ thống tự sinh <b>3 caption options A/B/C</b> + hook score + human score, đổi status → <code>Pending Review</code>, gửi email duyệt.</li>
-    <li><b>Pick nội dung:</b> mở row → đọc 3 options → set <code>chosen_option = A/B/C</code> (theo recommended hoặc tự chọn). Muốn sửa: <code>review_decision = Revise</code> + ghi <code>revise_feedback</code>.</li>
-    <li><b>Visual chuẩn brand:</b> mở link <code>design_url</code> (Canva brand template — đúng logo/font/màu) → gõ hook đã pick → Download PNG. KHÔNG dùng AI gen tự do (lệch brand).</li>
-    <li><b>Đăng:</b> đăng FB/IG/LinkedIn → dán link vào <code>url_fb/url_ig/url_li</code> → status <code>Published</code> → <code>er_check_due</code> tự +48h.</li>
-    <li><b>Burn ads (nếu có budget):</b> Meta Ads Manager → mục tiêu Engagement → $15/post → dùng existing post. Cặp A/B chạy 2 bài, sau 48h so ER.</li>
-    <li><b>Track 48h:</b> nhập <code>spend</code> + <code>er_fb/ig/li</code> vào Notion. Rule engine: ER&gt;5% → BOOST +$50 · 3–5% → HOLD · &lt;3% → KILL (LinkedIn: &gt;5% boost+InMail · &gt;3% boost$30 · &lt;2% stop).</li>
-    <li><b>Refresh dashboard:</b> chạy <code>node refresh-dashboard.js</code> (hoặc tự động 9AM) → trang này cập nhật spend/ER/quyết định + visual mới nhất.</li>
+  <h2>📖 HDSD — Quy trình tuần (cho Director &amp; Team)</h2>
+
+  <div style="background:rgba(192,241,0,.12);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;line-height:1.6">
+    <b style="color:var(--lime)">Ai làm gì?</b><br>
+    🟣 <b>Pipeline operator</b> (người chạy agent — hiện là Yên): chạy lệnh, maintain code, cập nhật file posts tuần mới.<br>
+    🔵 <b>Content reviewer</b> (Director hoặc team lead): duyệt caption, pick option trên Notion.<br>
+    🟢 <b>Designer / Content exec</b>: làm visual Canva, đăng bài, nhập ER tracking.
+  </div>
+
+  <b style="color:var(--lime);font-size:13px">── ĐẦU TUẦN (Thứ 2 sáng) ──</b>
+  <ol style="margin-top:6px">
+    <li><b>[Pipeline operator]</b> Mở terminal → vào thư mục <code>agent-service</code> → chạy:<br>
+      <code>node --env-file=.env lib/05_RUN.js</code><br>
+      Lệnh chạy ~3–4 phút. Sau khi xong, dashboard này tự cập nhật và Notion tự sync.</li>
+    <li><b>[Pipeline operator]</b> Kiểm tra terminal: nếu thấy <code>✅ 5 ok, 0 failed</code> → xong. Nếu lỗi → xem mục Xử lý lỗi bên dưới.</li>
+    <li><b>[Director]</b> Mở trang này (GitHub Pages) → đọc <b>Morning Briefing</b> + <b>📌 Today</b> ở trên → biết ngay hôm nay cần làm gì, post nào đăng lúc mấy giờ, budget nào cần approve.</li>
   </ol>
-  <div style="font-size:12px;opacity:.8">Brand: Indigo #050090 + Lime #C0F100 · Caption: câu ngắn, số liệu cụ thể, không jargon · Hook phải ≥25/35 mới chạy ads.</div>
+
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── DUYỆT &amp; LÀM DESIGN (mỗi ngày có post) ──</b>
+  <ol style="margin-top:6px" start="4">
+    <li><b>[Content reviewer]</b> Mở Notion DB "TWC Content Pipeline" → tìm post hôm nay (filter theo <code>scheduled_date</code>) → đọc 3 options A/B/C, mỗi option có hook score + full caption → chọn option tốt nhất (thường theo <b>Recommended</b>). Muốn chỉnh: sửa trực tiếp caption trong Notion → kéo status sang <b>Approved</b>.</li>
+    <li><b>[Designer]</b> Mở link Canva trong field <code>canva_design_url</code> (template đúng brand: Indigo + Lime + logo TWC) → gõ hook của option đã approved → export PNG/MP4. KHÔNG dùng AI generate visual tự do — lệch brand.</li>
+    <li><b>[Designer]</b> Paste link Canva design vào field <code>canva_design_url</code> trong Notion (nếu chưa có) → kéo status → <b>Ready to Post</b>.</li>
+  </ol>
+
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── ĐĂNG BÀI ──</b>
+  <ol style="margin-top:6px" start="7">
+    <li><b>[Designer / Content exec]</b> Đăng đúng platform (FB/IG: Meta Business Suite · LinkedIn: LinkedIn native) đúng giờ ghi trong briefing. Paid post: setup Meta Ads → mục tiêu <b>Engagement</b> → dùng existing post → set budget đúng với <code>ad_budget</code> trong Notion.</li>
+    <li><b>[Designer]</b> Kéo Notion status → <b>Published</b>. Ghi note giờ đăng thực tế nếu khác lịch.</li>
+  </ol>
+
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── TRACKING 48H SAU KHI ĐĂNG ──</b>
+  <ol style="margin-top:6px" start="9">
+    <li><b>[Content exec]</b> 48h sau khi post live → vào Meta Ads Manager / LinkedIn Analytics → lấy ER thực tế → nhập vào Notion field <code>er_actual</code> + <code>spend_actual</code>.</li>
+    <li><b>[Pipeline operator]</b> Chạy lại <code>node --env-file=.env lib/05_RUN.js</code> → rule engine tự tính BOOST/HOLD/KILL và cập nhật dashboard này.<br>
+      Rule: ER &gt;5% → BOOST +$50 · 3–5% → HOLD · &lt;3% → KILL<br>
+      LinkedIn: &gt;5% boost+InMail · &gt;3% boost $30 · &lt;2% stop</li>
+  </ol>
+
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── ĐẦU TUẦN MỚI: CẬP NHẬT POSTS ──</b>
+  <ol style="margin-top:6px" start="11">
+    <li><b>[Pipeline operator]</b> Mở file <code>lib/04_FIRST_5_POSTS.js</code> → cập nhật danh sách posts tuần mới (post_id, date, platform, budget, hook_brief...) theo master plan → save → chạy lại pipeline như bước 1.</li>
+  </ol>
+
+  <div style="margin-top:14px;padding:10px 14px;background:rgba(255,255,255,.07);border-radius:8px;font-size:12px;line-height:1.7">
+    <b style="color:var(--lime)">⚠️ Xử lý lỗi thường gặp</b><br>
+    <b>Lỗi "credit balance too low"</b> → vào <b>console.anthropic.com → Plans &amp; Billing → Add $20</b> → chạy lại.<br>
+    <b>Lỗi Notion sync</b> → kiểm tra <code>NOTION_TOKEN</code> trong file <code>.env</code> còn hiệu lực không (token Notion hết hạn sau ~90 ngày).<br>
+    <b>Dashboard không cập nhật</b> → kiểm tra <code>GITHUB_TOKEN</code> trong <code>.env</code> — token GitHub cần scope <code>repo</code>, hết hạn theo setting khi tạo.<br>
+    <b>Content chất lượng thấp / hook score thấp</b> → chạy lại pipeline (tự retry với prompt khác), hoặc chỉnh <code>hook_brief</code> trong <code>04_FIRST_5_POSTS.js</code>.
+  </div>
+
+  <div style="margin-top:10px;font-size:11px;opacity:.65">Brand: Indigo #050090 + Lime #C0F100 · Caption: câu ngắn, số liệu cụ thể, không jargon · Hook phải ≥25/35 mới chạy ads · Dashboard cập nhật mỗi lần chạy pipeline.</div>
 </div>
 
-<div class="muted">Cập nhật tự động · pick option trong Notion · 2026-06-14T16:12:56.735Z</div>
+<div class="muted">Cập nhật tự động · pick option trong Notion · 2026-06-14T16:17:54.841Z</div>
 </body></html>
