@@ -1,0 +1,293 @@
+{
+  "name": "WF-DM-Auto (TWC FB/IG)",
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "notes": "DM automation cho FB Page + IG Business. Phân loại B2B/B2C bằng Claude Haiku, gửi reply qua Meta Graph API, log lead vào Notion. TODO nodes đánh dấu ⚠️.",
+
+  "nodes": [
+
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "twc-dm-verify",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook_verify",
+      "name": "⚠️ Meta Webhook Verify (GET)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 100],
+      "notes": "⚠️ TODO: Copy URL này vào Meta Developer → Webhooks → Callback URL.\nVerify token = 'twc_meta_2026' (đổi ở node bên dưới nếu muốn)."
+    },
+
+    {
+      "parameters": {
+        "jsCode": "const q = $json.query;\nif (q['hub.mode'] === 'subscribe' && q['hub.verify_token'] === 'twc_meta_2026') {\n  return { challenge: q['hub.challenge'] };\n}\nthrow new Error('Invalid verify token');"
+      },
+      "id": "extract_challenge",
+      "name": "Extract hub.challenge",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 100]
+    },
+
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.challenge }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "respond_challenge",
+      "name": "Return challenge → Meta",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [440, 100]
+    },
+
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twc-dm-events",
+        "responseMode": "onReceived",
+        "options": { "rawBody": false }
+      },
+      "id": "webhook_events",
+      "name": "⚠️ Meta Webhook Events (POST)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 300],
+      "notes": "⚠️ TODO: Thêm URL này vào Meta Webhooks (cùng App với Verify). Subscribe field: 'messages' (FB Page) và/hoặc 'instagram' (IG Business)."
+    },
+
+    {
+      "parameters": {
+        "jsCode": "// Unpack Meta webhook payload\n// Handles both FB Page messages and IG Business DMs\nconst body = $json.body;\nif (!body || !body.entry) return [];\n\nconst results = [];\nfor (const entry of body.entry) {\n  const platform = body.object === 'instagram' ? 'IG' : 'FB';\n  const messaging = entry.messaging || entry.changes || [];\n  for (const event of messaging) {\n    // IG webhook uses .value.messages structure\n    const msg = event.message || (event.value && event.value.messages && event.value.messages[0]);\n    if (!msg || !msg.text) continue; // skip non-text (sticker, attachment)\n    \n    const senderId = event.sender?.id || event.value?.contacts?.[0]?.wa_id || '';\n    const pageId = event.recipient?.id || entry.id || '';\n    \n    // Skip our own messages (echo)\n    if (senderId === pageId) continue;\n    // Skip if older than 5 min (replay protection)\n    const ts = event.timestamp || entry.time || 0;\n    if (Date.now() - ts * 1000 > 300000) continue;\n    \n    results.push({\n      platform,\n      sender_id: senderId,\n      page_id: pageId,\n      message_text: msg.text,\n      message_id: msg.mid || msg.id || '',\n      timestamp: new Date(ts * 1000).toISOString()\n    });\n  }\n}\nreturn results;"
+      },
+      "id": "extract_messages",
+      "name": "Extract + filter messages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "={{ $env.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: 'claude-haiku-4-5-20251001',\n  max_tokens: 400,\n  system: 'Bạn là AI assistant của TWC (The Wild Card) — AI training cho marketing professionals VN. Phân loại intent DM và soạn reply ngắn gọn.\\n\\nB2B signals: team, công ty, nhân viên, doanh nghiệp, training, đào tạo, budget, sếp, quản lý, phòng ban.\\nB2C signals: học, muốn biết, bắt đầu, mình, cá nhân, giá, đăng ký, khoá học.\\n\\nOutput JSON (không có markdown):\\n{\"intent\":\"B2B\"|\"B2C\"|\"unknown\",\"priority\":\"high\"|\"medium\"|\"low\",\"topic\":\"ngắn gọn họ quan tâm gì\",\"reply\":\"DM reply tiếng Việt max 200 ký tự, warm, hỏi 1 câu qualify cuối\",\"cta\":\"session-1\"|\"discovery-call\"|\"qualify\"}\\n\\nRule reply:\\n- B2C: mention Session 1, hỏi họ đang dùng AI cho công việc gì chưa\\n- B2B: không bán ngay, hỏi context team/company, offer 15 phút nói chuyện\\n- unknown: hỏi học cho cá nhân hay muốn train cho team',\n  messages: [{\n    role: 'user',\n    content: 'Platform: ' + $json.platform + '\\nDM: ' + $json.message_text\n  }]\n}) }}"
+      },
+      "id": "claude_classify",
+      "name": "Claude Haiku: classify + draft reply",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300],
+      "notes": "⚠️ TODO: Set ANTHROPIC_API_KEY trong n8n → Settings → Variables (hoặc dùng Credentials)."
+    },
+
+    {
+      "parameters": {
+        "jsCode": "const raw = $json.content?.[0]?.text || '{}';\nlet parsed;\ntry { parsed = JSON.parse(raw); } catch(e) { parsed = { intent:'unknown', priority:'low', topic:'parse error', reply:'Chào bạn 👋 Bạn đang quan tâm đến AI training cho cá nhân hay cho team nhỉ?', cta:'qualify' }; }\nreturn {\n  ...$('extract_messages').item.json,\n  intent: parsed.intent || 'unknown',\n  priority: parsed.priority || 'low',\n  topic: parsed.topic || '',\n  reply_text: parsed.reply || '',\n  cta: parsed.cta || 'qualify'\n};"
+      },
+      "id": "parse_claude",
+      "name": "Parse Claude output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": { "conditions": [ { "leftValue": "={{ $json.intent }}", "rightValue": "B2B", "operator": { "type": "string", "operation": "equals" } } ] },
+              "renameOutput": true, "outputKey": "B2B"
+            },
+            {
+              "conditions": { "conditions": [ { "leftValue": "={{ $json.intent }}", "rightValue": "B2C", "operator": { "type": "string", "operation": "equals" } } ] },
+              "renameOutput": true, "outputKey": "B2C"
+            },
+            {
+              "conditions": { "conditions": [ { "leftValue": "={{ $json.intent }}", "rightValue": "unknown", "operator": { "type": "string", "operation": "equals" } } ] },
+              "renameOutput": true, "outputKey": "unknown"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "switch_intent",
+      "name": "Route: B2B / B2C / unknown",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [880, 300]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.platform === 'IG' ? $json.page_id + '/messages' : 'me/messages' }}",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ recipient: { id: $json.sender_id }, message: { text: $json.reply_text }, messaging_type: 'RESPONSE', access_token: $env.META_PAGE_TOKEN }) }}"
+      },
+      "id": "send_reply_b2b",
+      "name": "Send DM → B2B",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 120],
+      "notes": "⚠️ TODO: Set META_PAGE_TOKEN trong n8n Variables. Token cần permission: pages_messaging."
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.platform === 'IG' ? $json.page_id + '/messages' : 'me/messages' }}",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ recipient: { id: $json.sender_id }, message: { text: $json.reply_text }, messaging_type: 'RESPONSE', access_token: $env.META_PAGE_TOKEN }) }}"
+      },
+      "id": "send_reply_b2c",
+      "name": "Send DM → B2C",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 300]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.platform === 'IG' ? $json.page_id + '/messages' : 'me/messages' }}",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ recipient: { id: $json.sender_id }, message: { text: $json.reply_text }, messaging_type: 'RESPONSE', access_token: $env.META_PAGE_TOKEN }) }}"
+      },
+      "id": "send_reply_unknown",
+      "name": "Send DM → unknown",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 480]
+    },
+
+    {
+      "parameters": {
+        "jsCode": "// Merge all 3 paths back for Notion logging\nreturn $json;"
+      },
+      "id": "merge_paths",
+      "name": "Merge paths",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 300]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Notion-Version", "value": "2022-06-28" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  parent: { database_id: $env.NOTION_LEADS_DB_ID || '⚠️-set-leads-db-id' },\n  properties: {\n    Name:       { title: [ { text: { content: $json.sender_id } } ] },\n    Platform:   { select: { name: $json.platform } },\n    Intent:     { select: { name: $json.intent } },\n    Priority:   { select: { name: $json.priority } },\n    Topic:      { rich_text: [ { text: { content: $json.topic } } ] },\n    Message:    { rich_text: [ { text: { content: $json.message_text.slice(0, 300) } } ] },\n    Reply_Sent: { rich_text: [ { text: { content: $json.reply_text.slice(0, 300) } } ] },\n    CTA:        { select: { name: $json.cta } },\n    Source:     { select: { name: 'DM Auto' } },\n    Date:       { date: { start: $json.timestamp } },\n    Status:     { select: { name: $json.intent === 'B2B' ? 'Needs Follow-up' : 'Auto-replied' } }\n  }\n}) }}"
+      },
+      "id": "log_notion",
+      "name": "Log lead → Notion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1540, 300],
+      "notes": "⚠️ TODO: Tạo Notion database 'TWC Leads' với các fields: Name, Platform, Intent, Priority, Topic, Message, Reply_Sent, CTA, Source, Date, Status. Paste database_id vào NOTION_LEADS_DB_ID variable."
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            { "leftValue": "={{ $json.intent }}", "rightValue": "B2B", "operator": { "type": "string", "operation": "equals" } },
+            { "leftValue": "={{ $json.priority }}", "rightValue": "low", "operator": { "type": "string", "operation": "notEquals" } }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if_b2b_alert",
+      "name": "IF: B2B high/medium priority?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1760, 300]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.brevo.com/v3/smtp/email",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "api-key", "value": "={{ $env.BREVO_API_KEY }}" }, { "name": "Content-Type", "value": "application/json" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  sender: { name: 'TWC Bot', email: 'no-reply@thewildcard.vn' },\n  to: [ { email: 'yennievo2011@gmail.com', name: 'Yên' } ],\n  subject: '🔵 B2B Lead mới [' + $json.priority.toUpperCase() + '] — ' + $json.platform,\n  htmlContent: '<b>Intent:</b> B2B<br><b>Priority:</b> ' + $json.priority + '<br><b>Platform:</b> ' + $json.platform + '<br><b>Sender ID:</b> ' + $json.sender_id + '<br><b>Topic:</b> ' + $json.topic + '<br><br><b>Message:</b><br>' + $json.message_text + '<br><br><b>Reply sent:</b><br>' + $json.reply_text + '<br><br><a href=\"https://www.notion.so\">→ Xem Notion Leads</a>'\n}) }}"
+      },
+      "id": "alert_b2b_email",
+      "name": "Alert email → Yên (B2B lead)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1980, 200],
+      "notes": "Gửi alert email khi có B2B lead priority medium/high. Dùng Brevo credential đã setup."
+    }
+
+  ],
+
+  "connections": {
+    "⚠️ Meta Webhook Verify (GET)":   { "main": [ [ { "node": "Extract hub.challenge", "type": "main", "index": 0 } ] ] },
+    "Extract hub.challenge":           { "main": [ [ { "node": "Return challenge → Meta", "type": "main", "index": 0 } ] ] },
+
+    "⚠️ Meta Webhook Events (POST)":  { "main": [ [ { "node": "Extract + filter messages", "type": "main", "index": 0 } ] ] },
+    "Extract + filter messages":       { "main": [ [ { "node": "Claude Haiku: classify + draft reply", "type": "main", "index": 0 } ] ] },
+    "Claude Haiku: classify + draft reply": { "main": [ [ { "node": "Parse Claude output", "type": "main", "index": 0 } ] ] },
+    "Parse Claude output":             { "main": [ [ { "node": "Route: B2B / B2C / unknown", "type": "main", "index": 0 } ] ] },
+
+    "Route: B2B / B2C / unknown": {
+      "main": [
+        [ { "node": "Send DM → B2B",     "type": "main", "index": 0 } ],
+        [ { "node": "Send DM → B2C",     "type": "main", "index": 0 } ],
+        [ { "node": "Send DM → unknown", "type": "main", "index": 0 } ]
+      ]
+    },
+
+    "Send DM → B2B":     { "main": [ [ { "node": "Merge paths", "type": "main", "index": 0 } ] ] },
+    "Send DM → B2C":     { "main": [ [ { "node": "Merge paths", "type": "main", "index": 0 } ] ] },
+    "Send DM → unknown": { "main": [ [ { "node": "Merge paths", "type": "main", "index": 0 } ] ] },
+
+    "Merge paths":     { "main": [ [ { "node": "Log lead → Notion", "type": "main", "index": 0 } ] ] },
+    "Log lead → Notion": { "main": [ [ { "node": "IF: B2B high/medium priority?", "type": "main", "index": 0 } ] ] },
+    "IF: B2B high/medium priority?": {
+      "main": [
+        [ { "node": "Alert email → Yên (B2B lead)", "type": "main", "index": 0 } ],
+        []
+      ]
+    }
+  }
+}
