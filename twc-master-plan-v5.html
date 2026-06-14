@@ -353,8 +353,9 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   </div>
 </div>
 <div class="callout callout-b2b"><b>🔄 v5 Change vs v4:</b> Budget reallocated — LinkedIn tăng từ 7.7% → 35% (B2B-first). FB/IG giảm nhưng vẫn giữ cho B2C. <b>Mỗi post được tag rõ B2B hoặc B2C</b> để team biết channel & targeting khác nhau.</div>
-<div class="callout callout-amber"><b>⚠️ FB Organic Distribution:</b> Facebook KHÔNG tự distribute organic tới cold audience. <b>Mọi FB/IG post = $15 test budget (3 ngày)</b>. Stop nếu ER &lt; 3% sau 48h. Boost thêm $50 nếu ER &gt; 5%.</div>
-<div class="callout callout-blue"><b>🎯 B2B Targeting (LinkedIn):</b> Job title: Marketing Manager, Brand Manager, Marketing Director, CMO, Agency Owner · Company size: 20+ · Location: HCM + HN · Industry: Advertising, FMCG, Retail, E-commerce</div>
+<div class="callout callout-green"><b>📊 Organic vs Paid — TWC Strategy:</b> Organic ER = chỉ signal từ existing followers (đang build). <b>Signal thật = Paid reach.</b> Mỗi tuần: <b>1–2 paid FB/IG</b> ($15 test) + <b>1 paid LinkedIn</b> ($20 test). Đọc ER paid sau 48h → chọn winner → scale. Posts ⚪ ORGANIC để warm up + saves + SEO. Posts 🟡 PAID để test signal. Posts 🔴 ALWAYS-ON chạy liên tục (launch/urgency).</div>
+<div class="callout callout-amber"><b>⚠️ FB/IG Organic:</b> Facebook KHÔNG distribute organic tới cold audience. Organic FB/IG chỉ cho existing followers xem. Nếu muốn test signal với cold audience → phải paid. Posts organic = build saves, warm followers, SEO.</div>
+<div class="callout callout-blue"><b>🔗 LinkedIn — Organic-first:</b> LinkedIn organic reach tốt hơn FB 5–10×. Post organic → chờ 24h → nếu ER &gt;3% thì boost $20. Founder posts (C7-P2, C7) = organic để build personal brand + comments. Chỉ A2, V1-B2B, B2 = paid (CTA rõ, lead gen). Kết hợp: 20 kết nối/ngày + comment targeted + DM người engage. Targeting: Marketing Manager, Brand Manager, CMO, Agency Owner · HCM+HN · 20+ người.</div>
 <div class="table-wrap">
 <table><thead><tr>
   <th>Ngày</th><th>ID</th><th>Định Dạng</th><th>Tiêu Đề</th>
@@ -370,9 +371,9 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="header"><h1>📊 Performance Tracker</h1>
 <p>Nhập số liệu sau 48h mỗi bài · ER &gt; 5% FB/IG → Boost +$50 · ER &gt; 3% LinkedIn → Boost · ER &lt; 3% → Stop</p></div>
 <div class="er-section">
-<div class="callout callout-green"><b>✅ Test Protocol v5:</b> FB/IG posts chạy <b>$15 test (48h)</b> · LinkedIn posts chạy <b>$20 test (48h)</b>. Nhập data → tự tính ER → quyết định boost / hold / stop.</div>
-<div class="callout callout-amber"><b>⚠️ Về budget test:</b> FB/IG $15 ✅ ổn — ở VN CPM ~$1–2, bạn nhận được ~750–1,500 impressions, đủ để thấy tín hiệu ER directional. LinkedIn $10 ❌ quá ít — LinkedIn CPM VN ~$8–15, $10 chỉ cho ~65–125 impressions, không đủ signal. Nên dùng <b>$20 minimum cho LinkedIn</b>, lý tưởng là $25 để có ~200+ impressions.</div>
-<div class="callout callout-b2b"><b>🔗 LinkedIn B2B threshold:</b> ER &gt; 3% → Boost $30 | ER &gt; 5% → Boost $50 + InMail follow-up | ER &lt; 2% → Stop, rewrite hook.</div>
+<div class="callout callout-green"><b>✅ Chỉ track paid posts ở đây.</b> Organic posts không cần ER tracker — signal từ organic không đủ để quyết định scale. FB/IG paid: <b>$15 test · 48h · threshold ER 5%</b>. LinkedIn paid: <b>$20 test · 48h · threshold ER 3%</b>.</div>
+<div class="callout callout-b2b"><b>⚡ Auto Boost Flow:</b> Nhập ER sau 48h → Rule engine tự quyết định KILL / HOLD / BOOST — không qua LLM. <b>Giai đoạn hiện tại (manual execute):</b> Rule engine output exact steps → Yên/Nghi execute trên Ads Manager trong &lt;2 phút. <b>Giai đoạn 2 (khi Meta API approved ~2 tuần):</b> Rule engine gọi API trực tiếp → fully auto, không cần người. LinkedIn InMail follow-up tự động trigger khi ER &gt;5%.</div>
+<div class="callout callout-amber"><b>🔗 LinkedIn threshold:</b> ER &gt;3% → Boost $30 (3 ngày) · ER &gt;5% → Boost $50 + InMail sequence · ER &lt;2% → Stop, rewrite hook. FB/IG: ER &gt;5% → Boost $50 (5 ngày) · ER 3–5% → Hold (theo dõi) · ER &lt;3% → Kill.</div>
 <div class="er-grid" id="erGrid"></div></div>
 </div>
 
@@ -1110,7 +1111,7 @@ const posts=[
  h3:'Tại sao output AI của bạn luôn generic? Vì bạn chưa bao giờ giới thiệu bản thân.',
  cap:'Bạn mở ChatGPT, gõ prompt, nhận kết quả generic. Làm lại, vẫn generic.\n\nVấn đề không phải prompt ngắn hay dài. Vấn đề là AI đang treat bạn như người lạ — vì bạn chưa bao giờ giới thiệu bản thân.\n\nNếu bạn muốn biết cách fix điều này — Session 1 Foundation of AI dạy đúng phần này, trong 90 phút, bằng case thật.\n\n🔗 Tìm hiểu thêm: thewildcard.vn/session-1',
  canva:'[TYPOGRAPHY] Dark indigo, oversized "?", lime accent, dot grid. Text: "ChatGPT không biết bạn là ai." 1080×1080 + 9:16 Reels cover. Format: Static + Reels (text overlay).',
- level:'L2',platform:'FB + IG Reels',type:'Viral',ad:'🟡 $15 test A/B',paid:true,budget:15,cta:'session-1',vt:'typo'},
+ level:'L2',platform:'FB + IG Reels',type:'Viral',ad:'🟡 $15 test A/B',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'typo'},
 
 {date:'Wed Jun 17',phase:'Pre-Launch',cls:'ph1',id:'A5',b2b:false,
  fmt:'Sai Lầm',title:'3 lỗi prompt 90% marketer Vietnam đang mắc — và cách sửa ngay',
@@ -1119,7 +1120,7 @@ const posts=[
  h3:'Tôi review 200+ prompt của marketers VN. Cùng 3 lỗi lặp lại ở tất cả.',
  cap:'Sau khi review prompt của 200+ marketer, tôi thấy 3 lỗi xuất hiện ở gần như mọi người:\n\n❌ Lỗi 1: Không có context về bản thân\n❌ Lỗi 2: Không chỉ định output format\n❌ Lỗi 3: Không có tone anchor\n\nBa lỗi này là lý do output AI luôn cần rewrite.\n\nCó một cách fix cả 3 lỗi này — mình học được trong Session 1. Nếu bạn tò mò thì link ở bio nhé 👆',
  canva:'[TYPOGRAPHY] Carousel 4 slides: Cover dark "3 LỖI PROMPT" (lime text, indigo bg), Slide 2-4 mỗi lỗi 1 slide với icon X đỏ + fix lime. High contrast. Format: FB Carousel + IG Carousel.',
- level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test A/B',paid:true,budget:15,cta:'session-1',vt:'typo'},
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'typo'},
 
 {date:'Thu Jun 18',phase:'Pre-Launch',cls:'ph1',id:'A2',b2b:true,
  fmt:'B2B Assessment Drive',title:'Team bạn đang ở Level mấy với AI? — 2 phút để biết ngay',
@@ -1128,7 +1129,7 @@ const posts=[
  h3:'Không cần chuẩn bị gì. Chỉ 5 câu hỏi — 2 phút — bạn biết ngay mình đang đứng ở đâu.',
  cap:'Sau vài tháng làm việc với nhiều marketing team VN, tôi nhận ra một điều:\n\nHầu hết mọi người không biết mình đang ở đâu trong hành trình AI.\n\nNên tôi làm một assessment nhỏ — 5 câu hỏi, 2 phút, miễn phí.\n\nKết quả sẽ cho bạn biết:\n→ Team đang ở Level nào (L1→L4)\n→ Gap lớn nhất cần fill\n→ Bước tiếp theo cụ thể\n\nNếu bạn lead marketing team và tò mò — link trong comment. Không có gì để pitch cả, mình chỉ muốn data 😊',
  canva:'[TYPOGRAPHY] LinkedIn 1200×627. 4-level bar chart: L1→L4, từ gray đến lime. Bold: "Team bạn đang ở đâu?" Indigo bg, professional.',
- level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,cta:'corporate',vt:'typo'},
+ level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,channel:'paid',cta:'corporate',vt:'typo'},
 
 {date:'Fri Jun 19',phase:'Pre-Launch',cls:'ph1',id:'A8',b2b:false,
  fmt:'Before/After',title:'BEFORE vs AFTER: Cùng 1 brief — khác hoàn toàn về thời gian',
@@ -1137,7 +1138,7 @@ const posts=[
  h3:'Tôi so sánh brief viết tay vs AI co-write. Kết quả làm tôi bất ngờ về chính mình.',
  cap:'BEFORE: Blank doc → 45 phút viết → 3 rounds revise với agency\nAFTER: 4-step AI workflow → 12 phút → agency approved lần đầu\n\nKhác biệt: bạn biết chính xác mình cần gì trước khi ngồi vào.\n\nMình học cái này ở Session 1 — nếu bạn muốn xem flow cụ thể thì có thể ghé thewildcard.vn/session-1 để đọc thêm 🙂',
  canva:'[ANIMATION] Split screen Before/After: Left BEFORE dark red → Right AFTER lime, bold numbers "45MIN → 12MIN". Animated transition. Format: IG Reels 9:16 + FB static 1:1.',
- level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,cta:'session-1',vt:'anim'},
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'anim'},
 
 {date:'Sat Jun 20',phase:'Soft Launch',cls:'ph2',id:'L1',b2b:'both',
  fmt:'Launch',title:'The Wild Card chính thức mở cửa — Cohort 2 đăng ký hôm nay',
@@ -1146,7 +1147,7 @@ const posts=[
  h3:'Chúng tôi đã chờ đủ lâu để làm đúng. Hôm nay mở đăng ký Cohort 2.',
  cap:'The Wild Card — Gen AI Training for Brand Teams Vietnam — chính thức mở Cohort 2.\n\nBắt đầu từ Session 1: Foundation of AI.\n\nCho cá nhân muốn nâng cấp cách làm việc với AI: thewildcard.vn/session-1\nCho corporate team (5+ người) muốn build AI capability chung: thewildcard.vn/corporate\n\nChọn path phù hợp với bạn — hoặc DM mình nếu chưa chắc nên bắt đầu từ đâu 🙂',
  canva:'[REAL PERSON] Founder photo + TWC brand overlay, large lime "WE\'RE LIVE", URL prominent. Authentic, không quá corporate. Format: FB 1:1 + IG Stories 9:16.',
- level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,cta:'both',vt:'real'},
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'both',vt:'real'},
 
 {date:'Mon Jun 22',phase:'Soft Launch',cls:'ph2',id:'V1-B2B',b2b:true,
  fmt:'B2B MKT Skillset Report',title:'Exclusive: Marketing Skillset trong Gen AI Era — Report 2026',
@@ -1155,7 +1156,7 @@ const posts=[
  h3:'5 marketing skills sẽ mất giá trị. 5 skills mới trở nên thiết yếu. Data từ VN + Global.',
  cap:'Mình vừa xong một report nhỏ về marketing skillset trong thời đại Gen AI — tổng hợp từ data global lẫn những gì mình quan sát trực tiếp ở market VN.\n\nMột số điều đáng chú ý:\n→ Kỹ năng "execution" đang được AI augment — người giỏi "thinking" sẽ có lợi thế lớn\n→ Brief writing, campaign strategy, insight synthesis vẫn là core — nhưng cần AI layer\n→ Marketer biết dùng AI không phải người biết nhiều tool nhất — mà là người có mental model đúng\n\nReport gồm 12 trang, mình để link trong comment. Không cần điền email, không cần gì cả — cứ lấy về đọc thôi 🙂\n\nNếu có gì muốn discuss thêm thì comment xuống nhé.',
  canva:'[TYPOGRAPHY] LinkedIn Document Post hoặc Carousel 8 slides: Cover "MKT SKILLSET IN GEN AI ERA 2026" (dark indigo + lime). Slides: 5 skills declining, 5 skills rising, VN context, framework. Professional, data-driven.',
- level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,cta:'corporate',vt:'typo'},
+ level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,channel:'paid',cta:'corporate',vt:'typo'},
 
 {date:'Wed Jun 24',phase:'Soft Launch',cls:'ph2',id:'A4',b2b:false,
  fmt:'Checklist',title:'Save bài này: CRAFT Checklist — 5 yếu tố của mọi prompt hoàn hảo',
@@ -1164,7 +1165,7 @@ const posts=[
  h3:'CRAFT Framework trong 1 carousel — copy và dùng ngay hôm nay.',
  cap:'C = Context: AI biết bạn là ai không?\nR = Role: Đã assign role chưa?\nA = Action: Output cụ thể bạn muốn?\nF = Format: Chỉ định format chưa?\nT = Tone: Tone phù hợp chưa?\n\nSession 1 dạy cách apply CRAFT vào brief thật.\n👉 thewildcard.vn/session-1',
  canva:'[TYPOGRAPHY] Carousel 6 slides: Cover dark "CRAFT CHECKLIST" (lime headline), each slide 1 letter big + explanation. Minimalist, save-worthy. Format: FB Carousel + IG Carousel.',
- level:'L2',platform:'FB + IG Carousel',type:'Value',ad:'🟡 $15 test',paid:true,budget:15,cta:'session-1',vt:'typo'},
+ level:'L2',platform:'FB + IG Carousel',type:'Value',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'typo'},
 
 {date:'Thu Jun 25',phase:'Soft Launch',cls:'ph2',id:'C7-P2',b2b:true,
  fmt:'Founder Story',title:'Tại sao tôi bỏ corporate để đi dạy — và điều tôi muốn trao lại cho thế hệ marketer mới',
@@ -1173,7 +1174,7 @@ const posts=[
  h3:'Thế hệ marketer đang bước vào ngành trong thời điểm chưa từng có. Họ xứng đáng được học đúng cách.',
  cap:'Mình đã làm marketing ở những brand lớn hơn 10 năm.\n\nVà khi Gen AI bắt đầu thay đổi ngành — mình nhận ra một điều không phải về AI, mà về người:\n\nThế hệ marketer trẻ đang bước vào nghề trong giai đoạn khó nhất và thú vị nhất của ngành. Họ cần học không chỉ cách dùng tool, mà cách think trong thời đại mới.\n\nMình build The Wild Card vì muốn đóng góp điều đó — không phải vì thấy "market opportunity", mà vì đây là thứ mình muốn ai đó đã dạy mình từ sớm hơn.\n\nNhiều thứ mình học được từ công việc thực tế mà trường không dạy — marketing thinking, cách làm việc với dữ liệu, cách thuyết phục stakeholder. Bây giờ thêm AI layer vào đó.\n\nNếu bạn đang bắt đầu hoặc đang phát triển trong ngành marketing — và muốn bắt đầu đúng với AI — mình ở đây.\n\n👉 thewildcard.vn/corporate',
  canva:'[REAL PERSON] LinkedIn 1200×627: founder photo (candid/teaching vibe), quote overlay: "Tôi muốn trao lại những gì mình học được." Lime accent, ink bg. Warm and human.',
- level:'L3',platform:'LinkedIn',type:'Authority',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,cta:'corporate',vt:'real'},
+ level:'L3',platform:'LinkedIn',type:'Authority',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'corporate',vt:'real'},
 
 {date:'Fri Jun 26',phase:'Soft Launch',cls:'ph2',id:'B1',b2b:false,
  fmt:'Hook',title:'Báo cáo Nielsen 50 trang — AI đọc và surface insights trong 3 phút',
@@ -1182,7 +1183,7 @@ const posts=[
  h3:'Insight team mất 2 tuần. AI mất 3 phút. Và còn thêm 1 pattern bạn chưa thấy.',
  cap:'Cách dùng AI để đọc báo cáo Nielsen — không phải "ask AI tóm tắt":\n\n→ Upload PDF + chỉ định role cụ thể\n→ Ask AI extract 5 insights relevant đến current challenge\n→ Ask AI identify 1 pattern team chưa mention\n\n50 trang → 3 phút → presentation-ready.\n\nMình dạy cách làm điều này cụ thể hơn trong Session 1 nếu bạn muốn thử apply với data thật của mình 🙂 thewildcard.vn/session-1',
  canva:'[ANIMATION] Dark bg, animated data flow visualization, bold numbers "50 trang → 3 phút → 5 insights". Lime accent glow. Format: IG Reels + FB video.',
- level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,cta:'session-1',vt:'anim'},
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'anim'},
 
 {date:'Sat Jun 27',phase:'Full Launch',cls:'ph3',id:'C1',b2b:false,
  fmt:'Hook',title:'Team bạn đang ở Level 1. Đối thủ của bạn đang ở Level 3.',
@@ -1191,7 +1192,7 @@ const posts=[
  h3:'Trong khi team bạn học prompt cơ bản — đối thủ đã có AI workflow toàn quy trình.',
  cap:'AI maturity của team:\n\nLevel 1: Vài cá nhân thử nghiệm\nLevel 2: Một số workflow, không nhất quán\nLevel 3: AI embedded vào daily work\nLevel 4: AI là lợi thế cạnh tranh đo được\n\nBước đầu tiên lên L3: Session 1 — cả team cùng 1 framework.\n\n👉 thewildcard.vn/session-1',
  canva:'[ANIMATION] Animated staircase: L1 gray → L2 → L3 → L4 lime glow, each step lights up. Dark ink bg. 1080×1080 + 9:16. Format: IG Reels + FB video (5s loop).',
- level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,cta:'session-1',vt:'anim'},
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'anim'},
 
 {date:'Mon Jun 28',phase:'Full Launch',cls:'ph3',id:'L2-post',b2b:'both',
  fmt:'Full Open',title:'Tất cả chương trình The Wild Card — đăng ký mở ngay hôm nay',
@@ -1200,7 +1201,7 @@ const posts=[
  h3:'Bạn đã follow từ đầu. Hôm nay là lúc chọn.',
  cap:'The Wild Card mở đầy đủ chương trình:\n\n→ Session 1: Foundation of AI (cá nhân + corporate)\n→ Session 2: Turn Data Into Decisions\n→ Session 3: AI for Agency Work\n\nCho cá nhân: thewildcard.vn/session-1\nCho corporate team: thewildcard.vn/corporate\n\nBắt đầu từ đâu? Session 1 — foundation của toàn bộ.',
  canva:'[TYPOGRAPHY] 3-program grid layout: S1/S2/S3 each with icon + tagline + target audience. TWC brand colors (indigo + lime). Both CTAs. Format: FB 1:1 + LinkedIn 1200×627.',
- level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,cta:'both',vt:'typo'},
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'both',vt:'typo'},
 
 {date:'Wed Jul 1',phase:'Full Launch',cls:'ph3',id:'A9',b2b:false,
  fmt:'Myth vs Fact',title:'MYTH vs FACT: 5 điều về AI mà marketer hay tin sai',
@@ -1209,7 +1210,7 @@ const posts=[
  h3:'AI không thần kỳ. Nhưng mạnh hơn bạn nghĩ — nếu bạn không tin vào 5 myth này.',
  cap:'5 MYTH phổ biến:\n\nMYTH 1: "AI tốt thì tự cho output tốt" → FACT: AI chỉ tốt bằng context bạn cho\nMYTH 2: "Cần biết nhiều tool" → FACT: 1 tool đúng > 10 tool sai\nMYTH 3: "AI thay thế sáng tạo" → FACT: AI amplify thinking\nMYTH 4: "Phải biết code" → FACT: Tư duy prompting quan trọng hơn\nMYTH 5: "Học AI mất nhiều thời gian" → FACT: Foundation đúng = 90 phút. Session 1.\n\n👉 thewildcard.vn/session-1',
  canva:'[TYPOGRAPHY] Carousel 6 slides: Cover "5 MYTH VỀ AI" (dark bg), each slide MYTH (red) vs FACT (lime) side-by-side. High contrast, bold type. Save-worthy. Format: FB Carousel + IG Carousel.',
- level:'L2',platform:'FB + IG',type:'Value',ad:'🟡 $15 test',paid:true,budget:15,cta:'session-1',vt:'typo'},
+ level:'L2',platform:'FB + IG',type:'Value',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'typo'},
 
 {date:'Thu Jul 2',phase:'Full Launch',cls:'ph3',id:'L3-post',b2b:'both',
  fmt:'Urgency',title:'48 tiếng cuối — Cohort 2 đóng đăng ký Session 1',
@@ -1218,7 +1219,7 @@ const posts=[
  h3:'Tháng 7 này bạn muốn là người đang học AI — hay đã biết dùng AI trong công việc rồi?',
  cap:'48 tiếng nữa Cohort 2 đóng đăng ký.\n\nSau 90 phút Session 1 bạn sẽ biết:\n✓ Tại sao output AI không nhất quán và cách fix\n✓ CRAFT framework\n✓ 4-step brief writing workflow\n✓ Cách build personal AI system\n\nCá nhân: thewildcard.vn/session-1\nCorporate team 5+: thewildcard.vn/corporate',
  canva:'[ANIMATION] Countdown timer animation: red/lime flashing, bold "48 GIỜ CUỐI". Both CTAs visible. Format: IG Stories + FB video.',
- level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,cta:'both',vt:'anim'},
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'both',vt:'anim'},
 
 {date:'Fri Jul 3',phase:'July Close',cls:'ph4',id:'B3',b2b:false,
  fmt:'Case Study',title:'Từ 4 tiếng xuống 40 phút: Monthly performance report với AI',
@@ -1227,7 +1228,7 @@ const posts=[
  h3:'Không phải AI làm thay. Là AI làm cùng — đúng cách.',
  cap:'Case thật — Insight Manager FMCG HCM:\n\nTRƯỚC: 4 tiếng, copy-paste thủ công\nSAU Session 1+2: 40 phút, AI handle reformat, 80% thời gian cho insights\n\nCùng deadline, chất lượng cao hơn, không làm thêm giờ.\n\n👉 thewildcard.vn/session-1',
  canva:'[REAL PERSON] Split: Before (stressed person at desk, clock 4H) vs After (confident, clock 40MIN). Real/relatable vibe. TWC brand lime accent. Format: FB 1:1 + IG Reels 9:16.',
- level:'L2+L3',platform:'FB + IG',type:'Authority',ad:'🟡 $15 test',paid:true,budget:15,cta:'session-1',vt:'real'},
+ level:'L2+L3',platform:'FB + IG',type:'Authority',ad:'🟡 $15 test',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'real'},
 
 {date:'Mon Jul 6',phase:'July Close',cls:'ph4',id:'B2',b2b:true,
  fmt:'B2B Contrarian',title:'Data analyst không còn là người đọc data giỏi nhất trong phòng',
@@ -1236,7 +1237,7 @@ const posts=[
  h3:'Khi AI democratize data skill — ai học AI trước sẽ có lợi thế. Bất kể title.',
  cap:'Thực tế mà ít ai nói thẳng:\n\nBrand Manager biết dùng AI để analyze data → đặt được câu hỏi tốt hơn, surface insight nhanh hơn.\n\nAI democratize khả năng phân tích. Từ "chỉ data team mới làm được" thành "ai cũng có thể làm được".\n\nĐây không phải về replace. Là về ai học AI trước sẽ có lợi thế.\n\nTeam của bạn đã sẵn sàng chưa?\n👉 thewildcard.vn/corporate',
  canva:'[TYPOGRAPHY] Bold: "The playing field just changed." Dark bg, lime accent, LinkedIn professional. 1200×627. Single-image impactful typography.',
- level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,cta:'corporate',vt:'typo'},
+ level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,channel:'paid',cta:'corporate',vt:'typo'},
 
 {date:'Tue Jul 7',phase:'July Close',cls:'ph4',id:'L4-post',b2b:true,
  fmt:'Corporate CTA',title:'Khi cả team cùng nói 1 ngôn ngữ AI — Corporate AI Training',
@@ -1245,7 +1246,7 @@ const posts=[
  h3:'Corporate AI Training — không phải về tool. Là về shared workflow và ROI đo được.',
  cap:'Khi chỉ 1–2 người biết dùng AI:\n→ Workflow phụ thuộc vào số ít\n→ Risk cao khi người đó rời team\n\nKhi cả team học AI theo cùng framework:\n→ Shared language, shared prompt library\n→ AI advantage trở thành tài sản của team\n\nBắt đầu từ Session 1 Foundation cho toàn team.\n👉 thewildcard.vn/corporate',
  canva:'[REAL PERSON] Team photo (diverse, working together) → shared AI workflow diagram → results metrics. Professional, warm. LinkedIn 1200×627 + FB 1:1.',
- level:'L3',platform:'LinkedIn + FB',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,cta:'corporate',vt:'real'},
+ level:'L3',platform:'LinkedIn + FB',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'corporate',vt:'real'},
 
 {date:'Thu Jul 9',phase:'July Close',cls:'ph4',id:'C7',b2b:'both',
  fmt:'Founder Close',title:'Điều tôi muốn mọi marketer trẻ Việt Nam biết khi bước vào thời đại AI',
@@ -1254,7 +1255,7 @@ const posts=[
  h3:'Bài viết dài — mình muốn chia sẻ thật về những gì mình học được và muốn trao lại.',
  cap:'Mình làm marketing hơn 10 năm.\n\nVà khi nhìn lại, điều mình tự hào nhất không phải campaign nào, brand nào — mà là những lần mình giúp được ai đó hiểu rõ hơn về nghề.\n\nGen AI đang tạo ra một thời điểm chưa từng có trong ngành marketing. Không phải để thay thế marketer — mà để nâng cấp những người biết cách học.\n\nThế hệ marketer trẻ hôm nay có một lợi thế: họ có thể học AI đúng cách ngay từ đầu, không cần unlearn những thói quen cũ.\n\nThe Wild Card ra đời để đồng hành trong hành trình đó.\n\nKhông phải vì mình thấy "market opportunity". Mà vì đây là thứ mình muốn đóng góp lại cho ngành — và cho người trẻ đang bước vào.\n\nNếu bạn là marketer đang muốn build AI skills đúng cách:\n→ Cá nhân: thewildcard.vn/session-1\n→ Corporate team: thewildcard.vn/corporate\n\nCòn nếu chưa chắc bắt đầu từ đâu — cứ DM mình, mình sẽ chia sẻ thêm 🙂',
  canva:'[REAL PERSON] LinkedIn 1200×627 + FB 1:1: founder photo (warm, teaching moment), quote: "Tôi muốn mọi marketer trẻ VN có cơ hội học AI đúng cách." Lime text, ink bg. TWC logo nhỏ.',
- level:'L2+L3',platform:'LinkedIn + FB',type:'Authority',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,cta:'both',vt:'real'},
+ level:'L2+L3',platform:'LinkedIn + FB',type:'Authority',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'both',vt:'real'},
 ];
 
 // Hook Library
@@ -1343,6 +1344,11 @@ function adBadge(a){
   return a.startsWith('🔴')||a.includes('Always')?
     `<span class="ad-always">${a}</span>`:`<span class="ad-test">${a}</span>`;
 }
+function channelBadge(ch,budget){
+  if(ch==='always-on') return '<span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:8px;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5">🔴 ALWAYS-ON</span>';
+  if(ch==='paid') return `<span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:8px;background:#fef3c7;color:#92400e;border:1px solid #fcd34d">🟡 PAID $${budget}</span>`;
+  return '<span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:8px;background:#f0fdf4;color:#166534;border:1px solid #86efac">⚪ ORGANIC</span>';
+}
 function trackBadge(b2b){
   if(b2b===true) return '<span class="badge bb2b">🔗 B2B</span>';
   if(b2b===false) return '<span class="badge bb2c">📱 B2C</span>';
@@ -1385,7 +1391,7 @@ posts.forEach((p,i)=>{
     <td>${lvBadge(p.level)}</td>
     <td>${typBadge(p.type)}</td>
     <td>${vtBadge(p.vt)}</td>
-    <td>${adBadge(p.ad)}</td>
+    <td>${channelBadge(p.channel,p.budget)}</td>
     <td style="font-size:11px;white-space:nowrap">${p.platform}</td>
     <td style="font-size:10px">${ctaUrls}</td>`;
   tbody.appendChild(tr);
