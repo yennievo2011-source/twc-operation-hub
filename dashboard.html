@@ -314,57 +314,48 @@ Tóm lại: 1 việc duy nhất hôm nay — post A1 trước 12h, set reminder 
 
 <div class="hdsd">
   <h2>📖 HDSD — Quy trình tuần (Yên &amp; Nghi)</h2>
+  <div style="font-size:12px;opacity:.7;margin-bottom:12px">Chỉ 3 việc tay: chạy pipeline · pick option · export Canva. Đăng bài + Ads + ER check đều auto.</div>
 
-  <b style="color:var(--lime);font-size:13px">── ĐẦU TUẦN — Yên chạy pipeline ──</b>
+  <b style="color:var(--lime);font-size:13px">── ĐẦU TUẦN — Yên chạy pipeline (~3 phút) ──</b>
   <ol style="margin-top:6px">
-    <li>Mở Terminal → paste nguyên lệnh sau → Enter (chờ ~3 phút):<br>
+    <li>Mở Terminal → paste lệnh sau → Enter:<br>
       <code style="display:block;margin:6px 0;padding:8px 10px;background:rgba(0,0,0,.35);border-radius:6px;font-size:12px;line-height:1.6;user-select:all">cd "/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service" &amp;&amp; node --env-file=.env lib/05_RUN.js</code>
-      Xong thấy <code>✅ 5 ok, 0 failed</code> → Dashboard này tự cập nhật, Notion tự sync.</li>
-    <li>Đọc <b>Morning Briefing + 📌 Today</b> ở trên: biết hôm nay đăng bài nào, giờ nào, budget nào.</li>
+      Xong thấy <code>✅ 5 ok, 0 failed</code> → Notion sync + Dashboard tự cập nhật.</li>
+    <li>Đọc <b>Morning Briefing + 📌 Today</b> ở trên: biết tuần này đăng gì, ngày nào, budget nào.</li>
   </ol>
 
-  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── MỖI NGÀY CÓ POST — Yên hoặc Nghi đều làm được ──</b>
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:14px">── MỖI NGÀY CÓ POST — 2 việc tay (Yên hoặc Nghi đều làm được) ──</b>
   <ol style="margin-top:6px" start="3">
-    <li>Mở <a href="https://notion.so/47b1e8e3dbf94ce5bfc2ff6a23519af9" target="_blank" style="color:var(--lime)">Notion Content Pipeline</a> → tìm post hôm nay → đọc 3 options A/B/C + xem <b>Recommended</b> → pick option tốt nhất → kéo status sang <b>Approved</b>. Muốn chỉnh caption: sửa trực tiếp trong ô caption.</li>
-    <li>Mở link Canva trong field <code>canva_design_url</code> → thay text hook bằng option đã pick → export PNG (ảnh tĩnh) hoặc MP4 (Reels).</li>
-    <li><b>Đăng thủ công:</b><br>
-      • FB + IG: vào <b>Meta Business Suite</b> → Create Post → Upload ảnh/video → paste caption → Schedule đúng giờ.<br>
-      • LinkedIn: vào LinkedIn cá nhân / page → đăng trực tiếp.<br>
-      Đăng xong → kéo Notion status → <b>Published</b>.</li>
-    <li><b>Nếu post có budget (cột ad_budget &gt; 0) — chạy paid ads:</b><br>
-      Vào <b>Meta Ads Manager</b> → Create Campaign → Objective: <b>Engagement</b> → Ad level: chọn <b>Use existing post</b> → chọn đúng bài vừa đăng → set budget đúng số trong Notion → Publish.<br>
-      <i style="opacity:.75;font-size:12px">Lý do dùng existing post: để likes/comments dồn vào 1 bài thay vì tách ra, social proof tốt hơn.</i></li>
+    <li><b>Pick option + export Canva:</b><br>
+      Mở <a href="https://notion.so/47b1e8e3dbf94ce5bfc2ff6a23519af9" target="_blank" style="color:var(--lime)">Notion Content Pipeline</a> → tìm post hôm nay → đọc A/B/C → pick option → chỉnh caption nếu muốn → upload ảnh/video vào field <code>visual_url</code>.<br>
+      <span style="opacity:.7;font-size:12px">(Canva: mở link <code>canva_design_url</code> → thay hook theo option đã pick → export PNG/MP4 → upload lên Notion)</span></li>
+    <li>Kéo status sang <b>Approved</b>.<br>
+      <span style="opacity:.7;font-size:12px">→ <b>n8n tự động:</b> phát hiện Approved → đăng lên FB/IG/LinkedIn đúng giờ → kéo status sang <b>Published</b> → paste URL vào Notion. Không cần vào Meta Business Suite hay LinkedIn.</span></li>
   </ol>
 
-  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── SAU KHI ĐĂNG — Ads tự chạy ──</b>
-  <ol style="margin-top:6px" start="6">
-    <li>Sau khi đăng xong, paste link FB post vào Notion field <code>url_fb</code> → kéo status → <b>Published</b> → chạy lệnh sau để tự động tạo Meta Ads campaign:<br>
-      <code style="display:block;margin:6px 0;padding:8px 10px;background:rgba(0,0,0,.35);border-radius:6px;font-size:12px;user-select:all">cd "/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service" &amp;&amp; node --env-file=.env lib/autoAds.js</code>
-      Script tự tạo campaign + ad set + dùng existing post → không cần vào Ads Manager.</li>
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:14px">── SAU KHI ĐĂNG — Toàn bộ AUTO ──</b>
+  <div style="margin:6px 0 8px;padding:10px 14px;background:rgba(192,241,0,.07);border-radius:8px;font-size:12px;line-height:2">
+    <b style="color:var(--lime)">Make.com tự chạy — không cần làm gì thêm:</b><br>
+    <b>Ads:</b> Khi status → Published → Make tự tạo Meta Ads campaign (Engagement · dùng existing post · budget theo Notion).<br>
+    <b>ER Check:</b> 48h sau khi đăng → Yên/Nghi mở Meta Ads Manager + LinkedIn Analytics → lấy ER% → nhập vào Notion field <code>er_fb</code> hoặc <code>er_li</code> → Make phát hiện → tự tính BOOST/HOLD/KILL → update Notion + dashboard.<br>
+    <span style="opacity:.75">Rules: FB/IG &gt;5% → BOOST $25–30 · 3–5% → HOLD · &lt;3% → KILL &nbsp;|&nbsp; LI Carousel &gt;3% → BOOST+InMail · LI Image/Text &gt;2% → BOOST $20</span>
+  </div>
+  <div style="font-size:12px;opacity:.7;padding-left:2px">⚠️ <b>Always-On $50 (L1/L2 · W3–W4 từ Jun 27):</b> Make không chạy — setup tay trong LinkedIn Campaign Manager.</div>
+
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:14px">── TUẦN MỚI — Yên update brief → chạy lại pipeline ──</b>
+  <ol style="margin-top:6px" start="5">
+    <li>Mở <code>lib/04_FIRST_5_POSTS.js</code> bằng VS Code → cập nhật posts tuần mới (date · platform · budget · hook_brief) → Save → chạy lại lệnh bước 1.</li>
   </ol>
 
-  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── 48H SAU KHI ĐĂNG — Check ER ──</b>
-  <ol style="margin-top:6px" start="7">
-    <li>Vào Meta Ads Manager / LinkedIn Analytics → lấy <b>ER%</b> → nhập vào Notion: <code>er_fb</code> (hoặc <code>er_ig</code>, <code>er_li</code>) của post đó.</li>
-    <li>Chạy lệnh để rule engine tự tính BOOST/HOLD/KILL và cập nhật Notion + dashboard:<br>
-      <code style="display:block;margin:6px 0;padding:8px 10px;background:rgba(0,0,0,.35);border-radius:6px;font-size:12px;user-select:all">cd "/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service" &amp;&amp; node --env-file=.env lib/erCheck.js</code>
-      Kết quả in ra terminal + ghi vào Notion field <code>decision</code> + update dashboard này.<br>
-      <span style="opacity:.7;font-size:12px">FB/IG: ER &gt;5% → BOOST $25–30 · 3–5% → HOLD · &lt;3% → KILL · LinkedIn Carousel: &gt;3% → BOOST+InMail · 1.5–3% → HOLD · &lt;1.5% → KILL · LinkedIn Image/Text: &gt;2% → BOOST $20 · 1–2% → HOLD · &lt;1% → KILL</span></li>
-    <li>Thực hiện quyết định tay trong <b>Ads Manager</b> theo kết quả terminal.</li>
-  </ol>
-
-  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── TUẦN MỚI — Yên cập nhật posts rồi chạy lại lệnh ──</b>
-  <ol style="margin-top:6px" start="9">
-    <li>Mở file <code>lib/04_FIRST_5_POSTS.js</code> bằng VS Code / Cursor → cập nhật danh sách posts tuần mới (date, platform, budget, hook_brief) theo master plan → Save → chạy lại đúng lệnh ở bước 1.</li>
-  </ol>
-
-  <div style="margin-top:14px;padding:10px 14px;background:rgba(255,255,255,.07);border-radius:8px;font-size:12px;line-height:1.8">
+  <div style="margin-top:14px;padding:10px 14px;background:rgba(255,255,255,.07);border-radius:8px;font-size:12px;line-height:1.9">
     <b style="color:var(--lime)">⚠️ Lỗi thường gặp</b><br>
-    "credit balance too low" → <b>console.anthropic.com → Plans &amp; Billing → add $20</b> → chạy lại lệnh bước 1.<br>
-    Notion không sync → NOTION_TOKEN trong file <code>.env</code> hết hạn (90 ngày) → tạo token mới tại notion.so/my-integrations.<br>
-    Dashboard không cập nhật → GITHUB_TOKEN trong <code>.env</code> hết hạn → tạo token mới tại github.com/settings/tokens.
+    "credit balance too low" → <b>console.anthropic.com → Billing → add $20</b> → chạy lại lệnh bước 1.<br>
+    Notion không sync → NOTION_TOKEN trong <code>.env</code> hết hạn (90 ngày) → tạo token mới tại notion.so/my-integrations.<br>
+    Dashboard không cập nhật → GITHUB_TOKEN trong <code>.env</code> hết hạn → tạo token mới tại github.com/settings/tokens.<br>
+    n8n không đăng bài → kiểm tra n8n workflow đang <b>Active</b> + credential FB/LinkedIn còn hạn.<br>
+    Make không tạo ads / không check ER → kiểm tra Make scenario đang <b>On</b> + META_ACCESS_TOKEN còn hạn (60 ngày).
   </div>
 </div>
 
-<div class="muted">Cập nhật tự động · pick option trong Notion · 2026-06-14T19:05:42.961Z</div>
+<div class="muted">Cập nhật tự động · pick option trong Notion · 2026-06-14T19:10:16.857Z</div>
 </body></html>
