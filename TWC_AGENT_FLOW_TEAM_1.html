@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWC Agent Flow — Team Guide</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #050090;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  padding: 32px 28px 48px;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.logo {
+  display: flex; align-items: center; gap: 12px;
+}
+.logo-badge {
+  background: #C0F100; color: #050090;
+  font-weight: 900; font-size: 13px;
+  letter-spacing: .12em; padding: 6px 14px;
+  border-radius: 4px;
+}
+.logo-text h1 { font-size: 16px; font-weight: 700; letter-spacing: .06em; }
+.logo-text p  { font-size: 10px; color: #C0F100; letter-spacing: .1em; margin-top: 2px; }
+.cmd-box {
+  background: rgba(0,0,0,.3); border: 1px solid rgba(192,241,0,.3);
+  border-radius: 8px; padding: 10px 16px; text-align: right;
+}
+.cmd-box code { font-size: 11px; color: #C0F100; font-family: monospace; display: block; line-height: 1.8; }
+.cmd-box span { font-size: 9px; color: rgba(255,255,255,.4); letter-spacing: .08em; }
+
+/* ── FLOW WRAPPER ── */
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── STEP ROW ── */
+.step-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 240px;
+  gap: 0 14px;
+  align-items: start;
+  margin-bottom: 4px;
+}
+
+/* Step number + spine */
+.step-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 900;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.step-num.ai   { background: #C0F100; color: #050090; }
+.step-num.human{ background: #FFC800; color: #050090; }
+.step-num.rule { background: #FF6464; color: #fff; }
+.step-num.out  { background: #fff; color: #050090; }
+.spine-line {
+  width: 2px;
+  flex: 1;
+  min-height: 18px;
+}
+.spine-line.lime   { background: linear-gradient(to bottom, #C0F100, rgba(192,241,0,.2)); }
+.spine-line.gold   { background: linear-gradient(to bottom, #FFC800, rgba(255,200,0,.2)); }
+.spine-line.red    { background: linear-gradient(to bottom, #FF6464, rgba(255,100,100,.2)); }
+.spine-line.white  { background: rgba(255,255,255,.2); }
+
+/* Main card */
+.step-card {
+  background: rgba(255,255,255,.07);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 0;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.step-card.ai-card    { border-color: rgba(192,241,0,.35); }
+.step-card.human-card { border-color: rgba(255,200,0,.5); background: rgba(255,200,0,.06); }
+.step-card.rule-card  { border-color: rgba(255,100,100,.35); background: rgba(255,100,100,.05); }
+.step-card.out-card   { border-color: #C0F100; background: rgba(192,241,0,.08); }
+
+.card-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px;
+}
+.card-emoji { font-size: 18px; }
+.card-title { font-size: 14px; font-weight: 700; letter-spacing: .04em; }
+.card-badge {
+  font-size: 8px; font-weight: 700; letter-spacing: .1em;
+  padding: 2px 7px; border-radius: 20px;
+  margin-left: auto;
+}
+.badge-ai    { background: rgba(192,241,0,.2); border: 1px solid #C0F100; color: #C0F100; }
+.badge-human { background: rgba(255,200,0,.2); border: 1px solid #FFC800; color: #FFC800; }
+.badge-rule  { background: rgba(255,100,100,.2); border: 1px solid #FF6464; color: #FF6464; }
+.badge-new   { background: #C0F100; color: #050090; }
+
+/* Skills */
+.skills {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-bottom: 10px;
+}
+.skill {
+  font-size: 8px; padding: 2px 6px; border-radius: 3px;
+  letter-spacing: .05em;
+}
+.skill.s-blue { background: rgba(100,150,255,.15); border: 1px solid rgba(100,150,255,.3); color: rgba(180,210,255,.85); }
+.skill.s-pink { background: rgba(255,100,200,.12); border: 1px solid rgba(255,100,200,.3); color: rgba(255,180,230,.85); }
+.skill.s-teal { background: rgba(78,205,196,.12); border: 1px solid rgba(78,205,196,.3); color: rgba(150,230,225,.85); }
+
+/* Items */
+.items { display: flex; flex-direction: column; gap: 2px; }
+.item {
+  font-size: 10px; color: rgba(255,255,255,.7);
+  line-height: 1.6; padding-left: 12px; position: relative;
+}
+.item::before {
+  content: "·"; position: absolute; left: 2px;
+  color: #C0F100;
+}
+.item.star::before { content: "★"; color: #C0F100; }
+.item.warn::before { content: "⚠"; color: #FF6464; }
+.item.check::before { content: "✓"; color: #00C864; }
+.item.arrow::before { content: "→"; color: #FFC800; }
+
+/* Right sidebar note */
+.step-note {
+  padding-top: 4px;
+}
+.note-card {
+  background: rgba(0,0,0,.25);
+  border-radius: 8px; padding: 10px 12px;
+  border-left: 3px solid;
+}
+.note-card.lime  { border-color: #C0F100; }
+.note-card.gold  { border-color: #FFC800; }
+.note-card.red   { border-color: #FF6464; }
+.note-card.white { border-color: rgba(255,255,255,.3); }
+.note-label {
+  font-size: 8px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.note-card.lime  .note-label { color: #C0F100; }
+.note-card.gold  .note-label { color: #FFC800; }
+.note-card.red   .note-label { color: #FF6464; }
+.note-card.white .note-label { color: rgba(255,255,255,.5); }
+.note-body {
+  font-size: 9px; color: rgba(255,255,255,.55);
+  line-height: 1.7;
+}
+.note-body b { color: rgba(255,255,255,.85); }
+.note-time {
+  margin-top: 6px; font-size: 9px; font-weight: 700;
+  color: #C0F100;
+}
+
+/* Connector between steps */
+.connector {
+  display: flex; justify-content: center;
+  margin: 2px 0;
+}
+.connector-inner {
+  display: flex; flex-direction: column; align-items: center;
+  margin-left: -194px; /* align with spine */
+}
+
+/* ── ANTI-HALLUCINATION BAR ── */
+.ah-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  margin-top: 20px;
+  background: rgba(0,0,0,.2); border: 1px solid rgba(255,100,100,.2);
+  border-radius: 12px; padding: 14px 16px;
+}
+.ah-title {
+  grid-column: 1/-1;
+  font-size: 9px; font-weight: 700; letter-spacing: .14em;
+  color: #FF6464; text-transform: uppercase;
+  margin-bottom: 4px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ah-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,100,100,.2); }
+.ah-item { }
+.ah-label { font-size: 9px; font-weight: 700; color: #FF6464; margin-bottom: 4px; }
+.ah-body  { font-size: 9px; color: rgba(255,255,255,.5); line-height: 1.7; }
+.ah-body b { color: rgba(255,255,255,.8); }
+
+/* ── HDSD BOX ── */
+.hdsd {
+  margin-top: 16px;
+  background: rgba(192,241,0,.06); border: 1px solid rgba(192,241,0,.25);
+  border-radius: 12px; padding: 16px 18px;
+}
+.hdsd-title {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; color: #C0F100;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.hdsd-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.hdsd-col { }
+.hdsd-col-title {
+  font-size: 9px; font-weight: 700; letter-spacing: .1em;
+  color: rgba(255,255,255,.5); text-transform: uppercase;
+  margin-bottom: 6px; padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.hdsd-item {
+  font-size: 10px; color: rgba(255,255,255,.65);
+  line-height: 1.8; padding-left: 10px; position: relative;
+}
+.hdsd-item::before { content: "→ "; color: #C0F100; position: absolute; left: 0; }
+.hdsd-item b { color: #C0F100; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <div class="logo-badge">🃏 TWC</div>
+    <div class="logo-text">
+      <h1>MARKETING AGENT FLOW</h1>
+      <p>MASTER PLAN v5 · B2B 50% + B2C 50% · JUN 15–JUL 9 2026</p>
+    </div>
+  </div>
+  <div class="cmd-box">
+    <span>TERMINAL COMMANDS</span>
+    <code>node 05_RUN.js</code>
+    <code>node 05_RUN.js --er-check</code>
+    <code>node 05_RUN.js --filter "text"</code>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- FLOW -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="flow">
+
+  <!-- ── INPUT ── -->
+  <div class="step-row">
+    <div class="step-spine">
+      <div class="step-num ai">📋</div>
+      <div class="spine-line lime"></div>
+    </div>
+    <div class="step-card ai-card">
+      <div class="card-header">
+        <span class="card-title">INPUT — WEEKLY BRIEF</span>
+        <span class="card-badge badge-ai">YÊN ĐIỀN</span>
+      </div>
+      <div class="items">
+        <div class="item">Campaign phase (ph1 Pre-Launch / ph2 Soft Launch / ph3 Full Launch / ph4 July Close)</div>
+        <div class="item">B2B objective + B2C objective tuần này</div>
+        <div class="item">Context đặc biệt (event, competitor move, testimonial mới...)</div>
+        <div class="item">Post IDs cần xử lý (A1, V1, C7, L4...)</div>
+      </div>
+    </div>
+    <div class="step-note">
+      <div class="note-card lime">
+        <div class="note-label">File</div>
+        <div class="note-body"><b>Source:</b> twc-master-plan-v5.html<br>→ Export JSON: nút ⬇ Export JSON trên tab Calendar<br>→ Output file: <b>twc_posts_v5.json</b><br><br><b>04_FIRST_5_POSTS.js</b><br>W1_BRIEF object — chỉnh trước khi run</div>
+        <div class="note-time">⏱ 2 phút setup</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 1: PLANNING ── -->
+  <div class="step-row">
+    <div class="step-spine">
+      <div class="step-num ai">1</div>
+      <div class="spine-line lime"></div>
+    </div>
+    <div class="step-card ai-card">
+      <div class="card-header">
+        <span class="card-emoji">📋</span>
+        <span class="card-title">PLANNING AGENT</span>
+        <span class="card-badge badge-ai">AUTO</span>
+      </div>
+      <div class="skills">
+        <span class="skill s-blue">content-strategy</span>
+        <span class="skill s-blue">campaign-plan</span>
+        <span class="skill s-blue">channel-operator</span>
+        <span class="skill s-blue">performance-report</span>
+      </div>
+      <div class="items">
+        <div class="item">Weekly plan B2B/B2C 50/50 — tag từng post</div>
+        <div class="item">Budget allocation: LinkedIn ≥35% · $15 test FB · <b style="color:#FFC800">$20 test LI</b></div>
+        <div class="item">LinkedIn B2B playbook (20 connections/ngày · bước 1–5)</div>
+        <div class="item">Email nurture trigger (Brevo · 5-email sequence)</div>
+        <div class="item warn">Nếu fail → pipeline dừng, check output/ log</div>
+      </div>
+    </div>
+    <div class="step-note">
+      <div class="note-card lime">
+        <div class="note-label">Output key fields</div>
+        <div class="note-body">
+          content_plan[ ] · weekly_objectives<br>
+          ad_plan · linkedin_plan<br>
+          decisions_needed[ ]
+        </div>
+        <div class="note-time">⏱ ~30s API call</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: CONTENT ── -->
+  <div class="step-row">
+    <div class="step-spine">
+      <div class="step-num ai">2</div>
+      <div class="spine-line lime"></div>
+    </div>
+    <div class="step-card ai-card">
+      <div class="card-header">
+        <span class="card-emoji">✍️</span>
+        <span class="card-title">CONTENT AGENT</span>
+        <span class="card-badge badge-new">3 OPTIONS A/B/C</span>
+      </div>
+      <div class="skills">
+        <span class="skill s-blue">social-content</span>
+        <span class="skill s-blue">copywriting</span>
+        <span class="skill s-blue">26-thought-leadership</span>
+        <span class="skill s-blue">marketing-psychology</span>
+        <span class="skill s-blue">05-copy-quang-cao</span>
+        <span class="skill s-blue">copy-editing</span>
+      </div>
+      <div class="items">
+        <div class="item star">Option A: Contrast số liệu — "Từ 45 phút → 12 phút"</div>
+        <div class="item star">Option B: Founder voice ngôi thứ nhất — honest, không hero</div>
+        <div class="item star">Option C: Contrarian/provocative — phản trực giác</div>
+        <div class="item">Hook score /35 cho mỗi option (phải ≥25 trước khi test ads)</div>
+        <div class="item">B2C: FB/IG tiếng Việt · B2B: LinkedIn ≤210 chars hook</div>
+        <div class="item check">→ Human Voice Filter tự động chạy sau khi gen</div>
+      </div>
+    </div>
+    <div class="step-note">
+      <div class="note-card lime">
+        <div class="note-label">Human Voice Filter</div>
+        <div class="note-body">
+          <b>Lớp 1 — Regex (instant):</b><br>
+          "hành trình" "leverage" "delve"<br>
+          "seamlessly" "Thật ra..." → xoá<br><br>
+          <b>Lớp 2 — AI rewrite:</b><br>
+          Nếu human score &lt; 8/10<br>
+          → Claude rewrite toàn câu<br><br>
+          <b>File:</b> humanVoiceFilter.js
+        </div>
+        <div class="note-time">⏱ ~60s (3 posts × 3 opts)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: DESIGN ── -->
+  <div class="step-row">
+    <div class="step-spine">
+      <div class="step-num ai">3</div>
+      <div class="spine-line lime"></div>
+    </div>
+    <div class="step-card ai-card" style="border-color:rgba(255,100,200,.4);background:rgba(255,100,200,.04)">
+      <div class="card-header">
+        <span class="card-emoji">🎨</span>
+        <span class="card-title">DESIGN AGENT</span>
+        <span class="card-badge badge-new">HIGGSFIELD + CANVA</span>
+      </div>
+      <div class="skills">
+        <span class="skill s-pink">ms_image (DTC Ads)</span>
+        <span class="skill s-pink">nano_banana_pro</span>
+        <span class="skill s-pink">marketing_studio_video</span>
+        <span class="skill s-teal">Canva DAHLmd0XPi0</span>
+        <span class="skill s-teal">Canva DAHLmA_lOs4</span>
+        <span class="skill s-teal">Canva DAHLmQJBwS8</span>
+        <span class="skill s-teal">Brand Kit kAGZ7PQvf-I</span>
+      </div>
+      <div class="items">
+        <div class="item star">Option A: ms_image + brand_kit → dark editorial (Indigo + Lime)</div>
+        <div class="item star">Option B: nano_banana_pro → light minimal, data viz</div>
+        <div class="item star">Option C: marketing_studio_video → Reel 9:16, hook 0–3s</div>
+        <div class="item">Canva spec: đúng page ref + edit URL → Yên paste text, export</div>
+        <div class="item">AI image prompt: Ideogram/Midjourney/Flux sẵn sàng paste</div>
+        <div class="item warn">Brand template EAHI4NLP-Ko chưa autofill → paste thủ công</div>
+      </div>
+    </div>
+    <div class="step-note">
+      <div class="note-card lime">
+        <div class="note-label">Canva Templates</div>
+        <div class="note-body">
+          <b>IG Carousel:</b> DAHLmd0XPi0<br>
+          13 slides · p1-3 hook · p4-8 content<br><br>
+          <b>FB Post:</b> DAHLmA_lOs4<br>
+          5 pages · dark/light/split variants<br><br>
+          <b>Story/Reel:</b> DAHLmQJBwS8<br>
+          4 pages · p1 cover · p4 CTA
+        </div>
+        <div class="note-time">⏱ ~3 phút gen · 5 phút Canva</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: ADS ── -->
+  <div class="step-row">
+    <div class="step-spine">
+      <div class="step-num rule">4</div>
+      <div class="spine-line red"></div>
+    </div>
+    <div class="step-card rule-card">
+      <div class="card-header">
+        <span class="card-emoji">💰</span>
+        <span class="card-title">ADS AGENT</span>
+        <span class="card-badge badge-rule">RULE ENGINE</span>
+      </div>
+      <div class="skills">
+        <span class="skill s-blue">ad-creative</span>
+        <span class="skill s-blue">05-copy-quang-cao</span>
+        <span class="skill s-blue">marketing-psychology</span>
+        <span class="skill s-blue">cold-email</span>
+      </div>
+      <div class="items">
+        <div class="item">Copy mode: 3 ad variations A/B/C, headline ≤40 chars</div>
+        <div class="item warn">Decision mode (sau 48h): applyAdRule() — KHÔNG qua LLM</div>
+        <div class="item">FB/IG: ER &gt;5% → BOOST +$50 · ER &lt;3% → KILL tự động</div>
+        <div class="item">LinkedIn: ER &gt;5% → BOOST $50+InMail · ER &lt;2% → STOP+rewrite</div>
+        <div class="item warn">⚠ v5: LinkedIn dùng ER%, KHÔNG phải CTR% như v4</div>
+        <div class="item warn">⚠ Budget test LI: $20 min ($10 cũ không đủ signal — CPM LI VN $8–15)</div>
+      </div>
+    </div>
+    <div class="step-note">
+      <div class="note-card red">
+        <div class="note-label">Rule Engine — không LLM</div>
+        <div class="note-body">
+          <b>File:</b> 02_GROUND_TRUTH.js<br>
+          <b>Fn:</b> applyAdRule()<br><br>
+          Sau 48h chạy:<br>
+          <b>node 05_RUN.js --er-check</b><br><br>
+          Nhập ER thực tế →<br>
+          decisions tự động
+        </div>
+        <div class="note-time">⏱ instant (no API)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: MASTER DASHBOARD ── -->
+  <div class="step-row">
+    <div class="step-spine">
+      <div class="step-num out">🃏</div>
+      <div class="spine-line white"></div>
+    </div>
+    <div class="step-card out-card">
+      <div class="card-header">
+        <span class="card-emoji">📱</span>
+        <span class="card-title">MASTER PLANNER DASHBOARD</span>
+        <span class="card-badge badge-human">1 HUMAN GATE</span>
+      </div>
+      <div class="skills">
+        <span class="skill s-blue">performance-report</span>
+        <span class="skill s-blue">task-management</span>
+        <span class="skill s-blue">campaign-plan</span>
+        <span class="skill s-blue">brand-review</span>
+      </div>
+      <div class="items">
+        <div class="item star">Ad spending: spent/remaining · worked/failed · next improvement</div>
+        <div class="item star">3 options A/B/C: caption preview + visual + hook score + human score</div>
+        <div class="item star">Today actions: max 5 items, ordered priority, auto-flag nếu không cần Yên</div>
+        <div class="item arrow">Yên đọc 30s → review options 2 phút → approve 1 phút → done</div>
+        <div class="item check">Rule engine decisions tự hiển thị — không cần Yên confirm kill/boost</div>
+      </div>
+    </div>
+    <div class="step-note">
+      <div class="note-card white">
+        <div class="note-label">Yên làm 1 việc</div>
+        <div class="note-body">
+          <b>1.</b> Đọc spending summary<br>
+          <b>2.</b> Review options A/B/C<br>
+          <b>3.</b> Pick 1 set → approve<br>
+          <b>4.</b> Agents xử lý còn lại<br><br>
+          <b>File:</b> masterPlannerAgent.js<br>
+          <b>Fn:</b> printDashboard()
+        </div>
+        <div class="note-time">⏱ 5 phút total Yên</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .flow -->
+
+<!-- ── ANTI-HALLUCINATION BAR ── -->
+<div class="ah-bar">
+  <div class="ah-title">⚡ ANTI-HALLUCINATION — 4 LỚP BẢO VỆ</div>
+
+  <div class="ah-item">
+    <div class="ah-label">Lớp 1 — Numbers</div>
+    <div class="ah-body">
+      <b>GROUND_TRUTH.js</b><br>
+      Mọi số liệu exact: pricing VND,<br>
+      budget $1,300, KPIs, dates.<br>
+      validateOutput() sau mỗi call.
+    </div>
+  </div>
+
+  <div class="ah-item">
+    <div class="ah-label">Lớp 2 — Decisions</div>
+    <div class="ah-body">
+      <b>applyAdRule()</b> deterministic.<br>
+      Kill/boost KHÔNG qua LLM.<br>
+      v5 LinkedIn: ER%, không CTR%.<br>
+      Retry 2× + log violations.
+    </div>
+  </div>
+
+  <div class="ah-item">
+    <div class="ah-label">Lớp 3 — Human Voice</div>
+    <div class="ah-body">
+      <b>humanVoiceFilter.js</b><br>
+      40+ regex patterns VI+EN.<br>
+      detect score 0–10.<br>
+      &lt;8/10 → Claude rewrite.
+    </div>
+  </div>
+
+  <div class="ah-item">
+    <div class="ah-label">Lớp 4 — Visual</div>
+    <div class="ah-body">
+      <b>Higgsfield brand_kit_id</b><br>
+      inject vào mọi image call.<br>
+      Canva template enforce layout.<br>
+      3 options → Yên picks 1.
+    </div>
+  </div>
+</div>
+
+<!-- ── HDSD ── -->
+<div class="hdsd">
+  <div class="hdsd-title">📖 HƯỚNG DẪN SỬ DỤNG — TEAM</div>
+  <div class="hdsd-grid">
+
+    <div class="hdsd-col">
+      <div class="hdsd-col-title">🟢 Hàng tuần (Yên)</div>
+      <div class="hdsd-item">Mở <b>04_FIRST_5_POSTS.js</b> → cập nhật W1_BRIEF</div>
+      <div class="hdsd-item">Chạy <b>node 05_RUN.js</b> → đợi ~3 phút</div>
+      <div class="hdsd-item">Đọc dashboard terminal → approve option A/B/C</div>
+      <div class="hdsd-item">Mở Canva edit URL từ design spec → paste text → export</div>
+      <div class="hdsd-item">Upload caption + visual lên Meta Ads Manager</div>
+    </div>
+
+    <div class="hdsd-col">
+      <div class="hdsd-col-title">⏱ Sau 48h (Yên hoặc Nghi)</div>
+      <div class="hdsd-item">Lấy ER thực tế từ Meta Ads Manager</div>
+      <div class="hdsd-item">Update số vào <b>05_RUN.js --er-check</b> demoER array</div>
+      <div class="hdsd-item">Chạy <b>node 05_RUN.js --er-check</b></div>
+      <div class="hdsd-item">Rule engine tự KILL/HOLD/BOOST — không cần approve</div>
+      <div class="hdsd-item">Thực hiện budget action theo terminal output</div>
+    </div>
+
+    <div class="hdsd-col">
+      <div class="hdsd-col-title">🔧 Khi có vấn đề</div>
+      <div class="hdsd-item">Caption nghe AI → <b>node 05_RUN.js --filter "text"</b></div>
+      <div class="hdsd-item">Agent fail → xem file <b>output/agent_name_*.json</b></div>
+      <div class="hdsd-item">Thay đổi giá/KPIs → sửa <b>02_GROUND_TRUTH.js</b> GT object</div>
+      <div class="hdsd-item">Brand mới/campaign mới → update <b>01_TWC_BRAND_CONTEXT.js</b></div>
+      <div class="hdsd-item">Canva template mới → update CANVA_ASSETS trong <b>designAgent.js</b></div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
