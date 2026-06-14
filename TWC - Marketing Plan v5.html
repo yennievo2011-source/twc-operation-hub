@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWC — Marketing Plan v5</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-l:#E1F5EE;--teal-m:#1D9E75;
+  --blue:#185FA5;--blue-l:#E6F1FB;
+  --purple:#534AB7;--purple-l:#EEEDFE;
+  --amber:#BA7517;--amber-l:#FAEEDA;
+  --red:#A32D2D;--red-l:#FCEBEB;
+  --green:#2D6A11;--green-l:#EAF3DE;
+  --gray-dk:#2C2C2A;--gray:#5F5E5A;--gray-m:#888780;--gray-l:#F4F2EB;
+  --border:#E0DED8;--white:#fff;--gold:#B8860B;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:var(--gray-dk);background:#fafaf8;line-height:1.6}
+.topbar{background:var(--gray-dk);color:#fff;padding:11px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar .brand{font-size:14px;font-weight:700}
+.topbar .meta{font-size:11px;color:#aaa}
+.tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;padding:0 28px;position:sticky;top:41px;z-index:99;overflow-x:auto}
+.tab{padding:11px 18px;font-size:12px;font-weight:500;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.tab:hover{color:var(--teal)}
+.tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+.page{display:none;padding:28px;max-width:1180px;margin:0 auto}
+.page.active{display:block}
+
+/* COVER */
+.cover{background:linear-gradient(135deg,#0F1B35 0%,#0d3b6e 60%,#0a2855 100%);border-radius:14px;padding:36px 44px;color:#fff;margin-bottom:28px;position:relative;overflow:hidden}
+.cover::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 15%,rgba(29,158,117,.25) 0%,transparent 50%),radial-gradient(ellipse at 5% 90%,rgba(184,134,11,.15) 0%,transparent 40%);pointer-events:none}
+.cover-badge{display:inline-flex;align-items:center;background:rgba(29,158,117,.9);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 13px;border-radius:20px;margin-bottom:14px;position:relative;z-index:1}
+.cover h1{font-size:30px;font-weight:800;line-height:1.2;margin-bottom:8px;position:relative;z-index:1}
+.cover h1 em{color:#f5c842;font-style:normal}
+.cover-sub{font-size:13px;opacity:.75;position:relative;z-index:1;max-width:640px;margin-bottom:22px}
+.goal-row{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.goal-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 18px;text-align:center;min-width:130px}
+.goal-pill.hl{background:rgba(29,158,117,.3);border-color:rgba(29,158,117,.6)}
+.gp-val{font-size:22px;font-weight:800;color:#f5c842;line-height:1}
+.gp-label{font-size:11px;opacity:.7;margin-top:3px}
+
+/* TYPOGRAPHY */
+h1{font-size:22px;font-weight:700;color:#1A1A1A;margin-bottom:5px}
+h2{font-size:16px;font-weight:700;color:var(--teal);margin:28px 0 10px;padding-bottom:7px;border-bottom:2px solid var(--teal-l)}
+h3{font-size:13px;font-weight:700;color:var(--gray-dk);margin:16px 0 8px}
+p{margin-bottom:8px;color:var(--gray);font-size:13px}
+.sub{font-size:12px;color:var(--gray-m);margin-bottom:16px}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px}
+.card:hover{box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.card-icon{font-size:22px;margin-bottom:8px}
+.card-title{font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:5px}
+.card-sub{font-size:11px;color:var(--gray-m);margin-bottom:8px}
+.card ul{padding-left:15px}
+.card li{font-size:12px;color:var(--gray);margin-bottom:4px}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin:10px 0 20px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:var(--gray-dk);color:#fff;padding:9px 12px;text-align:left;font-weight:500;font-size:11px;white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+tr:nth-child(even) td{background:#fafaf8}
+tr:hover td{background:var(--teal-l)}
+.row-hl td{background:var(--amber-l)!important;font-weight:600}
+.row-total td{background:var(--teal-l)!important;font-weight:700;color:var(--teal)}
+
+/* ALERTS */
+.info{background:var(--blue-l);border-left:3px solid var(--blue);border-radius:0 7px 7px 0;padding:10px 14px;margin:12px 0;font-size:12px;color:var(--blue)}
+.success{background:var(--teal-l);border-left:3px solid var(--teal);border-radius:0 7px 7px 0;padding:10px 14px;margin:12px 0;font-size:12px;color:var(--teal)}
+.warn{background:var(--amber-l);border-left:3px solid var(--amber);border-radius:0 7px 7px 0;padding:10px 14px;margin:12px 0;font-size:12px;color:var(--amber)}
+.danger{background:var(--red-l);border-left:3px solid var(--red);border-radius:0 7px 7px 0;padding:10px 14px;margin:12px 0;font-size:12px;color:var(--red)}
+
+/* TAGS */
+.tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;margin:1px}
+.tag-t{background:var(--teal-l);color:var(--teal)}
+.tag-b{background:var(--blue-l);color:var(--blue)}
+.tag-a{background:var(--amber-l);color:var(--amber)}
+.tag-p{background:var(--purple-l);color:var(--purple)}
+.tag-r{background:var(--red-l);color:var(--red)}
+.tag-g{background:var(--gray-l);color:var(--gray)}
+
+/* FUNNEL */
+.funnel-wrap{display:flex;gap:0;margin:16px 0 22px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.funnel-step{flex:1;padding:18px 16px;background:#fff;position:relative;text-align:center}
+.funnel-step:not(:last-child){border-right:1px solid var(--border)}
+.funnel-step.active-f{background:linear-gradient(135deg,#0F1B35,#185FA5);color:#fff}
+.fs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-m);margin-bottom:6px}
+.funnel-step.active-f .fs-label{color:rgba(255,255,255,.6)}
+.fs-num{font-size:28px;font-weight:800;color:var(--teal);line-height:1;margin-bottom:4px}
+.funnel-step.active-f .fs-num{color:#f5c842}
+.fs-rate{font-size:12px;font-weight:700;color:var(--gray-dk);margin-bottom:3px}
+.funnel-step.active-f .fs-rate{color:#fff}
+.fs-bench{font-size:10px;color:var(--gray-m)}
+.funnel-step.active-f .fs-bench{color:rgba(255,255,255,.55)}
+.fs-arrow{position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--teal-m);z-index:2;font-weight:700}
+
+/* MESSAGING CARDS */
+.msg-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.msg-head{padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border)}
+.msg-head .mh-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0}
+.msg-head .mh-title{font-size:14px;font-weight:700;color:#1A1A1A}
+.msg-head .mh-products{font-size:11px;color:var(--gray-m);margin-top:2px}
+.msg-body{padding:0;display:grid;grid-template-columns:1fr 1fr 1fr}
+.msg-section{padding:16px 18px;border-right:1px solid var(--border)}
+.msg-section:last-child{border-right:none}
+.ms-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.ms-label.benefit{color:var(--teal)}
+.ms-label.pain{color:var(--red)}
+.ms-label.deliver{color:var(--blue)}
+.msg-section ul{padding-left:14px}
+.msg-section li{font-size:12px;color:var(--gray-dk);margin-bottom:5px;line-height:1.5}
+.msg-section .hook{font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:8px;font-style:italic;line-height:1.4}
+
+/* BUDGET VISUAL */
+.budget-bar-wrap{margin:14px 0}
+.budget-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.budget-label{font-size:11px;font-weight:600;color:var(--gray);min-width:150px;text-align:right;flex-shrink:0}
+.budget-bar{height:22px;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff;min-width:30px}
+.budget-amount{font-size:11px;color:var(--gray-dk);margin-left:8px;font-weight:600}
+
+/* RISK TABLE */
+.risk-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:8px;display:grid;grid-template-columns:2fr 80px 80px 2fr 1fr;gap:12px;align-items:start}
+.risk-item:hover{border-color:var(--teal-m)}
+.ri-risk{font-size:12px;font-weight:600;color:#1A1A1A}
+.ri-level{display:inline-flex;align-items:center;justify-content:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-align:center}
+.lh{background:#FEE2E2;color:#991B1B}
+.lm{background:var(--amber-l);color:var(--amber)}
+.ll{background:var(--green-l);color:var(--green)}
+.ri-mitigation{font-size:12px;color:var(--gray)}
+.ri-owner{font-size:11px;color:var(--gray-m)}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:14px 0 22px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.kpi.hero{background:linear-gradient(135deg,#0F1B35,#0d3b6e);color:#fff;border:none}
+.kpi-val{font-size:26px;font-weight:800;line-height:1;margin-bottom:4px;color:var(--teal)}
+.kpi.hero .kpi-val{color:#f5c842}
+.kpi-label{font-size:11px;color:var(--gray-m);line-height:1.35}
+.kpi.hero .kpi-label{color:rgba(255,255,255,.6)}
+
+@media(max-width:900px){
+  .msg-body{grid-template-columns:1fr}
+  .msg-section{border-right:none;border-bottom:1px solid var(--border)}
+  .risk-item{grid-template-columns:1fr}
+  .kpi-row,.g4{grid-template-columns:1fr 1fr}
+  .g2,.g3{grid-template-columns:1fr}
+  .funnel-wrap{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div style="background:#0a0060;padding:5px 16px;display:flex;gap:6px;align-items:center;font-size:11px;font-family:-apple-system,sans-serif;flex-wrap:wrap;position:sticky;top:0;z-index:999">
+  <span style="color:#c0f100;font-weight:800;font-size:12px;margin-right:6px">🃏 TWC</span>
+  <a href="TWC-Ops-Hub.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.2);font-weight:700">🏠 Hub</a>
+  <a href="content-calendar-v4.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">📅 Content</a>
+  <a href="TWC-Ad-Campaign-Brief-v4.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">💰 Ads</a>
+  <a href="twc-b2b-strategy.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">🤝 B2B</a>
+  <a href="TWC - Marketing Plan v5.html" style="color:#050090;text-decoration:none;padding:3px 10px;border-radius:12px;background:#c0f100;font-weight:800">📊 Plan v5</a>
+</div>
+
+<div class="topbar">
+  <span class="brand">🃏 THE WILD CARD — Marketing Plan v5</span>
+  <span class="meta">June 2026 · Funnel-Based · Confidential</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="go('p1',this)">📊 Goals & Funnel</div>
+  <div class="tab" onclick="go('p2',this)">🎯 Messaging (VN)</div>
+  <div class="tab" onclick="go('p3',this)">📡 Channel & Ad Budget</div>
+  <div class="tab" onclick="go('p4',this)">💰 Revenue Plan</div>
+  <div class="tab" onclick="go('p5',this)">⚠️ Risks & Mitigations</div>
+</div>
+
+<!-- ══════════ P1: GOALS & FUNNEL ══════════ -->
+<div id="p1" class="page active">
+
+  <div class="cover">
+    <div class="cover-badge">🃏 Marketing Plan v2 · June 2026</div>
+    <h1>Campaign Goals — <em>30 Days</em><br/>Jun 1 → Jun 30, 2026</h1>
+    <p class="cover-sub">Funnel: 222,222 Reach → 3,333 Website Leads → 500 Warm Leads → 10 Conversions. Hai mốc: Soft Launch Jun 9 (A1) · Full Launch Jun 23 (B+C+A2).</p>
+    <div class="goal-row">
+      <div class="goal-pill hl"><div class="gp-val">10+</div><div class="gp-label">Attendees Cohort 1</div></div>
+      <div class="goal-pill"><div class="gp-val">50%</div><div class="gp-label">Testimonials delivered</div></div>
+      <div class="goal-pill"><div class="gp-val">2+</div><div class="gp-label">Consulting calls & proposals</div></div>
+      <div class="goal-pill hl"><div class="gp-val">500</div><div class="gp-label">Warm leads collected</div></div>
+      <div class="goal-pill"><div class="gp-val">222K</div><div class="gp-label">Total reach target</div></div>
+    </div>
+  </div>
+
+  <h2>1.1 Conversion Funnel — Dựa Trên Benchmark Thị Trường</h2>
+  <div class="funnel-wrap">
+    <div class="funnel-step">
+      <div class="fs-label">Awareness Reach</div>
+      <div class="fs-num">222,222</div>
+      <div class="fs-rate">Organic + Paid Ads</div>
+      <div class="fs-bench">FB/IG/LinkedIn combined</div>
+    </div>
+    <div class="funnel-step">
+      <div class="fs-label">CTR → Website Lead</div>
+      <div class="fs-num">3,333</div>
+      <div class="fs-rate">1.5% CTR</div>
+      <div class="fs-bench">Benchmark: 1.3%–2.3%</div>
+    </div>
+    <div class="funnel-step active-f">
+      <div class="fs-label">Warm Lead (Info left)</div>
+      <div class="fs-num">500</div>
+      <div class="fs-rate">15% of website leads</div>
+      <div class="fs-bench">Benchmark: 15%–30%</div>
+    </div>
+    <div class="funnel-step">
+      <div class="fs-label">Convert (Paid seat)</div>
+      <div class="fs-num">10</div>
+      <div class="fs-rate">2% of warm leads</div>
+      <div class="fs-bench">Benchmark: 2%–4%</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div class="success"><strong>✅ TWC ở benchmark thấp (conservative):</strong> CTR 1.5% (vs 2.3% max) và Convert 2% (vs 4% max). Nghĩa là có upside nếu content-to-landing page experience tốt và follow-up DM được tối ưu. Target thực tế: 10 attendees là minimum viable, 15–20 là target thật.</div>
+    </div>
+    <div>
+      <div class="warn"><strong>⚠️ Bottleneck cần theo dõi:</strong> Warm lead → Convert là bước khó nhất (500 → 10 = 98% drop). Cần: (1) Landing page clear với CTA mạnh, (2) DM follow-up trong 24h với mọi warm lead, (3) Objection handling đã được pre-empt trong FAQ content.</div>
+    </div>
+  </div>
+
+  <h2>1.2 Reach Breakdown — Organic vs Paid</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Channel</th><th>Type</th><th>Posts/period</th><th>Avg reach/post</th><th>Total reach</th><th>% of 222K target</th></tr>
+    <tr><td><strong>Facebook</strong></td><td>Organic</td><td>3 intro + 12 regular = 15</td><td>600–2,000</td><td>9,000–30,000</td><td>4–14%</td></tr>
+    <tr><td><strong>Instagram</strong></td><td>Organic</td><td>3 intro + 12 regular = 15</td><td>400–1,200</td><td>6,000–18,000</td><td>3–8%</td></tr>
+    <tr><td><strong>LinkedIn</strong></td><td>Organic</td><td>4</td><td>500–2,000</td><td>2,000–8,000</td><td>1–4%</td></tr>
+    <tr><td colspan="4"><strong>Subtotal Organic (mid estimate)</strong></td><td><strong>~28,000</strong></td><td><strong>~13%</strong></td></tr>
+    <tr class="row-hl"><td><strong>Facebook/IG Ads</strong></td><td>Paid</td><td>2 ad sets running</td><td>CPM $5–8</td><td>~160,000</td><td>72%</td></tr>
+    <tr class="row-hl"><td><strong>LinkedIn Ads</strong></td><td>Paid</td><td>1 ad set</td><td>CPM $18–25</td><td>~22,000</td><td>10%</td></tr>
+    <tr class="row-total"><td colspan="4"><strong>TOTAL</strong></td><td><strong>~210,000–222,000 ✅</strong></td><td><strong>~100%</strong></td></tr>
+  </table></div>
+  <div class="info"><strong>Key insight:</strong> Organic alone (~28K reach) = chỉ 13% target. Cần paid ads để bridge gap. Budget $1,200–1,500 là minimum để hit 222K reach. Xem chi tiết tại tab "Channel & Ad Budget".</div>
+
+  <h2>1.3 Campaign KPI Tracking — What to Measure Weekly</h2>
+  <div class="kpi-row">
+    <div class="kpi hero"><div class="kpi-val">222K</div><div class="kpi-label">Reach target<br/>Jun 1–30</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:var(--blue)">3,333</div><div class="kpi-label">Website clicks<br/>(1.5% CTR)</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:var(--purple)">500</div><div class="kpi-label">Warm leads<br/>(form/DM)</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:var(--teal)">10+</div><div class="kpi-label">Paid conversions<br/>(A1 free seats)</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:var(--amber)">2+</div><div class="kpi-label">Consulting<br/>calls booked</div></div>
+  </div>
+
+  <h2>1.4 Weekly Tracking Template</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Metric</th><th>Week 1 Target<br/>(Jun 1–8)</th><th>Week 2 Target<br/>(Jun 9–15)</th><th>Week 3 Target<br/>(Jun 16–22)</th><th>Week 4 Target<br/>(Jun 23–30)</th><th>Jun Total</th></tr>
+    <tr><td>Reach (Organic + Paid)</td><td>20,000</td><td>55,000</td><td>80,000</td><td>67,000</td><td>222,000</td></tr>
+    <tr><td>Website Clicks</td><td>300</td><td>800</td><td>1,200</td><td>1,033</td><td>3,333</td></tr>
+    <tr><td>Warm Leads (form/DM)</td><td>45</td><td>120</td><td>180</td><td>155</td><td>500</td></tr>
+    <tr><td>DM Follow-ups sent</td><td>45</td><td>120</td><td>180</td><td>155</td><td>500</td></tr>
+    <tr class="row-hl"><td>Conversions (paid/free)</td><td>0</td><td>10 (Cohort 1 free)</td><td>2–3 (A2 early)</td><td>5–7 (A2+B+C)</td><td>17–20</td></tr>
+    <tr><td>B/C Proposals sent</td><td>0</td><td>2</td><td>3</td><td>2</td><td>5–7</td></tr>
+    <tr><td>Consulting calls booked</td><td>0</td><td>0</td><td>1</td><td>2</td><td>2–3</td></tr>
+  </table></div>
+
+</div><!-- /p1 -->
+
+<!-- ══════════ P2: MESSAGING (VIETNAMESE) ══════════ -->
+<div id="p2" class="page">
+  <h1>Messaging Hierarchy — Tiếng Việt</h1>
+  <p class="sub">Model: (1) Benefit của TWC → (2) Pain point & tension → need → (3) Deliverables cụ thể. Mỗi segment có messaging riêng biệt.</p>
+
+  <div class="warn" style="margin-bottom:20px"><strong>Quy tắc sử dụng:</strong> Mỗi post chỉ dùng 1 segment messaging. Không mix. Khi viết content, chọn segment trước → chọn arc → chọn hook từ messaging card bên dưới. CTA phải dẫn về website / landing page (không phải DM trực tiếp — trừ LinkedIn B2B).</div>
+
+  <!-- SEGMENT 1: MARKETER ABM -->
+  <div class="msg-card">
+    <div class="msg-head">
+      <div class="mh-icon" style="background:var(--purple)">👩‍💼</div>
+      <div>
+        <div class="mh-title">Segment 1 — Marketer (ABM / Junior BM)</div>
+        <div class="mh-products">Sản phẩm phù hợp: <span class="tag tag-t">A1 Starter</span><span class="tag tag-p">A2 Learning Journey</span><span class="tag tag-a">D Marketplace</span> · Channel: FB + IG + FMCG Alumni Groups</div>
+      </div>
+    </div>
+    <div class="msg-body">
+      <div class="msg-section">
+        <div class="ms-label benefit">✅ Benefit của TWC</div>
+        <div class="hook">"Làm xong việc trước 6pm. Brief được duyệt ngay. Không ai trong batch của bạn làm được thứ này."</div>
+        <ul>
+          <li>Tiết kiệm 8–12 giờ/tuần trên đúng những việc bạn đang làm hàng ngày</li>
+          <li>Brief không bị BM sửa lại — output đủ chất lượng từ lần đầu</li>
+          <li>Nielsen synthesis trong 30 phút thay vì 3 tiếng</li>
+          <li>Differentiate bản thân trong MT track — thứ không ai có thể copy dễ</li>
+          <li>Workflow chạy mãi — không phải tips, là hệ thống</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label pain">⚡ Pain Point & Tension → Need</div>
+        <div class="hook">"9pm. ITM deck chưa xong. Batch bạn đã lên Senior BM. Brief bạn vừa nộp đang chờ comment từ BM."</div>
+        <ul>
+          <li><strong>Pain:</strong> 10–14 tiếng/tuần bị mất vào data wrangling, không phải thinking</li>
+          <li><strong>Pain:</strong> Brief bị sửa liên tục → không được tin tưởng với task lớn hơn</li>
+          <li><strong>Pain:</strong> Batch mates đang vượt qua không phải vì họ giỏi hơn</li>
+          <li><strong>Tension:</strong> Biết AI có thể giúp nhưng không biết apply vào job thật</li>
+          <li><strong>Need:</strong> Workflow cụ thể cho đúng artifact bạn làm mỗi tuần — không phải "AI tips"</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label deliver">📦 Deliverables với TWC</div>
+        <ul>
+          <li><strong>A1 Foundation (2h, $0–49):</strong> Hiểu AI mindset đúng + compliance + build Claude Project đầu tiên live</li>
+          <li><strong>A2 Learning Journey (4 sessions):</strong> Nielsen synthesis → Brief workflow → Visual content → Campaign planning + automation</li>
+          <li><strong>D Marketplace:</strong> Pre-built dashboards + AI skills install once, use every week</li>
+          <li><strong>Cam kết:</strong> Sau 4 sessions — 5 AI workflows bạn dùng mỗi thứ Hai, tiết kiệm ≥8h/tuần</li>
+          <li><strong>CTA:</strong> → Website đăng ký A1 free seat (Jun 9)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGMENT 2: BM/SENIOR BM -->
+  <div class="msg-card">
+    <div class="msg-head">
+      <div class="mh-icon" style="background:var(--blue)">👔</div>
+      <div>
+        <div class="mh-title">Segment 2 — BM / Senior BM (mua cho team)</div>
+        <div class="mh-products">Sản phẩm: <span class="tag tag-t">A1</span><span class="tag tag-p">A2</span><span class="tag tag-a">D</span><span class="tag tag-b">C Consulting</span> · Channel: FB Groups + LinkedIn + WA/Zalo Direct</div>
+      </div>
+    </div>
+    <div class="msg-body">
+      <div class="msg-section">
+        <div class="ms-label benefit">✅ Benefit của TWC</div>
+        <div class="hook">"Team của bạn tự xử được việc. Bạn không cần rewrite mọi thứ nữa."</div>
+        <ul>
+          <li>ABM nộp output mà bạn dùng được ngay — không cần sửa</li>
+          <li>Team về đúng giờ — không làm ngoài giờ vì data wrangling</li>
+          <li>Bạn có thêm thời gian cho strategic thinking, không phải tactical review</li>
+          <li>Team capability lên level mà không cần thêm headcount</li>
+          <li>Measurable: 8–12 giờ/tuần/người được giải phóng</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label pain">⚡ Pain Point & Tension → Need</div>
+        <div class="hook">"Team bạn về nhà lúc mấy giờ? Bạn rewrite bao nhiêu briefs tuần này?"</div>
+        <ul>
+          <li><strong>Pain:</strong> Review và rewrite output của team mỗi ngày — mất 2–3h/ngày của bạn</li>
+          <li><strong>Pain:</strong> ABM làm việc 9pm–11pm không phải vì lười — vì không có workflow</li>
+          <li><strong>Pain:</strong> Không thể delegate thật sự vì output quality không đủ</li>
+          <li><strong>Tension:</strong> Muốn upskill team nhưng không có thời gian / budget / curriculum phù hợp</li>
+          <li><strong>Need:</strong> Training có thể customize cho đúng artifacts team bạn đang dùng</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label deliver">📦 Deliverables với TWC</div>
+        <ul>
+          <li><strong>A1 (book cả team, 2h):</strong> Foundation + compliance + first working Project</li>
+          <li><strong>A2 (4 sessions × team):</strong> Rebuild Nielsen / Brief / ITM / Campaign của team bạn — live</li>
+          <li><strong>D (Team License):</strong> Pre-built FMCG dashboards + skills cho cả team $399</li>
+          <li><strong>C1 (Strategy Call):</strong> Audit AI readiness team → recommendation cho approach đúng</li>
+          <li><strong>CTA:</strong> → Website để DM hoặc book C1 call (Calendly)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGMENT 3: L&D -->
+  <div class="msg-card">
+    <div class="msg-head">
+      <div class="mh-icon" style="background:var(--amber)">🏢</div>
+      <div>
+        <div class="mh-title">Segment 3 — L&D / Marketing Capability Lead</div>
+        <div class="mh-products">Sản phẩm: <span class="tag tag-b">B Corporate Training</span><span class="tag tag-b">C Consulting</span> · Channel: LinkedIn + Email + Warm Intro</div>
+      </div>
+    </div>
+    <div class="msg-body">
+      <div class="msg-section">
+        <div class="ms-label benefit">✅ Benefit của TWC</div>
+        <div class="hook">"AI capability measurable trong 30 ngày. Fit lịch MNC. ROI chứng minh được với management."</div>
+        <ul>
+          <li>FMCG-specific — dạy trên đúng artifacts team đang làm hàng tuần</li>
+          <li>Fit MNC calendar: half-day hoặc full-day, không phải 6-week program</li>
+          <li>Enterprise compliance-first — không ai khác dạy điều này</li>
+          <li>ROI rõ ràng: 8–12h/người/tuần tiết kiệm được × số người × weeks</li>
+          <li>Post-workshop: written SOPs + shared Claude Projects + 30-day check-in</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label pain">⚡ Pain Point & Tension → Need</div>
+        <div class="hook">"Team đang dùng ChatGPT cá nhân với data confidential. Không ai biết cách build vào workflow thật."</div>
+        <ul>
+          <li><strong>Pain:</strong> Generic AI courses không stick — 2 tuần sau không ai apply được</li>
+          <li><strong>Pain:</strong> Không có curriculum FMCG-specific trong VN</li>
+          <li><strong>Pain:</strong> Không prove ROI được với CMO / CFO sau training</li>
+          <li><strong>Tension:</strong> Global mandate "AI for Marketing" đang push down nhưng local L&D không có content</li>
+          <li><strong>Need:</strong> Partner có thể deliver fast, customized, with measurable outcome</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label deliver">📦 Deliverables với TWC</div>
+        <ul>
+          <li><strong>Free Pre-Workshop Audit:</strong> Typeform 15min — AI maturity + top 3 pain points của team</li>
+          <li><strong>B Half-Day (4h, $2,000–3,000):</strong> Sessions 1+2, tất cả rời với 3 shared Claude Projects</li>
+          <li><strong>B Full-Day (8h, $3,500–5,000):</strong> Sessions 1–3 + partial 4, mỗi người có Wild Card Playbook</li>
+          <li><strong>Post package:</strong> SOPs, shared skills, 30-day check-in call</li>
+          <li><strong>C2 Roadmap ($700–1,000):</strong> 6-month AI capability roadmap cho team</li>
+          <li><strong>CTA:</strong> → LinkedIn DM hoặc book C1 Discovery Call</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGMENT 4: CEO -->
+  <div class="msg-card">
+    <div class="msg-head">
+      <div class="mh-icon" style="background:var(--teal)">👑</div>
+      <div>
+        <div class="mh-title">Segment 4 — CEO / CMO / Director</div>
+        <div class="mh-products">Sản phẩm: <span class="tag tag-t">B Corporate</span><span class="tag tag-t">A3 CEO Track</span><span class="tag tag-b">C Consulting</span> · Channel: LinkedIn English + Warm Intro</div>
+      </div>
+    </div>
+    <div class="msg-body">
+      <div class="msg-section">
+        <div class="ms-label benefit">✅ Benefit của TWC</div>
+        <div class="hook">"AI governance framework. Workforce clarity. Competitive edge không phải là dùng ChatGPT — là build AI vào workflow thật."</div>
+        <ul>
+          <li>Hiểu rõ AI opportunity và risk cho function của mình</li>
+          <li>Workforce planning trong AI era — ai làm gì, AI làm gì</li>
+          <li>Compliance framework trước khi incident xảy ra</li>
+          <li>1-page AI Action Plan cụ thể — không phải theory</li>
+          <li>Team sau training có hệ thống chạy, không phải biết tips</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label pain">⚡ Pain Point & Tension → Need</div>
+        <div class="hook">"Team đang dùng ChatGPT tự phát. Không ai build vào workflow. Không ai biết data nào được đưa vào AI."</div>
+        <ul>
+          <li><strong>Pain:</strong> Không biết đầu tư AI thế nào — build vs buy, tool nào, workflow nào</li>
+          <li><strong>Pain:</strong> Compliance risk: confidential data đang đi vào free ChatGPT</li>
+          <li><strong>Pain:</strong> Team productivity không improve dù "everyone uses AI"</li>
+          <li><strong>Tension:</strong> Báo cáo lên regional/global về AI adoption nhưng không có gì concrete</li>
+          <li><strong>Need:</strong> Strategic partner — không phải trainer, là AI capability architect</li>
+        </ul>
+      </div>
+      <div class="msg-section">
+        <div class="ms-label deliver">📦 Deliverables với TWC</div>
+        <ul>
+          <li><strong>A3 CEO 4h ($299–399/person):</strong> AI landscape → workforce planning → governance → 1-page AI Action Plan</li>
+          <li><strong>A3 CEO 6h ($399–549/person):</strong> + Tech decision framework + full company AI roadmap</li>
+          <li><strong>B Full-Day (team):</strong> Run after CEO session — team executes CEO's AI vision</li>
+          <li><strong>C1 Strategy Call ($350–450, 90min):</strong> Private session — audit + top 3 AI use cases + governance</li>
+          <li><strong>C2 Full Roadmap ($700–1,000):</strong> 6-month function roadmap + 5–8 page report</li>
+          <li><strong>CTA:</strong> → LinkedIn DM (English) hoặc Calendly C1 link</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>2.2 Hook Lines theo Segment — Quick Reference</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Segment</th><th>Hook mở đầu (tiếng Việt)</th><th>Tension câu</th><th>CTA</th></tr>
+    <tr><td><strong>ABM/Marketer</strong></td><td>"Cùng vào năm đó. Cùng công ty. Tại sao cô ấy lên BM còn mình thì không?"</td><td>"Không phải vì cô ấy giỏi hơn. Mà vì cô ấy có hệ thống bạn chưa có."</td><td>→ Website đăng ký A1 free</td></tr>
+    <tr><td><strong>ABM burnout</strong></td><td>"9pm. ITM deck chưa xong. Ngày mai có meeting với BM."</td><td>"Deck đó không nên mất 6 tiếng. Mình biết cách giảm xuống còn 90 phút."</td><td>→ Website waitlist</td></tr>
+    <tr><td><strong>ABM quality</strong></td><td>"Brief của bạn đã bị sửa bao nhiêu lần tuần này?"</td><td>"Không phải bạn viết kém. Là brief format thiếu đúng thứ BM cần thấy."</td><td>→ Website xem A2</td></tr>
+    <tr><td><strong>BM/Senior BM</strong></td><td>"Team bạn về nhà lúc mấy giờ?"</td><td>"Nếu ABM của bạn mất 3h đọc Nielsen — đó là 150h/năm không phải thinking."</td><td>→ DM / C1 call</td></tr>
+    <tr><td><strong>L&D</strong></td><td>"Team đang dùng ChatGPT với data confidential mà không ai biết."</td><td>"Không phải lỗi của team. Là không ai dạy họ cách dùng đúng trong MNC context."</td><td>→ B proposal / C2</td></tr>
+    <tr><td><strong>CEO/Director</strong></td><td>"AI got faster. Your team is still using it like a search engine."</td><td>"The gap is not tools. It's workflow. And no one built it into your team's Monday yet."</td><td>→ C1 Calendly</td></tr>
+  </table></div>
+
+</div><!-- /p2 -->
+
+<!-- ══════════ P3: CHANNEL & AD BUDGET ══════════ -->
+<div id="p3" class="page">
+  <h1>Channel Strategy & Ad Budget</h1>
+  <p class="sub">Organic reach chỉ đạt ~28K/month. Cần $1,200–1,500 paid ads để hit 222K target.</p>
+
+  <h2>3.1 Channel Mix — Vai Trò Từng Kênh</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Channel</th><th>Vai trò</th><th>Organic cadence</th><th>Paid</th><th>Primary audience</th><th>KPI chính</th></tr>
+    <tr><td><strong>🇻🇳 Facebook</strong></td><td>Main organic reach · Mass warm-up · Education + hooks</td><td>3 posts/week (từ Jun 9) + 3 intro (Jun 1–8)</td><td>✅ FB Ads retargeting + lookalike</td><td>ABM, Junior BM, FMCG community</td><td>Comments, DMs "WC", website clicks</td></tr>
+    <tr><td><strong>📸 Instagram</strong></td><td>Visual hooks · Carousel education · Story polls</td><td>3 posts/week (từ Jun 9) + 3 intro adapt từ FB</td><td>✅ IG Ads (same budget với FB)</td><td>Younger ABM, visual-first audience</td><td>Saves, profile visits, swipe-up</td></tr>
+    <tr><td><strong>💼 LinkedIn</strong></td><td>B2B relationship · English organic · CEO/L&D/BM · <strong>Không focus paid</strong></td><td>1 post/week (từ Jun 9)</td><td>⚠️ InMail only ($100) · No Sponsored Content</td><td>BM, Senior BM, L&D, Director, CEO</td><td>Direct replies, Calendly clicks · Organic + WA outreach là primary</td></tr>
+    <tr><td><strong>💬 WA/Zalo</strong></td><td>Highest conversion · Personal warm outreach</td><td>5 DMs/day (không schedule)</td><td>❌ Not paid</td><td>Known MNC contacts từ network</td><td>Reply rate, seat confirmations</td></tr>
+    <tr><td><strong>🌐 Website/Landing</strong></td><td>Warm lead capture · Conversion funnel</td><td>—</td><td>Traffic destination từ tất cả kênh</td><td>Tất cả segments</td><td>Form fills, 500 warm leads</td></tr>
+  </table></div>
+
+  <h2>3.2 Paid Ad Budget — 30 Days</h2>
+  <div class="g2">
+    <div>
+      <h3>Facebook + Instagram Ads <span style="color:var(--teal);font-size:11px;font-weight:700">← PRIMARY FOCUS</span></h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Ad Set</th><th>Audience targeting</th><th>Budget</th><th>Est. reach</th><th>CPM thực tế</th><th>Objective</th></tr>
+        <tr><td><strong>Ad Set 1: Cold Interest</strong></td><td>HCMC + HN · Age 24–38 · Marketing, Brand Manager · FMCG interest</td><td><strong>$375</strong></td><td>~150,000</td><td><strong>$2.50/1K</strong></td><td>Engagement (W1) → Traffic (W2)</td></tr>
+        <tr><td><strong>Ad Set 2: Lookalike 1%</strong></td><td>Lookalike từ Page engagers + website visitors</td><td><strong>$350</strong></td><td>~83,000</td><td><strong>$4.20/1K</strong></td><td>Traffic (W2) → Leads (W3+)</td></tr>
+        <tr><td><strong>Ad Set 3: Retargeting</strong></td><td>Web visitors chưa submit form + IG visitors chưa click (Jun 20+)</td><td><strong>$100</strong></td><td>~13,500</td><td><strong>$7.40/1K</strong></td><td>Conversions / Leads</td></tr>
+        <tr class="row-total"><td><strong>FB/IG Total</strong></td><td></td><td><strong>$825</strong></td><td><strong>~247,000</strong></td><td>Blended ~$3.34/1K</td><td></td></tr>
+      </table></div>
+    </div>
+    <div>
+      <h3>LinkedIn Ads <span style="color:var(--gray-m);font-size:11px;font-weight:400">← Minimal — organic + direct outreach only</span></h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Ad Type</th><th>Audience targeting</th><th>Budget</th><th>Est. reach</th><th>CPM est.</th></tr>
+        <tr><td><strong>Sponsored Content</strong><br/><span style="font-size:10px;color:var(--gray-m)">Dropped — boost organic posts manually instead</span></td><td>—</td><td style="color:var(--gray-m)"><s>$300</s> <strong>$0</strong></td><td>—</td><td>—</td></tr>
+        <tr><td><strong>InMail (Message Ads)</strong></td><td>L&D/HR/Director · FMCG industry · VN only</td><td><strong>$100</strong></td><td>~1,000 delivered</td><td>$0.10/send</td></tr>
+        <tr class="row-total"><td><strong>LinkedIn Total</strong></td><td></td><td><strong>$100</strong></td><td><strong>~1,000</strong></td><td></td></tr>
+      </table></div>
+      <div style="font-size:11px;color:var(--gray-m);margin-top:6px;line-height:1.6">💡 LinkedIn organic (1 post/week) + direct WA/Zalo outreach đến B2B contacts là đủ để build B/C pipeline — không cần Sponsored Content $300 khi audience quá narrow và CPM quá cao.</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:8px"><table>
+    <tr><th>Budget Category</th><th>Amount</th><th>Objective</th><th>Threshold / Rule</th><th>Notes</th></tr>
+    <tr><td>FB Test posts — 5 key posts (A1/A5/B1/B3/C1) × $15 · Company page only</td><td><strong>$75</strong></td><td>Engagement (W1) · Traffic CPC (W2)</td><td>FB: ER &gt;5% = boost · 3–5% = hold · &lt;3% = kill</td><td>$15 → ~3,500–6,000 impressions. Đủ đọc ER. Không đủ optimize conversion.</td></tr>
+    <tr><td>LI Test posts — 5 posts × $10 · Personal profile Yên Võ</td><td><strong>$50</strong></td><td>CPC (LinkedIn)</td><td>Carousel: ER &gt;3% = boost · &lt;1.5% = stop. Image: ER &gt;2% = boost · &lt;1% = stop+switch carousel</td><td>LinkedIn algo 2026 ưu tiên Carousel/PDF (~24% ER). Default format = Carousel.</td></tr>
+    <tr class="row-hl"><td>Boost winners (W2–W3) ⭐</td><td><strong>$80</strong></td><td>Traffic (CPC)</td><td>$25–30/post · max 3 posts · ER &gt;5% only · đủ signal, không over-spend</td><td>3 posts × $27 · Hook winner từ W1 A/B test</td></tr>
+    <tr class="row-hl"><td>Always-On Sales (W3–W4 only) ⭐</td><td><strong>$100</strong></td><td>Leads / Conversions</td><td>W1–W2 = $0 · W3+ only · 2 posts × $50</td><td>Activate W3 khi pixel có 50+ events · Session 1 evergreen + Corporate CTA</td></tr>
+    <tr><td>Retargeting — START W3 ONLY</td><td><strong>$200</strong></td><td>Conversions</td><td>W1-W2: $50 warming only · W3+ full $200 · CPL &lt;$5 = scale</td><td>Cần min 1,000 custom audience. Start Jun 27. Pixel data required.</td></tr>
+    <tr><td>LinkedIn Sponsored Content (boost organic only)</td><td><strong>$80</strong></td><td>Traffic / Leads</td><td>Chỉ boost organic đã có ER &gt;3% · Carousel priority</td><td>B2B decision makers · FMCG/MNC HCM+HN · Carousel &gt; Image</td></tr>
+    <tr><td>LinkedIn InMail — PRIMARY B2B channel ⭐</td><td><strong>$200</strong></td><td>Message Ads</td><td>Open rate &gt;35% = extend · &lt;20% = rewrite subject · Target: 1 deal close</td><td>Gửi sau khi accept connect · 50–80/tuần · W2+</td></tr>
+    <tr><td>Email Marketing + Brevo setup</td><td><strong>$100</strong></td><td>—</td><td>Open 42% · CTR 6% · Reply 15%</td><td>White paper follow-up sequence (3 email) · Brevo free ≤500 contacts</td></tr>
+    <tr class="row-total"><td><strong>TOTAL (v5.2)</strong></td><td><strong>$850</strong></td><td></td><td></td><td><strong>Target: 14–16 enrolments + 1 B2B deal · ROAS target ≥2.0×</strong></td></tr>
+  </table></div>
+
+  <!-- CPM BENCHMARK BOX -->
+  <div style="background:var(--gray-dk);border-radius:12px;padding:18px 24px;margin-bottom:20px">
+    <div style="font-size:12px;font-weight:700;color:var(--teal-m);letter-spacing:.5px;margin-bottom:12px">📊 MẶT BẰNG CPM THỰC TẾ — Ngành E-learning tại VN (Facebook/Instagram Ads)</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 16px">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:6px">TẦNG 1 — TỆP RỘNG / AWARENESS</div>
+        <div style="font-size:20px;font-weight:800;color:#f5c842">50,000 – 75,000đ</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:3px">avg 62,500đ = $2.50 / 1,000 impressions</div>
+        <div style="font-size:11px;color:var(--teal-m);margin-top:5px">Mass/Awareness targeting rộng</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 16px">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:6px">TẦNG 2 — INTEREST / LOOKALIKE</div>
+        <div style="font-size:20px;font-weight:800;color:#f5c842">80,000 – 130,000đ</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:3px">avg 105,000đ = $4.20 / 1,000 impressions</div>
+        <div style="font-size:11px;color:var(--teal-m);margin-top:5px">Định hướng hành vi / Tâm lý học</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:12px 16px">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:6px">TẦNG 3 — RETARGETING / WARM</div>
+        <div style="font-size:20px;font-weight:800;color:#f5c842">150,000 – 220,000đ</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:3px">avg 185,000đ = $7.40 / 1,000 impressions</div>
+        <div style="font-size:11px;color:var(--teal-m);margin-top:5px">Custom Audience / Warm Lead</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:10px">Nguồn: Mặt bằng thị trường E-learning VN. CPM T1 rẻ hơn giả định ban đầu ($6/1K) → reach thực tế cao hơn đáng kể với cùng budget.</div>
+  </div>
+
+  <h2>3.2b Ad Objective by Phase — Mua Theo Mục Tiêu Nào</h2>
+  <p class="sub">Không phải lúc nào cũng mua CPM thuần. Objective phải đúng với giai đoạn — sai objective = Meta optimize sai người, tiêu hết budget không ra lead.</p>
+
+  <div class="info"><strong>⚠️ $10–$15/post có đủ để đo ER không?</strong> Đủ — không đủ để optimize conversion. Với CPM VN E-learning $2.50–$4.20, $15 mua được ~3,500–6,000 impressions. Đủ để đọc ER (like/comment/share/reach) và so sánh hook trong 48h. <strong>Không đủ</strong> để thoát Meta learning phase (cần 50+ optimization events). Dùng $15 để A/B test hook, không phải để scale.</div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>Phase</th><th>Thời gian</th><th>Objective</th><th>Buying Model</th><th>Mục tiêu đo</th><th>Budget per post</th><th>Lý do</th></tr>
+    <tr>
+      <td><strong>W1 Pre-Launch — A/B Test</strong></td>
+      <td>Jun 15–19</td>
+      <td><strong>Engagement</strong> (CPE)</td>
+      <td>Per engagement</td>
+      <td>ER · Hook winner</td>
+      <td>$15 FB · $10 LI</td>
+      <td>Muốn đo ER, không cần click về site. Meta optimize cho người tương tác — cheap signal để chọn hook trước khi scale.</td>
+    </tr>
+    <tr class="row-hl">
+      <td><strong>W2 Soft Launch — Scale Winners</strong></td>
+      <td>Jun 20–26</td>
+      <td><strong>Traffic</strong> (CPC)</td>
+      <td>Per click (CPC)</td>
+      <td>CTR · Landing page views</td>
+      <td>$25–$50 winners</td>
+      <td>Drive về landing page, đo CTR thực. Meta optimize cho người có khả năng click — bắt đầu warm audience pool cho retargeting.</td>
+    </tr>
+    <tr>
+      <td><strong>W3–W4 Full Launch</strong></td>
+      <td>Jun 27–Jul 9</td>
+      <td><strong>Leads / Conversions</strong></td>
+      <td>Per lead / CPL</td>
+      <td>CPL · Form fills · Đăng ký</td>
+      <td>$50–$75 always-on</td>
+      <td>Pixel đã có đủ data (50+ events) → Meta tự tìm người có intent mua. Switch objective này trước Jun 27 nếu pixel đã active.</td>
+    </tr>
+    <tr>
+      <td><strong>Always-On Sales (L1–L4)</strong></td>
+      <td>Suốt campaign</td>
+      <td><strong>Conversions / Leads</strong></td>
+      <td>Per conversion</td>
+      <td>CPL · Registrations</td>
+      <td>$50–$75/wk</td>
+      <td>Posts bán hàng — luôn dùng Conversions objective, không dùng Engagement hay Reach.</td>
+    </tr>
+  </table></div>
+
+  <div style="background:#fff3cd;border-left:4px solid #d97706;border-radius:6px;padding:12px 16px;margin:12px 0;font-size:12px">
+    <strong>❌ KHÔNG chạy CPM thuần (Reach objective) cho $10–$15 test posts.</strong> Meta sẽ optimize reach rộng nhưng không qualify — impressions cao, ER thấp, không học được gì. Chỉ dùng Reach objective khi budget &gt; $50/ngày và mục tiêu là brand awareness thuần.
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>Metric</th><th>Engagement obj. ($15)</th><th>Traffic obj. ($15)</th><th>Reach obj. ($15)</th></tr>
+    <tr><td>Impressions (est.)</td><td>3,500–6,000</td><td>3,500–6,000</td><td>5,000–8,000</td></tr>
+    <tr><td>Người Meta target</td><td>Có khả năng like/comment</td><td>Có khả năng click link</td><td>Rộng nhất, không filter</td></tr>
+    <tr><td>Đo được gì</td><td>✅ ER · Hook quality</td><td>✅ CTR · LP visits</td><td>❌ Reach số đẹp, không dùng được</td></tr>
+    <tr><td>Dùng khi nào</td><td>W1 A/B test</td><td>W2 scale winners</td><td>❌ Không dùng với budget nhỏ</td></tr>
+    <tr class="row-hl"><td>Threshold học được</td><td><strong>ER &gt; 5% = winner hook</strong></td><td><strong>CTR &gt; 1% = scale</strong></td><td>Không có signal nào hữu ích</td></tr>
+  </table></div>
+
+  <h2>3.3 Media Mix Model — 3 Tầng Funnel (FB/IG)</h2>
+  <p class="sub">FB/IG budget 30,000,000đ ($1,200). Tỷ giá 25,000đ/USD. LinkedIn $100 chạy riêng. CPM theo benchmark thực tế thị trường E-learning VN.</p>
+
+  <!-- FUNNEL VISUAL -->
+  <div style="margin:16px 0 8px;display:flex;flex-direction:column;gap:0">
+    <div style="background:linear-gradient(90deg,#0F1B35,#185FA5);color:#fff;border-radius:10px 10px 0 0;padding:16px 24px">
+      <div style="display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:16px">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;opacity:.65;margin-bottom:4px">TẦNG 1 · 60% · 18,000,000đ</div>
+          <div style="font-size:22px;font-weight:800;color:#f5c842">288,000 impressions</div>
+          <div style="font-size:11px;opacity:.7;margin-top:2px">CPM avg 62,500đ · reach ÷ f=1.5 = <strong style="color:#f5c842">192,000</strong> unique</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">🎯 Awareness & Thử nghiệm Creative</div>
+          <div style="font-size:11px;opacity:.8;line-height:1.6">Target rộng: HCMC+HN, age 24–38, interest Marketing/FMCG + Lookalike 1–3%. <strong style="color:#f5c842">Objective: Engagement (W1) → Traffic/CPC (W2+).</strong> A/B test hook · $15/post · ER &gt; 5% = boost. CTR target: 0.8%</div>
+        </div>
+        <div style="text-align:right;min-width:120px">
+          <div style="font-size:10px;opacity:.6;margin-bottom:3px">Clicks (CTR 0.8%)</div>
+          <div style="font-size:20px;font-weight:800;color:#f5c842">2,304</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:5px 0;color:var(--teal-m);font-size:13px;font-weight:700;background:#f0fdf9;border-left:4px solid var(--teal-m);border-right:4px solid var(--teal-m)">▼ Custom Audience: Video viewers 50%+ & Page engagers từ Tầng 1</div>
+    <div style="background:linear-gradient(90deg,#0F6E56,#1D9E75);color:#fff;padding:16px 24px">
+      <div style="display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:16px">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;opacity:.65;margin-bottom:4px">TẦNG 2 · 25% · 7,500,000đ</div>
+          <div style="font-size:22px;font-weight:800;color:#f5c842">71,429 impressions</div>
+          <div style="font-size:11px;opacity:.7;margin-top:2px">CPM avg 105,000đ · reach ÷ f=1.5 = <strong style="color:#f5c842">47,619</strong> unique</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">📋 Thu Lead / Đăng ký Workshop</div>
+          <div style="font-size:11px;opacity:.8;line-height:1.6">Audience warm từ T1. Objective: Lead Generation / Traffic. Format: Carousel 3 session previews + form. CTR target: 1.8%</div>
+        </div>
+        <div style="text-align:right;min-width:120px">
+          <div style="font-size:10px;opacity:.6;margin-bottom:3px">Clicks (CTR 1.8%)</div>
+          <div style="font-size:20px;font-weight:800;color:#f5c842">1,286</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:5px 0;color:var(--amber);font-size:13px;font-weight:700;background:#fffbeb;border-left:4px solid var(--amber);border-right:4px solid var(--amber)">▼ Retargeting: Đã vào Landing Page nhưng chưa điền form / mua</div>
+    <div style="background:linear-gradient(90deg,#BA7517,#d4891f);color:#fff;border-radius:0 0 10px 10px;padding:16px 24px">
+      <div style="display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:16px">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;opacity:.75;margin-bottom:4px">TẦNG 3 · 15% · 4,500,000đ</div>
+          <div style="font-size:22px;font-weight:800;color:#fff">24,324 impressions</div>
+          <div style="font-size:11px;opacity:.75;margin-top:2px">CPM avg 185,000đ · reach ÷ f=1.5 = <strong>16,216</strong> unique</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">🔒 Retargeting Chốt Đơn Cuối</div>
+          <div style="font-size:11px;opacity:.85;line-height:1.6">LP visitors chưa submit form + IG visitors chưa click. Objective: Conversions. Testimonial + "Còn X chỗ" urgency. CTR target: 3.5%</div>
+        </div>
+        <div style="text-align:right;min-width:120px">
+          <div style="font-size:10px;opacity:.75;margin-bottom:3px">Clicks (CTR 3.5%)</div>
+          <div style="font-size:20px;font-weight:800;color:#fff">851</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNNEL SUMMARY ROW -->
+  <div style="background:var(--teal);color:#fff;border-radius:10px;padding:14px 24px;margin:8px 0 20px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;text-align:center">
+    <div><div style="font-size:10px;opacity:.7;margin-bottom:3px">TOTAL IMPRESSIONS</div><div style="font-size:18px;font-weight:800;color:#f5c842">383,753</div></div>
+    <div><div style="font-size:10px;opacity:.7;margin-bottom:3px">UNIQUE REACH (f=1.5)</div><div style="font-size:18px;font-weight:800;color:#f5c842">~220,000 ✅</div></div>
+    <div><div style="font-size:10px;opacity:.7;margin-bottom:3px">TOTAL CLICKS</div><div style="font-size:18px;font-weight:800;color:#f5c842">4,441</div></div>
+    <div><div style="font-size:10px;opacity:.7;margin-bottom:3px">WARM LEADS (15%)</div><div style="font-size:18px;font-weight:800;color:#f5c842">666 ✅</div></div>
+    <div><div style="font-size:10px;opacity:.7;margin-bottom:3px">CONVERSIONS (2%)</div><div style="font-size:18px;font-weight:800;color:#f5c842">13 ✅</div></div>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>Tầng</th><th>Budget VNĐ</th><th>CPM benchmark</th><th>Impressions</th><th>Reach (f=1.5)</th><th>CTR</th><th>Clicks</th><th>Objective (phase-gated)</th><th>Test threshold</th></tr>
+    <tr><td><strong>Tầng 1 — Awareness</strong></td><td><strong>18,000,000đ</strong></td><td>50K–75K đ (avg 62,500đ = $2.50)</td><td>288,000</td><td><strong>192,000</strong></td><td>0.8%</td><td>2,304</td><td><strong>Engagement (W1)</strong> → Traffic CPC (W2+)</td><td>$15/post · ER &gt; 5% = boost · &lt; 3% = kill</td></tr>
+    <tr><td><strong>Tầng 2 — Lead Gen</strong></td><td><strong>7,500,000đ</strong></td><td>80K–130K đ (avg 105,000đ = $4.20)</td><td>71,429</td><td><strong>47,619</strong></td><td>1.8%</td><td>1,286</td><td><strong>Traffic / Leads (W2–W3)</strong> · form fill</td><td>$25–$50 winners · CTR &gt; 1% = scale</td></tr>
+    <tr class="row-hl"><td><strong>Tầng 3 — Retargeting</strong></td><td><strong>4,500,000đ</strong></td><td>150K–220K đ (avg 185,000đ = $7.40)</td><td>24,324</td><td><strong>16,216</strong></td><td>3.5%</td><td>851</td><td><strong>Conversions (W3+)</strong> · pixel required</td><td>CPL &lt; $5 = scale từ $125 buffer</td></tr>
+    <tr class="row-total"><td><strong>TOTAL</strong></td><td><strong>30,000,000đ ($1,200)</strong></td><td>Blended CPM: ~78,000đ/$3.12</td><td><strong>383,753</strong></td><td><strong>~220,000 ✅</strong></td><td>Blended 1.16%</td><td><strong>4,441</strong></td><td></td><td></td></tr>
+  </table></div>
+  <div class="success"><strong>✅ Key update vs. giả định cũ ($6/1000 CPM):</strong> CPM thực tế T1 chỉ 62,500đ ($2.50) — rẻ hơn 58% so với $6 giả định. Kết quả: cùng budget $1,200 nhưng reach thực tế lên <strong>~220,000</strong> (gần đúng 222K target) và clicks tăng từ 2,000 lên <strong>4,441</strong> — warm leads từ 300 lên <strong>666</strong>, vượt mục tiêu 500.</div>
+
+  <h2>3.4 Frequency Planning — f = 1.5</h2>
+  <p class="sub">Công thức: Impressions = Reach × Frequency. Tổng impressions không đổi theo budget — chỉ phân bổ giữa unique reach và frequency thay đổi.</p>
+
+  <div class="info"><strong>Với CPM T1 = 62,500đ:</strong> mỗi 1,000,000đ ngân sách → 16,000 impressions. Ở f=1.5: 10,667 unique reach. Ở f=1.0: 16,000 unique reach. Chọn f=1.5 vì brand recognition cần minimum 2–3 lần exposure — f=1.0 waste budget vào người chỉ thấy ad 1 lần rồi quên.</div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>Metric (Budget 30,000,000đ FB/IG)</th><th>f = 1.0</th><th style="background:#1D9E75;color:#fff">f = 1.5 ✅ Kế hoạch</th><th>f = 2.0</th><th>f = 2.5</th></tr>
+    <tr><td>T1 Total Impressions (18M đ)</td><td colspan="4" style="text-align:center;color:var(--gray-m)">288,000 impressions (không đổi — phụ thuộc budget × CPM)</td></tr>
+    <tr><td>T1 Unique Reach</td><td>288,000</td><td><strong>192,000</strong></td><td>144,000</td><td>115,200</td></tr>
+    <tr><td>T2 Unique Reach (7.5M đ)</td><td>71,429</td><td><strong>47,619</strong></td><td>35,714</td><td>28,571</td></tr>
+    <tr><td>T3 Unique Reach (4.5M đ)</td><td>24,324</td><td><strong>16,216</strong></td><td>12,162</td><td>9,730</td></tr>
+    <tr><td>Total Paid Unique Reach (est.)</td><td>~240,000</td><td><strong>~220,000 ✅</strong></td><td>~165,000</td><td>~132,000</td></tr>
+    <tr><td>+ Organic Reach</td><td>+28,000</td><td><strong>+28,000</strong></td><td>+28,000</td><td>+28,000</td></tr>
+    <tr><td>Total Reach</td><td>~268,000</td><td><strong>~248,000</strong></td><td>~193,000</td><td>~160,000</td></tr>
+    <tr><td>Total Clicks (blended CTR 1.16%)</td><td>4,441</td><td><strong>4,441</strong></td><td>4,441</td><td>4,441</td></tr>
+    <tr><td>Warm Leads (15%)</td><td>666</td><td><strong>666</strong></td><td>666</td><td>666</td></tr>
+    <tr class="row-hl"><td>Conversions (2%)</td><td>13</td><td><strong>13</strong></td><td>13</td><td>13</td></tr>
+    <tr><td>Nhận xét</td><td>Reach max nhưng brand recall thấp</td><td><strong>✅ Balance tốt nhất</strong></td><td>Reach giảm, recall tốt hơn</td><td>Too much repeat — waste</td></tr>
+  </table></div>
+  <div class="info"><strong>Insight:</strong> Clicks và warm leads KHÔNG thay đổi theo frequency — chỉ thay đổi unique reach. Chọn f=1.5 vì đạt 220K reach (gần 222K target) mà vẫn đảm bảo mỗi người thấy ad đủ 1.5 lần để nhớ thương hiệu.</div>
+
+  <h2>3.5 Scenario Planning — 3 Kịch Bản</h2>
+  <p class="sub">Dựa trên CPM benchmark thực tế. Budget được tính theo VNĐ trước, quy đổi sang USD.</p>
+  <div class="tbl-wrap"><table>
+    <tr>
+      <th>Metric</th>
+      <th style="background:var(--gray)">🔴 Conservative<br/>22,500,000đ ($900) · f=1.5</th>
+      <th style="background:#185FA5">🟡 Base Plan ✅<br/>30,000,000đ ($1,200) · f=1.5</th>
+      <th style="background:var(--teal)">🟢 Target<br/>38,000,000đ ($1,520) · f=1.5</th>
+    </tr>
+    <tr><td>FB/IG Ad Spend</td><td>22,500,000đ / $900</td><td><strong>30,000,000đ / $1,200</strong></td><td>38,000,000đ / $1,520</td></tr>
+    <tr><td>Total Budget (incl. LI $100 + tools $200)</td><td><strong>$1,200</strong></td><td><strong>$1,500</strong></td><td><strong>$1,820</strong></td></tr>
+    <tr style="background:#f0fdf9"><td colspan="4" style="font-size:11px;font-weight:700;color:var(--teal);padding:6px 12px">— Tầng 1 Awareness (CPM avg 62,500đ) —</td></tr>
+    <tr><td>T1 Budget (60%)</td><td>13,500,000đ</td><td><strong>18,000,000đ</strong></td><td>22,800,000đ</td></tr>
+    <tr><td>T1 Impressions</td><td>216,000</td><td><strong>288,000</strong></td><td>364,800</td></tr>
+    <tr><td>T1 Unique Reach (f=1.5)</td><td>144,000</td><td><strong>192,000</strong></td><td>243,200</td></tr>
+    <tr><td>T1 Clicks (CTR 0.8%)</td><td>1,728</td><td><strong>2,304</strong></td><td>2,918</td></tr>
+    <tr style="background:#fffbeb"><td colspan="4" style="font-size:11px;font-weight:700;color:var(--amber);padding:6px 12px">— Tầng 2 Lead Gen (CPM avg 105,000đ) —</td></tr>
+    <tr><td>T2 Budget (25%)</td><td>5,625,000đ</td><td><strong>7,500,000đ</strong></td><td>9,500,000đ</td></tr>
+    <tr><td>T2 Impressions</td><td>53,571</td><td><strong>71,429</strong></td><td>90,476</td></tr>
+    <tr><td>T2 Clicks (CTR 1.8%)</td><td>964</td><td><strong>1,286</strong></td><td>1,629</td></tr>
+    <tr style="background:#fcebeb"><td colspan="4" style="font-size:11px;font-weight:700;color:var(--red);padding:6px 12px">— Tầng 3 Retargeting (CPM avg 185,000đ) —</td></tr>
+    <tr><td>T3 Budget (15%)</td><td>3,375,000đ</td><td><strong>4,500,000đ</strong></td><td>5,700,000đ</td></tr>
+    <tr><td>T3 Impressions</td><td>18,243</td><td><strong>24,324</strong></td><td>30,811</td></tr>
+    <tr><td>T3 Clicks (CTR 3.5%)</td><td>639</td><td><strong>851</strong></td><td>1,078</td></tr>
+    <tr style="border-top:2px solid var(--teal)"><td><strong>Total Clicks (all tầng)</strong></td><td><strong>3,331</strong></td><td><strong>4,441</strong></td><td><strong>5,625</strong></td></tr>
+    <tr><td>Total Paid Unique Reach</td><td>~165,000</td><td><strong>~220,000 ✅</strong></td><td>~278,000</td></tr>
+    <tr><td>+ Organic Reach</td><td>+28,000</td><td><strong>+28,000</strong></td><td>+28,000</td></tr>
+    <tr><td><strong>Total Reach</strong></td><td>~193,000</td><td><strong>~248,000 ✅</strong></td><td>~306,000</td></tr>
+    <tr class="row-hl"><td><strong>Warm Leads (15% of clicks)</strong></td><td><strong>500 ✅</strong></td><td><strong>666 ✅</strong></td><td><strong>844 ✅</strong></td></tr>
+    <tr class="row-hl"><td><strong>Conversions (2% of warm leads)</strong></td><td><strong>10 ✅</strong></td><td><strong>13 ✅</strong></td><td><strong>17 ✅</strong></td></tr>
+    <tr><td>A2 Revenue (avg $120/sale)</td><td>$1,200</td><td><strong>$1,560</strong></td><td>$2,040</td></tr>
+    <tr><td>C1 Consulting (est. 2 calls × $400)</td><td>$800</td><td><strong>$800</strong></td><td>$800</td></tr>
+    <tr class="row-total"><td><strong>June Cash Revenue (excl. B)</strong></td><td><strong>$2,000</strong></td><td><strong>$2,360</strong></td><td><strong>$2,840</strong></td></tr>
+    <tr><td><strong>Net June (Revenue – Total Costs)</strong></td><td><strong style="color:var(--teal)">+$800 ✅</strong></td><td><strong style="color:var(--teal)">+$860 ✅</strong></td><td><strong style="color:var(--teal)">+$1,020 ✅</strong></td></tr>
+    <tr><td><strong>Recommendation</strong></td><td>Đủ hit 500 leads + 10 conv. Budget tiết kiệm nhất.</td><td><strong>✅ Balanced — hits all targets</strong></td><td>Scale khi confirmed B deal hoặc Week 2 ads perform tốt.</td></tr>
+  </table></div>
+  <div class="success"><strong>✅ Tất cả 3 kịch bản đều profitable trong June</strong> — nhờ CPM thực tế thấp hơn giả định ban đầu. Conservative ($900 FB/IG) đã đủ hit 500 warm leads và 10 conversions, với net +$800. Base plan ($1,200) cho thêm buffer với 666 leads và net +$860.</div>
+
+  <h2>3.6 Tỉ Lệ Hoà Vốn — Break-even Analysis</h2>
+  <div class="g2">
+    <div>
+      <h3>Chi phí cần thu hồi trong June</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Cost Item</th><th>VNĐ</th><th>USD</th></tr>
+        <tr><td>FB/IG Ads (Base plan)</td><td>30,000,000đ</td><td>$1,200</td></tr>
+        <tr><td>LinkedIn InMail</td><td>2,500,000đ</td><td>$100</td></tr>
+        <tr><td>Tools (Zoom, Canva, Calendly, DocSend)</td><td>1,550,000đ</td><td>$62</td></tr>
+        <tr><td>Stripe processing fees (~3%)</td><td>1,250,000đ</td><td>$50</td></tr>
+        <tr><td>Buffer / contingency</td><td>2,200,000đ</td><td>$88</td></tr>
+        <tr class="row-total"><td><strong>TOTAL COSTS</strong></td><td><strong>37,500,000đ</strong></td><td><strong>$1,500</strong></td></tr>
+      </table></div>
+    </div>
+    <div>
+      <h3>Kịch bản hoà vốn</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Cách đạt hoà vốn $1,500</th><th>Cần</th><th>Khả thi?</th></tr>
+        <tr><td>Chỉ A2 S1 ($79/người)</td><td>19 người</td><td style="color:var(--red)">❌ Funnel cho ~13 tổng</td></tr>
+        <tr><td>Chỉ C1 calls ($400/call)</td><td>4 calls</td><td style="color:var(--amber)">⚠️ Target 2 trong June</td></tr>
+        <tr class="row-hl"><td><strong>Mix: 2 C1 + 8 A2 S1 + D $200</strong></td><td>$800+$632+$200=$1,632</td><td style="color:var(--teal)"><strong>✅ Hoà vốn + $132</strong></td></tr>
+        <tr class="row-hl"><td><strong>Base scenario (13 conv. × $120)</strong></td><td>$1,560 + $800 C1 = $2,360</td><td style="color:var(--teal)"><strong>✅ +$860 profit</strong></td></tr>
+        <tr class="row-hl"><td><strong>1 B Half-Day ($2,000–3,000)</strong></td><td>1 booking</td><td style="color:var(--teal)"><strong>✅ Profitable ngay lập tức</strong></td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>Break-even Metric</th><th>Công thức</th><th>Base Plan (CPM đã sửa)</th><th>Diễn giải</th></tr>
+    <tr><td><strong>Break-even conversion rate</strong></td><td>Costs ÷ (Warm leads × Avg order)</td><td><strong>$1,500 ÷ (666 × $150) = <span style="color:var(--teal)">1.50%</span></strong></td><td>✅ Chỉ cần 1.5% — DƯỚI 2% baseline. Plan đã profitable tự nhiên.</td></tr>
+    <tr><td><strong>Break-even # of sales</strong></td><td>Costs ÷ Avg order value</td><td><strong>$1,500 ÷ $150 = 10 sales</strong></td><td>Cần 10. Base plan cho 13 → buffer 3 sales.</td></tr>
+    <tr><td><strong>Projected ROAS (Base)</strong></td><td>Revenue ÷ Ad spend</td><td><strong>$2,360 ÷ $1,200 = <span style="color:var(--teal)">1.97×</span></strong></td><td>✅ Gần 2× ROAS chỉ từ individual sales trong June.</td></tr>
+    <tr class="row-hl"><td><strong>Break-even với 1 B deal (July)</strong></td><td>B Half-Day $2,500 close July</td><td><strong>$2,500 covers full June costs ($1,500) + buffer $1,000</strong></td><td>✅ 1 B deal = toàn bộ June profitable, bao gồm cả ads.</td></tr>
+  </table></div>
+  <div class="success"><strong>💡 Kết luận break-even:</strong> Với CPM thực tế thị trường E-learning VN, break-even conversion rate chỉ cần <strong>1.50%</strong> — thấp hơn baseline 2%. Nghĩa là plan đã profitable ngay cả trong kịch bản conservative nhất. June không còn là "investment month thuần túy" mà có thể profitable từ tháng đầu nếu execution đúng.</div>
+
+  <h2>3.7 Ad Creative — What to Run</h2>
+  <div class="g3">
+    <div class="card" style="border-top:3px solid var(--purple)">
+      <div class="card-icon">📘</div>
+      <div class="card-title">FB/IG Ad Set 1 — Awareness</div>
+      <div class="card-sub">Budget: $600 · Jun 5–30</div>
+      <ul>
+        <li><strong>Format:</strong> Single image hoặc short video (15s)</li>
+        <li><strong>Hook:</strong> "9pm. ITM deck chưa xong." hoặc "Brief bị sửa bao nhiêu lần rồi?"</li>
+        <li><strong>Visual:</strong> Dark background + white text + TWC logo</li>
+        <li><strong>CTA button:</strong> "Tìm hiểu thêm" → Landing page</li>
+        <li><strong>Objective:</strong> Traffic (website clicks) hoặc Lead Generation</li>
+        <li>A/B test: Arc B hook vs Arc D hook</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <div class="card-icon">🔄</div>
+      <div class="card-title">FB/IG Ad Set 2 — Retargeting</div>
+      <div class="card-sub">Budget: $300 · Jun 9–30</div>
+      <ul>
+        <li><strong>Audience:</strong> Website visitors + IG engagers (30 days)</li>
+        <li><strong>Format:</strong> Carousel — show 3 session previews</li>
+        <li><strong>Hook:</strong> "Bạn đã xem — đây là kết quả từ Cohort 1 vừa xong"</li>
+        <li><strong>CTA:</strong> "Đăng ký ngay" → Direct booking</li>
+        <li><strong>Objective:</strong> Conversions (form fill)</li>
+        <li>Run sau khi có testimonials từ Jun 9</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--teal)">
+      <div class="card-icon">💼</div>
+      <div class="card-title">LinkedIn — InMail Only (Minimal)</div>
+      <div class="card-sub" style="color:var(--amber)">Budget: $100 · Jun 16–30 · Sponsored Content dropped</div>
+      <ul>
+        <li><strong>No Sponsored Content</strong> — CPM $20+ quá đắt cho narrow audience</li>
+        <li><strong>InMail only ($100):</strong> Direct message đến ~1,000 L&D/HR/Director</li>
+        <li><strong>Subject:</strong> "AI training cho marketing team của [Company] — kết quả pilot vừa xong"</li>
+        <li><strong>B2B pipeline thay thế:</strong> LinkedIn organic posts + WA/Zalo direct outreach (free)</li>
+        <li><strong>Rule:</strong> Dùng LinkedIn cho relationship-building, không phải paid reach</li>
+        <li>Start InMail Jun 16 (sau khi có testimonials từ Jun 9)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>3.8 Landing Page Requirements</h2>
+  <div class="success"><strong>Critical:</strong> Tất cả traffic từ ads → 1 landing page với form capture. Form phải có: Tên + Email + Công ty + Level (ABM/BM/L&D/CEO) + "Pain point lớn nhất hiện tại". Warm lead = form submitted.</div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">Landing Page Must-Haves</div>
+      <ul>
+        <li>Hero: Hook sentence + "Đăng ký miễn phí / Giữ chỗ" CTA above fold</li>
+        <li>Social proof: 2–3 testimonials (sau Jun 9) với photo + tên + company type</li>
+        <li>Product grid: A1 / A2 / B / C ngắn gọn với giá</li>
+        <li>Form: Name + Email + Company + Role + Pain point (5 fields max)</li>
+        <li>FAQ section: 3–4 objections handled</li>
+        <li>Footer: Yennie profile + credentials</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Tracking Setup Cần Có</div>
+      <ul>
+        <li>Facebook Pixel: install trước Jun 5 (trước khi chạy ads)</li>
+        <li>Google Analytics / GA4: track form submissions</li>
+        <li>UTM parameters: tag mỗi ad source (fb_awareness, fb_retargeting, li_sponsored)</li>
+        <li>Conversion event: form submit = "warm_lead" event</li>
+        <li>Calendly tracking: embed trên landing page, track booking event</li>
+        <li>Weekly export: số leads per source để optimize budget</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /p3 -->
+
+<!-- ══════════ P4: REVENUE PLAN ══════════ -->
+<div id="p4" class="page">
+  <h1>Revenue Plan — June → July → August</h1>
+  <p class="sub">Dựa trên funnel 10 conversions từ 500 warm leads. June = ramp-up & proof. July = $10K target.</p>
+
+  <h2>4.1 Revenue per Segment — June Breakdown</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Product</th><th>Segment</th><th>Price</th><th>Jun est. units</th><th>Jun revenue</th><th>Pipeline for July</th></tr>
+    <tr><td><strong>A1 Cohort 1 (Free)</strong></td><td>Marketer</td><td>$0</td><td>10 seats</td><td>$0 (investment)</td><td>→ 5+ testimonials → A2 upsell</td></tr>
+    <tr><td><strong>A2 Session 1 ($79)</strong></td><td>Marketer</td><td>$79/person</td><td>5–8 people</td><td>$395–632</td><td>→ Upsell to bundle</td></tr>
+    <tr><td><strong>A2 Bundle Complete ($199)</strong></td><td>Marketer</td><td>$199/person</td><td>2–4 people</td><td>$398–796</td><td>→ Alumni referral</td></tr>
+    <tr class="row-hl"><td><strong>B Half-Day ($2,000–3,000)</strong></td><td>BM/L&D</td><td>$2,000–3,000</td><td>0–1 (pipeline only)</td><td>$0–3,000</td><td>→ Close in July (4–6wk cycle)</td></tr>
+    <tr><td><strong>C1 Strategy Call ($350–450)</strong></td><td>BM/CEO</td><td>$350–450</td><td>2 calls</td><td>$700–900</td><td>→ C2 or B proposal follow</td></tr>
+    <tr><td><strong>D Marketplace</strong></td><td>All</td><td>$39–199</td><td>2–5 purchases</td><td>$100–400</td><td>Passive growth</td></tr>
+    <tr class="row-total"><td colspan="4"><strong>JUNE TOTAL</strong></td><td><strong>$1,593–5,728</strong></td><td><strong>Target floor: $3,000</strong></td></tr>
+  </table></div>
+
+  <div class="warn"><strong>Note:</strong> June là investment month — Cohort 1 là free, B pipeline bắt đầu nhưng chưa close. Revenue thật bắt đầu từ cuối June (C1 calls) và đẩy mạnh July. Floor $3K là realistic, $5K+ là upside nếu có 1 B half-day confirmed.</div>
+
+  <h2>4.2 3-Month Revenue Forecast</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Revenue Stream</th><th>June</th><th>July (Target $10K)</th><th>August</th><th>Notes</th></tr>
+    <tr><td>A1 + A2 Individual</td><td>$793–1,428</td><td>$1,500–4,000</td><td>$2,500–6,000</td><td>Grows với alumni referrals</td></tr>
+    <tr class="row-hl"><td>B Corporate Training</td><td>$0–3,000</td><td>$4,000–8,000</td><td>$6,000–12,000</td><td>Pipeline từ Jun → close July</td></tr>
+    <tr><td>C1/C2 Consulting</td><td>$700–900</td><td>$1,400–2,700</td><td>$2,100–5,000</td><td>Calendly public Jun 23</td></tr>
+    <tr><td>C3 Custom Build</td><td>$0</td><td>$0–15,000</td><td>$10,000–30,000</td><td>From C1/C2 pipeline only</td></tr>
+    <tr><td>D Marketplace</td><td>$100–400</td><td>$400–1,000</td><td>$800–2,500</td><td>Build Aug → launch</td></tr>
+    <tr class="row-total"><td><strong>TOTAL</strong></td><td><strong>$1,593–5,728</strong></td><td><strong>$7,300–30,700</strong></td><td><strong>$21,400–55,500</strong></td><td><strong>$10K/mo = July target</strong></td></tr>
+  </table></div>
+
+  <h2>4.3 $10K/Month Formula (July)</h2>
+  <div class="g2">
+    <div class="card" style="border-top:3px solid var(--teal)">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">Conservative $10K Path</div>
+      <ul>
+        <li>1× B Full-Day Workshop: $3,500–5,000</li>
+        <li>1× B Half-Day Workshop: $2,000–3,000</li>
+        <li>3× C1 Consulting Calls: $1,050–1,350</li>
+        <li>5× A2 individual (bundles): $795–995</li>
+        <li>D Marketplace passive: $400</li>
+        <li><strong>Total: $7,745–10,745 ✅</strong></li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <div class="card-icon">🚀</div>
+      <div class="card-title">Upside $20K+ Path</div>
+      <ul>
+        <li>1× C3 Custom Build project: $10,000–15,000</li>
+        <li>2× B Corporate workshops: $6,000–10,000</li>
+        <li>10+ A2 individual: $1,590–2,000</li>
+        <li>5× C1/C2 Consulting: $1,750–4,000</li>
+        <li><strong>Total: $19,340–31,000</strong></li>
+        <li>Requires: 1 warm C3 lead from June C1/C2 calls</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>4.4 Cost vs. Revenue — June P&L</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Item</th><th>Cost</th><th>Notes</th></tr>
+    <tr><td>Paid Ads (FB/IG + LinkedIn)</td><td>$1,500</td><td>Required to hit 222K reach target</td></tr>
+    <tr><td>Tools: Zoom Pro + DocSend + Canva</td><td>$50</td><td>Monthly subscription</td></tr>
+    <tr><td>Calendly (Pro)</td><td>$12</td><td>For C1 booking</td></tr>
+    <tr><td>Stripe processing fees (2.9% + $0.30)</td><td>~$40–120</td><td>On A2 + C1 revenue</td></tr>
+    <tr><td>A1 Cohort 1 (opportunity cost)</td><td>10 free seats × $49 = $490 waived</td><td>Investment in testimonials + pipeline</td></tr>
+    <tr class="row-hl"><td><strong>Total June Costs</strong></td><td><strong>$1,612–1,692</strong></td><td>Exclude waived A1 revenue</td></tr>
+    <tr class="row-total"><td><strong>Net June (conservative)</strong></td><td><strong>-$99 to +$4,116</strong></td><td>Breakeven at $1,700 gross revenue</td></tr>
+  </table></div>
+  <div class="success"><strong>Breakeven analysis:</strong> Cần $1,700 gross revenue trong June để cover ad spend + tools. Với 2 C1 calls ($800) + 3 A2 sessions ($237) + 1 B half-day pipeline confirmed = $1,037 cash + $2,000 pipeline. Cash positive nếu có 1 paid corporate in June.</div>
+
+</div><!-- /p4 -->
+
+<!-- ══════════ P5: RISKS & MITIGATIONS ══════════ -->
+<div id="p5" class="page">
+  <h1>Risks & Mitigations</h1>
+  <p class="sub">Structured theo likelihood × impact. Action owner và contingency plan cho mỗi risk.</p>
+
+  <h2>5.1 Risk Register</h2>
+
+  <div style="display:grid;grid-template-columns:2fr 80px 80px 2fr 100px;gap:10px;padding:9px 18px;background:var(--gray-dk);color:#fff;border-radius:10px 10px 0 0;font-size:11px;font-weight:700;letter-spacing:.3px;margin-bottom:0">
+    <span>Risk</span><span style="text-align:center">Likelihood</span><span style="text-align:center">Impact</span><span>Mitigation</span><span>Contingency</span>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">Paid ads không convert — CTR &lt; 1% sau 7 ngày chạy</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">Reach đạt nhưng website clicks quá thấp. Warm leads không về 500.</div></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div style="text-align:center"><span class="ri-level lh">High</span></div>
+    <div class="ri-mitigation">A/B test 2 creatives từ ngày 1: Arc B hook vs Arc D hook. Review sau 7 ngày — tắt creative kém, double down creative tốt. Install Facebook Pixel trước Jun 5 để có data ngay.</div>
+    <div class="ri-owner">If CTR &lt; 0.8%: thay toàn bộ creative. If CTR 0.8–1.2%: tăng budget ad set đang tốt hơn.</div>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">Cohort 1 không đủ 10 người cho Jun 9</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">Warm outreach không fill đủ seats, testimonials ít hơn kế hoạch.</div></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div style="text-align:center"><span class="ri-level lh">High</span></div>
+    <div class="ri-mitigation">Start outreach Jun 1. Track daily: mỗi ngày 5 DMs đến list 30 warm contacts. Có 8 ngày để fill 10 seats. Gửi Zoom link confirm trước 48h.</div>
+    <div class="ri-owner">If &lt; 8 by Jun 7: postpone 1 tuần (Jun 16), extend list thêm 15 người. Minimum run = 6 người.</div>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">Landing page không capture 500 warm leads — form UX kém hoặc không có page trước Jun 5</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">Ads chạy nhưng không có destination tốt để capture leads.</div></div>
+    <div style="text-align:center"><span class="ri-level lh">High</span></div>
+    <div style="text-align:center"><span class="ri-level lh">High</span></div>
+    <div class="ri-mitigation"><strong>Priority 1:</strong> Landing page phải live trước Jun 5 (trước khi ads chạy). Minimum: hero + form + product grid + CTA. No fancy design needed — just works.</div>
+    <div class="ri-owner">If page not ready by Jun 4: run ads đến Instagram bio link với Typeform embed thay thế. Suboptimal nhưng không delay ads.</div>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">Testimonials sau Cohort 1 không đủ mạnh / không thu được đúng hạn</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">B/C pipeline và Jun 23 launch phụ thuộc vào social proof thật.</div></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div class="ri-mitigation">Brief participants trước workshop: "Hãy mang 1 real artifact — đây sẽ tạo WOW moment." Gửi Typeform trong 2h sau khi kết thúc — không đợi ngày hôm sau. Follow up cá nhân với 3 người có kết quả rõ nhất.</div>
+    <div class="ri-owner">If &lt; 3 testimonials by Jun 11: delay Jun 23 launch post. Focus Jun 16–22 vào collecting thêm.</div>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">B corporate pipeline stall — không close được trước end of July</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">Revenue target $10K/July phụ thuộc lớn vào B workshops.</div></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div style="text-align:center"><span class="ri-level lh">High</span></div>
+    <div class="ri-mitigation">Start B outreach Jun 10 (không đợi Jun 23). Sales cycle 4–6 tuần = outreach Jun 10 → close mid-July. Gửi B proposal ngay sau khi có 1 testimonial — không cần chờ đủ 5.</div>
+    <div class="ri-owner">If 0 B by Jul 15: lean harder vào C consulting ($350–450/call, faster to close). 5 × C1 calls = $1,750+ tháng đó.</div>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">Ad budget vượt $1,500 mà không đủ warm leads</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">Spend trước khi convert đủ — ROI âm trong tháng 1.</div></div>
+    <div style="text-align:center"><span class="ri-level ll">Low</span></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div class="ri-mitigation">Hard cap budget per ad set. Review sau 7 ngày (Jun 12): nếu CPL (cost per lead) &gt; $10, tắt ad set đó. Maximum acceptable CPL = $3 (500 leads / $1,500 budget).</div>
+    <div class="ri-owner">If CPL &gt; $5 consistently: shift budget từ paid → direct organic outreach + FMCG alumni groups sharing. Zero cost, lower reach but higher conversion.</div>
+  </div>
+
+  <div class="risk-item">
+    <div><div class="ri-risk">Competitor launch cùng thời điểm hoặc copy positioning</div><div style="font-size:11px;color:var(--gray-m);margin-top:3px">Tomorrow Marketers, Run by Linh hoặc new entrant với similar messaging.</div></div>
+    <div style="text-align:center"><span class="ri-level ll">Low</span></div>
+    <div style="text-align:center"><span class="ri-level lm">Medium</span></div>
+    <div class="ri-mitigation">TWC moat: FMCG artifact specificity (Nielsen, ITM, brief) không bị copy trong ngắn hạn vì cần domain expertise. Continue doubling down on FMCG-specific language mà competitors không dùng.</div>
+    <div class="ri-owner">If competitor launches: accelerate testimonial collection + publish before/after artifacts nhanh hơn. Proof beats positioning claim.</div>
+  </div>
+
+  <h2>5.2 Go/No-Go Gates — Checkpoint Logic</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Date</th><th>Gate</th><th>Green: Proceed</th><th>Red: Action Required</th></tr>
+    <tr class="row-hl"><td><strong>Jun 5</strong></td><td>Landing page live + Facebook Pixel installed + Ads ready to launch</td><td>Proceed with ads Jun 5</td><td>Delay ads to Jun 7. Use organic only Jun 5–6.</td></tr>
+    <tr><td><strong>Jun 7</strong></td><td>≥ 6 Cohort 1 seats confirmed for Jun 9</td><td>Proceed with Jun 9 workshop</td><td>Postpone to Jun 16. Extend outreach 1 tuần.</td></tr>
+    <tr class="row-hl"><td><strong>Jun 12</strong></td><td>Ad CTR ≥ 1%, CPL ≤ $5, ≥ 3 testimonials collected</td><td>Scale best ad set. Proceed to B outreach.</td><td>Refresh creatives. Delay B outreach if &lt; 3 testimonials.</td></tr>
+    <tr><td><strong>Jun 20</strong></td><td>≥ 200 warm leads captured, ≥ 1 B proposal sent, Jun 23 content ready</td><td>Proceed with full launch Jun 23</td><td>Scale ads budget temporarily. Delay Jun 23 post 3 ngày.</td></tr>
+    <tr class="row-hl"><td><strong>Jun 30</strong></td><td>≥ 500 warm leads, ≥ 10 attendees, ≥ 2 C1 calls done, ≥ $3K revenue</td><td>June = success. Scale July.</td><td>Diagnose: which funnel stage failed → fix before July push.</td></tr>
+  </table></div>
+
+</div><!-- /p5 -->
+
+<script>
+function go(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

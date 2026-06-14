@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWC Ad Campaign Brief v4 | Jun 15 – Jul 9</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ind:#050090;--lime:#c0f100;--ink:#1B1B23;--paper:#FBF8FF;
+  --green:#16a34a;--green-bg:#dcfce7;
+  --red:#b91c1c;--red-bg:#fee2e2;
+  --amber:#d97706;--amber-bg:#fef3c7;
+  --blue:#1d4ed8;--blue-bg:#dbeafe;
+  --purple:#6d28d9;--purple-bg:#ede9fe;
+  --border:#e5e7eb;--gray:#6b7280;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;color:var(--ink);background:#f5f5f7}
+.topbar{background:var(--ind);color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px}
+.brand{font-weight:800;font-size:14px;letter-spacing:1px}.brand span{color:var(--lime)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.15);color:#fff;transition:.15s}
+.tab.active,.tab:hover{background:var(--lime);color:var(--ink)}
+.page{display:none}.page.active{display:block}
+.hdr{padding:16px 20px;background:#fff;border-bottom:1px solid var(--border)}
+.hdr h1{font-size:17px;font-weight:800;margin-bottom:3px}
+.hdr p{font-size:12px;color:var(--gray)}
+section{padding:16px 20px}
+h2{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--ind);margin:20px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--lime)}
+h3{font-size:12px;font-weight:700;margin:14px 0 8px;color:var(--ink)}
+
+/* CALLOUT */
+.note{padding:10px 14px;border-radius:8px;font-size:11px;line-height:1.6;margin:8px 0;border-left:3px solid}
+.note-amber{background:var(--amber-bg);border-color:var(--amber);color:#92400e}
+.note-green{background:var(--green-bg);border-color:var(--green);color:#166534}
+.note-blue{background:var(--blue-bg);border-color:#3b82f6;color:#1e40af}
+.note-red{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.note b{font-weight:700}
+
+/* BUDGET CARDS */
+.bcard-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:12px 0}
+.bcard{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--border);text-align:center}
+.bcard .amt{font-size:22px;font-weight:800;color:var(--ind)}
+.bcard .lbl{font-size:10px;color:var(--gray);margin-top:2px}
+.bcard .sub{font-size:9px;color:#9ca3af;margin-top:3px}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:11px}
+thead th{background:var(--ink);color:#fff;padding:8px 10px;font-weight:700;text-align:left;white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:hover{background:#f8f7ff}
+td{padding:8px 10px;vertical-align:top;line-height:1.5}
+.ph{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.ph1{color:#1e3a8a}.ph1-bg td{background:#dbeafe}
+.ph2{color:#92400e}.ph2-bg td{background:#fef3c7}
+.ph3{color:#991b1b}.ph3-bg td{background:#fee2e2}
+.ph4{color:#5b21b6}.ph4-bg td{background:#ede9fe}
+.total-row td{background:var(--lime)!important;font-weight:800;color:var(--ink)}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;margin:1px}
+.b-fb{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+.b-li{background:#e0e7ff;color:#3730a3;border:1px solid #a5b4fc}
+.b-ig{background:#fce7f3;color:#9d174d;border:1px solid #f9a8d4}
+.b-test{background:var(--amber-bg);color:#92400e}
+.b-always{background:var(--red-bg);color:var(--red)}
+.b-boost{background:var(--green-bg);color:var(--green)}
+.b-l2{background:#e0f2fe;color:#0369a1}
+.b-l3{background:#ede9fe;color:#6d28d9}
+.b-both{background:#d1fae5;color:#065f46}
+
+/* CREATIVE CARDS */
+.creative-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin:12px 0}
+.ccard{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden}
+.ccard-head{background:var(--ink);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.ccard-id{font-weight:800;font-size:13px;color:var(--lime)}
+.ccard-title{font-size:11px;opacity:.85;line-height:1.4;margin-top:2px}
+.ccard-meta{display:flex;gap:4px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--border)}
+.ccard-hooks{padding:12px 14px}
+.hook-item{margin-bottom:10px;padding:8px 10px;border-radius:8px;border-left:3px solid}
+.hook-a{background:#eff6ff;border-color:#3b82f6}
+.hook-b{background:#f5f3ff;border-color:#8b5cf6}
+.hook-c{background:#f0fdf4;border-color:#10b981}
+.hook-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;color:var(--gray)}
+.hook-text{font-size:11px;line-height:1.5;color:var(--ink);font-weight:600}
+.hook-audience{font-size:10px;color:var(--gray);margin-top:2px}
+.ccard-specs{padding:10px 14px;background:#f9fafb;display:grid;grid-template-columns:1fr 1fr;gap:6px;border-top:1px solid var(--border)}
+.spec-item{font-size:10px;color:var(--gray)}<br>.spec-item strong{color:var(--ink);display:block;font-weight:700}
+.ccard-budget{padding:10px 14px;background:#f0f0ff;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.budget-amt{font-size:16px;font-weight:800;color:var(--ind)}
+.budget-rule{font-size:10px;color:var(--gray);line-height:1.5}
+.always-on{background:linear-gradient(135deg,var(--red-bg),#fff0f0)}
+.always-on .ccard-head{background:var(--red)}
+
+/* CAMPAIGN STRUCTURE */
+.camp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:12px 0}
+.camp-card{background:#fff;border-radius:10px;border:1px solid var(--border);overflow:hidden}
+.camp-head{padding:12px 14px;font-size:12px;font-weight:800;color:#fff}
+.camp-body{padding:12px 14px}
+.camp-body li{font-size:11px;color:var(--gray);line-height:1.7;margin-left:14px}
+.camp-body strong{color:var(--ink)}
+.camp-kv{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:11px}
+.camp-kv:last-child{border-bottom:none}
+.camp-kv .k{color:var(--gray)}
+.camp-kv .v{font-weight:700;color:var(--ink)}
+
+/* WEEKLY PLAN */
+.week-block{background:#fff;border-radius:10px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden}
+.week-head{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.week-title{font-size:13px;font-weight:800}
+.week-budget{font-size:16px;font-weight:800;color:var(--ind)}
+.week-goal{font-size:11px;color:var(--gray);margin-top:2px}
+.week-body{padding:12px 16px}
+
+/* DECISION */
+.decision-tree{background:#fff;border-radius:10px;border:1px solid var(--border);padding:16px;margin:12px 0}
+.dt-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.dt-row:last-child{border-bottom:none}
+.dt-trigger{background:var(--ind);color:#fff;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;white-space:nowrap;min-width:120px;text-align:center}
+.dt-arrow{font-size:16px;color:var(--gray);padding-top:4px}
+.dt-action{font-size:11px;line-height:1.6;color:var(--ink)}
+.dt-action .result{font-weight:700}
+</style>
+</head>
+<body>
+<div style="background:#0a0060;padding:5px 16px;display:flex;gap:6px;align-items:center;font-size:11px;font-family:-apple-system,sans-serif;flex-wrap:wrap;position:sticky;top:0;z-index:999">
+  <span style="color:#c0f100;font-weight:800;font-size:12px;margin-right:6px">🃏 TWC</span>
+  <a href="TWC-Ops-Hub.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.2);font-weight:700">🏠 Hub</a>
+  <a href="content-calendar-v4.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">📅 Content</a>
+  <a href="TWC-Ad-Campaign-Brief-v4.html" style="color:#050090;text-decoration:none;padding:3px 10px;border-radius:12px;background:#c0f100;font-weight:800">💰 Ads</a>
+  <a href="twc-b2b-strategy.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">🤝 B2B</a>
+  <a href="TWC - Marketing Plan v5.html" style="color:#fff;text-decoration:none;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.12);font-weight:600">📊 Plan v5</a>
+</div>
+
+<div class="topbar">
+  <div class="brand">🃏 THE WILD <span>CARD</span> — Ad Campaign Brief v4</div>
+  <div class="tabs">
+    <button class="tab active" onclick="show('structure',this)">🏗️ Campaign Structure</button>
+    <button class="tab" onclick="show('assets',this)">🎨 Assets & Hooks</button>
+    <button class="tab" onclick="show('budget',this)">💰 Budget Plan</button>
+    <button class="tab" onclick="show('decision',this)">⚡ Kill / Scale Rules</button>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 1: CAMPAIGN STRUCTURE ═══════════ -->
+<div id="structure" class="page active">
+<div class="hdr">
+  <h1>Campaign Structure — Facebook + LinkedIn</h1>
+  <p>Jun 15 – Jul 9, 2026 · Total $850 (v5.2 rebalanced) · Objective: Website Leads (thewildcard.vn/session-1) · Target: 14–16 enrolments + 1 B2B deal</p>
+</div>
+<section>
+
+<div class="note note-amber"><b>⚠️ Nguyên tắc cốt lõi:</b> Chạy <b>Conversion objective → Landing Page View</b> (hoặc Lead nếu có pixel event). Facebook sẽ optimize đúng người có khả năng click vào website. KHÔNG chạy Reach hoặc Engagement objective cho campaign lead gen.</div>
+
+<h2>1. Campaign Overview</h2>
+<div class="camp-grid">
+  <div class="camp-card">
+    <div class="camp-head" style="background:var(--ind)">📘 FB/IG Campaign — CBO</div>
+    <div class="camp-body">
+      <div class="camp-kv"><span class="k">Objective</span><span class="v">Traffic / Landing Page View</span></div>
+      <div class="camp-kv"><span class="k">Budget type</span><span class="v">CBO — $15–20/ngày</span></div>
+      <div class="camp-kv"><span class="k">Total budget</span><span class="v">$1,100 (FB/IG)</span></div>
+      <div class="camp-kv"><span class="k">Ad Sets</span><span class="v">3 ad sets song song</span></div>
+      <div class="camp-kv"><span class="k">Ads per set</span><span class="v">2–3 hooks per creative</span></div>
+      <div class="camp-kv"><span class="k">Pixel event</span><span class="v">ViewContent / Lead (cần cài)</span></div>
+    </div>
+  </div>
+  <div class="camp-card">
+    <div class="camp-head" style="background:#0a66c2">💼 LinkedIn Campaign</div>
+    <div class="camp-body">
+      <div class="camp-kv"><span class="k">Type</span><span class="v">Organic posts + InMail W3</span></div>
+      <div class="camp-kv"><span class="k">Paid boost</span><span class="v">$10 test per LI post</span></div>
+      <div class="camp-kv"><span class="k">InMail budget</span><span class="v">$100 — Wk3 only</span></div>
+      <div class="camp-kv"><span class="k">Target</span><span class="v">Director, L&D, BM, CMO</span></div>
+      <div class="camp-kv"><span class="k">Total LI</span><span class="v">$150 (boost + InMail)</span></div>
+      <div class="camp-kv"><span class="k">CTA</span><span class="v">thewildcard.vn/corporate</span></div>
+    </div>
+  </div>
+  <div class="camp-card">
+    <div class="camp-head" style="background:#b91c1c">🔴 Always-On Ads (L1–L4)</div>
+    <div class="camp-body">
+      <div class="camp-kv"><span class="k">Posts</span><span class="v">L1 · L2 · L3 · L4</span></div>
+      <div class="camp-kv"><span class="k">Budget</span><span class="v">$300 tổng · run suốt launch</span></div>
+      <div class="camp-kv"><span class="k">Objective</span><span class="v">Conversions / Leads</span></div>
+      <div class="camp-kv"><span class="k">Không kill</span><span class="v">Chạy qua hết phase</span></div>
+      <div class="camp-kv"><span class="k">CTA</span><span class="v">Đăng ký ngay</span></div>
+    </div>
+  </div>
+</div>
+
+<h2>2. FB/IG Ad Sets — 3 Audiences</h2>
+<div class="camp-grid">
+  <div class="camp-card">
+    <div class="camp-head" style="background:#1e3a8a">Ad Set 1 — Cold Interest</div>
+    <div class="camp-body">
+      <ul>
+        <li><strong>Location:</strong> HCM + HN</li>
+        <li><strong>Age:</strong> 22–38</li>
+        <li><strong>Job:</strong> Marketing, Brand Manager, Advertising</li>
+        <li><strong>Interest:</strong> FMCG brands, Marketing, AI tools</li>
+        <li><strong>Exclude:</strong> Đã tương tác page 30 ngày</li>
+        <li><strong>Posts dùng:</strong> A1, A5, A8, A9, B3 (FB viral hooks)</li>
+        <li><strong>Budget share:</strong> ~50% CBO</li>
+        <li><strong>Creatives:</strong> 3 hooks A/B/C per post</li>
+      </ul>
+    </div>
+  </div>
+  <div class="camp-card">
+    <div class="camp-head" style="background:#065f46">Ad Set 2 — Lookalike 1%</div>
+    <div class="camp-body">
+      <ul>
+        <li><strong>Source:</strong> Page engagers 60 ngày + email list (nếu có ≥100 contacts)</li>
+        <li><strong>Lookalike:</strong> 1% VN</li>
+        <li><strong>Posts dùng:</strong> A3, A4, B1, C1 (case study + value)</li>
+        <li><strong>Budget share:</strong> ~30% CBO</li>
+        <li><strong>Start:</strong> Jun 22 (sau khi có organic tương tác từ W1)</li>
+        <li><strong>Creatives:</strong> 2–3 hooks per post</li>
+      </ul>
+    </div>
+  </div>
+  <div class="camp-card">
+    <div class="camp-head" style="background:#92400e">Ad Set 3 — Retargeting</div>
+    <div class="camp-body">
+      <ul>
+        <li><strong>Audience:</strong> Web visitors 14 ngày + IG profile visitors + FB video viewers 50%+</li>
+        <li><strong>Posts dùng:</strong> L2, L3, L4 (urgency + sales)</li>
+        <li><strong>Budget share:</strong> ~20% CBO</li>
+        <li><strong>Start:</strong> Jun 27 (Full Launch) — cần đủ cookie pool trước</li>
+        <li><strong>Budget riêng:</strong> $100 dedicated (tách khỏi CBO)</li>
+        <li><strong>Creatives:</strong> Testimonial + "Còn X chỗ"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>3. Creative per Ad Set — Mapping</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Post ID</th><th>Platform</th><th>Ad Set</th><th>Hooks ready</th><th>Type</th><th>Test $</th><th>Scale trigger</th></tr></thead>
+<tbody>
+<tr class="ph1-bg"><td colspan="7" class="ph1">── WEEK 1 (Jun 15–19) · Pre-Launch A/B ──</td></tr>
+<tr><td><b>A1</b> Jun 15</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG Reels</span></td><td>Cold Interest</td><td>H-A (L2) · H-B (L3) · H-C (generic)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% sau 48h → +$50</td></tr>
+<tr><td><b>A5</b> Jun 17</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (L2) · H-B (L2 alt) · H-C (confession)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → scale</td></tr>
+<tr><td><b>A2</b> Jun 18</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (contrarian) · H-B (L3) · H-C (team pain)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>CTR > 1.5% LI → extend</td></tr>
+<tr><td><b>A8</b> Jun 19</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (B/A split) · H-B (time number) · H-C (identity)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → boost</td></tr>
+
+<tr class="ph2-bg"><td colspan="7" class="ph2">── WEEK 2 (Jun 20–26) · Soft Launch 🚀 ──</td></tr>
+<tr><td><b>L1</b> Jun 20</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>All 3 Sets</td><td>H-A (brand launch) · H-B (L3 angle) · H-C (urgency)</td><td><span class="badge b-always">Always-On</span></td><td>$50/wk</td><td>Run qua Jun 27. Không kill.</td></tr>
+<tr><td><b>A3</b> Jun 22</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Lookalike</td><td>H-A (case study) · H-B (time number) · H-C (question)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → W3 boost</td></tr>
+<tr><td><b>A4</b> Jun 24</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG Carousel</span></td><td>Lookalike</td><td>H-A (save this) · H-B (missing element) · H-C (framework)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>Save rate > 5% → scale</td></tr>
+<tr><td><b>C7-P2</b> Jun 25</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (founder confession) · H-B (FMCG journey) · H-C (why built)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>Comments/DMs → note warm leads</td></tr>
+<tr><td><b>A6</b> Jun 26</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (4 steps) · H-B (blank doc) · H-C (workflow)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>CTR > 1.5% → extend</td></tr>
+<tr><td><b>B1</b> Jun 26</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (50 trang 3 phút) · H-B (team missed) · H-C (insight gap)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → boost cho W3</td></tr>
+
+<tr class="ph3-bg"><td colspan="7" class="ph3">── WEEK 3 (Jun 27–30) · Full Launch 🔥 ──</td></tr>
+<tr><td><b>C1</b> Jun 27</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold + Lookalike</td><td>H-A (L1→L3 gap) · H-B (competitor angle) · H-C (time cost)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → W4 scale</td></tr>
+<tr><td><b>L2</b> Jun 28</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Retargeting</td><td>H-A (all programs open) · H-B (start here) · H-C (you've been following)</td><td><span class="badge b-always">Always-On</span></td><td>$75/wk</td><td>Run qua Jul 3. Không kill.</td></tr>
+
+<tr class="ph4-bg"><td colspan="7" class="ph4">── WEEK 4 (Jul 1–9) · July Close 🎯 ──</td></tr>
+<tr><td><b>A9</b> Jul 1</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (myth #1) · H-B (myth #5 time) · H-C (question)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>Save rate > 5% → scale</td></tr>
+<tr><td><b>L3</b> Jul 2</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Retargeting</td><td>H-A (48h) · H-B (spots left) · H-C (last chance)</td><td><span class="badge b-always">Always-On</span></td><td>$75/wk</td><td>Urgency — chạy 4 ngày rồi stop</td></tr>
+<tr><td><b>B3</b> Jul 3</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Lookalike</td><td>H-A (4h→40min) · H-B (6x faster) · H-C (data to decision)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → boost</td></tr>
+<tr><td><b>B2</b> Jul 6</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (BM vs analyst) · H-B (skill democratize) · H-C (who learns first wins)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>Organic DMs → follow up</td></tr>
+<tr><td><b>L4</b> Jul 7</td><td><span class="badge b-fb">FB</span><span class="badge b-li">LI</span></td><td>Retargeting</td><td>H-A (1 person) · H-B (whole team) · H-C (shared framework)</td><td><span class="badge b-always">Always-On</span></td><td>$50/wk</td><td>Corporate CTA — chạy qua Jul 9</td></tr>
+<tr><td><b>C7</b> Jul 9</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic</td><td>H-A (10 năm FMCG) · H-B (founder built because) · H-C (long read invite)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>Authority — không cần boost nhiều</td></tr>
+</tbody>
+</table></div>
+
+</section>
+</div>
+
+<!-- ═══════════ TAB 2: ASSETS & HOOKS ═══════════ -->
+<div id="assets" class="page">
+<div class="hdr">
+  <h1>Assets & Hook Library — Per Creative</h1>
+  <p>3 hooks per post (H-A = primary, H-B = alt audience, H-C = safe) · Canva specs · Platform sizes</p>
+</div>
+<section>
+<div class="note note-blue"><b>📐 Cách dùng:</b> Mỗi post = 1 creative concept. Tạo <b>3 ad variations</b> trong 1 ad set, chỉ đổi hook text (H-A / H-B / H-C). Body copy, CTA, visual giữ nguyên. Facebook sẽ tự chọn winner sau 3–5 ngày.</div>
+
+<h2>Pre-Launch Week 1 — Test Hooks</h2>
+<div class="creative-grid">
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">A1 · Jun 15</div><div class="ccard-title">ChatGPT đang treat bạn như stranger</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">Reels</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-l2">L2 Exp.</span><span class="badge" style="background:#fef3c7;color:#92400e">Viral</span><span class="badge b-test">$15 test A/B</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · L2 Pain · Primary</div>
+      <div class="hook-text">ChatGPT của bạn không biết bạn là ai. Và đó chính là vấn đề.</div>
+      <div class="hook-audience">Target: L2 — inconsistent output pain</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · L3 Angle</div>
+      <div class="hook-text">AI đang work cho bạn — nhưng chưa work cho team khi bạn không có mặt.</div>
+      <div class="hook-audience">Target: L3 — scale to team pain</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Generic / Safe</div>
+      <div class="hook-text">Tại sao output AI của bạn luôn generic? Vì bạn chưa bao giờ giới thiệu bản thân.</div>
+      <div class="hook-audience">Target: Both L2+L3</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 + 9:16 Reels</div>
+    <div class="spec-item"><strong>Visual</strong>Dark indigo, "?" oversized, lime accent, dot grid</div>
+    <div class="spec-item"><strong>Key text</strong>"ChatGPT không biết bạn là ai."</div>
+    <div class="spec-item"><strong>CTA</strong>thewildcard.vn/session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">ER &gt; 5% sau 48h → boost +$50<br>ER &lt; 3% → kill, rewrite hook</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">A5 · Jun 17</div><div class="ccard-title">3 lỗi prompt 90% marketer VN đang mắc</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-l2">L2 Exp.</span><span class="badge" style="background:#fef3c7;color:#92400e">Viral</span><span class="badge b-test">$15 test A/B</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Number · Primary</div>
+      <div class="hook-text">Bạn đang mắc lỗi số mấy? 3 lỗi tôi thấy ở mọi marketer khi học CRAFT.</div>
+      <div class="hook-audience">L2 — self-diagnosis trigger</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Contradiction</div>
+      <div class="hook-text">AI trả lời dở không phải vì AI dở. Mà vì prompt đang thiếu 3 thứ này.</div>
+      <div class="hook-audience">L2 — reframe pain cause</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Data Drop</div>
+      <div class="hook-text">Tôi review 200+ prompt của marketers VN. Cùng 3 lỗi lặp lại ở tất cả.</div>
+      <div class="hook-audience">Both — social proof + FOMO</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 carousel (4 slides)</div>
+    <div class="spec-item"><strong>Visual</strong>Cover dark "3 LỖI PROMPT", slides lime fix panels</div>
+    <div class="spec-item"><strong>Key text</strong>High contrast, numbered slides</div>
+    <div class="spec-item"><strong>CTA</strong>thewildcard.vn/session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">Carousel save rate &gt; 5% → boost<br>Save = high intent signal</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">A2 · Jun 18 · LinkedIn</div><div class="ccard-title">Đừng dạy team bạn prompt engineering</div></div>
+    <div style="text-align:right"><span class="badge b-li">LinkedIn</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-both">L2+L3</span><span class="badge" style="background:#fef3c7;color:#92400e">Viral</span><span class="badge b-test">$10 test LI</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Contrarian · Primary</div>
+      <div class="hook-text">Sai lầm lớn nhất của AI training cho team: bắt đầu từ prompts.</div>
+      <div class="hook-audience">L3 manager — challenges conventional training</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Bold Reversal</div>
+      <div class="hook-text">Tôi sẽ nói ngược với mọi AI trainer: prompt không phải vấn đề của team bạn.</div>
+      <div class="hook-audience">L3 — authority + curiosity</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Team Pain</div>
+      <div class="hook-text">Team viết prompt tệ không phải vì thiếu kỹ thuật. Đây là lý do thực sự.</div>
+      <div class="hook-audience">L3 manager — root cause framing</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1200×627 (LI recommended)</div>
+    <div class="spec-item"><strong>Visual</strong>Bold: "THINK FIRST. PROMPT SECOND." Indigo, lime underline</div>
+    <div class="spec-item"><strong>Format</strong>Single image + long-form caption</div>
+    <div class="spec-item"><strong>CTA</strong>DM hoặc thewildcard.vn/corporate</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$10</div><div class="budget-rule">LI boost 3 ngày</div></div>
+    <div style="text-align:right"><div class="budget-rule">CTR &gt; 1.5% → extend $20<br>Comments từ Director → follow up DM</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">A8 · Jun 19</div><div class="ccard-title">BEFORE vs AFTER — cùng 1 người, khác 1 system</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-l2">L2 Exp.</span><span class="badge" style="background:#fef3c7;color:#92400e">Viral</span><span class="badge b-test">$15 test</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Before/After · Primary</div>
+      <div class="hook-text">BEFORE: 2 tiếng, 3 vòng revise. AFTER: 18 phút, approved ngay. Cùng 1 người — khác 1 system.</div>
+      <div class="hook-audience">L2 — transformation desire</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Number Specific</div>
+      <div class="hook-text">Brief A mất 45 phút. Brief B mất 12 phút. Chỉ 1 thứ khác nhau.</div>
+      <div class="hook-audience">L2 — curiosity gap</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Confession</div>
+      <div class="hook-text">Tôi so sánh brief viết tay vs AI co-write. Kết quả làm tôi bất ngờ về chính mình.</div>
+      <div class="hook-audience">L2 — self-relate</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 split visual</div>
+    <div class="spec-item"><strong>Visual</strong>BEFORE dark red vs AFTER lime, bold contrast</div>
+    <div class="spec-item"><strong>Key elements</strong>"45 min → 12 min" numbers large</div>
+    <div class="spec-item"><strong>CTA</strong>thewildcard.vn/session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">ER &gt; 5% → boost W2<br>Before/after thường CTR cao</div></div>
+  </div>
+</div>
+
+</div><!-- /creative-grid W1 -->
+
+<h2>Soft Launch Week 2 — Scale Winners</h2>
+<div class="creative-grid">
+
+<div class="ccard always-on">
+  <div class="ccard-head">
+    <div><div class="ccard-id">L1 · Jun 20 · LAUNCH DAY</div><div class="ccard-title">The Wild Card chính thức mở cửa — Cohort 2</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-both">L2+L3</span><span class="badge" style="background:#fee2e2;color:#b91c1c">Sales</span><span class="badge b-always">Always-On · $50/wk</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Brand Launch · Primary</div>
+      <div class="hook-text">Không phải khoá học AI. Là chương trình Gen AI training đầu tiên cho brand teams VN.</div>
+      <div class="hook-audience">Cold audience — positioning statement</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Authentic Open</div>
+      <div class="hook-text">The Wild Card chính thức mở cửa. Đây là nơi marketer VN học AI theo cách thật.</div>
+      <div class="hook-audience">Warm audience — announcement tone</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Urgency (cho retarget)</div>
+      <div class="hook-text">Chúng tôi đã chờ đủ lâu để làm đúng. Hôm nay mở đăng ký Cohort 2.</div>
+      <div class="hook-audience">Retargeting — brand trust + urgency</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 + 9:16 Story</div>
+    <div class="spec-item"><strong>Visual</strong>Dark ink, large lime "WE'RE LIVE", URL prominent</div>
+    <div class="spec-item"><strong>Run period</strong>Jun 20 → Jun 27 (7 ngày)</div>
+    <div class="spec-item"><strong>CTA</strong>Đăng ký session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$50/wk</div><div class="budget-rule">Always-On — KHÔNG kill</div></div>
+    <div style="text-align:right"><div class="budget-rule">Chạy suốt soft launch phase<br>Dùng hook winner từ A1/A5 A/B test W1</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">A3 · Jun 22</div><div class="ccard-title">Từ 45 phút xuống 12 phút — case thật</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-l2">L2 Exp.</span><span class="badge" style="background:#ede9fe;color:#6d28d9">Authority</span><span class="badge b-test">$15 test</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Case Study Numbers · Primary</div>
+      <div class="hook-text">Brief này mất 45 phút viết. Brief kia mất 12 phút. Chỉ một thứ khác nhau.</div>
+      <div class="hook-audience">L2 — social proof + curiosity</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Real Case Proof</div>
+      <div class="hook-text">Đây là brief thật — trước và sau khi Cohort 1 học Session 1. Tự đánh giá nhé.</div>
+      <div class="hook-audience">L2 — evidence-based</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Process Reveal</div>
+      <div class="hook-text">45 phút → 12 phút không phải vì AI làm thay. Mà vì bạn biết mình cần gì.</div>
+      <div class="hook-audience">Both — reframe AI role</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 two-column</div>
+    <div class="spec-item"><strong>Visual</strong>"45MIN" gray vs "12MIN" lime</div>
+    <div class="spec-item"><strong>Key data</strong>Cohort 1 real result</div>
+    <div class="spec-item"><strong>CTA</strong>thewildcard.vn/session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">W3 boost nếu ER &gt; 5%<br>Case study → high conversion rate</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">A4 · Jun 24</div><div class="ccard-title">CRAFT Checklist — 5 yếu tố prompt hoàn hảo</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG Carousel</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-l2">L2 Exp.</span><span class="badge" style="background:#dbeafe;color:#1d4ed8">Value</span><span class="badge b-test">$15 test</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Save Trigger · Primary</div>
+      <div class="hook-text">Save bài này — checklist 5 yếu tố bạn cần check trước khi gửi bất kỳ prompt nào.</div>
+      <div class="hook-audience">L2 — utility + save intent</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Missing Element</div>
+      <div class="hook-text">Prompt tệ không phải vì câu từ sai. Mà vì thiếu đúng 1 trong 5 yếu tố này.</div>
+      <div class="hook-audience">L2 — diagnosis trigger</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Framework Drop</div>
+      <div class="hook-text">CRAFT Framework trong 1 carousel — copy và dùng ngay hôm nay.</div>
+      <div class="hook-audience">L2 — immediate value</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 carousel (5+1 slides)</div>
+    <div class="spec-item"><strong>Visual</strong>Cover dark "CRAFT CHECKLIST", each slide 1 letter lime</div>
+    <div class="spec-item"><strong>Metric</strong>Track saves — strongest signal for carousel</div>
+    <div class="spec-item"><strong>CTA</strong>thewildcard.vn/session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">Save rate &gt; 5% = boost +$50<br>Carousel save = high purchase intent</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">B1 · Jun 26</div><div class="ccard-title">50 trang Nielsen — 3 phút — 5 insights</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-both">L2+L3</span><span class="badge" style="background:#fef3c7;color:#92400e">Viral</span><span class="badge b-test">$15 test</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a">
+      <div class="hook-label">Hook A · Data Number · Primary</div>
+      <div class="hook-text">50 trang Nielsen data. 3 phút. Top 5 insights ready để present. Đây là cách.</div>
+      <div class="hook-audience">L2+L3 FMCG — specific pain</div>
+    </div>
+    <div class="hook-item hook-b">
+      <div class="hook-label">Hook B · Surprise Confession</div>
+      <div class="hook-text">Lần đầu upload Nielsen vào AI, tôi ngồi im 2 phút — nó tìm ra thứ team bỏ qua 3 tháng.</div>
+      <div class="hook-audience">L2+L3 — emotional + specific</div>
+    </div>
+    <div class="hook-item hook-c">
+      <div class="hook-label">Hook C · Comparison</div>
+      <div class="hook-text">Insight team mất 2 tuần. AI mất 3 phút. Và còn thêm 1 pattern bạn chưa thấy.</div>
+      <div class="hook-audience">L3 — competitive / speed angle</div>
+    </div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item"><strong>Canva Size</strong>1080×1080 data visual</div>
+    <div class="spec-item"><strong>Visual</strong>Dark bg, glowing data viz, "50 trang → 3 phút → 5 insights"</div>
+    <div class="spec-item"><strong>Audience note</strong>FMCG-specific = higher relevance score</div>
+    <div class="spec-item"><strong>CTA</strong>thewildcard.vn/session-1</div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">Nielsen hook = FMCG niche = lower CPM<br>Boost W3 nếu ER &gt; 5%</div></div>
+  </div>
+</div>
+
+</div><!-- /creative-grid W2 -->
+
+<h2>Full Launch + July Close — Always-On & Scale</h2>
+<div class="creative-grid">
+
+<div class="ccard always-on">
+  <div class="ccard-head">
+    <div><div class="ccard-id">L2 · Jun 28 · Full Open</div><div class="ccard-title">Tất cả chương trình — đăng ký mở ngay</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-both">L2+L3</span><span class="badge" style="background:#fee2e2;color:#b91c1c">Sales</span><span class="badge b-always">Always-On · $75/wk</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a"><div class="hook-label">Hook A</div><div class="hook-text">3 chương trình. 1 starting point. Bắt đầu bằng Session 1.</div></div>
+    <div class="hook-item hook-b"><div class="hook-label">Hook B</div><div class="hook-text">Full launch. Tất cả chương trình đã mở đăng ký.</div></div>
+    <div class="hook-item hook-c"><div class="hook-label">Hook C · Retarget</div><div class="hook-text">Bạn đã follow từ đầu. Hôm nay là lúc chọn.</div></div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$75/wk</div><div class="budget-rule">Always-On — KHÔNG kill</div></div>
+    <div style="text-align:right"><div class="budget-rule">Retargeting primary<br>Run Jun 28 → Jul 3</div></div>
+  </div>
+</div>
+
+<div class="ccard always-on">
+  <div class="ccard-head">
+    <div><div class="ccard-id">L3 · Jul 2 · Urgency Close</div><div class="ccard-title">48 tiếng cuối — Cohort 2 đóng đăng ký</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-both">L2+L3</span><span class="badge" style="background:#fee2e2;color:#b91c1c">Sales</span><span class="badge b-always">Always-On · $75 · 4 ngày</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a"><div class="hook-label">Hook A · Countdown</div><div class="hook-text">48 tiếng nữa Cohort 2 đóng. Nếu bạn đang cân nhắc — đây là câu hỏi cuối.</div></div>
+    <div class="hook-item hook-b"><div class="hook-label">Hook B · Scarcity</div><div class="hook-text">Còn [X] chỗ. Sau 48 tiếng — list đóng, không exception.</div></div>
+    <div class="hook-item hook-c"><div class="hook-label">Hook C · Identity</div><div class="hook-text">Tháng 7 này bạn muốn là người đang học AI — hay đã biết dùng AI trong công việc rồi?</div></div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$75</div><div class="budget-rule">4 ngày rồi stop</div></div>
+    <div style="text-align:right"><div class="budget-rule">Retargeting warmest audience<br>Stop Jul 6 sau khi đóng list</div></div>
+  </div>
+</div>
+
+<div class="ccard">
+  <div class="ccard-head">
+    <div><div class="ccard-id">C1 · Jun 27</div><div class="ccard-title">Team bạn đang ở Level 1. Đối thủ đang ở Level 3.</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-both">L2+L3</span><span class="badge" style="background:#fef3c7;color:#92400e">Viral</span><span class="badge b-test">$15 test</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a"><div class="hook-label">Hook A · Level Gap · Primary</div><div class="hook-text">Level 1: Vài người dùng AI cá nhân. Level 3: AI là lợi thế cạnh tranh. Bạn đang ở đâu?</div></div>
+    <div class="hook-item hook-b"><div class="hook-label">Hook B · Time Competition</div><div class="hook-text">Khoảng cách AI không đo bằng tool. Đo bằng tháng. Và đối thủ bắt đầu trước 6 tháng.</div></div>
+    <div class="hook-item hook-c"><div class="hook-label">Hook C · Team Reality</div><div class="hook-text">Trong khi team bạn học prompt cơ bản — đối thủ đã có AI workflow toàn quy trình.</div></div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$15</div><div class="budget-rule">3 ngày test</div></div>
+    <div style="text-align:right"><div class="budget-rule">FOMO hook = high CTR<br>Scale cho W4 nếu ER &gt; 5%</div></div>
+  </div>
+</div>
+
+<div class="ccard always-on">
+  <div class="ccard-head">
+    <div><div class="ccard-id">L4 · Jul 7 · Corporate Push</div><div class="ccard-title">Khi cả team cùng nói 1 ngôn ngữ AI</div></div>
+    <div style="text-align:right"><span class="badge b-fb">FB</span><span class="badge b-li">LI</span></div>
+  </div>
+  <div class="ccard-meta">
+    <span class="badge b-l3">L3 Prac.</span><span class="badge" style="background:#fee2e2;color:#b91c1c">Sales</span><span class="badge b-always">Always-On · $50</span>
+  </div>
+  <div class="ccard-hooks">
+    <div class="hook-item hook-a"><div class="hook-label">Hook A · Contrast</div><div class="hook-text">1 người học AI = 1 người nhanh. Cả team học AI cùng framework = lợi thế cạnh tranh.</div></div>
+    <div class="hook-item hook-b"><div class="hook-label">Hook B · Risk Frame</div><div class="hook-text">Thứ thay đổi năng lực cả team: khi tất cả cùng dùng 1 AI system.</div></div>
+    <div class="hook-item hook-c"><div class="hook-label">Hook C · Dependency Risk</div><div class="hook-text">Corporate AI Training — không phải về tool. Là về shared workflow và ROI đo được.</div></div>
+  </div>
+  <div class="ccard-budget">
+    <div><div class="budget-amt">$50</div><div class="budget-rule">Corporate CTA</div></div>
+    <div style="text-align:right"><div class="budget-rule">Target: LI Director/L&D<br>CTA: thewildcard.vn/corporate</div></div>
+  </div>
+</div>
+
+</div><!-- /creative-grid W3-W4 -->
+</section>
+</div>
+
+<!-- ═══════════ TAB 3: BUDGET PLAN ═══════════ -->
+<div id="budget" class="page">
+<div class="hdr">
+  <h1>Ad Budget Plan — Jun 15 → Jul 9</h1>
+  <p>Total $850 (v5.2) · LinkedIn $280 (InMail $200 + Sponsored $80) · FB/IG $170 ($90 tests + $80 boost) · Retargeting $200 · Always-On $100 · Email $100 · Tools $65</p>
+</div>
+<section>
+
+<div class="bcard-row">
+  <div class="bcard"><div class="amt">$225</div><div class="lbl">Test Budget</div><div class="sub">15 test posts × $15 avg</div></div>
+  <div class="bcard"><div class="amt">$350</div><div class="lbl">Boost Winners</div><div class="sub">~7 posts × $50 khi ER&gt;5%</div></div>
+  <div class="bcard"><div class="amt">$250</div><div class="lbl">Always-On Sales</div><div class="sub">L1 $50 + L2 $75 + L3 $75 + L4 $50</div></div>
+  <div class="bcard"><div class="amt">$150</div><div class="lbl">LinkedIn</div><div class="sub">$50 boosts + $100 InMail W3</div></div>
+  <div class="bcard"><div class="amt">$100</div><div class="lbl">Retargeting</div><div class="sub">Web visitors Jun 27+</div></div>
+  <div class="bcard"><div class="amt" style="color:#b91c1c">$125</div><div class="lbl">Buffer / Scale</div><div class="sub">Scale winner W3–W4</div></div>
+  <div class="bcard"><div class="amt" style="color:#16a34a">$1,200</div><div class="lbl">TOTAL</div><div class="sub">+$100 tools = $1,300</div></div>
+</div>
+
+<h2>Weekly Spend Breakdown</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Tuần</th><th>Phase</th><th>Posts</th><th>Test $</th><th>Boost est.</th><th>Always-On</th><th>Total</th><th>Mục tiêu</th></tr></thead>
+<tbody>
+<tr class="ph1-bg"><td><b>W1</b> Jun 15–19</td><td class="ph1">Pre-Launch A/B</td><td>4</td><td>$55</td><td>$0</td><td>$0</td><td><b>$55</b></td><td>Test hooks A1, A5, A8 · chọn winner format</td></tr>
+<tr class="ph2-bg"><td><b>W2</b> Jun 20–26</td><td class="ph2">Soft Launch 🚀</td><td>6</td><td>$65</td><td>$50–100</td><td>$50 (L1)</td><td><b>$165–215</b></td><td>Scale W1 winner · Session 1 CTA live · A3/A4/B1 test</td></tr>
+<tr class="ph3-bg"><td><b>W3</b> Jun 27–30</td><td class="ph3">Full Launch 🔥</td><td>4</td><td>$30</td><td>$100–150</td><td>$75 (L2)</td><td><b>$205–255</b></td><td>Retarget warm · C1 test · L2 always-on · InMail $100 LI</td></tr>
+<tr class="ph4-bg"><td><b>W4</b> Jul 1–9</td><td class="ph4">July Close 🎯</td><td>4</td><td>$25</td><td>$100–150</td><td>$125 (L3+L4)</td><td><b>$250–300</b></td><td>Urgency close L3 · Corporate push L4 · A9/B3 test</td></tr>
+<tr class="total-row"><td><b>TOTAL</b></td><td>—</td><td>18</td><td>$175</td><td>$250–400</td><td>$250</td><td><b>~$675–825</b></td><td>+ LI $150 + buffer $125 + tools $100 = <b>$1,050–1,200</b></td></tr>
+</tbody>
+</table></div>
+
+<div class="note note-green"><b>✅ Budget logic:</b> $1,300 total — $675–825 scheduled + $475 buffer/scale. Dùng buffer để scale 2–3 winner posts trong W3–W4 sau khi có data rõ ràng.</div>
+
+<h2>Budget Allocation per Post</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Post</th><th>Platform</th><th>Test $</th><th>Boost if win</th><th>Always-On</th><th>Total est.</th><th>Status trigger</th></tr></thead>
+<tbody>
+<tr><td><b>A1</b> Jun 15</td><td>FB + IG Reels</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5% → boost</td></tr>
+<tr><td><b>A5</b> Jun 17</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5% → boost</td></tr>
+<tr><td><b>A2</b> Jun 18</td><td>LinkedIn</td><td>$10</td><td>$20</td><td>—</td><td>$10–30</td><td>CTR &gt; 1.5% LI</td></tr>
+<tr><td><b>A8</b> Jun 19</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5%</td></tr>
+<tr class="ph2-bg"><td><b>L1</b> Jun 20</td><td>FB + IG + LI</td><td>—</td><td>—</td><td>$50/wk</td><td>$50</td><td>Always-On · KHÔNG kill</td></tr>
+<tr><td><b>A3</b> Jun 22</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5%</td></tr>
+<tr><td><b>A4</b> Jun 24</td><td>FB + IG Carousel</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>Save rate &gt; 5%</td></tr>
+<tr><td><b>C7-P2</b> Jun 25</td><td>LinkedIn</td><td>$10</td><td>$20</td><td>—</td><td>$10–30</td><td>Comments DM</td></tr>
+<tr><td><b>A6</b> Jun 26</td><td>LinkedIn</td><td>$10</td><td>$20</td><td>—</td><td>$10–30</td><td>CTR &gt; 1.5%</td></tr>
+<tr><td><b>B1</b> Jun 26</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5%</td></tr>
+<tr class="ph3-bg"><td><b>C1</b> Jun 27</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5%</td></tr>
+<tr class="ph3-bg"><td><b>L2</b> Jun 28</td><td>FB + IG + LI</td><td>—</td><td>—</td><td>$75/wk</td><td>$75</td><td>Always-On · KHÔNG kill</td></tr>
+<tr class="ph4-bg"><td><b>A9</b> Jul 1</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>Save rate &gt; 5%</td></tr>
+<tr class="ph4-bg"><td><b>L3</b> Jul 2</td><td>FB + IG + LI</td><td>—</td><td>—</td><td>$75 · 4 ngày</td><td>$75</td><td>Always-On · stop Jul 6</td></tr>
+<tr class="ph4-bg"><td><b>B3</b> Jul 3</td><td>FB + IG</td><td>$15</td><td>$50</td><td>—</td><td>$15–65</td><td>ER &gt; 5%</td></tr>
+<tr class="ph4-bg"><td><b>B2</b> Jul 6</td><td>LinkedIn</td><td>$10</td><td>$20</td><td>—</td><td>$10–30</td><td>DM from Director</td></tr>
+<tr class="ph4-bg"><td><b>L4</b> Jul 7</td><td>FB + LI</td><td>—</td><td>—</td><td>$50</td><td>$50</td><td>Always-On corporate</td></tr>
+<tr class="ph4-bg"><td><b>C7</b> Jul 9</td><td>LinkedIn</td><td>$10</td><td>—</td><td>—</td><td>$10</td><td>Authority · organic only</td></tr>
+<tr class="total-row"><td colspan="5"><b>SUBTOTAL (excl. buffer + InMail)</b></td><td><b>$450–840</b></td><td>+ LI InMail $100 + buffer $125 = $675–1,065</td></tr>
+</tbody>
+</table></div>
+
+<h2>LinkedIn InMail — Week 3 Plan</h2>
+<div class="note note-blue"><b>📧 InMail $100 · W3 Jun 27–30 · Target: L&D Manager / Marketing Director / CMO tại FMCG MNCs VN</b></div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Element</th><th>Content</th></tr></thead>
+<tbody>
+<tr><td><b>Subject line</b></td><td>"AI training cho marketing team — 4 giờ, customized cho FMCG artifacts của bạn"</td></tr>
+<tr><td><b>Hook sentence</b></td><td>"Team của bạn đang dùng ChatGPT với data confidential. Không ai biết đâu là ranh giới an toàn."</td></tr>
+<tr><td><b>Body (3 lines)</b></td><td>TWC là chương trình AI training duy nhất được build cho FMCG MNC teams tại VN — từ brief, Nielsen, đến ITM deck. Half-day, customized, compliance-first. [Link] xem curriculum.</td></tr>
+<tr><td><b>CTA</b></td><td>Book C1 Discovery Call (Calendly) — hoặc reply để nhận workshop proposal</td></tr>
+<tr><td><b>Audience</b></td><td>VN · Industry: FMCG, Consumer Goods · Title: L&D, Marketing Director, CMO · Company size: 200+</td></tr>
+<tr><td><b>Budget</b></td><td>$100 · est. 1,000 sends · target reply rate 3–5% = 30–50 warm B2B leads</td></tr>
+</tbody>
+</table></div>
+
+</section>
+</div>
+
+<!-- ═══════════ TAB 4: KILL / SCALE ═══════════ -->
+<div id="decision" class="page">
+<div class="hdr">
+  <h1>Kill / Scale Decision Rules</h1>
+  <p>Check 48h sau khi post · Log vào A/B Decision Log · Quyết định ngay — không để quá 72h</p>
+</div>
+<section>
+
+<h2>ER Threshold Rules — Facebook/IG</h2>
+<div class="decision-tree">
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#16a34a">ER &gt; 5% sau 48h</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">✅ BOOST</span> — Extend thêm $50 × 7 ngày. Dùng hook winner cho ad set lookalike. Flag để scale W3.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:var(--amber)">ER 3–5% sau 48h</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">⏸️ HOLD</span> — Không extend. Không kill. Xem thêm 24h. Nếu không cải thiện → stop hoàn toàn.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#b91c1c">ER &lt; 3% sau 48h</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">❌ KILL</span> — Stop ngay. Rewrite hook từ Hook Library. Điểm hook &lt; 25/35 = rewrite trước khi test lại. Không throw thêm budget.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#0369a1">Reach &lt; 300 sau 24h</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">⚠️ REVIEW</span> — Audience quá hẹp hoặc ad bị rejected. Check Ads Manager. Mở rộng targeting hoặc edit creative.</div>
+  </div>
+</div>
+
+<h2>CTR Rules — LinkedIn</h2>
+<div class="decision-tree">
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#0a66c2">CTR &gt; 1.5% LI</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">✅ EXTEND</span> — Boost thêm $20 × 5 ngày. Note DMs trong 48h — follow up ngay với Corporate pitch.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:var(--amber)">CTR 0.8–1.5% LI</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">⏸️ HOLD</span> — Organic distribution đang chạy. Không cần extend. Monitor comments.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#b91c1c">CTR &lt; 0.8% LI</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">❌ STOP BOOST</span> — Để organic. Đừng throw thêm LI budget vào post này.</div>
+  </div>
+</div>
+
+<h2>Scale Budget Rules — Winners</h2>
+<div class="note note-amber"><b>⚠️ QUAN TRỌNG:</b> Tăng budget <b>tối đa 20% mỗi 48h</b>. Tăng đột ngột (2x–3x) sẽ reset learning phase và làm tăng CPM. Ví dụ: $15 → $18 → $22 → $27 → $32/ngày.</div>
+<div class="decision-tree">
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#16a34a">Winner W1 xác định</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">Action:</span> Dùng hook winner cho L1 Always-On creative. Scale ad set đó lên 20% trong W2.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#16a34a">Winner W2 (A3/A4/B1)</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">Action:</span> Boost $50 × 7 ngày. Đưa vào lookalike ad set. Dùng làm retargeting creative W3.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-trigger" style="background:#16a34a">CPL &lt; $5 xuất hiện</div>
+    <div class="dt-arrow">→</div>
+    <div class="dt-action"><span class="result">Action:</span> Dùng $125 buffer để scale ad set đó. Switch objective sang Conversions (nếu đủ pixel events).</div>
+  </div>
+</div>
+
+<h2>Weekly Review Checklist</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Thời điểm</th><th>Người làm</th><th>Action</th><th>Tool</th></tr></thead>
+<tbody>
+<tr><td>Ngay sau đăng</td><td>Social Exec</td><td>Set $15 test ngay trong Ads Manager. Log post ID + hook used.</td><td>FB Ads Manager</td></tr>
+<tr><td>+24h</td><td>Social Exec</td><td>Check reach. Nếu &lt; 300 → flag ngay.</td><td>Ads Manager</td></tr>
+<tr><td>+48h</td><td>Social Manager</td><td>Nhập ER → kill / hold / boost decision. Log vào A/B Decision Log.</td><td>ER Tracker (content-calendar-v4)</td></tr>
+<tr><td>Thứ Hai sáng</td><td>Social Manager</td><td>Weekly review: top hook pattern, top post, spend vs ER. Decide W+1 scaling.</td><td>Spreadsheet review</td></tr>
+<tr><td>Trước bài tiếp</td><td>Content</td><td>Nếu hook ER &lt; 3%: rewrite từ Hook Library. Score ≥ 25/35 trước khi test lại.</td><td>Hook Library tab (content-calendar-v4)</td></tr>
+</tbody>
+</table></div>
+
+<h2>Hook Scoring Quick Check</h2>
+<div class="note note-green"><b>✅ Minimum 25/35 điểm trước khi set $15 test.</b> Nếu dưới ngưỡng → rewrite trước.</div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Tiêu chí</th><th>Điểm</th><th>Check</th></tr></thead>
+<tbody>
+<tr><td>Đọc 3 giây biết target là ai</td><td>5đ</td><td>☐</td></tr>
+<tr><td>Có trigger word L2 hoặc L3</td><td>5đ</td><td>☐</td></tr>
+<tr><td>Không cần context để hiểu</td><td>5đ</td><td>☐</td></tr>
+<tr><td>Tạo ngay 1 câu hỏi trong đầu</td><td>5đ</td><td>☐</td></tr>
+<tr><td>Có số cụ thể (%, phút, người)</td><td>3đ</td><td>☐</td></tr>
+<tr><td>Có personal (tôi / bạn / team)</td><td>3đ</td><td>☐</td></tr>
+<tr><td>Có contrast (before/after)</td><td>3đ</td><td>☐</td></tr>
+<tr><td>Platform-native format</td><td>3đ</td><td>☐</td></tr>
+<tr><td>Controversial / polarizing</td><td>2đ</td><td>☐</td></tr>
+<tr><td>Share-worthy</td><td>2đ</td><td>☐</td></tr>
+<tr><td>Ties to Session 1 CTA tự nhiên</td><td>2đ</td><td>☐</td></tr>
+<tr><td class="total-row">TOTAL</td><td class="total-row"><b>/35</b></td><td class="total-row">≥ 25 = test · &lt; 25 = rewrite</td></tr>
+</tbody>
+</table></div>
+
+</section>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

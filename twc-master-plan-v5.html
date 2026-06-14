@@ -369,11 +369,11 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <!-- ============================================================ -->
 <div id="er" class="page">
 <div class="header"><h1>📊 Performance Tracker</h1>
-<p>Nhập số liệu sau 48h mỗi bài · ER &gt; 5% FB/IG → Boost +$50 · ER &gt; 3% LinkedIn → Boost · ER &lt; 3% → Stop</p></div>
+<p>Nhập số liệu sau 48h mỗi bài · ER &gt; 5% FB/IG → Boost +$25–30 · ER &gt; 3% LinkedIn → Boost · ER &lt; 3% → Stop</p></div>
 <div class="er-section">
 <div class="callout callout-green"><b>✅ Chỉ track paid posts ở đây.</b> Organic posts không cần ER tracker — signal từ organic không đủ để quyết định scale. FB/IG paid: <b>$15 test · 48h · threshold ER 5%</b>. LinkedIn paid: <b>$20 test · 48h · threshold ER 3%</b>.</div>
 <div class="callout callout-b2b"><b>⚡ Auto Boost Flow:</b> Nhập ER sau 48h → Rule engine tự quyết định KILL / HOLD / BOOST — không qua LLM. <b>Giai đoạn hiện tại (manual execute):</b> Rule engine output exact steps → Yên/Nghi execute trên Ads Manager trong &lt;2 phút. <b>Giai đoạn 2 (khi Meta API approved ~2 tuần):</b> Rule engine gọi API trực tiếp → fully auto, không cần người. LinkedIn InMail follow-up tự động trigger khi ER &gt;5%.</div>
-<div class="callout callout-amber"><b>🔗 LinkedIn threshold v5.1 — theo format:</b> <b>Carousel/PDF</b> (ưu tiên — LI algo 2026 ~24% ER): ER &gt;3% → Boost $50 + InMail · ER 1.5–3% → Hold · ER &lt;1.5% → Stop. <b>Image/Text</b> (cold sponsored): ER &gt;2% → Boost $30 · ER 1–2% → Hold · ER &lt;1% → Stop + switch sang Carousel. FB/IG: ER &gt;5% → Boost $50 · ER 3–5% → Hold · ER &lt;3% → Kill. <b>⚠ Default format = Carousel. Retargeting + Always-On: W3+ only.</b></div>
+<div class="callout callout-amber"><b>🔗 LinkedIn threshold v5.2 — theo format:</b> <b>Carousel/PDF</b> (ưu tiên — LI algo 2026 ~24% ER): ER &gt;3% → Boost $25–30 + InMail · ER 1.5–3% → Hold · ER &lt;1.5% → Stop. <b>Image/Text</b> (cold sponsored): ER &gt;2% → Boost $20 · ER 1–2% → Hold · ER &lt;1% → Stop + switch sang Carousel. FB/IG: ER &gt;5% → Boost $25–30 · ER 3–5% → Hold · ER &lt;3% → Kill. <b>⚠ Default format = Carousel. Retargeting + Always-On: W3+ only.</b></div>
 <div class="er-grid" id="erGrid"></div></div>
 </div>
 
@@ -382,7 +382,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <!-- ============================================================ -->
 <div id="spend" class="page">
 <div class="header"><h1>💰 Ad Spend — v5 Revised (B2B 50% / B2C 50%)</h1>
-<p>Total $1,300 · LinkedIn tăng từ $100 → $450 · FB/IG giảm từ $800 → $420 · Email mới thêm $100</p></div>
+<p>Total $850 · LinkedIn $280 (InMail ↑$200 + Sponsored ↓$80) · FB/IG $170 (6 tests + boost $25–30/winner) · Always-On W3–W4 only $100</p></div>
 <div class="spend-section">
 
 <!-- FB API LIVE DATA -->
@@ -446,15 +446,15 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   </table></div>
 </div>
 
-<div class="callout callout-b2b"><b>📌 v5 vs v4 Key Change:</b> LinkedIn budget tăng 4.5× (từ $100 lên $450). FB/IG budget giảm nhưng tập trung hơn vào B2C audience thực sự. Email channel $100 mới thêm cho B2B nurture.</div>
+<div class="callout callout-b2b"><b>📌 v5.2 Budget Rebalance:</b> InMail ↑ $200 (direct to B2B deal). LinkedIn Sponsored ↓ $80 (chỉ boost organic đã có ER &gt;3%). FB/IG tests tăng 6 posts nhưng boost/post giảm $25–30. Always-On W3–W4 only ($100). Tổng tiết kiệm $450 → redirect sang InMail + buffer.</div>
 
 <div class="budget-grid">
-  <div class="bcard"><div class="amount" style="color:#0a66c2">$450</div><div class="label">LinkedIn Total</div><div class="note">35% · Sponsored + InMail</div></div>
-  <div class="bcard"><div class="amount" style="color:#1877f2">$425</div><div class="label">FB/IG Total</div><div class="note">33% · $75 test (5 posts) + $350 boost</div></div>
-  <div class="bcard"><div class="amount" style="color:var(--ind)">$200</div><div class="label">Retargeting</div><div class="note">15% · LI + Web</div></div>
-  <div class="bcard"><div class="amount" style="color:#e05d44">$100</div><div class="label">Email B2B</div><div class="note">8% · Tools + Setup</div></div>
-  <div class="bcard"><div class="amount" style="color:#556b00">$130</div><div class="label">Always-On Sales</div><div class="note">10% · S1 + Corporate</div></div>
-  <div class="bcard"><div class="amount" style="color:#16a34a">$1,300</div><div class="label">TOTAL</div><div class="note">On budget ✓</div></div>
+  <div class="bcard"><div class="amount" style="color:#0a66c2">$280</div><div class="label">LinkedIn Total</div><div class="note">33% · InMail $200 + Sponsored $80</div></div>
+  <div class="bcard"><div class="amount" style="color:#1877f2">$170</div><div class="label">FB/IG Total</div><div class="note">20% · $90 test (6 posts) + $80 boost</div></div>
+  <div class="bcard"><div class="amount" style="color:var(--ind)">$200</div><div class="label">Retargeting</div><div class="note">24% · LI + Web · W3+ only</div></div>
+  <div class="bcard"><div class="amount" style="color:#e05d44">$100</div><div class="label">Email B2B</div><div class="note">12% · Tools + Setup</div></div>
+  <div class="bcard"><div class="amount" style="color:#556b00">$100</div><div class="label">Always-On Sales</div><div class="note">12% · W3–W4 only · 2 posts</div></div>
+  <div class="bcard"><div class="amount" style="color:#16a34a">$850</div><div class="label">TOTAL</div><div class="note">On budget ✓ (tiết kiệm $450 vs v5)</div></div>
 </div>
 
 <!-- Detailed breakdown -->
@@ -464,25 +464,25 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   <div style="flex:2"><div class="budget-channel-name">🔗 LinkedIn Sponsored Content</div><div class="budget-note-sm">Target: Marketing Director, CMO, Brand Manager, Agency Owner · Company 20+ · HCM+HN</div></div>
   <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:20%;background:#0a66c2"></div></div>
   <span class="budget-pct-badge" style="background:#0a66c2">20%</span>
-  <div class="budget-amount-num">$260</div>
+  <div class="budget-amount-num">$80</div>
 </div>
 <div class="budget-row-detail">
-  <div style="flex:2"><div class="budget-channel-name">📨 LinkedIn InMail</div><div class="budget-note-sm">Cold outreach tới Marketing Leads · 50-80 sends/tuần · Personalized sequence</div></div>
-  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:15%;background:#0a66c2"></div></div>
-  <span class="budget-pct-badge" style="background:#0a66c2">15%</span>
-  <div class="budget-amount-num">$190</div>
+  <div style="flex:2"><div class="budget-channel-name">📨 LinkedIn InMail</div><div class="budget-note-sm">Cold outreach tới Marketing Leads · 50-80 sends/tuần · Personalized sequence · PRIMARY B2B channel</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:24%;background:#0a66c2"></div></div>
+  <span class="budget-pct-badge" style="background:#0a66c2">24%</span>
+  <div class="budget-amount-num">$200</div>
 </div>
 <div class="budget-row-detail">
-  <div style="flex:2"><div class="budget-channel-name">📘 FB/IG Testing ($15/post)</div><div class="budget-note-sm">5 key posts only: A1/A5/B1/B3/C1 · Company page · W1 Engagement obj · A8/A3/A4/A9 = organic (content history)</div></div>
-  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:6%;background:#1877f2"></div></div>
-  <span class="budget-pct-badge" style="background:#1877f2">6%</span>
-  <div class="budget-amount-num">$75</div>
+  <div style="flex:2"><div class="budget-channel-name">📘 FB/IG Testing ($15/post)</div><div class="budget-note-sm">6 test posts: A1/A5/B1/B3/C1 + 1 new · Company page · W1 Engagement obj · Tăng từ 5→6 để có nhiều hook data hơn</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:11%;background:#1877f2"></div></div>
+  <span class="budget-pct-badge" style="background:#1877f2">11%</span>
+  <div class="budget-amount-num">$90</div>
 </div>
 <div class="budget-row-detail">
-  <div style="flex:2"><div class="budget-channel-name">📘 FB/IG Boost Winners</div><div class="budget-note-sm">Chỉ boost ER &gt; 5% · Max 3-4 posts · $50/post · Scale tốt nhất</div></div>
-  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:16%;background:#1877f2"></div></div>
-  <span class="budget-pct-badge" style="background:#1877f2">16%</span>
-  <div class="budget-amount-num">$210</div>
+  <div style="flex:2"><div class="budget-channel-name">📘 FB/IG Boost Winners</div><div class="budget-note-sm">Chỉ boost ER &gt; 5% · Max 3 posts · $25–30/post · Đủ để đọc signal, không cần $50</div></div>
+  <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:9%;background:#1877f2"></div></div>
+  <span class="budget-pct-badge" style="background:#1877f2">9%</span>
+  <div class="budget-amount-num">$80</div>
 </div>
 <div class="budget-row-detail">
   <div style="flex:2"><div class="budget-channel-name">🔄 Retargeting (LinkedIn + Website)</div><div class="budget-note-sm">⚠ W3+ only (cần 1,000+ custom audience) · W1–W2: $50 warming · W3 full $200 · Nurture B2B + B2C warm</div></div>
@@ -500,31 +500,32 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   <div style="flex:2"><div class="budget-channel-name">🎯 Always-On Sales</div><div class="budget-note-sm">⚠ START W3 ONLY — W1–W2: $0 (pixel chưa 50+ events, learning phase = lãng phí) · W3+ Session 1 $80 + Corporate $50 · KHÔNG kill sau khi start</div></div>
   <div class="budget-bar-wrap"><div class="budget-bar-fill" style="width:10%;background:#556b00"></div></div>
   <span class="budget-pct-badge" style="background:#556b00">10%</span>
-  <div class="budget-amount-num">$130</div>
+  <div class="budget-amount-num">$100</div>
 </div>
 
 <!-- Before vs After comparison -->
-<h3 style="font-size:13px;font-weight:700;margin:20px 0 12px">🔄 v4 vs v5 — Budget Shift</h3>
-<table class="spend-table"><thead><tr><th>Channel</th><th>v4 Amount</th><th>v5 Amount</th><th>Change</th><th>Lý do</th></tr></thead>
+<h3 style="font-size:13px;font-weight:700;margin:20px 0 12px">🔄 v5 vs v5.2 — Budget Rebalance</h3>
+<table class="spend-table"><thead><tr><th>Channel</th><th>v5 Amount</th><th>v5.2 Amount</th><th>Change</th><th>Lý do</th></tr></thead>
 <tbody>
-<tr><td><b>LinkedIn (total)</b></td><td>$100 (7.7%)</td><td style="color:#16a34a;font-weight:700">$450 (35%)</td><td style="color:#16a34a">↑ +$350</td><td>B2B priority — decision makers trên LinkedIn</td></tr>
-<tr><td><b>FB/IG Testing</b></td><td>$270 (21%)</td><td>$210 (16%)</td><td style="color:#b91c1c">↓ -$60</td><td>Giảm số posts test, tập trung quality hơn</td></tr>
-<tr><td><b>FB/IG Boost</b></td><td>$530 (41%)</td><td>$210 (16%)</td><td style="color:#b91c1c">↓ -$320</td><td>Chỉ boost B2C winners, không boost B2B content</td></tr>
-<tr><td><b>Always-On Sales</b></td><td>$300 (23%)</td><td>$130 (10%)</td><td style="color:#b91c1c">↓ -$170</td><td>Redirect sang LinkedIn Sponsored (higher CPL nhưng B2B qualified)</td></tr>
-<tr><td><b>Retargeting</b></td><td>$100 (7.7%)</td><td>$200 (15%)</td><td style="color:#16a34a">↑ +$100</td><td>Retarget cả B2B (LI) + B2C (FB) warm audience</td></tr>
-<tr><td><b>Email</b></td><td>$0 (0%)</td><td style="color:#16a34a;font-weight:700">$100 (8%)</td><td style="color:#16a34a">↑ NEW</td><td>B2B nurture sequence — essential cho corporate close</td></tr>
-<tr style="background:#e0e7ff;font-weight:700"><td>TOTAL</td><td>$1,300</td><td>$1,300</td><td>—</td><td>Same budget, shifted to B2B-first</td></tr>
+<tr><td><b>LinkedIn Sponsored</b></td><td>$260 (20%)</td><td style="color:#b91c1c;font-weight:700">$80 (9%)</td><td style="color:#b91c1c">↓ -$180</td><td>Chỉ boost organic đã có ER &gt;3% — tránh lãng phí CPM LinkedIn đắt</td></tr>
+<tr><td><b>LinkedIn InMail</b></td><td>$190 (15%)</td><td style="color:#16a34a;font-weight:700">$200 (24%)</td><td style="color:#16a34a">↑ +$10</td><td>PRIMARY B2B channel → direct nhất để seal 1 deal</td></tr>
+<tr><td><b>FB/IG Testing</b></td><td>$75 (6%)</td><td style="color:#16a34a">$90 (11%)</td><td style="color:#16a34a">↑ +$15</td><td>6 posts thay vì 5 — nhiều hook data hơn để tìm winner</td></tr>
+<tr><td><b>FB/IG Boost</b></td><td>$350 (27%)</td><td style="color:#b91c1c">$80 (9%)</td><td style="color:#b91c1c">↓ -$270</td><td>$25–30/post (3 winners) đủ signal · Không cần $50/post ở giai đoạn test</td></tr>
+<tr><td><b>Always-On Sales</b></td><td>$130 (10%)</td><td>$100 (12%)</td><td style="color:#b91c1c">↓ -$30</td><td>W3–W4 only · 2 posts × $50 · Không chạy W1–W2</td></tr>
+<tr><td><b>Retargeting</b></td><td>$200 (15%)</td><td>$200 (24%)</td><td>—</td><td>Giữ nguyên — critical cho conversion W3+</td></tr>
+<tr><td><b>Email B2B</b></td><td>$100 (8%)</td><td>$100 (12%)</td><td>—</td><td>Giữ nguyên — Brevo + nurture sequence</td></tr>
+<tr style="background:#e0e7ff;font-weight:700"><td>TOTAL</td><td>$1,305</td><td>$850</td><td style="color:#16a34a">↓ -$455 tiết kiệm</td><td>Redirect buffer sang InMail + tăng test FB/IG</td></tr>
 </tbody></table>
 
 <!-- Weekly plan -->
 <h3 style="font-size:13px;font-weight:700;margin-bottom:8px">📅 Weekly Spend Plan v5</h3>
 <table class="spend-table"><thead><tr><th>Tuần</th><th>Phase</th><th>B2B Focus</th><th>B2C Focus</th><th>Total Est.</th><th>Mục tiêu</th></tr></thead>
 <tbody>
-<tr><td><b>W1</b> Jun 15–19</td><td>Pre-Launch A/B</td><td>LI test $30 (A2 post)</td><td>FB/IG test $60 (3 posts)</td><td>$90–150</td><td>Test B2B hook · Chọn winner cho W2</td></tr>
-<tr style="background:#fffbeb"><td><b>W2</b> Jun 20–26</td><td>Soft Launch 🚀</td><td>LI $60 + InMail start</td><td>FB/IG test $90 + boost $50</td><td>$200–300</td><td>Scale hook winners · Session 1 + Corporate CTA live</td></tr>
-<tr><td><b>W3</b> Jun 27–30</td><td>Full Launch 🔥</td><td>LI Sponsored $80 + InMail</td><td>Retarget warm B2C $100</td><td>$260–360</td><td>Retarget both B2B+B2C warm · Urgency</td></tr>
-<tr style="background:#fffbeb"><td><b>W4</b> Jul 1–9</td><td>July Close 🎯</td><td>LI Corporate push $100</td><td>FB/IG close B2C $80</td><td>$210–310</td><td>Corporate discovery calls · B2C cohort close</td></tr>
-<tr style="background:#e0e7ff;font-weight:700"><td>TOTAL</td><td>—</td><td>~$450 B2B</td><td>~$420 B2C + $200 retarget + $230 other</td><td>~$1,300</td><td></td></tr>
+<tr><td><b>W1</b> Jun 15–19</td><td>Pre-Launch A/B</td><td>LI test $20 (A2 post) + InMail outreach start</td><td>FB/IG test $45 (3 posts × $15)</td><td>$65–100</td><td>Test B2B hook · Bắt đầu InMail outreach thủ công</td></tr>
+<tr style="background:#fffbeb"><td><b>W2</b> Jun 20–26</td><td>Soft Launch 🚀</td><td>LI InMail $100 + boost winner $20</td><td>FB/IG test $45 + boost $30 (1 winner)</td><td>$195–250</td><td>Scale hook winners · Session 1 + Corporate CTA live</td></tr>
+<tr><td><b>W3</b> Jun 27–Jul 2</td><td>Full Launch 🔥</td><td>LI InMail $60 + Sponsored $40</td><td>Retarget $100 + Always-On $50</td><td>$250–300</td><td>Retarget warm · Always-On start · Discovery calls</td></tr>
+<tr style="background:#fffbeb"><td><b>W4</b> Jul 3–9</td><td>July Close 🎯</td><td>LI InMail $40 + Sponsored $20</td><td>FB/IG boost $50 + Always-On $50 + Retarget $100</td><td>$260–310</td><td>Corporate discovery calls close · B2C cohort close</td></tr>
+<tr style="background:#e0e7ff;font-weight:700"><td>TOTAL</td><td>—</td><td>~$280 B2B</td><td>~$370 B2C + Retarget + Always-On</td><td>~$850</td><td></td></tr>
 </tbody></table>
 
 <!-- ============================================================ -->
@@ -533,16 +534,16 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <h3 style="font-size:13px;font-weight:700;margin:20px 0 12px">🔄 Ad Spend Flow — 3 loại budget KHÁC NHAU</h3>
 <div class="callout callout-amber" style="margin:0 0 12px">
   <b>⚠️ Đừng nhầm 3 loại $50 này:</b><br><br>
-  <b>① $15 Test</b> (FB/IG Testing $75 pool) → chạy 48h · Engagement objective · đo ER signal<br>
-  <b>② $50 Boost</b> (FB/IG Boost Winners $210 pool) → chỉ trigger khi ER &gt;5% · scale winner · KHÔNG phải Always-On<br>
-  <b>③ Always-On $50</b> (Always-On $130 pool) → Corporate page evergreen · chạy 24/7 từ W3 · Conversion objective · độc lập với test/boost
+  <b>① $15 Test</b> (FB/IG Testing $90 pool · 6 posts) → chạy 48h · Engagement objective · đo ER signal<br>
+  <b>② $25–30 Boost</b> (FB/IG Boost Winners $80 pool · max 3 posts) → chỉ trigger khi ER &gt;5% · scale winner · KHÔNG phải Always-On<br>
+  <b>③ Always-On $50</b> (Always-On $100 pool · W3–W4 only · 2 posts) → Corporate page evergreen · Conversion objective · độc lập với test/boost
 </div>
 <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;overflow-x:auto">
   <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;font-size:11px">
     <div style="background:#dbeafe;border:1.5px solid #93c5fd;border-radius:8px;padding:8px 12px;text-align:center;min-width:110px">
       <div style="font-size:18px;font-weight:800;color:#1d4ed8">$15</div>
       <div style="font-weight:700;color:#1d4ed8">Test post</div>
-      <div style="color:#6b7280;margin-top:2px">48h · Engagement obj<br>Pool: $75 (5 posts)</div>
+      <div style="color:#6b7280;margin-top:2px">48h · Engagement obj<br>Pool: $90 (6 posts)</div>
     </div>
     <div style="padding:0 10px;font-size:16px;color:#6b7280">→</div>
     <div style="background:#dcfce7;border:1.5px dashed #86efac;border-radius:8px;padding:8px 12px;text-align:center;min-width:130px">
@@ -552,9 +553,9 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
     </div>
     <div style="padding:0 10px;font-size:16px;color:#6b7280">→</div>
     <div style="background:#fef3c7;border:1.5px solid #fcd34d;border-radius:8px;padding:8px 12px;text-align:center;min-width:120px">
-      <div style="font-size:18px;font-weight:800;color:#92400e">$50</div>
+      <div style="font-size:18px;font-weight:800;color:#92400e">$25–30</div>
       <div style="font-weight:700;color:#92400e">Boost winner</div>
-      <div style="color:#6b7280;margin-top:2px">5 ngày · Scale reach<br>Pool: $210 (max 4 posts)</div>
+      <div style="color:#6b7280;margin-top:2px">4–5 ngày · Scale reach<br>Pool: $80 (max 3 posts)</div>
     </div>
     <div style="padding:0 10px;font-size:16px;color:#6b7280">→</div>
     <div style="background:#ede9fe;border:1.5px solid #c4b5fd;border-radius:8px;padding:8px 12px;text-align:center;min-width:130px">
@@ -566,7 +567,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
     <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:8px 12px;text-align:center;min-width:130px">
       <div style="font-size:18px;font-weight:800;color:#15803d">$50</div>
       <div style="font-weight:700;color:#15803d">Always-On</div>
-      <div style="color:#6b7280;margin-top:2px">Corporate evergreen 24/7<br>Pool: $130 · W3+ only</div>
+      <div style="color:#6b7280;margin-top:2px">W3–W4 only · 2 posts<br>Pool: $100 · không chạy W1–W2</div>
     </div>
   </div>
 </div>
@@ -1174,7 +1175,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   <div class="fin-card"><div class="num">5,050,000</div><div class="lbl">₫ Tổng chi Q1 2026</div></div>
   <div class="fin-card"><div class="num" style="color:#16a34a">0</div><div class="lbl">₫ Tổng thu (chưa phát sinh)</div></div>
   <div class="fin-card"><div class="num">$65</div><div class="lbl">Tool spend/tháng (USD)</div></div>
-  <div class="fin-card"><div class="num">$1,300</div><div class="lbl">Ad spend tháng 6 (USD)</div></div>
+  <div class="fin-card"><div class="num">$850</div><div class="lbl">Ad spend tháng 6 (USD) — v5.2</div></div>
 </div>
 
 <!-- Tax Deadlines -->
@@ -1232,8 +1233,8 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <table class="fin-table">
   <thead><tr><th>Tháng</th><th>Thu (dự kiến)</th><th>Chi tools (USD)</th><th>Chi ads (USD)</th><th>P&L</th></tr></thead>
   <tbody>
-    <tr><td>Jun 2026</td><td>—</td><td>$65</td><td>$1,300</td><td style="color:#b91c1c;font-weight:700">–$1,365</td></tr>
-    <tr><td>Jul 2026</td><td>—</td><td>$65</td><td>$1,520 (if ROAS ≥1.77×)</td><td style="color:#6b7280">Depends on Jun</td></tr>
+    <tr><td>Jun 2026</td><td>14–16 enrol ($840–960) + 1 B2B deal (est. $600–800)</td><td>$65</td><td>$850</td><td style="color:#16a34a;font-weight:700">+$525–845 (nếu hit targets)</td></tr>
+    <tr><td>Jul 2026</td><td>—</td><td>$65</td><td>TBD (scale nếu Jun ROAS ≥2.0×)</td><td style="color:#6b7280">Depends on Jun</td></tr>
   </tbody>
 </table>
 </div>
@@ -1244,16 +1245,16 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <table class="fin-table">
   <thead><tr><th>Line item</th><th>Amount</th><th>%</th><th>Timeline</th><th>Owner</th></tr></thead>
   <tbody>
-    <tr><td>🔗 LinkedIn Sponsored Content</td><td>$260</td><td>20%</td><td>W1–W4 · 1–2 posts/tuần · Target: Marketing Director, CMO</td><td>Yen</td></tr>
-    <tr><td>📨 LinkedIn InMail</td><td>$190</td><td>15%</td><td>W2 Jun 20+ · 50–80 sends/tuần · Personalized sequence</td><td>Yen</td></tr>
-    <tr><td>📘 FB/IG Testing ($15/post)</td><td>$75</td><td>6%</td><td>W1 · 5 key posts: A1/A5/B1/B3/C1 · Company page only · A8/A3/A4/A9 = organic</td><td>Nghi</td></tr>
-    <tr><td>📘 FB/IG Boost Winners</td><td>$350</td><td>27%</td><td>W2–W4 · Chỉ boost ER &gt;5% · Max 7 posts · $50/post · +20% mỗi 48h</td><td>Nghi</td></tr>
-    <tr><td>🔄 Retargeting (LinkedIn + Website)</td><td>$200</td><td>15%</td><td>⚠ W3+ only · W1–W2: $50 warming · Full $200 khi pixel &gt;1,000 audience · Cần pixel data</td><td>Nghi</td></tr>
-    <tr><td>📧 Email Marketing + Tools (Brevo)</td><td>$100</td><td>8%</td><td>W1+ · Brevo setup + 3-email B2B nurture sequence · brevoClient.js ready</td><td>Yen</td></tr>
-    <tr><td>🎯 Always-On Sales</td><td>$130</td><td>10%</td><td>⚠ W3+ ONLY (start khi pixel có 50+ Lead events) · Session 1 $80 + Corporate $50 · KHÔNG kill sau khi start</td><td>Nghi/Yen</td></tr>
-    <tr style="background:#f9fafb;font-weight:700"><td>TOTAL AD SPEND</td><td>$1,300</td><td>100%</td><td></td><td></td></tr>
+    <tr><td>🔗 LinkedIn Sponsored Content</td><td>$80</td><td>9%</td><td>Chỉ boost organic đã có ER &gt;3% · W2–W4 · Target: Marketing Director, CMO</td><td>Yen</td></tr>
+    <tr><td>📨 LinkedIn InMail</td><td>$200</td><td>24%</td><td>W2 Jun 20+ · 50–80 sends/tuần · PRIMARY B2B channel → 1 deal target</td><td>Yen</td></tr>
+    <tr><td>📘 FB/IG Testing ($15/post)</td><td>$90</td><td>11%</td><td>W1 · 6 posts: A1/A5/B1/B3/C1 + 1 new hook · Company page only</td><td>Nghi</td></tr>
+    <tr><td>📘 FB/IG Boost Winners</td><td>$80</td><td>9%</td><td>W2–W4 · ER &gt;5% only · Max 3 posts · $25–30/post · Đủ signal, không over-spend</td><td>Nghi</td></tr>
+    <tr><td>🔄 Retargeting (LinkedIn + Website)</td><td>$200</td><td>24%</td><td>⚠ W3+ only · Full $200 khi pixel &gt;1,000 audience · Cần pixel data</td><td>Nghi</td></tr>
+    <tr><td>📧 Email Marketing + Tools (Brevo)</td><td>$100</td><td>12%</td><td>W1+ · Brevo setup + 3-email B2B nurture sequence · brevoClient.js ready</td><td>Yen</td></tr>
+    <tr><td>🎯 Always-On Sales</td><td>$100</td><td>12%</td><td>⚠ W3–W4 ONLY · 2 posts × $50 · KHÔNG chạy W1–W2 (pixel chưa đủ data)</td><td>Nghi/Yen</td></tr>
+    <tr style="background:#f9fafb;font-weight:700"><td>TOTAL AD SPEND</td><td>$850</td><td>100%</td><td></td><td></td></tr>
     <tr><td>Tools (fixed monthly)</td><td>$65</td><td>—</td><td>Canva $15 + Claude $20 + ChatGPT $20 + Calendly $10</td><td>Nghi/Yen</td></tr>
-    <tr style="background:#fef3c7;font-weight:700"><td>TOTAL JUNE SPEND</td><td>$1,365</td><td>—</td><td></td><td></td></tr>
+    <tr style="background:#fef3c7;font-weight:700"><td>TOTAL JUNE SPEND</td><td>$915</td><td>—</td><td></td><td></td></tr>
   </tbody>
 </table>
 </div>
@@ -1802,7 +1803,7 @@ const phases=[
 ['Jun 13','Update retargeting ad (Set 2) with Cohort 1 testimonials','IMP','Yen','To-Do'],
 ]},
 {key:'W3',label:'📣 WEEK 3 ADS — Jun 16–22 (B2B Intensify)',cls:'ck-ph-ads',tasks:[
-['Jun 16–18','Launch LinkedIn InMail campaign ($100, 1,000 sends)','B2B','Yen','To-Do'],
+['Jun 16–18','Launch LinkedIn InMail campaign ($200, 50–80 sends/tuần · PRIMARY B2B channel)','B2B','Yen','To-Do'],
 ['Jun 16–18','Run C1 consulting calls — send C2/B proposal within 24h','B2B','Yen','To-Do'],
 ['Jun 16–18','WA outreach to 3 Senior BM contacts: team training + A2 pricing','B2B','Yen','To-Do'],
 ['Jun 16–18','Draft Jun 23 full launch post (B/C/A2 all open + urgency)','IMP','Yen','To-Do'],
@@ -1825,7 +1826,7 @@ const phases=[
 ]},
 {key:'CLOSE',label:'📊 MONTH CLOSE — Jun 30',cls:'ck-ph-close',tasks:[
 ['Jun 30','Pull final numbers: reach / clicks / warm leads / conversions','CRIT','Both','To-Do'],
-['Jun 30','Calculate actual ROAS: revenue ÷ $1,300 (target ≥1.77×)','CRIT','Both','To-Do'],
+['Jun 30','Calculate actual ROAS: revenue ÷ $850 (target ≥2.0× · B2C break-even 14 enrolments + 1 B2B deal)','CRIT','Both','To-Do'],
 ['Jun 30','Write 1-page June retro: wins / misses / top 3 learnings','IMP','Both','To-Do'],
 ['Jun 30','Set July ad budget ($1,520 if ROAS≥1.77× / review if <1.5×)','IMP','Both','To-Do'],
 ['Jun 30','Confirm A2 Session 1 dates + book B workshops','IMP','Nghi','To-Do'],
