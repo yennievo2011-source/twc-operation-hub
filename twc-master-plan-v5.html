@@ -150,6 +150,14 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 .hcard .platforms{font-size:10px;color:#9ca3af;margin-top:6px;border-top:1px solid #f3f4f6;padding-top:6px}
 .perf-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
 .perf-tag{font-size:10px;padding:2px 7px;border-radius:8px;background:#f3f4f6;color:#374151;font-weight:600}
+/* POST EDIT FORM */
+.post-edit-form{display:none;margin-top:12px;background:#f8f7ff;border:1px solid #c4b5fd;border-radius:10px;padding:14px}
+.post-edit-form h4{font-size:12px;font-weight:800;color:var(--ind);margin-bottom:10px}
+.post-edit-form textarea{width:100%;border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:12px;resize:vertical;background:#fff;font-family:inherit;line-height:1.5}
+.post-edit-form input[type=text]{width:100%;border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:12px;background:#fff;font-family:inherit}
+.post-edit-form label{font-size:10px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px}
+.post-edit-row{display:grid;gap:8px;margin-bottom:8px}
+.pe-edited-badge{font-size:10px;font-weight:700;color:#0369a1;background:#e0f2fe;padding:2px 8px;border-radius:8px;border:1px solid #7dd3fc}
 /* CHECKLIST */
 .ck-section{padding:16px}
 .ck-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:16px}
@@ -357,7 +365,8 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="header"><h1>📊 Performance Tracker</h1>
 <p>Nhập số liệu sau 48h mỗi bài · ER &gt; 5% FB/IG → Boost +$50 · ER &gt; 3% LinkedIn → Boost · ER &lt; 3% → Stop</p></div>
 <div class="er-section">
-<div class="callout callout-green"><b>✅ Test Protocol v5:</b> TẤT CẢ FB/IG posts chạy $15 test · LinkedIn posts chạy $10 test. Nhập data → tự tính ER → quyết định boost / hold / stop.</div>
+<div class="callout callout-green"><b>✅ Test Protocol v5:</b> FB/IG posts chạy <b>$15 test (48h)</b> · LinkedIn posts chạy <b>$20 test (48h)</b>. Nhập data → tự tính ER → quyết định boost / hold / stop.</div>
+<div class="callout callout-amber"><b>⚠️ Về budget test:</b> FB/IG $15 ✅ ổn — ở VN CPM ~$1–2, bạn nhận được ~750–1,500 impressions, đủ để thấy tín hiệu ER directional. LinkedIn $10 ❌ quá ít — LinkedIn CPM VN ~$8–15, $10 chỉ cho ~65–125 impressions, không đủ signal. Nên dùng <b>$20 minimum cho LinkedIn</b>, lý tưởng là $25 để có ~200+ impressions.</div>
 <div class="callout callout-b2b"><b>🔗 LinkedIn B2B threshold:</b> ER &gt; 3% → Boost $30 | ER &gt; 5% → Boost $50 + InMail follow-up | ER &lt; 2% → Stop, rewrite hook.</div>
 <div class="er-grid" id="erGrid"></div></div>
 </div>
@@ -1383,16 +1392,44 @@ posts.forEach((p,i)=>{
   const ctaLabel = p.cta==='corporate' ? 'Book Corporate Demo'
     : p.cta==='both' ? 'Session 1 + Corporate'
     : 'Reserve Session 1';
-  ex.innerHTML=`<td colspan="11" class="expand-cell"><div class="exp-grid">
-    <div class="exp-block hook-a"><h4>★ Hook A — Recommended</h4><p>${p.hook}</p></div>
-    <div class="exp-block hook-b"><h4>Hook B</h4><p>${p.h2}</p></div>
-    <div class="exp-block hook-c"><h4>Hook C</h4><p>${p.h3}</p></div>
-    <div class="exp-block caption-block"><h4>📝 Caption Draft</h4><p style="white-space:pre-line">${p.cap}</p></div>
-    <div class="exp-block canva-block"><h4>🎨 Canva Prompt ${vtBadge(p.vt)}</h4><p>${p.canva}</p></div>
+  const _pe=getPE();const _pd=_pe[p.id]?{...p,..._pe[p.id]}:p;const _isEd=!!_pe[p.id];
+  const _esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  ex.innerHTML=`<td colspan="11" class="expand-cell">
+  <div style="display:flex;justify-content:flex-end;gap:6px;margin-bottom:8px">
+    ${_isEd?`<span class="pe-edited-badge">✏️ Đã chỉnh sửa</span>`:''}
+    <button onclick="showPostEdit(${i},event)" style="font-size:11px;padding:4px 10px;border-radius:8px;border:1px solid #7dd3fc;background:#e0f2fe;color:#0369a1;cursor:pointer">✏️ Sửa nội dung</button>
+    ${_isEd?`<button onclick="resetPostEdit(${i},event)" style="font-size:11px;padding:4px 10px;border-radius:8px;border:1px solid #fca5a5;background:#fee2e2;color:#b91c1c;cursor:pointer">↺ Reset gốc</button>`:''}
+  </div>
+  <div class="exp-grid">
+    <div class="exp-block hook-a"><h4>★ Hook A — Recommended</h4><p id="pe-disp-hook-${i}">${_pd.hook}</p></div>
+    <div class="exp-block hook-b"><h4>Hook B</h4><p id="pe-disp-h2-${i}">${_pd.h2||''}</p></div>
+    <div class="exp-block hook-c"><h4>Hook C</h4><p id="pe-disp-h3-${i}">${_pd.h3||''}</p></div>
+    <div class="exp-block caption-block"><h4>📝 Caption Draft</h4><p id="pe-disp-cap-${i}" style="white-space:pre-line">${_pd.cap}</p></div>
+    <div class="exp-block canva-block"><h4>🎨 Canva Prompt ${vtBadge(_pd.vt)}</h4><p id="pe-disp-canva-${i}">${_pd.canva}</p></div>
     <div class="exp-block cta-block"><h4>CTA → ${p.cta==='corporate'?'Corporate':'Session 1'}</h4>
       <p>Track: ${trackBadge(p.b2b)}</p>
       <a href="${ctaLink}" target="_blank">→ ${ctaLabel}</a></div>
-  </div></td>`;
+  </div>
+  <div class="post-edit-form" id="pef-${i}">
+    <h4>✏️ Chỉnh sửa — ${p.id} · ${p.date}</h4>
+    <div class="post-edit-row" style="grid-template-columns:1fr">
+      <div><label>Tiêu đề</label><input type="text" id="pe-title-${i}" value="${_esc(_pd.title)}"></div>
+    </div>
+    <div class="post-edit-row" style="grid-template-columns:1fr 1fr 1fr">
+      <div><label>★ Hook A</label><textarea id="pe-hook-${i}" rows="4">${_esc(_pd.hook)}</textarea></div>
+      <div><label>Hook B</label><textarea id="pe-h2-${i}" rows="4">${_esc(_pd.h2||'')}</textarea></div>
+      <div><label>Hook C</label><textarea id="pe-h3-${i}" rows="4">${_esc(_pd.h3||'')}</textarea></div>
+    </div>
+    <div class="post-edit-row" style="grid-template-columns:2fr 1fr">
+      <div><label>📝 Caption</label><textarea id="pe-cap-${i}" rows="6">${_esc(_pd.cap)}</textarea></div>
+      <div><label>🎨 Canva Prompt</label><textarea id="pe-canva-${i}" rows="6">${_esc(_pd.canva)}</textarea></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button onclick="savePostEdit(${i})" style="padding:6px 16px;background:var(--ind);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">💾 Lưu</button>
+      <button onclick="showPostEdit(${i},event)" style="padding:6px 14px;background:#f3f4f6;color:#374151;border:1px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer">Huỷ</button>
+    </div>
+  </div>
+  </td>`;
   tbody.appendChild(ex);
 });
 
@@ -2027,6 +2064,64 @@ async function fetchFBInsights(){
   }catch(e){
     statusEl.className='api-status api-err';statusEl.textContent='❌ Error: '+e.message;
   }
+}
+
+// ============================================================
+// POST EDIT — inline edit & localStorage override
+// ============================================================
+const PE_KEY='twc_post_edits';
+function getPE(){try{return JSON.parse(localStorage.getItem(PE_KEY)||'{}')}catch{return{}}}
+
+function showPostEdit(i,event){
+  if(event) event.stopPropagation();
+  const form=document.getElementById(`pef-${i}`);
+  form.style.display=form.style.display==='block'?'none':'block';
+}
+
+function savePostEdit(i){
+  const edits=getPE();
+  edits[posts[i].id]={
+    title:document.getElementById(`pe-title-${i}`).value,
+    hook:document.getElementById(`pe-hook-${i}`).value,
+    h2:document.getElementById(`pe-h2-${i}`).value,
+    h3:document.getElementById(`pe-h3-${i}`).value,
+    cap:document.getElementById(`pe-cap-${i}`).value,
+    canva:document.getElementById(`pe-canva-${i}`).value,
+  };
+  localStorage.setItem(PE_KEY,JSON.stringify(edits));
+  // Update displayed text in place (no full re-render)
+  const ed=edits[posts[i].id];
+  const upd=(id,val,pre)=>{const el=document.getElementById(id);if(el){el.textContent=val;if(pre)el.style.whiteSpace='pre-line';}};
+  upd(`pe-disp-hook-${i}`,ed.hook);
+  upd(`pe-disp-h2-${i}`,ed.h2);
+  upd(`pe-disp-h3-${i}`,ed.h3);
+  upd(`pe-disp-cap-${i}`,ed.cap,true);
+  upd(`pe-disp-canva-${i}`,ed.canva);
+  document.getElementById(`pef-${i}`).style.display='none';
+  // show edited badge if not already there
+  const btnRow=document.querySelector(`#e${i} .pe-edited-badge`);
+  if(!btnRow){
+    const badge=document.createElement('span');
+    badge.className='pe-edited-badge';badge.textContent='✏️ Đã chỉnh sửa';
+    document.getElementById(`pef-${i}`).previousElementSibling.prepend(badge);
+  }
+}
+
+function resetPostEdit(i,event){
+  if(event) event.stopPropagation();
+  if(!confirm('Reset về nội dung gốc?')) return;
+  const edits=getPE();delete edits[posts[i].id];
+  localStorage.setItem(PE_KEY,JSON.stringify(edits));
+  const p=posts[i];
+  const upd=(id,val,pre)=>{const el=document.getElementById(id);if(el){el.textContent=val;if(pre)el.style.whiteSpace='pre-line';}};
+  upd(`pe-disp-hook-${i}`,p.hook);
+  upd(`pe-disp-h2-${i}`,p.h2||'');
+  upd(`pe-disp-h3-${i}`,p.h3||'');
+  upd(`pe-disp-cap-${i}`,p.cap,true);
+  upd(`pe-disp-canva-${i}`,p.canva);
+  document.getElementById(`pef-${i}`).style.display='none';
+  const badge=document.querySelector(`#e${i} .pe-edited-badge`);if(badge)badge.remove();
+  const resetBtn=document.querySelector(`#e${i} button[onclick*="resetPostEdit"]`);if(resetBtn)resetBtn.remove();
 }
 
 // ============================================================
