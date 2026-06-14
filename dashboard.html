@@ -336,14 +336,21 @@ Tóm lại: 1 việc duy nhất hôm nay — post A1 trước 12h, set reminder 
       <i style="opacity:.75;font-size:12px">Lý do dùng existing post: để likes/comments dồn vào 1 bài thay vì tách ra, social proof tốt hơn.</i></li>
   </ol>
 
-  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── 48H SAU KHI ĐĂNG ──</b>
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── SAU KHI ĐĂNG — Ads tự chạy ──</b>
+  <ol style="margin-top:6px" start="6">
+    <li>Sau khi đăng xong, paste link FB post vào Notion field <code>url_fb</code> → kéo status → <b>Published</b> → chạy lệnh sau để tự động tạo Meta Ads campaign:<br>
+      <code style="display:block;margin:6px 0;padding:8px 10px;background:rgba(0,0,0,.35);border-radius:6px;font-size:12px;user-select:all">cd "/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service" &amp;&amp; node --env-file=.env lib/autoAds.js</code>
+      Script tự tạo campaign + ad set + dùng existing post → không cần vào Ads Manager.</li>
+  </ol>
+
+  <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── 48H SAU KHI ĐĂNG — Check ER ──</b>
   <ol style="margin-top:6px" start="7">
-    <li>Vào Meta Ads Manager / LinkedIn Analytics → lấy số: <b>ER%</b> (Engagement Rate) + <b>spend</b> thực tế → nhập vào Notion field <code>er_actual</code> và <code>spend_actual</code> của post đó.</li>
-    <li>Đọc rule bên dưới → tự quyết định tay trên Ads Manager:<br>
-      <span style="background:rgba(192,241,0,.2);padding:2px 8px;border-radius:4px;font-size:12px">ER &gt;5%</span> → BOOST: tăng thêm $50 budget trong Ads Manager<br>
-      <span style="background:rgba(255,200,0,.2);padding:2px 8px;border-radius:4px;font-size:12px">ER 3–5%</span> → HOLD: giữ nguyên, không thay đổi<br>
-      <span style="background:rgba(255,80,80,.2);padding:2px 8px;border-radius:4px;font-size:12px">ER &lt;3%</span> → KILL: tắt ad set trong Ads Manager<br>
-      LinkedIn: &gt;5% boost+InMail · &gt;3% boost $30 · &lt;2% stop</li>
+    <li>Vào Meta Ads Manager / LinkedIn Analytics → lấy <b>ER%</b> → nhập vào Notion: <code>er_fb</code> (hoặc <code>er_ig</code>, <code>er_li</code>) của post đó.</li>
+    <li>Chạy lệnh để rule engine tự tính BOOST/HOLD/KILL và cập nhật Notion + dashboard:<br>
+      <code style="display:block;margin:6px 0;padding:8px 10px;background:rgba(0,0,0,.35);border-radius:6px;font-size:12px;user-select:all">cd "/Users/yennievo/Documents/Claude/Projects/TWC social page/agent-service" &amp;&amp; node --env-file=.env lib/erCheck.js</code>
+      Kết quả in ra terminal + ghi vào Notion field <code>decision</code> + update dashboard này.<br>
+      <span style="opacity:.7;font-size:12px">ER &gt;5% → BOOST $50 · 3–5% → HOLD · &lt;3% → KILL · LinkedIn: &gt;5% boost+InMail · &gt;3% boost $30 · &lt;2% stop</span></li>
+    <li>Thực hiện quyết định tay trong <b>Ads Manager</b> theo kết quả terminal.</li>
   </ol>
 
   <b style="color:var(--lime);font-size:13px;display:block;margin-top:12px">── TUẦN MỚI — Yên cập nhật posts rồi chạy lại lệnh ──</b>
@@ -359,5 +366,5 @@ Tóm lại: 1 việc duy nhất hôm nay — post A1 trước 12h, set reminder 
   </div>
 </div>
 
-<div class="muted">Cập nhật tự động · pick option trong Notion · 2026-06-14T16:41:27.012Z</div>
+<div class="muted">Cập nhật tự động · pick option trong Notion · 2026-06-14T16:45:21.028Z</div>
 </body></html>
