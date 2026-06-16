@@ -151,7 +151,16 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
 </div>
 <section>
 
-<div class="note note-amber"><b>⚠️ Nguyên tắc cốt lõi:</b> Chạy <b>Conversion objective → Landing Page View</b> (hoặc Lead nếu có pixel event). Facebook sẽ optimize đúng người có khả năng click vào website. KHÔNG chạy Reach hoặc Engagement objective cho campaign lead gen.</div>
+<div class="note note-amber"><b>⚠️ 3 Objectives — dùng đúng loại sai giai đoạn = waste budget:</b>
+<br><br>
+<b>① Test hook $15 (W1)</b> → <b>Engagement (Post Engagement)</b> — Meta optimize cho người hay like/comment/share. Mục tiêu chỉ là đo ER và chọn hook winner trong 48h. $15 không đủ để thoát learning phase của Traffic/Conversions nên KHÔNG dùng objective đó ở bước này.
+<br><br>
+<b>② Scale winner + Cold/Lookalike ($25–75)</b> → <b>Traffic (Landing Page Views)</b> — Sau khi có hook winner từ bước ①, chuyển sang Traffic. Meta optimize cho người hay click ra ngoài. Đây là objective chính để drive CTR về website.
+<br><br>
+<b>③ Always-On Retargeting (L2/L3) + Conversions</b> → <b>Conversions / Lead Generation</b> — Chỉ dùng khi pixel đã có ≥50 events (thường từ W3). Meta sẽ tự tìm người có intent mua trong custom audience pool. KHÔNG dùng objective này cho cold audience — CPL sẽ rất cao.
+<br><br>
+<span style="color:#92400e"><b>Tóm tắt nhanh:</b> W1 test = Engagement → W2 scale = Traffic → W3+ retarget = Conversions</span>
+</div>
 
 <h2>1. Campaign Overview</h2>
 <div class="camp-grid">
@@ -182,9 +191,10 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
     <div class="camp-body">
       <div class="camp-kv"><span class="k">Posts</span><span class="v">L1 · L2 · L3 · L4</span></div>
       <div class="camp-kv"><span class="k">Budget</span><span class="v">$300 tổng · run suốt launch</span></div>
-      <div class="camp-kv"><span class="k">Objective</span><span class="v">Conversions / Leads</span></div>
+      <div class="camp-kv"><span class="k">L1 Objective</span><span class="v" style="color:#1d4ed8">Traffic (LP Views) — Cold+Lookalike</span></div>
+      <div class="camp-kv"><span class="k">L2/L3 Objective</span><span class="v" style="color:#b91c1c">Conversions/Leads — Retargeting only</span></div>
+      <div class="camp-kv"><span class="k">L4 Objective</span><span class="v" style="color:#1d4ed8">Traffic — Corporate page (B2B)</span></div>
       <div class="camp-kv"><span class="k">Không kill</span><span class="v">Chạy qua hết phase</span></div>
-      <div class="camp-kv"><span class="k">CTA</span><span class="v">Đăng ký ngay</span></div>
     </div>
   </div>
 </div>
@@ -236,33 +246,33 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
 
 <h2>3. Creative per Ad Set — Mapping</h2>
 <div class="tbl-wrap"><table>
-<thead><tr><th>Post ID</th><th>Platform</th><th>Ad Set</th><th>Hooks ready</th><th>Type</th><th>Test $</th><th>Scale trigger</th></tr></thead>
+<thead><tr><th>Post ID</th><th>Platform</th><th>Ad Set</th><th>Hooks ready</th><th>Type</th><th>Budget</th><th>🎯 Objective</th><th>Scale trigger</th></tr></thead>
 <tbody>
-<tr class="ph1-bg"><td colspan="7" class="ph1">── WEEK 1 (Jun 15–19) · Pre-Launch A/B ──</td></tr>
-<tr><td><b>A1</b> Jun 15</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG Reels</span></td><td>Cold Interest</td><td>H-A (L2) · H-B (L3) · H-C (generic)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% sau 48h → +$50</td></tr>
-<tr><td><b>A5</b> Jun 17</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (L2) · H-B (L2 alt) · H-C (confession)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → scale</td></tr>
-<tr><td><b>A2</b> Jun 18</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (contrarian) · H-B (L3) · H-C (team pain)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>CTR > 1.5% LI → extend</td></tr>
-<tr><td><b>A8</b> Jun 19</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (B/A split) · H-B (time number) · H-C (identity)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → boost</td></tr>
+<tr class="ph1-bg"><td colspan="8" class="ph1">── WEEK 1 (Jun 15–19) · Pre-Launch A/B — Objective: ENGAGEMENT (hook test only) ──</td></tr>
+<tr><td><b>A1</b> Jun 15</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG Reels</span></td><td>Cold Interest</td><td>H-A (L2) · H-B (L3) · H-C (generic)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">đo ER, chọn hook</span></td><td>ER > 5% sau 48h → boost $50 Traffic obj</td></tr>
+<tr><td><b>A5</b> Jun 17</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (L2) · H-B (L2 alt) · H-C (confession)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">đo ER, chọn hook</span></td><td>ER > 5% → scale Traffic</td></tr>
+<tr><td><b>A2</b> Jun 18</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (contrarian) · H-B (L3) · H-C (team pain)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">LI boost organic</span></td><td>CTR > 1.5% LI → extend Traffic</td></tr>
+<tr><td><b>A8</b> Jun 19</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (B/A split) · H-B (time number) · H-C (identity)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">đo ER, chọn hook</span></td><td>ER > 5% → boost Traffic</td></tr>
 
-<tr class="ph2-bg"><td colspan="7" class="ph2">── WEEK 2 (Jun 20–26) · Soft Launch 🚀 ──</td></tr>
-<tr><td><b>L1</b> Jun 20</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>All 3 Sets</td><td>H-A (brand launch) · H-B (L3 angle) · H-C (urgency)</td><td><span class="badge b-always">Always-On</span></td><td>$50/wk</td><td>Run qua Jun 27. Không kill.</td></tr>
-<tr><td><b>A3</b> Jun 22</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Lookalike</td><td>H-A (case study) · H-B (time number) · H-C (question)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → W3 boost</td></tr>
-<tr><td><b>A4</b> Jun 24</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG Carousel</span></td><td>Lookalike</td><td>H-A (save this) · H-B (missing element) · H-C (framework)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>Save rate > 5% → scale</td></tr>
-<tr><td><b>C7-P2</b> Jun 25</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (founder confession) · H-B (FMCG journey) · H-C (why built)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>Comments/DMs → note warm leads</td></tr>
-<tr><td><b>A6</b> Jun 26</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (4 steps) · H-B (blank doc) · H-C (workflow)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>CTR > 1.5% → extend</td></tr>
-<tr><td><b>B1</b> Jun 26</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (50 trang 3 phút) · H-B (team missed) · H-C (insight gap)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → boost cho W3</td></tr>
+<tr class="ph2-bg"><td colspan="8" class="ph2">── WEEK 2 (Jun 20–26) · Soft Launch 🚀 — 2 luồng song song: Traffic (cold) + Engagement warmup ──</td></tr>
+<tr><td><b>L1</b> Jun 20</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Cold + Lookalike</td><td>H-A (brand launch) · H-B (L3 angle) · H-C (urgency)</td><td><span class="badge b-always">Always-On</span></td><td>$50/wk</td><td><b style="color:#1d4ed8">Traffic (LP Views)</b><br><span style="font-size:10px;color:#6b7280">drive click → website, build cookie pool</span></td><td>Run qua Jun 27. CTR < 1% → kill H-C.</td></tr>
+<tr><td><b>A3</b> Jun 22</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Lookalike</td><td>H-A (case study) · H-B (time number) · H-C (question)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">đo ER → W3 Traffic nếu win</span></td><td>ER > 5% → W3 boost Traffic obj</td></tr>
+<tr><td><b>A4</b> Jun 24</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG Carousel</span></td><td>Lookalike</td><td>H-A (save this) · H-B (missing element) · H-C (framework)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">đo saves (carousel signal)</span></td><td>Save rate > 5% → scale Traffic</td></tr>
+<tr><td><b>C7-P2</b> Jun 25</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (founder confession) · H-B (FMCG journey) · H-C (why built)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">LI organic reach + DMs</span></td><td>Comments/DMs → note warm leads</td></tr>
+<tr><td><b>A6</b> Jun 26</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (4 steps) · H-B (blank doc) · H-C (workflow)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">LI organic reach</span></td><td>CTR > 1.5% → extend Traffic</td></tr>
+<tr><td><b>B1</b> Jun 26</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (50 trang 3 phút) · H-B (team missed) · H-C (insight gap)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">đo ER → W3 boost nếu win</span></td><td>ER > 5% → boost Traffic W3</td></tr>
 
-<tr class="ph3-bg"><td colspan="7" class="ph3">── WEEK 3 (Jun 27–30) · Full Launch 🔥 ──</td></tr>
-<tr><td><b>C1</b> Jun 27</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold + Lookalike</td><td>H-A (L1→L3 gap) · H-B (competitor angle) · H-C (time cost)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → W4 scale</td></tr>
-<tr><td><b>L2</b> Jun 28</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Retargeting</td><td>H-A (all programs open) · H-B (start here) · H-C (you've been following)</td><td><span class="badge b-always">Always-On</span></td><td>$75/wk</td><td>Run qua Jul 3. Không kill.</td></tr>
+<tr class="ph3-bg"><td colspan="8" class="ph3">── WEEK 3 (Jun 27–30) · Full Launch 🔥 — Scale Traffic winners + Activate Conversions (retarget) ──</td></tr>
+<tr><td><b>C1</b> Jun 27</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold + Lookalike</td><td>H-A (L1→L3 gap) · H-B (competitor angle) · H-C (time cost)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">test hook → Traffic nếu ER > 5%</span></td><td>ER > 5% → W4 scale Traffic</td></tr>
+<tr><td><b>L2</b> Jun 28</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Retargeting only</td><td>H-A (all programs open) · H-B (start here) · H-C (you've been following)</td><td><span class="badge b-always">Always-On</span></td><td>$75/wk</td><td><b style="color:#b91c1c">Conversions / Leads</b><br><span style="font-size:10px;color:#6b7280">pixel ≥50 events · warm audience chỉ</span></td><td>Run qua Jul 3. CPL > $15 → pause H-B.</td></tr>
 
-<tr class="ph4-bg"><td colspan="7" class="ph4">── WEEK 4 (Jul 1–9) · July Close 🎯 ──</td></tr>
-<tr><td><b>A9</b> Jul 1</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (myth #1) · H-B (myth #5 time) · H-C (question)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>Save rate > 5% → scale</td></tr>
-<tr><td><b>L3</b> Jul 2</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Retargeting</td><td>H-A (48h) · H-B (spots left) · H-C (last chance)</td><td><span class="badge b-always">Always-On</span></td><td>$75/wk</td><td>Urgency — chạy 4 ngày rồi stop</td></tr>
-<tr><td><b>B3</b> Jul 3</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Lookalike</td><td>H-A (4h→40min) · H-B (6x faster) · H-C (data to decision)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td>ER > 5% → boost</td></tr>
-<tr><td><b>B2</b> Jul 6</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (BM vs analyst) · H-B (skill democratize) · H-C (who learns first wins)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>Organic DMs → follow up</td></tr>
-<tr><td><b>L4</b> Jul 7</td><td><span class="badge b-fb">FB</span><span class="badge b-li">LI</span></td><td>Retargeting</td><td>H-A (1 person) · H-B (whole team) · H-C (shared framework)</td><td><span class="badge b-always">Always-On</span></td><td>$50/wk</td><td>Corporate CTA — chạy qua Jul 9</td></tr>
-<tr><td><b>C7</b> Jul 9</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic</td><td>H-A (10 năm FMCG) · H-B (founder built because) · H-C (long read invite)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td>Authority — không cần boost nhiều</td></tr>
+<tr class="ph4-bg"><td colspan="8" class="ph4">── WEEK 4 (Jul 1–9) · July Close 🎯 — Conversions retarget + new Traffic tests ──</td></tr>
+<tr><td><b>A9</b> Jul 1</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Cold Interest</td><td>H-A (myth #1) · H-B (myth #5 time) · H-C (question)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">test hook → Traffic nếu win</span></td><td>Save rate > 5% → scale Traffic</td></tr>
+<tr><td><b>L3</b> Jul 2</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span><span class="badge b-li">LI</span></td><td>Retargeting only</td><td>H-A (48h) · H-B (spots left) · H-C (last chance)</td><td><span class="badge b-always">Always-On</span></td><td>$75 · 4 ngày</td><td><b style="color:#b91c1c">Conversions / Leads</b><br><span style="font-size:10px;color:#6b7280">warmest audience · urgency close</span></td><td>Stop Jul 6 sau khi đóng list</td></tr>
+<tr><td><b>B3</b> Jul 3</td><td><span class="badge b-fb">FB</span><span class="badge b-ig">IG</span></td><td>Lookalike</td><td>H-A (4h→40min) · H-B (6x faster) · H-C (data to decision)</td><td><span class="badge b-test">Test</span></td><td>$15</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">test hook → Traffic nếu win</span></td><td>ER > 5% → boost Traffic</td></tr>
+<tr><td><b>B2</b> Jul 6</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic+Boost</td><td>H-A (BM vs analyst) · H-B (skill democratize) · H-C (who learns first wins)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">LI organic · DMs → follow up</span></td><td>Organic DMs → follow up B2B</td></tr>
+<tr><td><b>L4</b> Jul 7</td><td><span class="badge b-fb">FB</span><span class="badge b-li">LI</span></td><td>Retargeting (FB) · LI Organic (LI)</td><td>H-A (1 person) · H-B (whole team) · H-C (shared framework)</td><td><span class="badge b-always">Always-On</span></td><td>$50</td><td><b style="color:#1d4ed8">Traffic (Corporate page)</b><br><span style="font-size:10px;color:#6b7280">B2B audience · thewildcard.vn/corporate</span></td><td>Corporate CTA — chạy qua Jul 9</td></tr>
+<tr><td><b>C7</b> Jul 9</td><td><span class="badge b-li">LinkedIn</span></td><td>LI Organic</td><td>H-A (10 năm FMCG) · H-B (founder built because) · H-C (long read invite)</td><td><span class="badge b-test">Test LI</span></td><td>$10</td><td><b style="color:#d97706">Engagement</b><br><span style="font-size:10px;color:#6b7280">Authority · organic only</span></td><td>Authority — organic signal, no scale needed</td></tr>
 </tbody>
 </table></div>
 
@@ -464,6 +474,8 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
     <div class="spec-item"><strong>Visual</strong>Dark ink, large lime "WE'RE LIVE", URL prominent</div>
     <div class="spec-item"><strong>Run period</strong>Jun 20 → Jun 27 (7 ngày)</div>
     <div class="spec-item"><strong>CTA</strong>Đăng ký session-1</div>
+    <div class="spec-item" style="background:#dbeafe;border-radius:6px;padding:6px"><strong style="color:#1d4ed8">🎯 Objective</strong><span style="color:#1d4ed8;font-weight:700"> Traffic — Landing Page Views</span></div>
+    <div class="spec-item"><strong>Lý do</strong>Cold audience chưa biết TWC → drive click về site, build cookie pool cho retarget W3</div>
   </div>
   <div class="ccard-budget">
     <div><div class="budget-amt">$50/wk</div><div class="budget-rule">Always-On — KHÔNG kill</div></div>
@@ -600,6 +612,12 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
     <div class="hook-item hook-b"><div class="hook-label">Hook B</div><div class="hook-text">Full launch. Tất cả chương trình đã mở đăng ký.</div></div>
     <div class="hook-item hook-c"><div class="hook-label">Hook C · Retarget</div><div class="hook-text">Bạn đã follow từ đầu. Hôm nay là lúc chọn.</div></div>
   </div>
+  <div class="ccard-specs">
+    <div class="spec-item" style="background:#fee2e2;border-radius:6px;padding:6px"><strong style="color:#b91c1c">🎯 Objective</strong><span style="color:#b91c1c;font-weight:700"> Conversions / Lead Generation</span></div>
+    <div class="spec-item"><strong>Audience</strong>Retargeting only — web visitors 14 ngày + IG/FB engagers</div>
+    <div class="spec-item"><strong>Điều kiện</strong>Chỉ activate sau khi pixel có ≥50 events (check từ Jun 27)</div>
+    <div class="spec-item"><strong>Lý do</strong>Warm audience đã biết TWC → Meta optimize người sắp mua, không phải người lướt</div>
+  </div>
   <div class="ccard-budget">
     <div><div class="budget-amt">$75/wk</div><div class="budget-rule">Always-On — KHÔNG kill</div></div>
     <div style="text-align:right"><div class="budget-rule">Retargeting primary<br>Run Jun 28 → Jul 3</div></div>
@@ -618,6 +636,12 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
     <div class="hook-item hook-a"><div class="hook-label">Hook A · Countdown</div><div class="hook-text">48 tiếng nữa Cohort 2 đóng. Nếu bạn đang cân nhắc — đây là câu hỏi cuối.</div></div>
     <div class="hook-item hook-b"><div class="hook-label">Hook B · Scarcity</div><div class="hook-text">Còn [X] chỗ. Sau 48 tiếng — list đóng, không exception.</div></div>
     <div class="hook-item hook-c"><div class="hook-label">Hook C · Identity</div><div class="hook-text">Tháng 7 này bạn muốn là người đang học AI — hay đã biết dùng AI trong công việc rồi?</div></div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item" style="background:#fee2e2;border-radius:6px;padding:6px"><strong style="color:#b91c1c">🎯 Objective</strong><span style="color:#b91c1c;font-weight:700"> Conversions / Lead Generation</span></div>
+    <div class="spec-item"><strong>Audience</strong>Retargeting ONLY — warmest pool: web visitors + video viewers 75%+ + engagers 60 ngày</div>
+    <div class="spec-item"><strong>Lý do</strong>Urgency close — chỉ show cho người đã warm. Cold audience thấy urgency sẽ ignore hoặc hide ad.</div>
+    <div class="spec-item"><strong>Stop</strong>Jul 6 cứng — tắt ngay khi đóng đăng ký</div>
   </div>
   <div class="ccard-budget">
     <div><div class="budget-amt">$75</div><div class="budget-rule">4 ngày rồi stop</div></div>
@@ -656,6 +680,12 @@ td{padding:8px 10px;vertical-align:top;line-height:1.5}
     <div class="hook-item hook-a"><div class="hook-label">Hook A · Contrast</div><div class="hook-text">1 người học AI = 1 người nhanh. Cả team học AI cùng framework = lợi thế cạnh tranh.</div></div>
     <div class="hook-item hook-b"><div class="hook-label">Hook B · Risk Frame</div><div class="hook-text">Thứ thay đổi năng lực cả team: khi tất cả cùng dùng 1 AI system.</div></div>
     <div class="hook-item hook-c"><div class="hook-label">Hook C · Dependency Risk</div><div class="hook-text">Corporate AI Training — không phải về tool. Là về shared workflow và ROI đo được.</div></div>
+  </div>
+  <div class="ccard-specs">
+    <div class="spec-item" style="background:#dbeafe;border-radius:6px;padding:6px"><strong style="color:#1d4ed8">🎯 Objective</strong><span style="color:#1d4ed8;font-weight:700"> Traffic — Landing Page Views (Corporate page)</span></div>
+    <div class="spec-item"><strong>Audience</strong>FB: Retargeting B2B engagers · LI: Director/L&D/Manager organic boost</div>
+    <div class="spec-item"><strong>CTA URL</strong>thewildcard.vn/corporate (KHÁC với session-1)</div>
+    <div class="spec-item"><strong>Lý do</strong>B2B audience cần nhiều touch points → Traffic về corporate page để đọc, không phải Conversions ngay</div>
   </div>
   <div class="ccard-budget">
     <div><div class="budget-amt">$50</div><div class="budget-rule">Corporate CTA</div></div>
