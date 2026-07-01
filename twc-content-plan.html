@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TWC · Content Plan — Calendar + Bank</title>
+<style>
+:root{
+  --bg:#050090;--bg2:#0a0060;--lime:#c0f100;--w:#fff;
+  --gray:#b4c3ff;--dim:#3a4080;--dim2:#252060;
+  --p1:#4a9eff;--p2:#ff7eb3;--p3:#ff6440;--p4:#ffd740;
+  --p5:#7cffd4;--p6:#c0f100;--s:#c084fc;
+  --org:#22c55e;--tst:#f59e0b;--aon:#8b5cf6;--paid:#ef4444;
+  --car:#c0f100;--sta:#60a5fa;--ani:#f472b6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg2);color:var(--w);font:13px/1.5 'Segoe UI',system-ui,sans-serif}
+a{color:var(--lime);text-decoration:none}a:hover{text-decoration:underline}
+/* ── TOP BAR ── */
+.top{background:var(--bg);border-bottom:2px solid var(--lime);padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-size:18px;font-weight:700;color:var(--lime)}.brand span{color:var(--gray);font-weight:400;font-size:13px;margin-left:8px}
+.tabs{display:flex;gap:4px;margin-left:auto}
+.tab{padding:6px 18px;border-radius:6px;border:1px solid var(--dim);cursor:pointer;font-size:12px;font-weight:600;background:transparent;color:var(--gray);transition:all .15s}
+.tab.on{background:var(--lime);color:#000;border-color:var(--lime)}
+/* ── PANES ── */
+.pane{display:none;padding:20px 24px}.pane.on{display:block}
+/* ── LEGEND ROW ── */
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--gray);align-items:center}
+.ld{display:flex;align-items:center;gap:4px}.lc{width:8px;height:8px;border-radius:50%}
+.lsep{color:var(--dim);margin:0 4px}
+/* ── FORMAT RULE ── */
+.fmtrule{background:rgba(192,241,0,.06);border:1px solid rgba(192,241,0,.25);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.fmtrule strong{color:var(--lime)}
+/* ── WEEKS ── */
+.wk{margin-bottom:22px}
+.wk-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--lime);border-left:3px solid var(--lime);padding-left:8px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.wk-hdr em{font-size:10px;font-weight:400;font-style:normal;color:var(--gray);border:1px solid var(--dim);padding:1px 6px;border-radius:4px}
+.grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+/* ── DAY CARDS ── */
+.day{border:1px solid var(--dim);border-radius:8px;padding:9px;min-height:150px;background:rgba(255,255,255,.04);position:relative;overflow:hidden;cursor:pointer}
+.day:hover{background:rgba(255,255,255,.08)}
+.day::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:8px 0 0 8px}
+.day.fc::before{background:var(--car)}.day.fs::before{background:var(--sta)}.day.fa::before{background:var(--ani)}
+.day.brand{border-color:rgba(192,241,0,.35);background:rgba(192,241,0,.04)}
+.day.today{border-color:var(--lime)!important;background:rgba(192,241,0,.08)!important}
+.day.rest{background:rgba(0,0,0,.1);border-style:dashed;opacity:.5;cursor:default}
+.d-top{display:flex;justify-content:space-between;align-items:flex-start}
+.d-num{font-size:15px;font-weight:700}.d-dow{font-size:9px;color:var(--gray);text-transform:uppercase}
+.d-fmt{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:600}
+.fc-tag{background:rgba(192,241,0,.2);color:var(--car)}
+.fs-tag{background:rgba(96,165,250,.2);color:var(--sta)}
+.fa-tag{background:rgba(244,114,182,.2);color:var(--ani)}
+.d-id{font-size:10px;font-weight:700;margin:4px 0 2px;letter-spacing:.5px}
+.d-title{font-size:11px;font-weight:600;line-height:1.3;margin-bottom:5px}
+.d-badges{display:flex;flex-direction:column;gap:2px}
+.b{display:inline-block;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600;text-transform:uppercase;width:fit-content}
+.bp1{color:#000;background:var(--p1)}.bp2{color:#000;background:var(--p2)}.bp3{color:#fff;background:var(--p3)}
+.bp4{color:#000;background:var(--p4)}.bp5{color:#000;background:var(--p5)}.bp6{color:#000;background:var(--p6)}
+.bs{color:#000;background:var(--s)}.borg{color:#000;background:var(--org)}.btst{color:#000;background:var(--tst)}
+.baon{color:#fff;background:var(--aon)}.bpaid{color:#fff;background:var(--paid)}
+.rest-lbl{color:var(--dim);font-size:11px;font-style:italic;text-align:center;padding-top:24px}
+/* canva links in card */
+.cv{margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,.08)}
+.cv a{display:block;font-size:9px;color:rgba(192,241,0,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.6}
+/* carousel slides expand */
+.slides-btn{font-size:9px;color:var(--lime);border:1px solid rgba(192,241,0,.3);border-radius:3px;padding:1px 5px;margin-top:4px;cursor:pointer;display:inline-block;background:transparent}
+.slides-btn:hover{background:rgba(192,241,0,.1)}
+.slides-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(5,0,80,.95);z-index:100;overflow-y:auto;padding:24px}
+.slides-panel.open{display:block}
+.sp-close{position:fixed;top:16px;right:24px;font-size:24px;cursor:pointer;color:var(--lime);z-index:101}
+.sp-title{font-size:18px;font-weight:700;color:var(--lime);margin-bottom:20px;padding-right:40px}
+.slide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.slide-card{background:rgba(255,255,255,.06);border:1px solid var(--dim);border-radius:8px;padding:14px}
+.slide-num{font-size:10px;color:var(--lime);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.slide-role{font-size:10px;color:var(--gray);margin-bottom:8px}
+.slide-head{font-size:15px;font-weight:700;line-height:1.3;margin-bottom:6px}
+.slide-body{font-size:12px;color:var(--gray);line-height:1.5}
+.slide-note{font-size:10px;color:var(--p4);margin-top:6px;font-style:italic}
+
+/* ── CONTENT BANK TAB ── */
+.cb-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.cf{padding:4px 12px;border-radius:6px;border:1px solid var(--dim);font-size:11px;cursor:pointer;background:transparent;color:var(--gray);transition:all .15s}
+.cf.on,.cf:hover{background:var(--lime);color:#000;border-color:var(--lime)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:var(--bg);color:var(--gray);padding:8px 10px;text-align:left;border-bottom:2px solid var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0;z-index:2}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:middle}
+tr:hover td{background:rgba(255,255,255,.04)}
+.dr{cursor:pointer}
+.er{display:none}
+.er.open{display:table-row}
+.ec{padding:16px!important;background:var(--dim2)!important}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.eb{background:rgba(255,255,255,.05);border-radius:6px;padding:10px;border:1px solid rgba(255,255,255,.08)}
+.eb-lbl{font-size:9px;color:var(--lime);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.eb-txt{font-size:12px;line-height:1.5;color:var(--gray)}
+.eb.cv-block{grid-column:span 2}
+.cv-block .eb-txt a{display:inline-block;margin:2px 6px 2px 0;padding:3px 8px;border:1px solid rgba(192,241,0,.3);border-radius:4px;font-size:11px;color:var(--lime)}
+.ph td{background:var(--bg);color:var(--lime);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:10px!important;border-bottom:1px solid var(--dim)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">🃏 The Wild Card <span>Content Plan · Jun–Jul 2026</span></div>
+  <div class="tabs">
+    <button class="tab on" onclick="go('cal',this)">📅 Calendar</button>
+    <button class="tab" onclick="go('bank',this)">📚 Content Bank</button>
+  </div>
+</div>
+
+<!-- ══════════════ CALENDAR TAB ══════════════ -->
+<div id="cal" class="pane on">
+
+<div class="leg">
+  <span class="ld"><span class="lc" style="background:var(--p6)"></span>P6 Brand</span>
+  <span class="ld"><span class="lc" style="background:var(--p1)"></span>P1</span>
+  <span class="ld"><span class="lc" style="background:var(--p2)"></span>P2</span>
+  <span class="ld"><span class="lc" style="background:var(--p3)"></span>P3</span>
+  <span class="ld"><span class="lc" style="background:var(--p4)"></span>P4</span>
+  <span class="ld"><span class="lc" style="background:var(--p5)"></span>P5</span>
+  <span class="ld"><span class="lc" style="background:var(--s)"></span>Series</span>
+  <span class="lsep">|</span>
+  <span class="ld"><span style="color:var(--car)">📱</span> Carousel</span>
+  <span class="ld"><span style="color:var(--sta)">🖼</span> Static</span>
+  <span class="ld"><span style="color:var(--ani)">✨</span> Animation</span>
+  <span class="lsep">|</span>
+  <span style="font-size:10px;color:var(--gray)">Left border = format &nbsp;·&nbsp; Click carousel → slides</span>
+</div>
+
+<div class="fmtrule">
+  <strong>Format/week: 2 Carousel + 2 Static + 1 Animation</strong>
+  <span style="color:var(--gray);font-size:11px">Mon–Fri post · Sat–Sun rest · 5 weeks = 25 posts</span>
+</div>
+
+<!-- WEEK 1 -->
+<div class="wk">
+<div class="wk-hdr">Week 1 · Jun 22–28 <em>🃏 Brand Launch · 3 TWC + 2 Pillar</em></div>
+<div class="grid7">
+
+<div class="day brand fc today" onclick="openSlides('s-p6a3')">
+  <div class="d-top"><div><div class="d-num">22</div><div class="d-dow">Mon</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div>
+  <div class="d-id" style="color:var(--p6)">P6-A3</div>
+  <div class="d-title">Brand Intro · Giới Thiệu TWC</div>
+  <div class="d-badges"><span class="b bp6">P6 Brand</span><span class="b borg">Organic</span></div>
+  <span class="slides-btn">6 slides ↗</span>
+  <div class="cv">
+    <a href="https://www.canva.com/d/w7yeDwA-H36PaSY" target="_blank">O1 · Typo + Pattern</a>
+    <a href="https://www.canva.com/d/s4Dy_-rG3a4AtUO" target="_blank">O2 · Typo + Icon</a>
+    <a href="https://www.canva.com/d/xqQU2ql97rJ5Jak" target="_blank">O3 · Typo + Visual</a>
+  </div>
+</div>
+
+<div class="day brand fs">
+  <div class="d-top"><div><div class="d-num">23</div><div class="d-dow">Tue</div></div><span class="d-fmt fs-tag">🖼 Static</span></div>
+  <div class="d-id" style="color:var(--p6)">P6-A4</div>
+  <div class="d-title">Authority · Founder & Trainer</div>
+  <div class="d-badges"><span class="b bp6">P6 Brand</span><span class="b borg">Organic</span></div>
+  <div class="cv">
+    <a href="https://www.canva.com/d/xh9tpR_MgyBAQdF" target="_blank">O1 · Typo + Pattern</a>
+    <a href="https://www.canva.com/d/mk4oDYS6oW85NHQ" target="_blank">O2 · Typo + Icon</a>
+    <a href="https://www.canva.com/d/f1eAK2ZiPsaTdAV" target="_blank">O3 · Typo + Visual</a>
+  </div>
+</div>
+
+<div class="day brand fc" onclick="openSlides('s-p6a5')">
+  <div class="d-top"><div><div class="d-num">24</div><div class="d-dow">Wed</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div>
+  <div class="d-id" style="color:var(--p6)">P6-A5</div>
+  <div class="d-title">Different · Why TWC</div>
+  <div class="d-badges"><span class="b bp6">P6 Brand</span><span class="b borg">Organic</span></div>
+  <span class="slides-btn">7 slides ↗</span>
+  <div class="cv">
+    <a href="https://www.canva.com/d/z08o_uqtvjolN9x" target="_blank">O1 · Typo + Pattern</a>
+    <a href="https://www.canva.com/d/FM7BvTDaiq-yEkK" target="_blank">O2 · Typo + Icon</a>
+    <a href="https://www.canva.com/d/4PUaLYo-lqwThaZ" target="_blank">O3 · Typo + Visual</a>
+  </div>
+</div>
+
+<div class="day fs">
+  <div class="d-top"><div><div class="d-num">25</div><div class="d-dow">Thu</div></div><span class="d-fmt fs-tag">🖼 Static</span></div>
+  <div class="d-id" style="color:var(--p1)">P1-A1</div>
+  <div class="d-title">Fact · Hours Gap (7–10h)</div>
+  <div class="d-badges"><span class="b bp1">P1</span><span class="b borg">Organic</span><span class="b" style="background:rgba(255,255,255,.1)">Practitioner</span></div>
+  <div class="cv">
+    <a href="https://www.canva.com/d/cu2zUDiP9n9EmXz" target="_blank">O1 · Big Stat Typo</a>
+    <a href="https://www.canva.com/d/lqf6qj1dZdZobRr" target="_blank">O2 · Typo + Icon</a>
+    <a href="https://www.canva.com/d/nvPFf2wZl-zmlm6" target="_blank">O3 · Typo + Visual</a>
+  </div>
+</div>
+
+<div class="day fa">
+  <div class="d-top"><div><div class="d-num">26</div><div class="d-dow">Fri</div></div><span class="d-fmt fa-tag">✨ Anim</span></div>
+  <div class="d-id" style="color:var(--p3)">P3-A1</div>
+  <div class="d-title">Warning · Hallucination</div>
+  <div class="d-badges"><span class="b bp3">P3</span><span class="b borg">Organic</span><span class="b" style="background:rgba(255,255,255,.1)">Explorer+</span></div>
+  <div class="cv">
+    <a href="https://www.canva.com/d/XWS_n5rH6iW2fZ0" target="_blank">O1 · Checklist Typo</a>
+    <a href="https://www.canva.com/d/CvLoFFvGTH_GZmX" target="_blank">O2 · Typo + Icon</a>
+    <a href="https://www.canva.com/d/ofQMPFwiVlKmWn8" target="_blank">O3 · Typo + Visual</a>
+  </div>
+</div>
+
+<div class="day rest"><div class="d-num">27</div><div class="d-dow">Sat</div><div class="rest-lbl">Rest</div></div>
+<div class="day rest"><div class="d-num">28</div><div class="d-dow">Sun</div><div class="rest-lbl">Rest</div></div>
+</div></div>
+
+<!-- WEEK 2 -->
+<div class="wk">
+<div class="wk-hdr">Week 2 · Jun 29 – Jul 5</div>
+<div class="grid7">
+<div class="day fc"><div class="d-top"><div><div class="d-num">29</div><div class="d-dow">Mon</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--p1)">P1-A2</div><div class="d-title">Real Workflow · AI Split</div><div class="d-badges"><span class="b bp1">P1</span><span class="b btst">Paid Test</span></div></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">30</div><div class="d-dow">Tue</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p4)">P4-A1</div><div class="d-title">Stat · Time Reclaimed</div><div class="d-badges"><span class="b bp4">P4</span><span class="b borg">Organic</span></div></div>
+<div class="day fc" onclick="openSlides('s-s01')"><div class="d-top"><div><div class="d-num">1</div><div class="d-dow">Wed</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--s)">S-01</div><div class="d-title">Claude Project Setup</div><div class="d-badges"><span class="b bs">🔮</span><span class="b baon">Always-On</span></div><span class="slides-btn">6 slides ↗</span></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">2</div><div class="d-dow">Thu</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p2)">P2-A2</div><div class="d-title">Fact · Workflow Reshaped</div><div class="d-badges"><span class="b bp2">P2</span><span class="b borg">Organic</span></div></div>
+<div class="day fa"><div class="d-top"><div><div class="d-num">3</div><div class="d-dow">Fri</div></div><span class="d-fmt fa-tag">✨ Anim</span></div><div class="d-id" style="color:var(--p3)">P3-A2</div><div class="d-title">Confession · Slop</div><div class="d-badges"><span class="b bp3">P3</span><span class="b borg">Organic</span></div></div>
+<div class="day rest"><div class="d-num">4</div><div class="d-dow">Sat</div><div class="rest-lbl">Rest</div></div>
+<div class="day rest"><div class="d-num">5</div><div class="d-dow">Sun</div><div class="rest-lbl">Rest</div></div>
+</div></div>
+
+<!-- WEEK 3 -->
+<div class="wk">
+<div class="wk-hdr">Week 3 · Jul 6–12</div>
+<div class="grid7">
+<div class="day fc" onclick="openSlides('s-p2a1')"><div class="d-top"><div><div class="d-num">6</div><div class="d-dow">Mon</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--p2)">P2-A1</div><div class="d-title">Contrarian · Skill Shift</div><div class="d-badges"><span class="b bp2">P2</span><span class="b btst">Paid Test</span></div><span class="slides-btn">6 slides ↗</span></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">7</div><div class="d-dow">Tue</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--s)">S-02</div><div class="d-title">Claude Capability Map</div><div class="d-badges"><span class="b bs">🔮</span><span class="b baon">Always-On</span></div></div>
+<div class="day fc"><div class="d-top"><div><div class="d-num">8</div><div class="d-dow">Wed</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--p1)">P1-A3</div><div class="d-title">Process · Asset QC</div><div class="d-badges"><span class="b bp1">P1</span><span class="b borg">Organic</span></div></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">9</div><div class="d-dow">Thu</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p3)">P3-A3</div><div class="d-title">Review Gap · Risk</div><div class="d-badges"><span class="b bp3">P3</span><span class="b btst">Paid Test</span></div></div>
+<div class="day fa"><div class="d-top"><div><div class="d-num">10</div><div class="d-dow">Fri</div></div><span class="d-fmt fa-tag">✨ Anim</span></div><div class="d-id" style="color:var(--p5)">P5-A1</div><div class="d-title">Senior · Team Setup</div><div class="d-badges"><span class="b bp5">P5</span><span class="b btst">Paid Test</span></div></div>
+<div class="day rest"><div class="d-num">11</div><div class="d-dow">Sat</div><div class="rest-lbl">Rest</div></div>
+<div class="day rest"><div class="d-num">12</div><div class="d-dow">Sun</div><div class="rest-lbl">Rest</div></div>
+</div></div>
+
+<!-- WEEK 4 -->
+<div class="wk">
+<div class="wk-hdr">Week 4 · Jul 13–19</div>
+<div class="grid7">
+<div class="day fc" onclick="openSlides('s-s03')"><div class="d-top"><div><div class="d-num">13</div><div class="d-dow">Mon</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--s)">S-03</div><div class="d-title">Context &gt; Prompt</div><div class="d-badges"><span class="b bs">🔮</span><span class="b baon">Always-On</span></div><span class="slides-btn">6 slides ↗</span></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">14</div><div class="d-dow">Tue</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p4)">P4-A2</div><div class="d-title">⚡ Debate · Skill Reshape</div><div class="d-badges"><span class="b bp4">P4</span><span class="b btst">Paid Test</span></div></div>
+<div class="day fc"><div class="d-top"><div><div class="d-num">15</div><div class="d-dow">Wed</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--s)">S-04</div><div class="d-title">Claude · Hỏi Ngược</div><div class="d-badges"><span class="b bs">🔮</span><span class="b baon">Always-On</span></div></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">16</div><div class="d-dow">Thu</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p4)">P4-A3</div><div class="d-title">Career Math · WEF</div><div class="d-badges"><span class="b bp4">P4</span><span class="b borg">Organic</span></div></div>
+<div class="day fa"><div class="d-top"><div><div class="d-num">17</div><div class="d-dow">Fri</div></div><span class="d-fmt fa-tag">✨ Anim</span></div><div class="d-id" style="color:var(--p5)">P5-A2</div><div class="d-title">Scale · 3-Layer Workflow</div><div class="d-badges"><span class="b bp5">P5</span><span class="b borg">Organic</span></div></div>
+<div class="day rest"><div class="d-num">18</div><div class="d-dow">Sat</div><div class="rest-lbl">Rest</div></div>
+<div class="day rest"><div class="d-num">19</div><div class="d-dow">Sun</div><div class="rest-lbl">Rest</div></div>
+</div></div>
+
+<!-- WEEK 5 -->
+<div class="wk">
+<div class="wk-hdr">Week 5 · Jul 20–26</div>
+<div class="grid7">
+<div class="day fc" onclick="openSlides('s-s05')"><div class="d-top"><div><div class="d-num">20</div><div class="d-dow">Mon</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--s)">S-05</div><div class="d-title">Claude · 5 Tools/Week</div><div class="d-badges"><span class="b bs">🔮</span><span class="b baon">Always-On</span></div><span class="slides-btn">6 slides ↗</span></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">21</div><div class="d-dow">Tue</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p2)">P2-A3</div><div class="d-title">Compliance · Shadow AI</div><div class="d-badges"><span class="b bp2">P2</span><span class="b btst">Paid Test</span></div></div>
+<div class="day fc"><div class="d-top"><div><div class="d-num">22</div><div class="d-dow">Wed</div></div><span class="d-fmt fc-tag">📱 Carousel</span></div><div class="d-id" style="color:var(--p4)">P4-A4</div><div class="d-title">Data · No Nielsen</div><div class="d-badges"><span class="b bp4">P4</span><span class="b borg">Organic</span></div></div>
+<div class="day fs"><div class="d-top"><div><div class="d-num">23</div><div class="d-dow">Thu</div></div><span class="d-fmt fs-tag">🖼 Static</span></div><div class="d-id" style="color:var(--p4)">P4-A5</div><div class="d-title">Skillset · Hold/Play/Fold</div><div class="d-badges"><span class="b bp4">P4</span><span class="b btst">Paid Test</span></div></div>
+<div class="day fa"><div class="d-top"><div><div class="d-num">24</div><div class="d-dow">Fri</div></div><span class="d-fmt fa-tag">✨ Anim</span></div><div class="d-id" style="color:var(--p6)">P6-A7</div><div class="d-title">CTA · Đăng Ký Khoá Học</div><div class="d-badges"><span class="b bp6">P6</span><span class="b btst">Paid Test</span></div><div class="cv"><a href="https://www.canva.com/d/X3oa08shXQGfiPz" target="_blank">O1</a> <a href="https://www.canva.com/d/KGYTFNhvg8fAG8q" target="_blank">O2</a> <a href="https://www.canva.com/d/1zXIq28YEiF2Th_" target="_blank">O3</a></div></div>
+<div class="day rest"><div class="d-num">25</div><div class="d-dow">Sat</div><div class="rest-lbl">Rest</div></div>
+<div class="day rest"><div class="d-num">26</div><div class="d-dow">Sun</div><div class="rest-lbl">Rest</div></div>
+</div></div>
+
+</div><!-- end calendar pane -->
+
+<!-- ══════════════ CONTENT BANK TAB ══════════════ -->
+<div id="bank" class="pane">
+<div class="cb-filters">
+  <button class="cf on" onclick="cbFilter('all',this)">All</button>
+  <button class="cf" onclick="cbFilter('p1',this)">P1 Thực Chiến</button>
+  <button class="cf" onclick="cbFilter('p2',this)">P2 Receipts</button>
+  <button class="cf" onclick="cbFilter('p3',this)">P3 Anti-AI</button>
+  <button class="cf" onclick="cbFilter('p4',this)">P4 Mkt Math</button>
+  <button class="cf" onclick="cbFilter('p5',this)">P5 Agency</button>
+  <button class="cf" onclick="cbFilter('p6',this)">P6 Brand</button>
+  <button class="cf" onclick="cbFilter('s',this)">🔮 Always-On</button>
+</div>
+<table>
+<thead><tr><th>ID</th><th>Angle</th><th>Hook Preview</th><th>Format</th><th>Objective</th><th>Maturity</th></tr></thead>
+<tbody>
+
+<!-- P1 -->
+<tr class="ph"><td colspan="6">P1 · THỰC CHIẾN — Real Workflow</td></tr>
+<tr class="dr p1" onclick="tog('p1a1')"><td class="b bp1">P1-A1</td><td>Fact · Hours Gap</td><td>Cùng tool. Người kế bên lấy lại 7–10 tiếng/tuần.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b borg">Organic</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p1a1"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Top marketer không làm nhanh hơn. Họ STOP làm những thứ AI đã làm được.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">7–10 tiếng/tuần. Đó là gap giữa marketer dùng AI thật và người chỉ "thử" AI.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Bạn và đồng nghiệp cùng dùng ChatGPT. Tại sao output của họ khác bạn hoàn toàn?</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Reforge AI Marketing Study 2025: practitioners lấy lại 7–10h/tuần không vì AI nhanh hơn — vì họ biết việc nào cần delegate. Comment AUDIT nhận fold-pile checklist.</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Canva Design Links</div><div class="eb-txt"><a href="https://www.canva.com/d/cu2zUDiP9n9EmXz" target="_blank">O1 · Big Stat Typo</a><a href="https://www.canva.com/d/lqf6qj1dZdZobRr" target="_blank">O2 · Typo + Icon</a><a href="https://www.canva.com/d/nvPFf2wZl-zmlm6" target="_blank">O3 · Typo + Visual</a></div></div>
+</div></td></tr>
+
+<tr class="dr p1" onclick="tog('p1a2')"><td class="b bp1">P1-A2</td><td>Real Workflow · AI Split</td><td>Tuần trước tôi track chính xác AI làm gì trong job của tôi. Kết quả gây sốc.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b btst">Paid Test</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p1a2"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Tuần trước tôi track chính xác AI làm gì trong job của tôi. Đây là kết quả thật.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">72% vs 28%. Đó là split giữa AI-doable và human-only trong một campaign thật.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Không phải "AI sẽ làm được gì". Đây là AI đang làm gì — trong một campaign content tuần này.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Tôi audit workflow của mình sau 3 tháng dùng AI thật. Brief, research, variant copy, QC, reporting — đây là breakdown cụ thể. Carousel này là template bạn có thể self-audit ngay.</div></div>
+</div></td></tr>
+
+<tr class="dr p1" onclick="tog('p1a3')"><td class="b bp1">P1-A3</td><td>Process · Asset QC</td><td>AI tạo asset nhanh. Nhưng ai QC? Đây là checklist 5 bước trước khi asset AI lên campaign.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b borg">Organic</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p1a3"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">AI tạo asset nhanh. Nhưng ai QC? Đây là checklist 5 bước trước khi asset AI lên campaign.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Brand voice check. Fact check. Legal flag check. Platform spec check. Human gut check. 5 bước bắt buộc.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Tôi từng ship AI asset không QC. Một lần đủ để học bài học này.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">AI-assisted content cần QC layer riêng biệt. Checklist 5 bước này áp dụng cho mọi content type — copy, visual brief, research doc, hay report. Comment QC để nhận template.</div></div>
+</div></td></tr>
+
+<!-- P2 -->
+<tr class="ph"><td colspan="6">P2 · RECEIPTS — Proof & Evidence</td></tr>
+<tr class="dr p2" onclick="tog('p2a1')"><td class="b bp2">P2-A1</td><td>Contrarian · Skill Shift</td><td>Bạn đang học sai skill. Đây là 3 skill AI không replace được — và 3 skill bạn nên stop đầu tư.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b btst">Paid Test</span></td><td>Experimenter</td></tr>
+<tr class="er" id="p2a1"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Bạn đang học sai skill. Đây là 3 skill AI không replace được — và 3 skill bạn nên stop đầu tư thêm.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Phần lớn marketer đang invest time vào skill Fold. Không phải vì lười — vì không ai map rõ cho họ.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">2 năm nữa kỹ năng nào của bạn còn giá trị? WEF đã có data. Tôi translate sang marketing VN.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Hold/Play/Fold framework — cách sort kỹ năng của bạn trong AI era. Hold = AI không làm được. Play = bạn + AI = 10x. Fold = AI làm tốt hơn. Carousel này là bản map đầy đủ.</div></div>
+</div></td></tr>
+
+<tr class="dr p2" onclick="tog('p2a2')"><td class="b bp2">P2-A2</td><td>Fact · Workflow Reshaped</td><td>80% công việc marketing hàng ngày đang bị AI reshape. Nhưng 20% còn nguyên — không phải 20% bạn đang nghĩ.</td><td><span style="color:var(--ani)">✨ Animation</span></td><td><span class="b borg">Organic</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p2a2"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">80% công việc marketing hàng ngày đang bị AI reshape. Nhưng 20% còn nguyên — không phải 20% bạn đang nghĩ.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Reporting: AI. Research: AI. Variant copy: AI. Cultural judgment: bạn. Client trust: bạn. Creative direction: bạn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Workflow heatmap của campaign marketing thật. AI impact theo từng task type.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Nguồn: Deloitte AI Marketing Impact Study 2025. 80% không có nghĩa là 80% job của bạn mất — có nghĩa là 80% task đang shift. Download Workflow Heatmap — link bio.</div></div>
+</div></td></tr>
+
+<tr class="dr p2" onclick="tog('p2a3')"><td class="b bp2">P2-A3</td><td>Compliance · Shadow AI</td><td>Team của bạn đang dùng AI — bạn có biết không? Shadow AI là rủi ro compliance thật nhất năm 2025.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b btst">Paid Test</span></td><td>Operator</td></tr>
+<tr class="er" id="p2a3"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Team của bạn đang dùng AI — bạn có biết không? Shadow AI là rủi ro compliance thật nhất năm 2025.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">65% nhân viên marketing dùng AI tool không được approve bởi IT/Legal. Con số này từ brand nào? Của bạn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Client data vào ChatGPT. Brand voice rò rỉ qua prompt. Đây là rủi ro thật — và cách quản lý nó.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Shadow AI không phải vấn đề IT — là vấn đề leadership. Checklist audit Shadow AI cho marketing team và policy template. Comment POLICY để nhận.</div></div>
+</div></td></tr>
+
+<!-- P3 -->
+<tr class="ph"><td colspan="6">P3 · ANTI-AI — Calibrated Trust</td></tr>
+<tr class="dr p3" onclick="tog('p3a1')"><td class="b bp3">P3-A1</td><td>Warning · Hallucination</td><td>Trước khi số của Claude lên slide — chạy 5 checkpoint này.</td><td><span style="color:var(--ani)">✨ Animation</span></td><td><span class="b borg">Organic</span></td><td>Explorer+</td></tr>
+<tr class="er" id="p3a1"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Trước khi số của Claude lên slide của bạn — chạy 5 checkpoint này. Không phải vì Claude sai, mà vì confident estimate ≠ verified fact.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Claude không nói láo. Nó fill gaps với confident estimates. Biết sự khác biệt này = kỹ năng quan trọng nhất.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">5 giây verify con số của AI. Checklist đơn giản mà 90% người dùng bỏ qua.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Anti-hallucination không phải anti-AI. Đó là biết cách dùng AI responsibly. 5-step verification checklist cho data từ Claude — comment CHECK để nhận.</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Canva Design Links</div><div class="eb-txt"><a href="https://www.canva.com/d/XWS_n5rH6iW2fZ0" target="_blank">O1 · Checklist Typo</a><a href="https://www.canva.com/d/CvLoFFvGTH_GZmX" target="_blank">O2 · Typo + Icon</a><a href="https://www.canva.com/d/ofQMPFwiVlKmWn8" target="_blank">O3 · Typo + Visual</a></div></div>
+</div></td></tr>
+
+<tr class="dr p3" onclick="tog('p3a2')"><td class="b bp3">P3-A2</td><td>Confession · Slop</td><td>Tôi đã ship AI slop. Đây là 3 dấu hiệu content của bạn đang ở mức đó.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b borg">Organic</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p3a2"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Tôi đã ship AI slop. Tôi biết nó trông như thế nào. Đây là 3 dấu hiệu content của bạn đang ở mức đó.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">AI content ≠ AI-assisted content. Sự khác biệt này là ranh giới giữa content tốt và content không ai đọc.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">"Nghe có vẻ đúng" là điểm yếu nhất của AI content. Đây là cách detect nó trong output của bạn.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">AI-assisted content = bạn dùng AI như tool trong process của mình. AI content = bạn paste output thẳng lên feed. Readers biết sự khác biệt — ngay cả khi không nói ra.</div></div>
+</div></td></tr>
+
+<tr class="dr p3" onclick="tog('p3a3')"><td class="b bp3">P3-A3</td><td>Review Gap · Risk</td><td>Không ai review AI output trước khi publish = rủi ro thật nhất của AI adoption.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b btst">Paid Test</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p3a3"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Không ai review AI output trước khi publish. Đó là rủi ro thật nhất của AI adoption trong marketing team.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">AI viết nhanh. Nhưng ai catch sai sót? Review gap là nơi brand incidents xảy ra.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">3 loại review mà AI content cần — và không cái nào là "đọc lại một lần".</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Human review layer không phải bottleneck — là brand protection. 3-tier review framework cho AI-assisted content teams. Comment REVIEW để nhận checklist.</div></div>
+</div></td></tr>
+
+<!-- P4 -->
+<tr class="ph"><td colspan="6">P4 · MARKETER MATH — Data & Career</td></tr>
+<tr class="dr p4" onclick="tog('p4a1')"><td class="b bp4">P4-A1</td><td>Stat · Time Reclaimed</td><td>Senior marketer lấy lại bao nhiêu giờ/tuần nhờ AI? Data thật từ 500 practitioners.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b borg">Organic</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p4a1"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Senior marketer lấy lại bao nhiêu giờ/tuần nhờ AI? Data thật từ 500 practitioners — không phải AI vendor claim.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">7 tiếng. Đó là median. Top quartile? 12–15 tiếng/tuần. Họ làm gì khác?</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Không phải về tool. Về workflow. Đây là breakdown task-by-task của practitioners lấy lại nhiều giờ nhất.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Nguồn: Reforge AI Productivity Study 2025. Download breakdown đầy đủ — link bio.</div></div>
+</div></td></tr>
+
+<tr class="dr p4" onclick="tog('p4a2')"><td class="b bp4">P4-A2</td><td>⚡ Debate · Skill Reshape</td><td>Unpopular opinion: học AI tool mà không học AI thinking là lãng phí thời gian.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b btst">Paid Test</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p4a2"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Unpopular opinion: học AI tool mà không học AI thinking là lãng phí thời gian của bạn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Tool thay đổi mỗi 6 tháng. Thinking framework dùng được 10 năm.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Debate: Marketer cần biết prompt engineering hay marketing strategy? Đây là quan điểm của tôi.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">AI thinking = khả năng xác định task nào AI làm tốt, task nào cần human, và cách combine cả hai. Đó là meta-skill quan trọng hơn biết 100 prompts.</div></div>
+</div></td></tr>
+
+<tr class="dr p4" onclick="tog('p4a3')"><td class="b bp4">P4-A3</td><td>Career Math · WEF</td><td>WEF dự báo 44% kỹ năng lõi thay đổi trong 5 năm. Kỹ năng của bạn ở pile nào?</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b borg">Organic</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p4a3"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">WEF: 44% kỹ năng cốt lõi sẽ lỗi thời trong 5 năm. Câu hỏi không phải "AI có thay tôi không?" — mà là "44% kỹ năng của tôi thuộc nhóm nào?"</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">3 pile để sắp xếp kỹ năng: HOLD, FOLD, PLAY. Bạn đang có gì ở pile nào?</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Phần lớn marketers đang train skills ở Fold pile. Không phải vì lười — vì không ai nói cho họ biết.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">WEF Future of Jobs Report 2025 là bản đồ để tự audit career. 3-pile framework giúp bạn sort 18 kỹ năng marketing. Comment AUDIT để nhận template.</div></div>
+</div></td></tr>
+
+<tr class="dr p4" onclick="tog('p4a4')"><td class="b bp4">P4-A4</td><td>Data · No Nielsen</td><td>Không có Nielsen. Không có Kantar. Bạn vẫn pitch được data-backed deck — đây là 5 nguồn miễn phí.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b borg">Organic</span></td><td>Experimenter</td></tr>
+<tr class="er" id="p4a4"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Khách hàng hỏi: "Có data không?" — Bạn không có ngân sách Nielsen 400 triệu. Nhưng có 5 nguồn miễn phí mà 90% đối thủ chưa dùng.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Google Trends + Meta Audience Insights + Statista free + industry reports + AI synthesis. Stack data của marketer không có ngân sách research.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Tôi từng nghĩ không có Nielsen là không có data. Bây giờ tôi pitch data deck đẹp hơn agency có budget gấp 10 lần.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">5 nguồn data miễn phí + cách dùng Claude để tổng hợp thành narrative nhất quán. Template research prompt — comment DATA để nhận.</div></div>
+</div></td></tr>
+
+<tr class="dr p4" onclick="tog('p4a5')"><td class="b bp4">P4-A5</td><td>Skillset · Hold/Play/Fold</td><td>Framework để quyết định kỹ năng nào bạn cần deep, kỹ năng nào để AI làm, kỹ năng nào nên bỏ.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b btst">Paid Test</span></td><td>Practitioner</td></tr>
+<tr class="er" id="p4a5"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Hold/Play/Fold — cách senior marketer quyết định kỹ năng nào cần deep, kỹ năng nào cần AI, kỹ năng nào cần buông.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Bạn đang train những kỹ năng AI sẽ làm tốt hơn trong 18 tháng tới. Đây là checklist để sort lại.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Năm ngoái tôi dành 200 giờ học kỹ năng Fold. Năm nay 200 giờ đó cho kỹ năng Hold. Sự khác biệt về output không thể so được.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Hold/Play/Fold framework giúp đưa ra quyết định đầu tư thời gian có chiến lược. Template sort kỹ năng — comment FOLD để nhận.</div></div>
+</div></td></tr>
+
+<!-- P5 -->
+<tr class="ph"><td colspan="6">P5 · AGENCY UPGRADE — Scale & Systems</td></tr>
+<tr class="dr p5" onclick="tog('p5a1')"><td class="b bp5">P5-A1</td><td>Senior · Team Setup</td><td>Senior marketer không dùng AI một mình. Họ setup AI workflow cho cả team. Đây là cách.</td><td><span style="color:var(--ani)">✨ Animation</span></td><td><span class="b btst">Paid Test</span></td><td>Operator</td></tr>
+<tr class="er" id="p5a1"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Senior marketer không dùng AI một mình. Họ setup AI workflow cho cả team. Đây là 3 bước đầu tiên.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Từ "tôi dùng AI giỏi" đến "team của tôi dùng AI consistently" — đó là nhảy vọt lớn nhất trong career.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Shared Claude Project. Team prompt library. AI output review protocol. 3 thứ setup 1 lần, dùng mãi.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Team AI setup không cần IT budget hay software mới. Cần leadership và 3 decision. Framework đầy đủ — link bio.</div></div>
+</div></td></tr>
+
+<tr class="dr p5" onclick="tog('p5a2')"><td class="b bp5">P5-A2</td><td>Scale · 3-Layer Workflow</td><td>Agency scale không phải hire nhiều hơn. Là 3-layer AI workflow đúng chỗ.</td><td><span style="color:var(--ani)">✨ Animation</span></td><td><span class="b borg">Organic</span></td><td>Operator</td></tr>
+<tr class="er" id="p5a2"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Agency scale không phải hire nhiều hơn. Là 3-layer AI workflow đúng chỗ đúng lúc.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Layer 1: AI research + brief. Layer 2: Human creative direction. Layer 3: AI execution + QC. Đơn giản vậy thôi.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Chúng tôi handle gấp đôi số lượng client với cùng team size. Đây là workflow thật.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">3-layer AI workflow là blueprint để scale agency capacity mà không scale headcount. Diagram đầy đủ + implementation guide — comment SCALE để nhận.</div></div>
+</div></td></tr>
+
+<!-- P6 Brand -->
+<tr class="ph"><td colspan="6">P6 · TWC IS WHO — Brand Series</td></tr>
+<tr class="dr p6" onclick="tog('p6a3')"><td class="b bp6">P6-A3</td><td>Brand Intro · Giới Thiệu TWC</td><td>Chào mừng đến với The Wild Card — nơi marketer học AI thật, không hype</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b borg">Organic</span></td><td>All Levels</td></tr>
+<tr class="er" id="p6a3"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Chào mừng đến với The Wild Card — nơi marketer học AI thật, không hype</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Không course. Không guru. Chỉ có người trong ngành nói thật về AI marketing tại Việt Nam</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">TWC là gì? — Cộng đồng AI marketing đầu tiên được xây cho marketer Việt làm việc thật</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">The Wild Card không phải một khoá học AI. Đây là nơi marketers đang làm nghề — brand managers, performance, content leads — học cách dùng AI theo cách người trong ngành thật sự cần. Comment TWC để nhận overview.</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Carousel Slides</div><div class="eb-txt" style="color:var(--lime)">6 slides — xem trong Calendar tab (Jun 22) hoặc click "6 slides ↗"</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Canva Design Links — 3 Styles</div><div class="eb-txt"><a href="https://www.canva.com/d/w7yeDwA-H36PaSY" target="_blank">O1 · Typo + Brand Pattern</a><a href="https://www.canva.com/d/s4Dy_-rG3a4AtUO" target="_blank">O2 · Typo + Icon Immersive</a><a href="https://www.canva.com/d/xqQU2ql97rJ5Jak" target="_blank">O3 · Typo + Visual Impressive</a></div></div>
+</div></td></tr>
+
+<tr class="dr p6" onclick="tog('p6a4')"><td class="b bp6">P6-A4</td><td>Authority · Founder & Trainer</td><td>Được dẫn dắt bởi người đã làm — không phải người chỉ dạy</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b borg">Organic</span></td><td>All Levels</td></tr>
+<tr class="er" id="p6a4"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Được dẫn dắt bởi người đã làm — không phải người chỉ dạy</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Không học từ lý thuyết. Học từ người đang implement AI cho brand thật trong thị trường Việt Nam</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Ai đứng sau TWC? — Profile của người bạn sắp học cùng</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Trainer TWC không phải YouTuber AI. Họ là marketers và consultants đang làm việc với brands, agencies, và teams tại Việt Nam. Profile đầy đủ — link bio.</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Canva Design Links — 3 Styles</div><div class="eb-txt"><a href="https://www.canva.com/d/xh9tpR_MgyBAQdF" target="_blank">O1 · Typo + Brand Pattern</a><a href="https://www.canva.com/d/mk4oDYS6oW85NHQ" target="_blank">O2 · Typo + Icon Immersive</a><a href="https://www.canva.com/d/f1eAK2ZiPsaTdAV" target="_blank">O3 · Typo + Visual Impressive</a></div></div>
+</div></td></tr>
+
+<tr class="dr p6" onclick="tog('p6a5')"><td class="b bp6">P6-A5</td><td>Different · Why TWC (1)</td><td>Course AI khác dạy tool. TWC dạy bạn nghĩ như người dùng AI thật</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b borg">Organic</span></td><td>Experimenter</td></tr>
+<tr class="er" id="p6a5"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Course AI khác dạy tool. TWC dạy bạn nghĩ như người dùng AI thật sự trong ngành marketing</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Không có slide đẹp. Không có guru hype. Chỉ có workflow bạn copy được ngay sau buổi học đầu tiên</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">AI training khác = theory. TWC = bạn post được ngay sau buổi học. Đây là sự khác biệt quan trọng nhất</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Phần lớn AI course dạy bạn cách dùng tool. TWC dạy bạn cách nghĩ — mindset của marketer dùng AI để tạo ra kết quả kinh doanh thật. Xem curriculum — link bio.</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Carousel Slides</div><div class="eb-txt" style="color:var(--lime)">7 slides — xem trong Calendar tab (Jun 24) hoặc click "7 slides ↗"</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Canva Design Links — 3 Styles</div><div class="eb-txt"><a href="https://www.canva.com/d/z08o_uqtvjolN9x" target="_blank">O1 · Typo + Brand Pattern</a><a href="https://www.canva.com/d/FM7BvTDaiq-yEkK" target="_blank">O2 · Typo + Icon Immersive</a><a href="https://www.canva.com/d/4PUaLYo-lqwThaZ" target="_blank">O3 · Typo + Visual Impressive</a></div></div>
+</div></td></tr>
+
+<tr class="dr p6" onclick="tog('p6a7')"><td class="b bp6">P6-A7</td><td>CTA · Đăng Ký Khoá Học</td><td>Khoá học AI Foundation khai giảng — 20 chỗ cuối</td><td><span style="color:var(--ani)">✨ Animation</span></td><td><span class="b btst">Paid Test</span></td><td>All Levels</td></tr>
+<tr class="er" id="p6a7"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Khoá học AI Foundation khai giảng — 20 chỗ cuối. Đừng học AI muộn hơn đồng nghiệp của bạn</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Bạn đang dùng AI như search engine. Học cách dùng nó như một senior marketer</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">30 ngày thay đổi cách bạn làm marketing — TWC AI Foundation. Đăng ký trước giảm 20%</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">TWC AI Foundation: 4 tuần · 2 buổi/tuần · Community practitioners. Đăng ký trong 48h nhận early-bird — link bio.</div></div>
+  <div class="eb cv-block"><div class="eb-lbl">Canva Design Links</div><div class="eb-txt"><a href="https://www.canva.com/d/X3oa08shXQGfiPz" target="_blank">O1</a><a href="https://www.canva.com/d/KGYTFNhvg8fAG8q" target="_blank">O2</a><a href="https://www.canva.com/d/1zXIq28YEiF2Th_" target="_blank">O3</a></div></div>
+</div></td></tr>
+
+<!-- ALWAYS-ON SERIES -->
+<tr class="ph"><td colspan="6">🔮 ALWAYS-ON SERIES — What Claude Can Do</td></tr>
+<tr class="dr s" onclick="tog('s01')"><td class="b bs">S-01</td><td>Claude Project Setup</td><td>Setup 1 lần. Claude nhớ brand voice, tone, format bạn — mãi mãi.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b baon">Always-On</span></td><td>Experimenter</td></tr>
+<tr class="er" id="s01"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Thay vì "Viết brief cho tôi" thử: "Hãy hỏi tôi 5 câu trước khi viết". Output khác nhau hoàn toàn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Mỗi chat mới = Claude quên hết về bạn. Claude Project fix điều đó. Setup 1 lần, dùng mãi.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Claude Project: system prompt + brand voice + output format. Một lần setup, consistent mãi mãi.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Claude Project là tính năng ít được dạy nhất nhưng tạo ra sự khác biệt lớn nhất. Template tiếng Việt, FMCG-ready — comment PROJECT để nhận.</div></div>
+</div></td></tr>
+
+<tr class="dr s" onclick="tog('s02')"><td class="b bs">S-02</td><td>Claude Capability Map</td><td>Claude không phải chatbot. Đây là map đầy đủ những gì nó thật sự làm được trong marketing.</td><td><span style="color:var(--sta)">🖼 Static</span></td><td><span class="b baon">Always-On</span></td><td>Explorer+</td></tr>
+<tr class="er" id="s02"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Bạn đang dùng bao nhiêu % khả năng của Claude? Map đầy đủ capability cho marketing workflow.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Claude không phải search engine. Không phải chatbot. Đây là những gì nó thật sự làm được — và không làm được.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">4 nhóm capability, 20+ use cases trong marketing. Capability map đầy đủ cho Vietnamese marketer.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Knowing Claude's real capabilities — not vendor claims — là bước đầu tiên để dùng nó đúng cách. Save post này làm reference.</div></div>
+</div></td></tr>
+
+<tr class="dr s" onclick="tog('s03')"><td class="b bs">S-03</td><td>Context &gt; Prompt</td><td>Prompt tốt nhất không phải prompt hay nhất — là prompt có context đầy đủ nhất.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b baon">Always-On</span></td><td>Experimenter</td></tr>
+<tr class="er" id="s03"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Prompt tốt nhất không phải prompt hay nhất — là prompt có context đầy đủ nhất.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Context > Prompt. Đây là insight thay đổi cách tôi dùng Claude hoàn toàn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Cùng một task. Cùng một Claude. Context khác nhau = output khác nhau hoàn toàn. Đây là framework.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Context framework: Role + Task + Audience + Format + Constraint. 5 element này trong mọi prompt, output tốt hơn 80%. Template — comment CONTEXT để nhận.</div></div>
+</div></td></tr>
+
+<tr class="dr s" onclick="tog('s04')"><td class="b bs">S-04</td><td>Claude · Hỏi Ngược</td><td>Đừng chỉ hỏi Claude. Hãy để Claude hỏi lại bạn — technique ít ai biết nhưng output tốt hơn 80%.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b baon">Always-On</span></td><td>Experimenter</td></tr>
+<tr class="er" id="s04"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Thay vì "Viết brief cho tôi" — thử: "Trước khi viết, hỏi tôi 5 câu bạn cần biết". Output khác nhau hoàn toàn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Claude không phải search engine. Khi bạn chỉ hỏi, bạn đang dùng 20% khả năng của nó.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Brief viết trong 5 phút vs brief sau khi Claude hỏi ngược 5 câu. Tôi đã thử cả hai. Đây là kết quả.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Kỹ thuật "Claude hỏi ngược" mở khóa 80% capability bạn đang bỏ qua. Template prompt + 3 use cases — comment NGƯỢC để nhận.</div></div>
+</div></td></tr>
+
+<tr class="dr s" onclick="tog('s05')"><td class="b bs">S-05</td><td>Claude · 5 Tools/Week</td><td>5 cách dùng Claude trong tuần này — được test thực tế bởi marketer, không phải AI blogger.</td><td><span style="color:var(--car)">📱 Carousel</span></td><td><span class="b baon">Always-On</span></td><td>Explorer+</td></tr>
+<tr class="er" id="s05"><td colspan="6" class="ec"><div class="eg">
+  <div class="eb"><div class="eb-lbl">Hook A</div><div class="eb-txt">Tuần này: 5 cách dùng Claude mà team tôi đang dùng thực tế — không phải lý thuyết, không phải demo.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook B</div><div class="eb-txt">Phần lớn người dùng Claude chỉ dùng 3–4 use cases lặp đi lặp lại. Đây là 5 use cases ROI cao hơn.</div></div>
+  <div class="eb"><div class="eb-lbl">Hook C</div><div class="eb-txt">Series hàng tuần: "5 Tools This Week" — từ cộng đồng TWC + test thực tế. Tuần này: reporting, proposal, competitive brief.</div></div>
+  <div class="eb"><div class="eb-lbl">Caption</div><div class="eb-txt">Mỗi tuần một lần, tôi chia sẻ 5 cách dùng Claude được test thực tế bởi marketer trong cộng đồng TWC. Save để dùng ngay.</div></div>
+</div></td></tr>
+
+</tbody>
+</table>
+</div>
+
+<!-- ══════════════ SLIDE PANELS ══════════════ -->
+
+<!-- P6-A3 Brand Intro -->
+<div class="slides-panel" id="s-p6a3">
+<span class="sp-close" onclick="closeSlides('s-p6a3')">✕</span>
+<div class="sp-title">P6-A3 · Brand Intro TWC — 6 Slides Carousel</div>
+<div class="slide-grid">
+<div class="slide-card"><div class="slide-num">Slide 1 · Hook</div><div class="slide-role">Hook — Stop scroll</div><div class="slide-head">Chào mừng đến nơi<br>không ai giả vờ AI dễ.</div><div class="slide-body">The Wild Card.</div><div class="slide-note">Big centred type · lime on "không ai giả vờ" · TWC (c) bottom right</div></div>
+<div class="slide-card"><div class="slide-num">Slide 2 · Setup</div><div class="slide-role">Context — establish stakes</div><div class="slide-head">AI marketing đang thật sự thay đổi nghề này.</div><div class="slide-body">Không phải "sẽ thay đổi" — đang. Ngay tuần này.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 3 · Tension</div><div class="slide-role">Problem — name the gap</div><div class="slide-head">Vấn đề không phải thiếu tool.</div><div class="slide-body">Vấn đề là không ai dạy bạn dùng đúng cách — trong bối cảnh Việt Nam thật.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 4 · Solution</div><div class="slide-role">Introduce TWC</div><div class="slide-head">The Wild Card được xây cho điều đó.</div><div class="slide-body">Community. Practitioners.<br>Workflow thật. Không hype.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 5 · Audience</div><div class="slide-role">Who it's for</div><div class="slide-head">Dành cho marketer đang làm việc thật.</div><div class="slide-body">Brand managers. Performance.<br>Content leads. Agency teams.<br><br>Không phải để "biết thêm" — mà để làm.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 6 · CTA</div><div class="slide-role">Close + Action</div><div class="slide-head">Follow để bắt đầu.</div><div class="slide-body">Mỗi tuần: workflow, case thật,<br>và thứ AI làm được mà bạn chưa thử.<br><br>#TheWildCard #AIMarketing</div><div class="slide-note">Lime CTA style · TWC wordmark prominent</div></div>
+</div>
+</div>
+
+<!-- P6-A5 Why Different -->
+<div class="slides-panel" id="s-p6a5">
+<span class="sp-close" onclick="closeSlides('s-p6a5')">✕</span>
+<div class="sp-title">P6-A5 · Why TWC Different — 7 Slides Carousel</div>
+<div class="slide-grid">
+<div class="slide-card"><div class="slide-num">Slide 1 · Hook</div><div class="slide-role">Contrast hook</div><div class="slide-head">Course AI khác dạy tool.<br>TWC dạy bạn làm việc khác đi.</div><div class="slide-note">"tool" faded/struck · "làm việc khác đi" in lime</div></div>
+<div class="slide-card"><div class="slide-num">Slide 2 · Pain</div><div class="slide-role">Relatable struggle</div><div class="slide-head">Bạn đã học AI chưa?</div><div class="slide-body">Học xong bạn có gì?<br>— Cảm hứng. Một vài prompts.<br>Và không biết áp dụng vào đâu trong công việc thật.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 3 · Root cause</div><div class="slide-role">Name the real problem</div><div class="slide-head">Vấn đề không phải bạn chưa đủ giỏi.</div><div class="slide-body">Vấn đề là không có ai translate AI capability thành marketing workflow cụ thể cho thị trường Việt Nam.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 4 · TWC approach</div><div class="slide-role">Differentiation</div><div class="slide-head">TWC làm điều đó khác đi.</div><div class="slide-body">Không dạy ChatGPT. Dạy cách nghĩ.<br>Không cho prompts. Cho workflow bạn dùng được ngay tuần sau khi học.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 5 · Evidence</div><div class="slide-role">Proof — concrete outcomes</div><div class="slide-head">Sau buổi học đầu tiên:</div><div class="slide-body">✓ 1 Claude Project setup xong<br>✓ 3 workflow đã test<br>✓ Biết AI làm được gì — và không làm được gì</div></div>
+<div class="slide-card"><div class="slide-num">Slide 6 · Who teaches</div><div class="slide-role">Authority + credibility</div><div class="slide-head">Dạy bởi người đang làm — không phải người chỉ dạy.</div><div class="slide-body">Practitioners. Consultants.<br>Marketers đang implement AI cho brands thật tại VN.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 7 · CTA</div><div class="slide-role">Close + next step</div><div class="slide-head">Tò mò?</div><div class="slide-body">Link bio → xem curriculum.<br>Comment TWC → nhận overview miễn phí.</div></div>
+</div>
+</div>
+
+<!-- S-01 Claude Project -->
+<div class="slides-panel" id="s-s01">
+<span class="sp-close" onclick="closeSlides('s-s01')">✕</span>
+<div class="sp-title">S-01 · Claude Project Setup — 6 Slides Carousel</div>
+<div class="slide-grid">
+<div class="slide-card"><div class="slide-num">Slide 1 · Hook</div><div class="slide-head">Mỗi chat mới = Claude quên hết về bạn.</div><div class="slide-body">Có một cách fix điều đó — setup 1 lần, dùng mãi.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 2 · Problem</div><div class="slide-head">Không có Claude Project:</div><div class="slide-body">→ Mỗi chat = giải thích lại brand từ đầu<br>→ Tone inconsistent<br>→ Format mỗi lần một kiểu</div></div>
+<div class="slide-card"><div class="slide-num">Slide 3 · Solution</div><div class="slide-head">Có Claude Project:</div><div class="slide-body">→ Claude nhớ brand voice của bạn<br>→ Output format chuẩn từ câu đầu tiên<br>→ Tone theo content type tự động</div></div>
+<div class="slide-card"><div class="slide-num">Slide 4 · Setup</div><div class="slide-head">Setup gồm 3 phần:</div><div class="slide-body">( System prompt )<br>( Brand voice guide )<br>( Output format chuẩn )</div><div class="slide-note">Bracket motif visual · each item in lime brackets</div></div>
+<div class="slide-card"><div class="slide-num">Slide 5 · Example</div><div class="slide-head">Ví dụ thực tế:</div><div class="slide-body">FMCG brand manager setup Claude Project cho:<br>→ Campaign brief writing<br>→ Weekly content calendar<br>→ Competitive monitoring<br><br>Result: 3h → 45 phút/tuần.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 6 · CTA</div><div class="slide-head">Comment PROJECT</div><div class="slide-body">Nhận template tiếng Việt,<br>FMCG-ready Claude Project setup.<br><br>#WhatClaudeCando #ClaudeProject</div></div>
+</div>
+</div>
+
+<!-- P2-A1 Skill Shift -->
+<div class="slides-panel" id="s-p2a1">
+<span class="sp-close" onclick="closeSlides('s-p2a1')">✕</span>
+<div class="sp-title">P2-A1 · Contrarian · Skill Shift — 6 Slides Carousel</div>
+<div class="slide-grid">
+<div class="slide-card"><div class="slide-num">Slide 1 · Hook</div><div class="slide-head">Bạn đang học sai skill.</div><div class="slide-body">Đây là 3 skill AI không replace được — và 3 skill bạn nên stop đầu tư thêm thời gian.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 2 · Data</div><div class="slide-head">WEF 2025: 44% kỹ năng lõi sẽ thay đổi.</div><div class="slide-body">Với marketing, con số đó có thể cao hơn. Đây là cách đọc data này đúng cách.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 3 · Framework</div><div class="slide-head">Hold / Play / Fold.</div><div class="slide-body">HOLD = AI không làm được<br>PLAY = Bạn + AI = 10x<br>FOLD = AI làm tốt hơn bạn<br><br>Sort kỹ năng của bạn vào 3 pile này.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 4 · HOLD skills</div><div class="slide-head">HOLD — đầu tư sâu hơn:</div><div class="slide-body">→ Cultural judgment<br>→ Client relationship<br>→ Creative direction<br>→ Strategic framing</div></div>
+<div class="slide-card"><div class="slide-num">Slide 5 · FOLD skills</div><div class="slide-head">FOLD — delegate cho AI:</div><div class="slide-body">→ First draft copy<br>→ Research & synthesis<br>→ Variant generation<br>→ Basic reporting</div></div>
+<div class="slide-card"><div class="slide-num">Slide 6 · CTA</div><div class="slide-head">Bạn đang đầu tư thời gian vào pile nào?</div><div class="slide-body">Comment FOLD để nhận<br>skill audit template đầy đủ.</div></div>
+</div>
+</div>
+
+<!-- S-03 Context -->
+<div class="slides-panel" id="s-s03">
+<span class="sp-close" onclick="closeSlides('s-s03')">✕</span>
+<div class="sp-title">S-03 · Context &gt; Prompt — 6 Slides Carousel</div>
+<div class="slide-grid">
+<div class="slide-card"><div class="slide-num">Slide 1 · Hook</div><div class="slide-head">Prompt tốt nhất không phải prompt hay nhất.</div><div class="slide-body">Là prompt có context đầy đủ nhất.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 2 · Insight</div><div class="slide-head">Context > Prompt.</div><div class="slide-body">Cùng một task. Cùng một Claude. Context khác nhau = output khác nhau hoàn toàn.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 3 · Framework</div><div class="slide-head">5 Element Context Framework:</div><div class="slide-body">R — Role (bạn là ai / Claude là ai)<br>T — Task (làm gì cụ thể)<br>A — Audience (cho ai)<br>F — Format (output trông như thế nào)<br>C — Constraint (giới hạn cần biết)</div></div>
+<div class="slide-card"><div class="slide-num">Slide 4 · Before</div><div class="slide-head">Không có context:</div><div class="slide-body">"Viết caption Instagram cho sản phẩm mới."<br><br>→ Generic. Có thể của bất kỳ brand nào.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 5 · After</div><div class="slide-head">Với đủ context:</div><div class="slide-body">"Tôi là brand manager FMCG, target Gen Z VN, brand voice conversational anti-corporate. Viết caption Instagram announcement sản phẩm X, tone surprise/delight, max 150 ký tự, không dùng emoji."<br><br>→ On-brand từ lần đầu.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 6 · CTA</div><div class="slide-head">Context template RTAFC</div><div class="slide-body">Comment CONTEXT để nhận<br>template đầy đủ cho 5 content type phổ biến nhất.</div></div>
+</div>
+</div>
+
+<!-- S-05 5 Tools -->
+<div class="slides-panel" id="s-s05">
+<span class="sp-close" onclick="closeSlides('s-s05')">✕</span>
+<div class="sp-title">S-05 · Claude · 5 Tools/Week — 6 Slides Carousel</div>
+<div class="slide-grid">
+<div class="slide-card"><div class="slide-num">Slide 1 · Hook</div><div class="slide-head">5 cách dùng Claude tuần này.</div><div class="slide-body">Từ cộng đồng TWC. Test thực tế. Không phải demo.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 2 · Tool 1</div><div class="slide-head">01 · Client Reporting</div><div class="slide-body">Paste raw data → Claude tóm tắt thành executive summary với highlights + rủi ro + next steps. Thời gian: 45 phút → 8 phút.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 3 · Tool 2</div><div class="slide-head">02 · Proposal Structure</div><div class="slide-body">Brief 3 câu về client → Claude generate proposal outline theo vấn đề của họ. Bạn chỉ cần fill content, không cần nghĩ cấu trúc.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 4 · Tool 3</div><div class="slide-head">03 · Competitive Brief</div><div class="slide-body">Paste competitor's recent campaigns → Claude phân tích messaging gaps, positioning opportunities, và counter-messaging options.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 5 · Tool 4+5</div><div class="slide-head">04 + 05 · QC & Review</div><div class="slide-body">04: Claude review content của bạn với brand voice checklist trước khi gửi client.<br><br>05: Weekly review — paste task list → Claude identify what was AI-doable vs what needed human.</div></div>
+<div class="slide-card"><div class="slide-num">Slide 6 · CTA</div><div class="slide-head">Save để dùng tuần này.</div><div class="slide-body">Follow để nhận 5 tools mới mỗi tuần từ cộng đồng TWC practitioners.<br><br>#WhatClaudeCando</div></div>
+</div>
+</div>
+
+<script>
+// Tab switching
+function go(id, btn){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+// Content bank row expand
+function tog(id){
+  const r=document.getElementById(id);
+  r.classList.toggle('open');
+}
+// Content bank filter
+function cbFilter(p, btn){
+  document.querySelectorAll('.cf').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const rows=document.querySelectorAll('tr.dr,tr.er,tr.ph');
+  rows.forEach(r=>{
+    if(p==='all'){r.style.display='';return;}
+    if(r.classList.contains('ph')){
+      const cls=[...r.classList];
+      r.style.display=cls.some(c=>c===p)?'':'none';
+      return;
+    }
+    r.style.display=r.classList.contains(p)?'':'none';
+  });
+}
+// Slide panels
+function openSlides(id){document.getElementById(id).classList.add('open')}
+function closeSlides(id){document.getElementById(id).classList.remove('open')}
+// Prevent slide open on link click inside card
+document.querySelectorAll('.day a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+</script>
+</body>
+</html>
