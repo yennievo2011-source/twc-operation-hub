@@ -317,23 +317,32 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div>
 
 <div class="topbar">
-  <div class="brand">🃏 THE WILD <span>CARD</span> — Master Plan v5</div>
-  <div class="tabs">
-    <button class="tab active" onclick="showPage('vcal',this)">📅 Content Calendar</button>
-    <button class="tab" onclick="showPage('pace',this)">📈 Pace Tracker</button>
-    <button class="tab" onclick="showPage('er',this)">📊 ER Tracker</button>
-    <button class="tab" onclick="showPage('spend',this)">💰 Ad Spend</button>
-    <button class="tab" onclick="showPage('hooks',this)">📚 Hook Library</button>
-    <button class="tab" onclick="showPage('linkedin',this)">🔗 LinkedIn B2B</button>
-    <button class="tab" onclick="showPage('email',this)">📧 Email B2B</button>
-    <button class="tab" onclick="showPage('checklist',this)">✅ Checklist 30D</button>
-    <button class="tab" onclick="showPage('ailib',this)">🤖 AI Library</button>
-    <button class="tab" onclick="showPage('finance',this)">💼 Finance</button>
+  <div class="brand">🃏 THE WILD <span>CARD</span> — Ops Hub</div>
+  <div class="tabs" id="hubNav">
+    <button class="tab active" onclick="showHub('working',this)">🛠️ Working Hub</button>
+    <button class="tab" onclick="showHub('learning',this)">📚 Learning Hub</button>
   </div>
 </div>
 
+<div id="deliverySummary" class="ck-summary" style="padding:12px 16px 0"></div>
+
+<div class="topbar" style="position:static;top:auto">
+  <div class="tabs" id="workingTabs">
+    <button class="tab active" onclick="showPage('vcal',this)">📅 Content Calendar</button>
+    <button class="tab" onclick="showPage('checklist',this)">✅ Checklist 30D</button>
+    <button class="tab" onclick="showPage('finance',this)">💼 Finance</button>
+    <button class="tab" onclick="showPage('spend',this)">💰 Ad Spend</button>
+    <button class="tab" onclick="showPage('tracker',this)">📈 Tracker</button>
+  </div>
+  <div class="tabs" id="learningTabs" style="display:none">
+    <button class="tab active" onclick="showPage('ailib',this)">📚 Library</button>
+    <button class="tab" onclick="showPage('hooks',this)">🎯 Hook & Competitor</button>
+  </div>
+</div>
+
+
 <!-- ============================================================ -->
-<!-- TAB 1: CONTENT CALENDAR -->
+<!-- WORKING HUB · 1: CONTENT CALENDAR -->
 <!-- ============================================================ -->
 <!-- ============================================================ -->
 <!-- TAB: VISUAL CALENDAR (embedded — kept isolated to avoid CSS/JS clash) -->
@@ -348,11 +357,12 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div>
 
 <!-- ============================================================ -->
-<!-- TAB: PACE TRACKER (Budget vs Time Elapsed, by Phase) -->
+<!-- WORKING HUB · 2: TRACKER (Pace + ER merged) -->
 <!-- ============================================================ -->
-<div id="pace" class="page">
-<div class="header"><h1>📈 Pace Tracker — Budget vs Thời gian theo Phase</h1>
-<p>So sánh % budget đã xài với % thời gian đã trôi qua trong từng phase · Dùng chung dữ liệu Spend Log + FB API ở tab Ad Spend</p></div>
+<div id="tracker" class="page">
+<div class="header"><h1>📈 Tracker — Pace + Engagement</h1>
+<p>Budget pace theo phase + ER 48h theo post · Gộp Pace Tracker & ER Tracker</p></div>
+<h2 style="font-size:15px;font-weight:800;margin:14px 16px 4px;color:var(--ind)">📈 Pace — Budget vs Thời gian</h2>
 <div style="padding:16px">
 
   <div class="callout callout-blue">
@@ -418,16 +428,10 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
       <tbody id="paceSummaryBody"></tbody>
     </table>
   </div>
+  </div>
 
-</div>
-</div>
-
-<!-- ============================================================ -->
-<!-- TAB 2: ER TRACKER -->
-<!-- ============================================================ -->
-<div id="er" class="page">
-<div class="header"><h1>📊 Performance Tracker</h1>
-<p>Nhập số liệu sau 48h mỗi bài · ER &gt; 5% FB/IG → Boost +$25–30 · ER &gt; 3% LinkedIn → Boost · ER &lt; 3% → Stop</p></div>
+<hr style="margin:22px 16px;border:none;border-top:2px solid var(--border)">
+<h2 style="font-size:15px;font-weight:800;margin:14px 16px 4px;color:var(--ind)">📊 Engagement Rate (48h)</h2>
 <div class="er-section">
 <div class="callout callout-green"><b>✅ Chỉ track paid posts ở đây.</b> Organic posts không cần ER tracker — signal từ organic không đủ để quyết định scale. FB/IG paid: <b>$15 test · 48h · threshold ER 5%</b>. LinkedIn paid: <b>$20 test · 48h · threshold ER 3%</b>.</div>
 <div class="callout callout-b2b"><b>⚡ Auto Boost Flow:</b> Nhập ER sau 48h → Rule engine tự quyết định KILL / HOLD / BOOST — không qua LLM. <b>Giai đoạn hiện tại (manual execute):</b> Rule engine output exact steps → Yên/Nghi execute trên Ads Manager trong &lt;2 phút. <b>Giai đoạn 2 (khi Meta API approved ~2 tuần):</b> Rule engine gọi API trực tiếp → fully auto, không cần người. LinkedIn InMail follow-up tự động trigger khi ER &gt;5%.</div>
@@ -435,9 +439,6 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="er-grid" id="erGrid"></div></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- TAB 3: AD SPEND (REVISED v5) -->
-<!-- ============================================================ -->
 <div id="spend" class="page">
 <div class="header"><h1>💰 Ad Spend — Launch 23 Jun → 26 Jul (5 tuần, front-load)</h1>
 <p>Total ~$797 · W1 actual ₫690k ($27) · W2 peak $280 (LinkedIn vào) · giảm dần W3→W5 · LinkedIn $280 · FB/IG $160 · Retarget $200 (W3+) · Always-On $100</p></div>
@@ -812,7 +813,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div></div>
 
 <!-- ============================================================ -->
-<!-- TAB 4: HOOK LIBRARY -->
+<!-- LEARNING HUB · Hook & Competitor -->
 <!-- ============================================================ -->
 <div id="hooks" class="page">
 <div class="header"><h1>📚 Campaign Hook Library v5</h1>
@@ -860,278 +861,45 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <li>Quá dài (&gt;15 từ cho FB)</li><li>Jargon không cần thiết</li></ul></div>
 </div>
 <div class="callout callout-green"><b>✅ Threshold:</b> Hook cần ≥ <b>25/35 điểm</b> trước khi test $15. Dưới ngưỡng → rewrite trước. B2B hooks cần thêm ROI clarity để pass LinkedIn ad review.</div>
-</div></div>
 
-<!-- ============================================================ -->
-<!-- TAB 5: LINKEDIN B2B PLAN -->
-<!-- ============================================================ -->
-<div id="linkedin" class="page">
-<div class="header">
-  <h1>🔗 LinkedIn B2B Playbook — 4 tuần</h1>
-  <p>3 posts/tuần · Personal profile ưu tiên · Content + Outreach + Sponsored Ads · Target: Marketing Director, CMO, Agency Owner</p>
+<div class="hl-segment-title" style="border-color:#991b1b;margin-top:24px">🎯 Competitor Update — Gen AI Marketing Courses</div>
+<div class="callout callout-amber"><b>TL;DR:</b> 8 khoá Gen AI marketing phổ biến nhất — không khoá nào build cho MNC FMCG function-specific như TWC. Họ bán <b>hiểu biết</b> (knowledge transfer), TWC bán <b>hệ thống chạy được</b> (methodology + artifact thật: Brief, Nielsen, ITM). Update: May 2026, review lại mỗi quý.</div>
+<div style="overflow-x:auto;margin-bottom:14px">
+<table class="fin-table">
+<thead><tr><th>Course</th><th>Format</th><th>Audience</th><th>Giá (USD)</th><th>Volume signal</th></tr></thead>
+<tbody>
+<tr><td>Coursera/IBM — GenAI Digital Mkt</td><td>Async video</td><td>Digital marketers</td><td>~$49/mo</td><td>10K · 4.8/5</td></tr>
+<tr><td>Coursera/Emory — GenAI in Mkt</td><td>Async video</td><td>Beginners</td><td>~$49/mo</td><td>3.6K · 4.7/5</td></tr>
+<tr><td>Udemy 45-in-1 Masterclass</td><td>Async video</td><td>Broad digital</td><td>$10-30</td><td>26.7K · 4.5/5</td></tr>
+<tr><td>Udemy — AI 100+ Tools</td><td>Async video</td><td>Tool-curious</td><td>$10-30</td><td>2.5K · 4.4/5</td></tr>
+<tr><td>Udemy — ChatGPT for Mkt 2026</td><td>Async video</td><td>Prompt-focused</td><td>$10-30</td><td>346 · 4.6/5</td></tr>
+<tr><td>Udemy — Complete AI Guide</td><td>Async video</td><td>General GenAI</td><td>$10-30</td><td>59.3K · 4.6/5</td></tr>
+<tr><td>AMA/LinkedIn Learning Cert</td><td>Video + cert</td><td>Credential seekers</td><td>$300-500</td><td>AMA-endorsed</td></tr>
+<tr><td>Marketing AI Institute — Piloting AI</td><td>Cohort + workshop</td><td>Senior MKT leaders</td><td>$1,000-2,000+</td><td>Premium specialist</td></tr>
+</tbody>
+</table>
 </div>
-<div class="li-section">
-
-<div class="callout callout-b2b"><b>LinkedIn Algorithm 2026:</b> Ưu tiên Carousels (24.42% ER) + Video native + Document posts (6.6% ER). Personal profile > Company page — 8× engagement. 2-3 posts/tuần substantive > daily shallow posts. Hook phải fit trong 210 ký tự trước "See more".</div>
-<div class="callout callout-green"><b>✅ Phân biệt rõ:</b> LinkedIn posts trong calendar có tag <span class="badge bb2b">B2B</span> đều map tới plan 4 tuần này. Posts dưới đây là LinkedIn-exclusive content — không post lên FB/IG (except những bài có tag cả 2 platform).</div>
-
-<div class="li-week">
-  <div class="li-week-header">
-    <h3>Tuần 1 (Jun 15–19) — Awareness: Định vị vấn đề B2B</h3>
-    <span style="font-size:12px;opacity:.8">Mục tiêu: profile visit + connection growth</span>
-  </div>
-  <div class="li-week-body">
-    <div class="li-post-row">
-      <div class="li-day">THỨ 5<br>Jun 18</div>
-      <div class="li-format">Assessment Drive</div>
-      <div>
-        <div class="li-hook">A2: "Team marketing của bạn đang dùng AI ở mức độ nào? Mình có 1 assessment nhỏ — 5 câu hỏi, 2 phút, bạn biết ngay mình đang đứng ở đâu."</div>
-        <div class="li-target">Target: Marketing Manager, Director · Hook: curiosity/value · CTA nhẹ: "Link trong comment — không có gì để pitch cả" → AI Maturity Assessment → /corporate</div>
-      </div>
-    </div>
-  </div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+<div class="callout callout-green"><b>✅ Steal (5 ý hay):</b> Responsible AI framing (Compliance rule) · Take-home "Team Claude Plan" · Custom AI Assistants label (Tier 5) · Channel track expansion roadmap · Credential-as-marketing (Wild Card Certified).</div>
+<div class="callout callout-blue"><b>⚔️ Wedge của TWC:</b> FMCG MNC ABM cụ thể (không generic) · Artifact thật (Brief/Nielsen/ITM) · Vietnam context · Methodology 4S (không phải tool-by-tool) · Claude-only depth · Live + Slack community · Compliance rule tường minh.</div>
 </div>
-
-<div class="li-week">
-  <div class="li-week-header">
-    <h3>Tuần 2 (Jun 20–26) — Consideration: Chứng minh giá trị</h3>
-    <span style="font-size:12px;opacity:.8">Mục tiêu: profile DMs + link clicks</span>
-  </div>
-  <div class="li-week-body">
-    <div class="li-post-row">
-      <div class="li-day">THỨ 2<br>Jun 22</div>
-      <div class="li-format">Exclusive Report</div>
-      <div>
-        <div class="li-hook">V1-B2B: "Mình vừa compile một report về Marketing Skillset trong Gen AI Era 2026 — chia sẻ miễn phí, không cần điền gì cả. Link trong comment."</div>
-        <div class="li-target">Document Post hoặc Carousel 8 slides · 5 skills declining + 5 rising · Marketing Director/CMO · CTA: thân tình "Nếu có gì muốn discuss thêm thì comment nhé 🙂"</div>
-      </div>
-    </div>
-    <div class="li-post-row">
-      <div class="li-day">THỨ 5<br>Jun 25</div>
-      <div class="li-format">Founder Story</div>
-      <div>
-        <div class="li-hook">C7-P2: "10 năm marketing — và điều tôi muốn làm nhất là trao lại kiến thức cho thế hệ marketer mới đang bước vào thời đại AI."</div>
-        <div class="li-target">Personal narrative · Inspiring, not complaining · Trust building · CTA nhẹ: "DM mình nếu bạn muốn trao đổi thêm" → /corporate</div>
-      </div>
-    </div>
-    <div class="li-post-row">
-      <div class="li-day">THỨ 6<br>Jun 26</div>
-      <div class="li-format">Engagement</div>
-      <div>
-        <div class="li-hook">V10: "Hỏi thật: team bạn đang ở đâu với AI? L1 / L2 / L3 / L4 — comment xuống nhé."</div>
-        <div class="li-target">Engagement post · Audience segmentation · Leads to discovery conversation</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="li-week">
-  <div class="li-week-header">
-    <h3>Tuần 3 (Jun 27–Jul 2) — Intent: Authority + tranh luận</h3>
-    <span style="font-size:12px;opacity:.8">Mục tiêu: inbound DMs + discovery calls</span>
-  </div>
-  <div class="li-week-body">
-    <div class="li-post-row">
-      <div class="li-day">THỨ 2<br>Jun 28</div>
-      <div class="li-format">Hot Take</div>
-      <div>
-        <div class="li-hook">"Mua ChatGPT cho cả team là lãng phí ngân sách nhất bạn có thể làm năm 2026."</div>
-        <div class="li-target">Controversial · Invites disagreement from both sides · Shows expertise · Agency owners sẽ tag nhau</div>
-      </div>
-    </div>
-    <div class="li-post-row">
-      <div class="li-day">THỨ 5<br>Jul 2</div>
-      <div class="li-format">Data Carousel</div>
-      <div>
-        <div class="li-hook">V4: "Đây là prompt tôi dùng để viết toàn bộ brief campaign trong 7 phút." (kèm screenshot thực)</div>
-        <div class="li-target">Practical value · High save rate · "Steal this prompt" format · CTA: /corporate workshop</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="li-week">
-  <div class="li-week-header">
-    <h3>Tuần 4 (Jul 3–9) — Conversion: Direct sell + case study</h3>
-    <span style="font-size:12px;opacity:.8">Mục tiêu: discovery calls + proposals sent</span>
-  </div>
-  <div class="li-week-body">
-    <div class="li-post-row">
-      <div class="li-day">THỨ 3<br>Jul 7</div>
-      <div class="li-format">Corporate CTA</div>
-      <div>
-        <div class="li-hook">L4: "1 người học AI = lợi thế cá nhân. Cả team học AI cùng framework = lợi thế cạnh tranh. Session 1 corporate batch tháng tới."</div>
-        <div class="li-target">B2B direct offer · Specific outcome list · "DM để nhận proposal" CTA · Urgency scarcity</div>
-      </div>
-    </div>
-    <div class="li-post-row">
-      <div class="li-day">THỨ 5<br>Jul 9</div>
-      <div class="li-format">Founder Close</div>
-      <div>
-        <div class="li-hook">C7: "ROI calculator: nếu team 10 người tiết kiệm 8h/tuần nhờ AI, đó là bao nhiêu $/năm? (bài dài — đọc hết nhé)"</div>
-        <div class="li-target">Decision maker math · Tags CFO/CEO thinking · Closes on ROI logic · Final CTA both B2B + B2C</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Outreach SOP -->
-<div style="margin-top:8px">
-<div class="hl-segment-title" style="border-color:#0a66c2">📨 LinkedIn Outreach SOP — 20 connections/ngày</div>
-<table class="outreach-table">
-  <tr><th>Bước</th><th>Action</th><th>Message Template</th><th>Timing</th></tr>
-  <tr>
-    <td><b>1</b></td><td>Connect request</td>
-    <td>"Hi [Name], thấy bạn đang lead marketing team tại [Company]. Tôi đang research về AI adoption trong marketing VN — muốn kết nối để exchange insights."</td>
-    <td>Ngay khi gửi</td>
-  </tr>
-  <tr>
-    <td><b>2</b></td><td>Value DM (sau accept)</td>
-    <td>"Cảm ơn bạn đã connect! Tôi vừa làm report nhỏ về AI Maturity trong marketing teams VN — gửi bạn xem thử, không có ý pitch gì cả." [attach AI Maturity PDF]</td>
-    <td>24h sau accept</td>
-  </tr>
-  <tr>
-    <td><b>3</b></td><td>Soft qualify</td>
-    <td>"Bạn thấy team mình đang ở level nào? Tụi mình đang làm pilot với vài team để build case study về AI adoption — nếu quan tâm tôi chia sẻ thêm."</td>
-    <td>3-4 ngày sau</td>
-  </tr>
-  <tr>
-    <td><b>4</b></td><td>Discovery invite</td>
-    <td>"Nếu muốn bàn thêm về việc build AI capability cho team — tôi có 20 phút free tuần này. Không phải sales call, just sharing what's working."</td>
-    <td>7 ngày sau</td>
-  </tr>
-  <tr>
-    <td><b>5</b></td><td>Final follow-up</td>
-    <td>"Bỏ qua nếu timing không phù hợp — chỉ muốn để lại link này phòng khi cần: [link /corporate]"</td>
-    <td>14 ngày sau</td>
-  </tr>
+<div style="overflow-x:auto">
+<table class="fin-table">
+<thead><tr><th>Prospect nhắc tới</th><th>Counter-position</th></tr></thead>
+<tbody>
+<tr><td>Udemy general</td><td>"Tour công cụ hay. Bọn mình là bước sau — 1 tool mastered, áp vào brief/ITM/Nielsen thật."</td></tr>
+<tr><td>Coursera</td><td>"Nền tảng tốt. Bọn mình là lớp cohort trên đó — function-specific, live, hệ thống chạy được."</td></tr>
+<tr><td>AMA Certificate</td><td>"CV line tốt. Bọn mình cho khi cần công việc ship tốt hơn — sáng thứ Hai."</td></tr>
+<tr><td>Marketing AI Institute</td><td>"Đúng góc leadership. Bọn mình là lớp team-execution làm pilot thành công."</td></tr>
+<tr><td>"Đã học vài khoá AI rồi"</td><td>"Vậy bạn biết gap — họ dạy AI làm được gì, không dạy làm sao để AI ship việc của bạn."</td></tr>
+</tbody>
 </table>
 </div>
 
-<!-- B2B KPIs -->
-<div style="margin-top:20px">
-<div class="hl-segment-title" style="border-color:#0a66c2">🎯 B2B KPIs — Tháng đầu tiên</div>
-<div class="kpi-grid">
-  <div class="kpi-card"><div class="kpi-num">15-20</div><div class="kpi-unit">B2B leads/tháng</div><div class="kpi-label">Marketing Manager+<br>từ LinkedIn + Email</div></div>
-  <div class="kpi-card"><div class="kpi-num">4-5</div><div class="kpi-unit">discovery calls</div><div class="kpi-label">Corporate booking<br>từ LI + Email</div></div>
-  <div class="kpi-card"><div class="kpi-num">1-2</div><div class="kpi-unit">closed deals</div><div class="kpi-label">Corporate Session 1<br>tháng đầu (realistic)</div></div>
-  <div class="kpi-card"><div class="kpi-num">$65</div><div class="kpi-unit">target CPL</div><div class="kpi-label">Cost per B2B lead<br>LinkedIn benchmark VN</div></div>
-</div>
-<div class="callout callout-amber"><b>⚠️ B2B Sales Cycle:</b> 3-6 tuần từ first touch đến close. LI content build awareness → InMail/Email qualify → Discovery call → Proposal → Close. Tháng 1 xây pipeline, tháng 2-3 mới expect consistent closes từ B2B. Song song đó B2C session-1 sales vẫn chạy.</div>
-</div>
-
 </div></div>
 
 <!-- ============================================================ -->
-<!-- TAB 6: EMAIL B2B PLAN -->
-<!-- ============================================================ -->
-<div id="email" class="page">
-<div class="header">
-  <h1>📧 Email Marketing B2B</h1>
-  <p>5-email nurture sequence · List building từ LinkedIn + Website · Target: Marketing Manager, HR Training Lead, Agency Owner</p>
-</div>
-<div class="email-section">
-
-<div class="callout callout-b2b"><b>B2B Email Benchmark 2026:</b> Open rate 42.35% · CTR trung bình 6% · AI personalization tăng CTR +13%. Target: Marketing Manager, CMO, HR L&D, Agency Owner.</div>
-
-<!-- List Building -->
-<div class="hl-segment-title" style="border-color:#0a66c2">📋 List Building Strategy — 3 nguồn chính</div>
-<div class="lb-grid">
-  <div class="lb-card">
-    <div class="lb-num">L1</div>
-    <h3>LinkedIn Lead Gen Form</h3>
-    <p>Attach lead gen form vào LinkedIn Sponsored posts. Offer: "AI Maturity Assessment PDF + Checklist" cho Marketing Manager. Auto-sync email vào Brevo.</p>
-    <div class="est">~15-20 leads/tháng</div>
-  </div>
-  <div class="lb-card">
-    <div class="lb-num">L2</div>
-    <h3>Website Popup — /corporate</h3>
-    <p>Exit-intent popup trên trang corporate: "Nhận ROI Calculator: team 10 người tiết kiệm bao nhiêu $/năm nếu dùng AI?" → Email capture.</p>
-    <div class="est">~8-12 leads/tháng</div>
-  </div>
-  <div class="lb-card">
-    <div class="lb-num">L3</div>
-    <h3>Workshop Attendee Nurture</h3>
-    <p>Người tham dự public session có company email domain (@company.com) → auto-segment vào B2B sequence sau buổi học.</p>
-    <div class="est">~5-8 leads/batch</div>
-  </div>
-</div>
-
-<!-- Email Sequence -->
-<div class="hl-segment-title" style="border-color:#0a66c2">📧 5-Email Corporate Nurture Sequence</div>
-<p style="font-size:12px;color:var(--gray);margin-bottom:12px;padding:0 0 0 2px">Trigger: Lead magnet download hoặc /corporate page visit + email capture. Frequency: 1 email/3-4 ngày.</p>
-<div class="email-seq">
-  <div class="email-step">
-    <div class="day">Email 1 · Ngay lập tức</div>
-    <div class="subject">Xin chào [Name] — đây là report bạn vừa đăng ký nhận 😊</div>
-    <div class="desc">Mở đầu thân tình như người quen. Deliver report + thêm 1 observation cá nhân: "Điều mình thấy thú vị nhất khi làm report này là..." Kết bằng câu hỏi mở, không CTA cứng: "Team bạn đang ở đâu với AI?"</div>
-    <span class="cta-tag">Welcome + Deliver</span>
-  </div>
-  <div class="email-step">
-    <div class="day">Email 2 · Ngày 3</div>
-    <div class="subject">Mình muốn chia sẻ 1 điều mình hay thấy ở các team...</div>
-    <div class="desc">Tone tâm sự — "Gần đây khi nói chuyện với nhiều marketing team, mình hay nghe một câu..." Chia sẻ observation thật, không frame là "pain agitate". Cuối tự nhiên: "Bạn có gặp điều tương tự không?"</div>
-    <span class="cta-tag">Chia sẻ + Kết nối</span>
-  </div>
-  <div class="email-step">
-    <div class="day">Email 3 · Ngày 7</div>
-    <div class="subject">Một câu chuyện ngắn mình muốn kể bạn nghe (3 phút đọc)</div>
-    <div class="desc">Case study anonymous nhưng storytelling cá nhân: "Một bạn trong network của mình..." Before/after thật. Không pitch — kết bằng: "Mình thấy câu chuyện này relate được nhiều người lắm."</div>
-    <span class="cta-tag">Story + Inspire</span>
-  </div>
-  <div class="email-step">
-    <div class="day">Email 4 · Ngày 11</div>
-    <div class="subject">Nếu bạn đang tự hỏi "vậy thì làm gì tiếp theo?" — mình có thể giúp</div>
-    <div class="desc">Giới thiệu Session 1 nhẹ nhàng: "Mình đang làm một chương trình cho team từ 5 người trở lên — nếu bạn thấy relevant, mình happy chia sẻ thêm." CTA: "Reply cho mình biết team bạn đang ở đâu nhé."</div>
-    <span class="cta-tag">Soft Introduce</span>
-  </div>
-  <div class="email-step">
-    <div class="day">Email 5 · Ngày 16</div>
-    <div class="subject">1 câu hỏi thôi — trả lời nhanh được không? 😊</div>
-    <div class="desc">Hỏi thẳng, thân tình: "Mình muốn hiểu hơn về team bạn — bạn đang gặp khó khăn gì nhất với AI trong công việc?" Micro-commitment. Nếu phù hợp mình sẽ kết nối để chia sẻ thêm — không cần gì cả.</div>
-    <span class="cta-tag">Conversation Starter</span>
-  </div>
-</div>
-
-<!-- Email specs -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
-  <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px">
-    <h3 style="font-size:13px;font-weight:700;margin-bottom:10px">🛠️ Tool recommendation</h3>
-    <p style="font-size:12px;margin-bottom:8px"><b>Brevo (free tier)</b> — 300 emails/ngày free, automation + sequences. Đủ cho phase đầu (&lt;500 contacts).</p>
-    <p style="font-size:12px"><b>Mailchimp Essentials $13/mo</b> — khi list &gt; 500 contacts, cần A/B testing và analytics tốt hơn.</p>
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
-      <span class="badge bval">SPF/DKIM setup</span>
-      <span class="badge bval">Custom domain send</span>
-      <span class="badge bval">Unsubscribe compliant</span>
-    </div>
-  </div>
-  <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px">
-    <h3 style="font-size:13px;font-weight:700;margin-bottom:10px">✍️ Subject line best practices B2B VN</h3>
-    <div style="font-size:12px;display:flex;flex-direction:column;gap:6px">
-      <div>✅ Dùng số cụ thể: "40 phút", "3 tháng", "$X tiết kiệm"</div>
-      <div>✅ Emoji 1 cái đầu dòng: tăng open rate 6-9%</div>
-      <div>✅ Personalize [Name] hoặc [Company]</div>
-      <div>✅ Subject dưới 50 ký tự cho mobile</div>
-      <div>❌ Tránh: "FREE", "URGENT", "Click here" → spam filter</div>
-      <div>❌ Tránh ALL CAPS trong subject</div>
-    </div>
-  </div>
-</div>
-
-<!-- Email KPIs -->
-<div class="hl-segment-title" style="border-color:#0a66c2">📊 Email KPIs Target</div>
-<div class="kpi-grid">
-  <div class="kpi-card"><div class="kpi-num">42%</div><div class="kpi-unit">open rate target</div><div class="kpi-label">B2B industry avg<br>(global benchmark)</div></div>
-  <div class="kpi-card"><div class="kpi-num">6%</div><div class="kpi-unit">CTR target</div><div class="kpi-label">Click-to-link<br>per email</div></div>
-  <div class="kpi-card"><div class="kpi-num">15%</div><div class="kpi-unit">reply rate</div><div class="kpi-label">Email 5 qualification<br>replies</div></div>
-  <div class="kpi-card"><div class="kpi-num">2-3</div><div class="kpi-unit">demos/tháng</div><div class="kpi-label">Discovery calls<br>booked từ sequence</div></div>
-</div>
-<div class="callout callout-green"><b>🎯 B2B Conversion Funnel:</b> 50 email leads → 42% open → 6% click → 15% reply → 3 demos → 1 corporate close/tháng. Tháng 1 xây list, tháng 2-3 expect consistent closes. Song song B2C funnel vẫn chạy qua /session-1.</div>
-
-</div></div>
-
-<!-- ============================================================ -->
-<!-- TAB 7: CHECKLIST 30 DAYS -->
+<!-- WORKING HUB · 3: CHECKLIST 30D -->
 <!-- ============================================================ -->
 <div id="checklist" class="page">
 <div class="header">
@@ -1185,7 +953,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div>
 
 <!-- ============================================================ -->
-<!-- TAB 8: AI LIBRARY -->
+<!-- LEARNING HUB · Library (AI Library + B2B playbook ref) -->
 <!-- ============================================================ -->
 <div id="ailib" class="page">
 <div class="header">
@@ -1260,11 +1028,61 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
   Chưa có entry nào. Thêm bài post đầu tiên vào library 👆
 </div>
 
+<div class="hl-segment-title" style="border-color:#0a66c2;margin-top:24px">🔗 LinkedIn B2B Playbook — reference</div>
+<div class="callout callout-b2b">LinkedIn Algorithm 2026: Carousel/Document post ~24% ER · Personal profile &gt; Company page (8×) · 2-3 posts/tuần substantive &gt; daily shallow · Hook fit 210 ký tự trước "See more". Action items chi tiết đã nằm trong tab Checklist 30D.</div>
+<div style="overflow-x:auto;margin-bottom:14px">
+<table class="fin-table">
+<thead><tr><th>Bước Outreach SOP</th><th>Message</th><th>Timing</th></tr></thead>
+<tbody>
+<tr><td><b>1. Connect</b></td><td>"Thấy bạn đang lead marketing team — muốn kết nối exchange insights AI adoption VN."</td><td>Ngay khi gửi</td></tr>
+<tr><td><b>2. Value DM</b></td><td>Gửi AI Maturity Assessment PDF, không pitch.</td><td>24h sau accept</td></tr>
+<tr><td><b>3. Soft qualify</b></td><td>Hỏi level hiện tại của team, giới thiệu pilot case study.</td><td>3-4 ngày sau</td></tr>
+<tr><td><b>4. Discovery invite</b></td><td>Mời 20 phút chia sẻ, không phải sales call.</td><td>7 ngày sau</td></tr>
+<tr><td><b>5. Final follow-up</b></td><td>Để lại link /corporate, không ép.</td><td>14 ngày sau</td></tr>
+</tbody>
+</table>
+</div>
+<div class="kpi-grid">
+<div class="kpi-card"><div class="kpi-num">15-20</div><div class="kpi-unit">B2B leads/tháng</div></div>
+<div class="kpi-card"><div class="kpi-num">4-5</div><div class="kpi-unit">discovery calls</div></div>
+<div class="kpi-card"><div class="kpi-num">1-2</div><div class="kpi-unit">closed deals</div></div>
+<div class="kpi-card"><div class="kpi-num">$65</div><div class="kpi-unit">target CPL</div></div>
+</div>
+
+<div class="hl-segment-title" style="border-color:#0a66c2;margin-top:24px">📧 Email B2B Sequence — reference</div>
+<div class="callout callout-b2b">Benchmark 2026: Open rate 42.35% · CTR 6% · AI personalization +13% CTR. Trigger: lead magnet download / /corporate visit. Frequency: 1 email/3-4 ngày.</div>
+<div style="overflow-x:auto;margin-bottom:14px">
+<table class="fin-table">
+<thead><tr><th>Nguồn list</th><th>Offer</th><th>Est. leads</th></tr></thead>
+<tbody>
+<tr><td>LinkedIn Lead Gen Form</td><td>AI Maturity Assessment PDF + Checklist</td><td>~15-20/tháng</td></tr>
+<tr><td>Website popup /corporate</td><td>ROI Calculator (team 10 người tiết kiệm $/năm)</td><td>~8-12/tháng</td></tr>
+<tr><td>Workshop attendee (company email)</td><td>Auto-segment sau buổi học</td><td>~5-8/batch</td></tr>
+</tbody>
+</table>
+<table class="fin-table">
+<thead><tr><th>Email</th><th>Ngày</th><th>Mục tiêu</th></tr></thead>
+<tbody>
+<tr><td>1 — Welcome+Deliver</td><td>Ngay lập tức</td><td>Deliver report, câu hỏi mở</td></tr>
+<tr><td>2 — Chia sẻ+Kết nối</td><td>Ngày 3</td><td>Observation thật, không pitch</td></tr>
+<tr><td>3 — Story+Inspire</td><td>Ngày 7</td><td>Case study anonymous</td></tr>
+<tr><td>4 — Soft Introduce</td><td>Ngày 11</td><td>Giới thiệu Session 1 nhẹ</td></tr>
+<tr><td>5 — Conversation Starter</td><td>Ngày 16</td><td>Micro-commitment, hỏi thẳng</td></tr>
+</tbody>
+</table>
+</div>
+<div class="kpi-grid">
+<div class="kpi-card"><div class="kpi-num">42%</div><div class="kpi-unit">open rate target</div></div>
+<div class="kpi-card"><div class="kpi-num">6%</div><div class="kpi-unit">CTR target</div></div>
+<div class="kpi-card"><div class="kpi-num">15%</div><div class="kpi-unit">reply rate</div></div>
+<div class="kpi-card"><div class="kpi-num">2-3</div><div class="kpi-unit">demos/tháng</div></div>
+</div>
+
 </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- TAB 9: FINANCE -->
+<!-- WORKING HUB · 4: FINANCE -->
 <!-- ============================================================ -->
 <div id="finance" class="page">
 <div class="header">
@@ -1795,6 +1613,25 @@ function toggle(i){
   ex.classList.toggle('show',!open);
   ro.classList.toggle('open',!open);
 }
+function showHub(name,btn){
+  document.querySelectorAll('#hubNav .tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.getElementById('workingTabs').style.display=name==='working'?'flex':'none';
+  document.getElementById('learningTabs').style.display=name==='learning'?'flex':'none';
+  if(name==='working')showPage('vcal',document.querySelector('#workingTabs .tab'));
+  else showPage('ailib',document.querySelector('#learningTabs .tab'));
+}
+function renderDeliverySummary(){
+  const el=document.getElementById('deliverySummary');
+  if(!el||typeof phases==='undefined')return;
+  const icons={CONTENT:'📝',ADS:'💰',PRODUCT:'🎓',CRM:'📧',WARM:'🤝'};
+  el.innerHTML=phases.map(p=>{
+    const done=p.tasks.filter(t=>t[4]==='Done').length;
+    const total=p.tasks.length;
+    const pct=total?Math.round(done/total*100):0;
+    return `<div class="ck-stat"><div class="num">${pct}%</div><div class="lbl">${icons[p.key]||''} ${p.key} · ${done}/${total}</div></div>`;
+  }).join('');
+}
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -1919,155 +1756,6 @@ const phases=[
 ['Jul 24','CTA push toàn bộ warm list — urgency message P6-A7','CRIT','Both','To-Do'],
 ['Jul 27','Sweep cuối warm list — lead còn phân vân gọi điện cá nhân','CRIT','Both','To-Do'],
 ['Jul 31','Warm list retro: conversion rate inner-circle vs cold','IMP','Both','To-Do'],
-]},
-{key:'PREP',label:'📁 W0 — RECORD (Jun 9–14) · Old tasks trước Soft Launch · Giữ nguyên làm tài liệu tham chiếu',cls:'ck-ph-prep',tasks:[
-['Jun 4','Activate Canva Pro — set up brand kit','PREP','Yen','Done'],
-['Jun 4','Create master Canva template set (FB/IG/story/carousel/ad)','PREP','Yen','Done'],
-['Jun 4','Sign up Buffer — connect FB + IG + LinkedIn','PREP','Yen','Done'],
-['Jun 4','Calibrate payment solutions (PayOS)','CRIT','Both','Done'],
-['Jun 4','Build landing page: hero + CTA','CRIT','Nghi','Done'],
-['Jun 4','Add product grid section (A1/A2/B/C)','CRIT','Nghi','Done'],
-['Jun 4','Add FAQ section (4 objections)','IMP','Nghi','Done'],
-['Jun 4','Build Contact page (Tally + WA + Calendly)','CRIT','Nghi','Done'],
-['Jun 4','Create TWC brand asset kit','PREP','Yen','Done'],
-['Jun 4','Send AI maturity assessment for testing','CRIT','Both','In-Progress'],
-['Jun 5','Review and finalize AI maturity assessment','CRIT','Both','In-Progress'],
-['Jun 9','Build content calendar in GSheets/Notion','IMP','Yen','In-Progress'],
-['Jun 9','Map all 30 days: Mon/Wed/Fri slots + milestones','IMP','Yen','In-Progress'],
-['Jun 9','Buy hosting + configure DNS (Matbao)','CRIT','Nghi','In-Progress'],
-['Jun 9','Set up decision log on SharePoint','IMP','Nghi','Done'],
-['Jun 9','Arrange folder logic on SharePoint','IMP','Nghi','In-Progress'],
-['Jun 9','Deploy placeholder TWC site','CRIT','Nghi','To-Do'],
-['Jun 9','Set up Cloudflare: DNS + proxy + SSL','PREP','Nghi','To-Do'],
-['Jun 9','Sign up Brevo — import warm contacts, confirm domain','PREP','Yen','To-Do'],
-['Jun 9','Install GA4 — confirm data stream active','PREP','Nghi','To-Do'],
-['Jun 9','Set up Hotjar / Microsoft Clarity heatmap','PREP','Nghi','To-Do'],
-['Jun 9','Log all tools + billing in Notion Tech Stack','PREP','Both','To-Do'],
-['Jun 9','Consult media for asset mix (TA×platform×format)','CRIT','Yen','To-Do'],
-['Jun 9','Decide platform to run classes (Teams)','CRIT','Yen','To-Do'],
-['Jun 9','Design AI maturity assessment report for Email','CRIT','Nghi','To-Do'],
-['Jun 5','Write 6 captions ABM segment (3 pain + 3 benefit)','CRIT','Yen','To-Do'],
-['Jun 5','Write 4 captions BM/Senior BM segment + LinkedIn version','CRIT','Yen','To-Do'],
-['Jun 5','Design 6 FB/IG graphics (master templates)','CRIT','Yen','To-Do'],
-['Jun 5','Design Ad Creative A — Arc B hook (9pm ITM deck)','CRIT','Yen','To-Do'],
-['Jun 5','Design Ad Creative B — Arc D hook (Brief bị sửa)','CRIT','Yen','To-Do'],
-['Jun 9','Send 5 personal WA DMs for Cohort 1 seats','CRIT','Yen','To-Do'],
-['Jun 9','Install Facebook Pixel on LP header','CRIT','Both','To-Do'],
-['Jun 4','Set up UTM parameters (fb_awareness/fb_retarget/li_inmail/organic)','PREP','Yen','To-Do'],
-['Jun 5','Finalize web copy all 4 audience paths EN+VI','CRIT','Both','To-Do'],
-['Jun 9','Create playbook: How to schedule training','CRIT','Nghi','In-Progress'],
-['Jun 9','Create playbook: How to process payments','CRIT','Nghi','In-Progress'],
-['Jun 9','Create playbook: How to approve refunds','CRIT','Nghi','To-Do'],
-['Jun 9','Create playbook: How to vibe code website','IMP','Nghi','Done'],
-['Jun 9','UI/UX review: mobile responsiveness + CTA contrast','IMP','Both','To-Do'],
-['Jun 9','Deploy finalized site — confirm custom domain','CRIT','Nghi','To-Do'],
-['Jun 5','Booking consent checkbox on Calendly','CRIT','Nghi','To-Do'],
-['Jun 5','Marketing consent checkbox on lead form','CRIT','Nghi','To-Do'],
-['Jun 5','Add cookie banner (Decree 13/2023)','CRIT','Nghi','To-Do'],
-['Jun 5','Draft Privacy Policy page','IMP','Nghi','To-Do'],
-['Jun 9','File MOIT e-commerce notification at online.gov.vn','CRIT','Yen','To-Do'],
-['Jun 5','Prepare MOIT filing docs (ĐKKD cert + domain + product)','CRIT','Yen','To-Do'],
-['Jun 5','Display MOIT logo in footer once confirmed','IMP','Nghi','To-Do'],
-['Jun 9','Set up QR Code for payment','CRIT','Yen','To-Do'],
-['Jun 5','Test LP form: fill → confirmation email → tracked','CRIT','Both','To-Do'],
-['Jun 4','Verify Facebook Pixel (Meta Pixel Helper)','CRIT','Yen','To-Do'],
-['Jun 9','Test WhatsApp booking flow end-to-end','PREP','Nghi','To-Do'],
-['Jun 5','External review Ad Creatives A + B','IMP','Both','To-Do'],
-['Jun 9','Schedule first 2 weeks in Buffer (Jun 15–29)','IMP','Yen','To-Do'],
-['Jun 5','Write 1 LinkedIn post (EN, CEO/Director angle) — Jun 15','B2B','Yen','To-Do'],
-['Jun 4','Draft B proposal template: half-day $2K + full-day $3.5K','B2B','Both','To-Do'],
-['Jun 5','Build Dashboard 1 — ICAT Campaign Brief Builder','CRIT','Yen','To-Do'],
-['Jun 5','Build Dashboard 2 — AI Ad Copy Generator','CRIT','Yen','To-Do'],
-['Jun 5','Build Dashboard 3 — TWC Client Insight Tracker','IMP','Yen','To-Do'],
-['Jun 5','Create Claude Skill 1 — FMCG Brief Reviewer','CRIT','Yen','To-Do'],
-['Jun 5','Create Claude Skill 2 — Marketing Deck Narrator','IMP','Yen','To-Do'],
-['Jun 5','Test all 3 dashboards + 2 skills (demo-ready)','CRIT','Both','To-Do'],
-['Jun 5','Design 10 pre-launch organic posts (Jun 5–14)','CRIT','Yen','To-Do'],
-['Jun 5','Record 90-sec founder video (Why I built TWC)','IMP','Yen','To-Do'],
-['Jun 5','Design Jun 15 Soft Launch post — queue 9am','CRIT','Yen','To-Do'],
-['Jun 5','Prepare A1 Workshop deck (20 slides, 2 live demos)','CRIT','Yen','To-Do'],
-['Jun 6–8','End-to-end test LP form → confirmation → tracking','CRIT','Both','To-Do'],
-['Jun 6–8','Test PayOS checkout (iOS + Android)','CRIT','Both','To-Do'],
-['Jun 6–8','Test Calendly C1 booking + consent + reminder','CRIT','Nghi','To-Do'],
-['Jun 6–8','Verify Meta Pixel on all pages (PageView + Lead events)','CRIT','Yen','To-Do'],
-['Jun 6–8','Confirm GA4 events firing (DebugView)','IMP','Nghi','To-Do'],
-['Jun 6–8','Mobile UX test on 3 phones (iPhone + 2 Android)','CRIT','Both','To-Do'],
-['Jun 6–8','MOIT filing status check','IMP','Yen','To-Do'],
-['Jun 6–8','Publish 1 organic test post — baseline engagement','IMP','Yen','To-Do'],
-['Jun 6–8','Post LinkedIn piece Jun 6 (AI search engine angle)','B2B','Yen','To-Do'],
-['Jun 6–8','Set up Facebook Ads Manager (portfolio + payment)','PREP','Yen','To-Do'],
-['Jun 6–8','Upload Ad Creatives A+B to Ads Manager (preview mode)','IMP','Yen','To-Do'],
-['Jun 6–8','External mobile UX review (2 people)','IMP','Both','To-Do'],
-['Jun 9–14','Finalize A1 Workshop deck — Zoom dry-run','CRIT','Yen','To-Do'],
-['Jun 9–14','Package A2 curriculum: outline + pre-work + deliverables','IMP','Yen','To-Do'],
-['Jun 9–14','Draft B corporate proposal template','B2B','Yen','To-Do'],
-['Jun 9–14','Send Zoom link + invite to Cohort 1 attendees (48h before)','CRIT','Yen','To-Do'],
-['Jun 9–14','Brief Cohort 1: bring 1 real artifact (report/brief/plan)','IMP','Yen','To-Do'],
-['Jun 9–14','Soft Launch Gate check Jun 14 (site + MOIT + PayOS + consent)','CRIT','Both','To-Do'],
-['Jun 9–14','Schedule Buffer posts Jun 15–30','IMP','Yen','To-Do'],
-]},
-{key:'LAUNCH',label:'🚀 SOFT LAUNCH — Jun 15',cls:'ck-ph-launch',tasks:[
-['Jun 15','Publish Soft Launch post FB + IG + LinkedIn 9am','CRIT','Both','To-Do'],
-['Jun 15','Confirm LinkedIn Sponsored (A2 $20) + FB/IG Test (A1 $15) active + spending','CRIT','Yen','To-Do'],
-['Jun 15','Verify A/B test: Creative A vs B both live','CRIT','Yen','To-Do'],
-['Jun 15','WA blast to 30 Cohort 1 contacts + warm network','IMP','Yen','To-Do'],
-]},
-{key:'W1',label:'📣 WEEK 1 ADS — Jun 15–18',cls:'ck-ph-ads',tasks:[
-['Jun 15–16','Confirm FB/IG Test posts active + CPM $2.50–$7.40 range','CRIT','Yen','To-Do'],
-['Jun 15–16','Post Cohort 1 recap Stories: screenshot + next Jun 23','IMP','Yen','To-Do'],
-['Jun 17–18','48h ad check: note CTR diff between A and B','PREP','Yen','To-Do'],
-['Jun 17–18','If creative CTR <0.5% after 48h → pause + replace','IMP','Yen','To-Do'],
-]},
-{key:'W2',label:'📣 WEEK 2 — Jun 16–22 (Post-Launch Ramp + B2B)',cls:'ck-ph-ads',tasks:[
-['Jun 16','Review 48h ad data: CTR, CPM — creative nào đang win?','CRIT','Yen','To-Do'],
-['Jun 16','Pause underperforming creative, double budget to winner','IMP','Yen','To-Do'],
-['Jun 16–18','Launch LinkedIn InMail campaign ($100 W2 batch, 50–80 sends · PRIMARY B2B channel)','B2B','Yen','To-Do'],
-['Jun 16–18','WA outreach: 3 Senior BM contacts — team training angle + A2 pricing','B2B','Yen','To-Do'],
-['Jun 16–18','Follow up top 3 Cohort 1 attendees — request video/written testimonial','CRIT','Yen','To-Do'],
-['Jun 16–18','Review Typeform feedback — pick 5 usable quotes for LP + retargeting ads','PREP','Yen','To-Do'],
-['Jun 16–18','Update LP với ≥2 testimonials thật (photo + tên + công ty)','CRIT','Nghi','To-Do'],
-['Jun 18–20','Run C1 consulting call nếu có — send C2/B proposal trong 24h','B2B','Both','To-Do'],
-['Jun 19–22','Draft Full Launch post Jun 23 (B/C/A2 all open + urgency hook)','IMP','Yen','To-Do'],
-['Jun 19–22','A2 checkout live: PayOS tested iOS + Android + confirmation email OK','CRIT','Nghi','To-Do'],
-['Jun 19–22','Write + queue Jun 23–30 posts trong Buffer (Mon/Wed/Fri cadence)','PREP','Yen','To-Do'],
-['Jun 19–22','Prepare WA blast cho Jun 23 announcement (200+ warm leads list)','IMP','Yen','To-Do'],
-]},
-{key:'MID',label:'🔍 PRE-FULL-LAUNCH GATE — Jun 20 (3 ngày trước Jun 23)',cls:'ck-ph-review',tasks:[
-['Jun 20','Gate check: tổng warm leads ≥ 200? Nếu KHÔNG → scale ads +$50 ngay','CRIT','Both','To-Do'],
-['Jun 20','Gate check: CTR ≥1%? Nếu <1% → đổi creative trước Jun 23','CRIT','Both','To-Do'],
-['Jun 20','Gate check: ≥1 B2B proposal đã gửi? ≥3 testimonials có trên LP?','IMP','Both','To-Do'],
-['Jun 20','Pull data: reach / CPL / conversions so với target (430 leads / $2,500 rev)','CRIT','Both','To-Do'],
-['Jun 21','Confirm A2 checkout + LP mobile working perfectly (test 3 phones)','CRIT','Nghi','To-Do'],
-['Jun 21','Update retargeting ad creative với Cohort 1 testimonial images','IMP','Yen','To-Do'],
-['Jun 22','Final approval: Full Launch post Jun 23 queued 9am đúng nội dung','CRIT','Both','To-Do'],
-['Jun 22','WA blast draft ready to send Jun 23 sáng (200+ leads, cá nhân hóa)','CRIT','Yen','To-Do'],
-]},
-{key:'W3',label:'📣 WEEK 3 — Jun 20–22 (Final Full Launch Prep)',cls:'ck-ph-ads',tasks:[
-['Jun 20–22','Check Calendly C1 call link — mở slots tháng 7, visible trên LP + bio','CRIT','Nghi','To-Do'],
-['Jun 20–22','Cập nhật LP với latest social proof: số leads, testimonial mới nhất','IMP','Nghi','To-Do'],
-['Jun 20–22','Test toàn bộ flow: LP → PayOS → confirmation email → tracking sheet','CRIT','Both','To-Do'],
-['Jun 21–22','LinkedIn InMail follow-up batch 2 (top engagers từ W1 posts)','B2B','Yen','To-Do'],
-['Jun 22','Brief thành viên team: ngày Jun 23 ai trực DM, ai xử lý inquiry','IMP','Both','To-Do'],
-]},
-{key:'W4',label:'📣 WEEK 4 ADS — Jun 23–30 (Full Launch + Close)',cls:'ck-ph-ads',tasks:[
-['Jun 23','Publish Full Launch post FB + IG + LinkedIn 9am','CRIT','Both','To-Do'],
-['Jun 23','Send WA blast to 200+ warm leads','CRIT','Yen','To-Do'],
-['Jun 23','Make Calendly C1 link visible on LP + all bio links','CRIT','Nghi','To-Do'],
-['Jun 23','Monitor DMs every 2h — respond all inquiries same day','IMP','Both','To-Do'],
-['Jun 24–29','Personal DM to all warm leads not yet converted','CRIT','Both','To-Do'],
-['Jun 24–29','Answer ALL objections in comments/DMs within 2h','DAILY','Both','To-Do'],
-['Jun 24–29','5 DMs/day + post 1 content/day (social proof + urgency)','DAILY','Both','To-Do'],
-['Jun 24–29','Complete 2nd C1 consulting call — send C2/B follow-up 24h','B2B','Nghi','To-Do'],
-['Jun 28–29','Post "48 hours left" urgency content FB + IG Stories','IMP','Yen','To-Do'],
-['Jun 28–29','Personal DM every warm lead not converted: June pricing ends Jun 30','IMP','Both','To-Do'],
-]},
-{key:'CLOSE',label:'📊 MONTH CLOSE — Jun 30',cls:'ck-ph-close',tasks:[
-['Jun 30','Pull final numbers: reach / clicks / warm leads / conversions','CRIT','Both','To-Do'],
-['Jun 30','Calculate actual ROAS: revenue ÷ $850 (target ≥2.0× · B2C break-even 14 enrolments + 1 B2B deal)','CRIT','Both','To-Do'],
-['Jun 30','Write 1-page June retro: wins / misses / top 3 learnings','IMP','Both','To-Do'],
-['Jun 30','Set July ad budget ($1,520 if ROAS≥1.77× / review if <1.5×)','IMP','Both','To-Do'],
-['Jun 30','Confirm A2 Session 1 dates + book B workshops','IMP','Nghi','To-Do'],
-['Jun 30','Update LP: new testimonials + Cohort 2 open seats','IMP','Nghi','To-Do'],
 ]},
 ];
 
@@ -2286,6 +1974,7 @@ function renderChecklist(){
     </div>`;
   }).join('');
   populateCkDateFilter();
+  renderDeliverySummary();
 }
 
 function filterCk(owner,btn){
