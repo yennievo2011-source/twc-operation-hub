@@ -308,7 +308,6 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </head>
 <body>
 
-
 <div class="topbar">
   <div class="brand">🃏 THE WILD <span>CARD</span> — Ops Hub</div>
   <div class="tabs" id="hubNav">
@@ -885,7 +884,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <tr><td>Coursera</td><td>"Solid foundation. We're the cohort layer on top — function-specific, live, a working system."</td></tr>
 <tr><td>AMA Certificate</td><td>"Good CV line. We're for when the work itself needs to ship better — Monday morning."</td></tr>
 <tr><td>Marketing AI Institute</td><td>"Right angle for leadership. We're the team-execution layer that makes a pilot succeed."</td></tr>
-<tr><td>""I've already taken a few AI courses""</td><td>"Then you already know the gap — they teach what AI can do, not how to make AI ship your work."</td></tr>
+<tr><td>"I've already taken a few AI courses"</td><td>"Then you already know the gap — they teach what AI can do, not how to make AI ship your work."</td></tr>
 </tbody>
 </table>
 </div>
@@ -1239,7 +1238,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 <div class="form-row">
   <div class="form-field" style="max-width:120px"><label>Date</label><input type="date" id="tx-date"></div>
   <div class="form-field" style="max-width:80px"><label>Type</label>
-    <select id="tx-type"><option value="Chi">Expense</option><option value="Thu">Revenue</option></select></div>
+    <select id="tx-type"><option value="Chi">Chi</option><option value="Thu">Thu</option></select></div>
   <div class="form-field"><label>Category</label>
     <select id="tx-cat">
       <option>Software / SaaS</option><option>Legal / Admin</option>
@@ -1298,8 +1297,168 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div>
 
 <script>
+// ============================================================
+// POSTS DATA — v5 (50% B2B / 50% B2C)
+// b2b:true = LinkedIn B2B post, CTA corporate
+// b2b:false = FB/IG B2C post, CTA session-1
+// b2b:'both' = dual channel
+// ============================================================
+const posts=[
+{date:'Mon Jun 15',phase:'Pre-Launch',cls:'ph1',id:'A1',b2b:false,
+ fmt:'Hook',title:'ChatGPT is treating you like a stranger — you just don\'t know it yet',
+ hook:'Your ChatGPT doesn\'t know who you are. And that\'s exactly the problem.',
+ h2:'[L3] AI is working well for you — but it doesn\'t work for the team when you\'re not there.',
+ h3:'Why is your AI output always generic? Because you\'ve never introduced yourself to it.',
+ cap:'You open ChatGPT, type a prompt, get a generic result. Try again, still generic.\n\nThe problem isn\'t whether your prompt is short or long. The problem is the AI is treating you like a stranger — because you\'ve never introduced yourself.\n\nIf you want to know how to fix this — Session 1 Foundation of AI covers exactly this, in 90 minutes, with a real case.\n\n🔗 Learn more: thewildcard.vn/session-1',
+ canva:'[TYPOGRAPHY] Dark indigo, oversized "?", lime accent, dot grid. Text: "ChatGPT doesn\'t know who you are." 1080×1080 + 9:16 Reels cover. Format: Static + Reels (text overlay).',
+ level:'L2',platform:'FB + IG Reels',type:'Viral',ad:'🟡 $15 test A/B',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'typo',objective:'Engagement'},
 
+{date:'Wed Jun 17',phase:'Pre-Launch',cls:'ph1',id:'A5',b2b:false,
+ fmt:'Mistake',title:'3 prompt mistakes 90% of Vietnamese marketers make — and how to fix them now',
+ hook:'Which mistake number are you making? 3 mistakes I see in every marketer learning CRAFT.',
+ h2:'AI gives bad answers not because the AI is bad. It\'s because your prompt is missing these 3 things.',
+ h3:'I reviewed 200+ prompts from VN marketers. Same 3 mistakes, over and over.',
+ cap:'After reviewing prompts from 200+ marketers, I found 3 mistakes that show up in almost everyone:\n\n❌ Mistake 1: No context about yourself\n❌ Mistake 2: No output format specified\n❌ Mistake 3: No tone anchor\n\nThese 3 mistakes are why AI output always needs a rewrite.\n\nThere\'s a way to fix all 3 — I learned it in Session 1. If you\'re curious, link in bio 👆',
+ canva:'[TYPOGRAPHY] Carousel 4 slides: Cover dark "3 PROMPT MISTAKES" (lime text, indigo bg), Slides 2-4 one mistake each with a red X icon + lime fix. High contrast. Format: FB Carousel + IG Carousel.',
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test A/B',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'typo',objective:'Engagement'},
 
+{date:'Thu Jun 18',phase:'Pre-Launch',cls:'ph1',id:'A2',b2b:true,
+ fmt:'B2B Assessment Drive',title:'What level is your team at with AI? — 2 minutes to find out',
+ hook:'I have one small question: what level is your marketing team using AI at right now?',
+ h2:'I built an AI Maturity Framework for VN marketing teams — want to try it?',
+ h3:'No prep needed. Just 5 questions — 2 minutes — and you\'ll know exactly where you stand.',
+ cap:'After a few months working with VN marketing teams, I noticed something:\n\nMost people don\'t know where they are on their AI journey.\n\nSo I built a small assessment — 5 questions, 2 minutes, free.\n\nThe results will tell you:\n→ What level your team is at (L1→L4)\n→ The biggest gap to close\n→ A concrete next step\n\nIf you lead a marketing team and you\'re curious — link in the comments. Nothing to pitch, I just want the data 😊',
+ canva:'[TYPOGRAPHY] LinkedIn 1200×627. 4-level bar chart: L1→L4, gray to lime. Bold: "Where is your team?" Indigo bg, professional.',
+ level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,channel:'paid',cta:'corporate',vt:'typo',objective:'Engagement'},
+
+{date:'Fri Jun 19',phase:'Pre-Launch',cls:'ph1',id:'A8',b2b:false,
+ fmt:'Before/After',title:'BEFORE vs AFTER: Same brief — completely different amount of time',
+ hook:'BEFORE: 2 hours, 3 rounds of revisions. AFTER: 18 minutes, approved right away. Same person — different system.',
+ h2:'Brief A took 45 minutes. Brief B took 12 minutes. Only one thing changed.',
+ h3:'I compared a hand-written brief vs. AI co-writing. The result surprised me about myself.',
+ cap:'BEFORE: Blank doc → 45 minutes writing → 3 rounds of agency revisions\nAFTER: 4-step AI workflow → 12 minutes → agency approved on the first try\n\nThe difference: you know exactly what you need before you even sit down.\n\nI learned this in Session 1 — if you want to see the exact flow, check out thewildcard.vn/session-1 🙂',
+ canva:'[ANIMATION] Split screen Before/After: Left BEFORE dark red → Right AFTER lime, bold numbers "45MIN → 12MIN". Animated transition. Format: IG Reels 9:16 + FB static 1:1.',
+ level:'L2',platform:'FB + IG',type:'Viral',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'anim',objective:'Organic'},
+
+{date:'Sat Jun 20',phase:'Soft Launch',cls:'ph2',id:'L1',b2b:'both',
+ fmt:'Launch',title:'The Wild Card is officially open — Cohort 2 registration starts today',
+ hook:'Not an AI course. The first Gen AI training program built for VN brand teams.',
+ h2:'The Wild Card is officially open. This is where VN marketers learn AI for real.',
+ h3:'We waited long enough to get it right. Cohort 2 registration opens today.',
+ cap:'The Wild Card — Gen AI Training for Brand Teams Vietnam — officially opening Cohort 2.\n\nStart with Session 1: Foundation of AI.\n\nFor individuals who want to upgrade how they work with AI: thewildcard.vn/session-1\nFor corporate teams (5+ people) who want to build shared AI capability: thewildcard.vn/corporate\n\nPick the path that fits you — or DM me if you\'re not sure where to start 🙂',
+ canva:'[REAL PERSON] Founder photo + TWC brand overlay, large lime "WE\'RE LIVE", URL prominent. Authentic, not overly corporate. Format: FB 1:1 + IG Stories 9:16.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'both',vt:'real',objective:'Traffic — LP Views'},
+
+{date:'Mon Jun 22',phase:'Soft Launch',cls:'ph2',id:'V1-B2B',b2b:true,
+ fmt:'B2B MKT Skillset Report',title:'Exclusive: Marketing Skillset in the Gen AI Era — 2026 Report',
+ hook:'I just put together a report on the marketing skills that are changing in the Gen AI era. Sharing it free for anyone who needs it.',
+ h2:'Gen AI isn\'t replacing marketers — but it\'s completely changing which skills matter. 2026 Report.',
+ h3:'5 marketing skills are losing value. 5 new skills are becoming essential. Data from VN + Global.',
+ cap:'I just finished a short report on marketing skillsets in the Gen AI era — pulled from global data plus what I\'ve observed directly in the VN market.\n\nA few things worth noting:\n→ "Execution" skills are being augmented by AI — people strong at "thinking" will have a big edge\n→ Brief writing, campaign strategy, insight synthesis are still core — but now need an AI layer\n→ A marketer who\'s good at AI isn\'t the one who knows the most tools — it\'s the one with the right mental model\n\nThe report is 12 pages, link in the comments. No email needed, nothing required — just grab it and read 🙂\n\nIf you want to discuss further, drop a comment.',
+ canva:'[TYPOGRAPHY] LinkedIn Document Post or Carousel 8 slides: Cover "MKT SKILLSET IN GEN AI ERA 2026" (dark indigo + lime). Slides: 5 skills declining, 5 skills rising, VN context, framework. Professional, data-driven.',
+ level:'L3',platform:'LinkedIn',type:'Value',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,channel:'paid',cta:'corporate',vt:'typo',objective:'Engagement'},
+
+{date:'Wed Jun 24',phase:'Soft Launch',cls:'ph2',id:'A4',b2b:false,
+ fmt:'Checklist',title:'Save this post: the CRAFT Checklist — 5 elements of every great prompt',
+ hook:'Save this post — the 5-element checklist to run before sending any prompt.',
+ h2:'A bad prompt isn\'t about wrong wording. It\'s missing one of these 5 elements.',
+ h3:'The CRAFT Framework in one carousel — copy and use it today.',
+ cap:'C = Context: Does the AI know who you are?\nR = Role: Have you assigned a role?\nA = Action: What specific output do you want?\nF = Format: Have you specified the format?\nT = Tone: Is the tone right?\n\nSession 1 teaches how to apply CRAFT to a real brief.\n👉 thewildcard.vn/session-1',
+ canva:'[TYPOGRAPHY] Carousel 6 slides: Cover dark "CRAFT CHECKLIST" (lime headline), each slide one big letter + explanation. Minimalist, save-worthy. Format: FB Carousel + IG Carousel.',
+ level:'L2',platform:'FB + IG Carousel',type:'Value',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'typo',objective:'Organic'},
+
+{date:'Thu Jun 25',phase:'Soft Launch',cls:'ph2',id:'C7-P2',b2b:true,
+ fmt:'Founder Story',title:'Why I left corporate to teach — and what I want to pass on to the next generation of marketers',
+ hook:'I had everything people call "success" in marketing. But the biggest question I kept asking myself: did I learn anything worth passing on?',
+ h2:'10 years in marketing — and what I want most is to pass on what I know to people just starting out.',
+ h3:'This generation of marketers is entering the field at an unprecedented moment. They deserve to learn it the right way.',
+ cap:'I\'ve worked in marketing at major brands for over 10 years.\n\nAnd as Gen AI started reshaping the industry, I realized something — not about AI, but about people:\n\nThe young marketers entering the field today are doing so at the hardest and most exciting moment the industry has seen. They need to learn not just how to use tools, but how to think in this new era.\n\nI built The Wild Card to contribute to that — not because I saw a "market opportunity," but because this is what I wish someone had taught me earlier.\n\nA lot of what I learned came from real work, not school — marketing thinking, working with data, persuading stakeholders. Now add an AI layer on top of that.\n\nIf you\'re starting out or growing in marketing — and want to start right with AI — I\'m here.\n\n👉 thewildcard.vn/corporate',
+ canva:'[REAL PERSON] LinkedIn 1200×627: founder photo (candid/teaching vibe), quote overlay: "I want to pass on what I\'ve learned." Lime accent, ink bg. Warm and human.',
+ level:'L3',platform:'LinkedIn',type:'Authority',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'corporate',vt:'real',objective:'Organic'},
+
+{date:'Fri Jun 26',phase:'Soft Launch',cls:'ph2',id:'B1',b2b:false,
+ fmt:'Hook',title:'A 50-page Nielsen report — AI reads it and surfaces insights in 3 minutes',
+ hook:'50 pages of Nielsen data. 3 minutes. Top 5 insights ready to present. Here\'s how.',
+ h2:'The first time I uploaded a Nielsen report to AI, I sat still for 2 minutes — it found something the team had missed for 3 months.',
+ h3:'It took the insights team 2 weeks. AI took 3 minutes. Plus it surfaced one pattern nobody had seen.',
+ cap:'How to use AI to read a Nielsen report — not just "ask AI to summarize it":\n\n→ Upload the PDF + assign a specific role\n→ Ask AI to extract 5 insights relevant to the current challenge\n→ Ask AI to identify 1 pattern the team hasn\'t mentioned\n\n50 pages → 3 minutes → presentation-ready.\n\nI teach exactly how to do this in Session 1 if you want to try it on your own data 🙂 thewildcard.vn/session-1',
+ canva:'[ANIMATION] Dark bg, animated data flow visualization, bold numbers "50 pages → 3 minutes → 5 insights". Lime accent glow. Format: IG Reels + FB video.',
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'anim',objective:'Engagement'},
+
+{date:'Sat Jun 27',phase:'Full Launch',cls:'ph3',id:'C1',b2b:false,
+ fmt:'Hook',title:'Your team is at Level 1. Your competitor is at Level 3.',
+ hook:'Level 1: A few people use AI personally. Level 3: AI is a competitive edge. Where are you?',
+ h2:'The AI gap isn\'t measured in tools. It\'s measured in months. And your competitor started 6 months ago.',
+ h3:'While your team is still learning basic prompting — your competitor already has an end-to-end AI workflow.',
+ cap:'Team AI maturity:\n\nLevel 1: A few individuals experimenting\nLevel 2: Some workflows, inconsistent\nLevel 3: AI embedded in daily work\nLevel 4: AI is a measurable competitive edge\n\nThe first step to L3: Session 1 — the whole team on one framework.\n\n👉 thewildcard.vn/session-1',
+ canva:'[ANIMATION] Animated staircase: L1 gray → L2 → L3 → L4 lime glow, each step lights up. Dark ink bg. 1080×1080 + 9:16. Format: IG Reels + FB video (5s loop).',
+ level:'L2+L3',platform:'FB + IG',type:'Viral',ad:'🟡 $15 test',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'anim',objective:'Engagement'},
+
+{date:'Mon Jun 28',phase:'Full Launch',cls:'ph3',id:'L2-post',b2b:'both',
+ fmt:'Full Open',title:'Every Wild Card program — registration is open right now',
+ hook:'3 programs. 1 starting point. Start with Session 1.',
+ h2:'Full launch. Every program is now open for registration.',
+ h3:'You\'ve been following since the start. Today is the day you choose.',
+ cap:'The Wild Card is now fully open:\n\n→ Session 1: Foundation of AI (individual + corporate)\n→ Session 2: Turn Data Into Decisions\n→ Session 3: AI for Agency Work\n\nFor individuals: thewildcard.vn/session-1\nFor corporate teams: thewildcard.vn/corporate\n\nWhere to start? Session 1 — the foundation for everything else.',
+ canva:'[TYPOGRAPHY] 3-program grid layout: S1/S2/S3 each with icon + tagline + target audience. TWC brand colors (indigo + lime). Both CTAs. Format: FB 1:1 + LinkedIn 1200×627.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'both',vt:'typo',objective:'Leads — Conversions'},
+
+{date:'Wed Jul 1',phase:'Full Launch',cls:'ph3',id:'A9',b2b:false,
+ fmt:'Myth vs Fact',title:'MYTH vs FACT: 5 things marketers get wrong about AI',
+ hook:'"Good AI gives good output automatically." — MYTH. And that\'s exactly why your output is bad.',
+ h2:'5 things you thought were true about AI — but they\'re actually holding you back.',
+ h3:'AI isn\'t magic. But it\'s more powerful than you think — once you stop believing these 5 myths.',
+ cap:'5 common MYTHS:\n\nMYTH 1: "Good AI gives good output on its own" → FACT: AI is only as good as the context you give it\nMYTH 2: "You need to know lots of tools" → FACT: 1 right tool beats 10 wrong ones\nMYTH 3: "AI replaces creativity" → FACT: AI amplifies thinking\nMYTH 4: "You need to know how to code" → FACT: Prompting mindset matters more\nMYTH 5: "Learning AI takes forever" → FACT: The right foundation = 90 minutes. Session 1.\n\n👉 thewildcard.vn/session-1',
+ canva:'[TYPOGRAPHY] Carousel 6 slides: Cover "5 AI MYTHS" (dark bg), each slide MYTH (red) vs FACT (lime) side-by-side. High contrast, bold type. Save-worthy. Format: FB Carousel + IG Carousel.',
+ level:'L2',platform:'FB + IG',type:'Value',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'session-1',vt:'typo',objective:'Organic'},
+
+{date:'Thu Jul 2',phase:'Full Launch',cls:'ph3',id:'L3-post',b2b:'both',
+ fmt:'Urgency',title:'Last 48 hours — Cohort 2 registration for Session 1 closes',
+ hook:'Cohort 2 closes in 48 hours. If you\'ve been on the fence — here\'s the last question to ask yourself.',
+ h2:'[X] seats left. After 48 hours — the list closes, no exceptions.',
+ h3:'This July, do you want to be someone still learning AI — or someone who already knows how to use it at work?',
+ cap:'Cohort 2 registration closes in 48 hours.\n\nAfter 90 minutes in Session 1 you\'ll know:\n✓ Why your AI output is inconsistent and how to fix it\n✓ The CRAFT framework\n✓ A 4-step brief writing workflow\n✓ How to build your own personal AI system\n\nIndividual: thewildcard.vn/session-1\nCorporate teams of 5+: thewildcard.vn/corporate',
+ canva:'[ANIMATION] Countdown timer animation: red/lime flashing, bold "FINAL 48 HOURS". Both CTAs visible. Format: IG Stories + FB video.',
+ level:'L2+L3',platform:'FB + IG + LinkedIn',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'both',vt:'anim',objective:'Leads — Conversions'},
+
+{date:'Fri Jul 3',phase:'July Close',cls:'ph4',id:'B3',b2b:false,
+ fmt:'Case Study',title:'From 4 hours to 40 minutes: a monthly performance report with AI',
+ hook:'4 hours → 40 minutes. Monthly report. Same data, same person, one different workflow.',
+ h2:'Real Cohort 1 numbers: report time dropped from 4h to 40 minutes. 6× faster.',
+ h3:'AI didn\'t do it instead of them. AI did it with them — the right way.',
+ cap:'A real case — an Insight Manager at an FMCG company in HCMC:\n\nBEFORE: 4 hours, manual copy-paste\nAFTER Session 1+2: 40 minutes, AI handles the reformatting, 80% of the time goes to insights instead\n\nSame deadline, higher quality, no overtime.\n\n👉 thewildcard.vn/session-1',
+ canva:'[REAL PERSON] Split: Before (stressed person at desk, clock 4H) vs After (confident, clock 40MIN). Real/relatable vibe. TWC brand lime accent. Format: FB 1:1 + IG Reels 9:16.',
+ level:'L2+L3',platform:'FB + IG',type:'Authority',ad:'🟡 $15 test',paid:true,budget:15,channel:'paid',cta:'session-1',vt:'real',objective:'Engagement'},
+
+{date:'Mon Jul 6',phase:'July Close',cls:'ph4',id:'B2',b2b:true,
+ fmt:'B2B Contrarian',title:'The data analyst is no longer the best person in the room at reading data',
+ hook:'A brand manager using AI can read data better than a data analyst who doesn\'t. Here\'s why.',
+ h2:'The Data Analyst is no longer the room\'s data expert by default. AI skills erase that exclusive edge.',
+ h3:'As AI democratizes data skills — whoever learns AI first gets the edge. Regardless of title.',
+ cap:'A truth few people say out loud:\n\nA Brand Manager who knows how to use AI to analyze data → asks better questions, surfaces insights faster.\n\nAI democratizes analytical ability. From "only the data team can do this" to "anyone can do this."\n\nThis isn\'t about replacement. It\'s about who learns AI first getting the edge.\n\nIs your team ready?\n👉 thewildcard.vn/corporate',
+ canva:'[TYPOGRAPHY] Bold: "The playing field just changed." Dark bg, lime accent, LinkedIn professional. 1200×627. Single-image impactful typography.',
+ level:'L3',platform:'LinkedIn',type:'Viral',ad:'🟡 $20 test LinkedIn',paid:true,budget:20,channel:'paid',cta:'corporate',vt:'typo',objective:'Engagement'},
+
+{date:'Tue Jul 7',phase:'July Close',cls:'ph4',id:'L4-post',b2b:true,
+ fmt:'Corporate CTA',title:'When the whole team speaks one AI language — Corporate AI Training',
+ hook:'One person learning AI = one fast person. The whole team learning AI on one framework = a competitive edge.',
+ h2:'What actually changes a team\'s capability: when everyone uses one shared AI system.',
+ h3:'Corporate AI Training isn\'t about a tool. It\'s about a shared workflow and measurable ROI.',
+ cap:'When only 1-2 people know how to use AI:\n→ The workflow depends on just a few people\n→ High risk when that person leaves the team\n\nWhen the whole team learns AI on the same framework:\n→ Shared language, shared prompt library\n→ AI advantage becomes a team asset, not a personal one\n\nStart with Session 1 Foundation for the whole team.\n👉 thewildcard.vn/corporate',
+ canva:'[REAL PERSON] Team photo (diverse, working together) → shared AI workflow diagram → results metrics. Professional, warm. LinkedIn 1200×627 + FB 1:1.',
+ level:'L3',platform:'LinkedIn + FB',type:'Sales',ad:'🔴 Always Ads',paid:true,budget:50,always:true,channel:'always-on',cta:'corporate',vt:'real',objective:'Traffic — Corporate'},
+
+{date:'Thu Jul 9',phase:'July Close',cls:'ph4',id:'C7',b2b:'both',
+ fmt:'Founder Close',title:'What I want every young Vietnamese marketer to know as we enter the AI era',
+ hook:'If I could tell one thing to a marketer just starting out in this era — this would be it.',
+ h2:'Today\'s generation of marketers has an advantage the previous one didn\'t. Don\'t waste it.',
+ h3:'A long post — I want to genuinely share what I\'ve learned and what I want to pass on.',
+ cap:'I\'ve worked in marketing for over 10 years.\n\nLooking back, what I\'m proudest of isn\'t any campaign or brand — it\'s the times I helped someone understand their craft a little better.\n\nGen AI is creating a moment marketing has never seen before. Not to replace marketers — but to elevate the ones who know how to learn.\n\nToday\'s young marketers have one advantage: they can learn AI the right way from day one, with no old habits to unlearn.\n\nThe Wild Card exists to walk alongside that journey.\n\nNot because I saw a "market opportunity." But because this is what I want to give back to the industry — and to the people just starting out.\n\nIf you\'re a marketer who wants to build AI skills the right way:\n→ Individual: thewildcard.vn/session-1\n→ Corporate team: thewildcard.vn/corporate\n\nNot sure where to start? Just DM me, happy to share more 🙂',
+ canva:'[REAL PERSON] LinkedIn 1200×627 + FB 1:1: founder photo (warm, teaching moment), quote: "I want every young VN marketer to have the chance to learn AI the right way." Lime text, ink bg. Small TWC logo.',
+ level:'L2+L3',platform:'LinkedIn + FB',type:'Authority',ad:'⚪ Organic',paid:false,budget:0,channel:'organic',cta:'both',vt:'real',objective:'Organic'},
+];
+
+// Hook Library
 // Hook Library
 const hooksL2=[
 {type:'Contradiction',tc:'ht-contradiction',name:'Contradiction Hook',
@@ -1369,6 +1528,594 @@ const hooksB2B=[
  plat:'LinkedIn · B2B Email subject · Lead gen form headline',
  perfs:['Self-qualify ★★★★★','Lead Quality ★★★★★']},
 ];
+
+// Build calendar
+function trackBadge(b2b){
+  if(b2b===true) return '<span class="badge bb2b">🔗 B2B</span>';
+  if(b2b===false) return '<span class="badge bb2c">📱 B2C</span>';
+  return '<span class="badge bboth">B2B+B2C</span>';
+}
+
+
+// ER Grid
+const erGrid=document.getElementById('erGrid');
+posts.forEach((p,i)=>{
+  const isLI=p.platform.includes('LinkedIn')&&!p.platform.includes('FB');
+  const thr=isLI?3:5;
+  const card=document.createElement('div');
+  card.className='er-card';
+  card.innerHTML=`<h3>${p.id} — ${p.date} <small style="font-size:10px;color:var(--gray);font-weight:400">${p.platform.split('+')[0].trim()} ${trackBadge(p.b2b)}</small></h3>
+    <div class="er-inputs">
+      <div><label>Reach</label><input type="number" id="rr${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+      <div><label>Likes</label><input type="number" id="rl${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+      <div><label>Comments</label><input type="number" id="rc${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+      <div><label>Shares</label><input type="number" id="rs${i}" oninput="calcER(${i},${thr})" placeholder="0"></div>
+    </div>
+    <div class="er-result">
+      <div class="er-num" id="en${i}">—</div>
+      <div class="er-verdict" id="ev${i}"></div>
+    </div>
+    <div class="er-tip">Threshold: ER &gt; ${thr}% → Boost +$50 | ER 3–${thr}% → Hold | ER &lt; 3% → Stop ads</div>`;
+  erGrid.appendChild(card);
+});
+
+// Hook cards
+function buildHookCards(data,containerId){
+  const el=document.getElementById(containerId);
+  data.forEach(h=>{
+    el.innerHTML+=`<div class="hcard">
+      <div class="hcard-head"><span class="hook-type ${h.tc}">${h.type}</span></div>
+      <h3>${h.name}</h3>
+      <div class="formula">${h.formula}</div>
+      <div class="example">${h.examples.map(e=>`★ ${e}`).join('<br>')}</div>
+      <div class="why">💡 ${h.why}</div>
+      <div class="platforms">📱 ${h.plat}</div>
+      <div class="perf-row">${h.perfs.map(p=>`<span class="perf-tag">${p}</span>`).join('')}</div>
+    </div>`;
+  });
+}
+buildHookCards(hooksL2,'hooksL2');
+buildHookCards(hooksL3,'hooksL3');
+buildHookCards(hooksB2B,'hooksB2B');
+
+function showHub(name,btn){
+  document.querySelectorAll('#hubNav .tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.getElementById('workingTabs').style.display=name==='working'?'flex':'none';
+  document.getElementById('learningTabs').style.display=name==='learning'?'flex':'none';
+  if(name==='working')showPage('vcal',document.querySelector('#workingTabs .tab'));
+  else showPage('ailib',document.querySelector('#learningTabs .tab'));
+}
+function renderDeliverySummary(){
+  const el=document.getElementById('deliverySummary');
+  if(!el||typeof phases==='undefined')return;
+  el.innerHTML=phases.map(p=>{
+    const done=p.tasks.filter(t=>t[4]==='Done').length;
+    const total=p.tasks.length;
+    const pct=total?Math.round(done/total*100):0;
+    return `<div class="ck-stat"><div class="num">${pct}%</div><div class="lbl">${p.label} · ${done}/${total}</div></div>`;
+  }).join('');
+}
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+function calcER(i,thr){
+  const r=+document.getElementById(`rr${i}`).value||0;
+  const l=+document.getElementById(`rl${i}`).value||0;
+  const c=+document.getElementById(`rc${i}`).value||0;
+  const s=+document.getElementById(`rs${i}`).value||0;
+  if(!r){document.getElementById(`en${i}`).textContent='—';document.getElementById(`ev${i}`).textContent='';return;}
+  const er=((l+c+s)/r*100).toFixed(2);
+  document.getElementById(`en${i}`).textContent=er+'%';
+  const v=document.getElementById(`ev${i}`);
+  if(er>=thr){v.textContent='✅ BOOST +$50';v.className='er-verdict er-boost';}
+  else if(er>=3){v.textContent='⏸ HOLD';v.className='er-verdict er-wait';}
+  else{v.textContent='🛑 STOP ADS';v.className='er-verdict er-stop';}
+}
+
+// ============================================================
+// CHECKLIST DATA & RENDERER
+// [phase_key, date, task, priority, owner, status]
+// priority: CRIT IMP B2B DAILY PREP
+// owner: Yen Nghi Both
+// status: Done In-Progress To-Do
+// ============================================================
+const phases=[
+{key:'B2C_CONTENT',label:'📝 B2C Content',cls:'ck-ph-prep',tasks:[
+['Jul 2–6','Hire + onboard Content & Social Lead (2 candidates → offer → hand off calendar/Buffer/Canva)','CRIT','Yen','In-Progress'],
+['Jul 6–26','Publish weekly content batch: 2 carousels + 2 statics + 1 animation (W3–W5)','DAILY','Yen','To-Do'],
+['Jul 10–11','Stand up TikTok/IG/FB always-on presence + build reusable content calendar/format library','IMP','Yen','To-Do'],
+['Jul 24','Publish CTA push P6-A7 — Session-1 urgency','CRIT','Yen','To-Do'],
+['Jul 27','Draft next content cycle calendar (Jul 27–Aug 2) — bridge into Women Collective','IMP','Yen','To-Do'],
+['Jul 31','Content retro: which format/hook drove highest ER this month','IMP','Both','To-Do'],
+]},
+{key:'B2C_ADS',label:'💰 B2C Ads',cls:'ck-ph-ads',tasks:[
+['Jul 2–5','Review FB/IG test hook 48h ER (kill/hold/boost) + close out W2 spend log','CRIT','Yen','To-Do'],
+['Jul 6–8','Unlock + launch retargeting (pixel ≥50 events, audience ≥1,000) + scale winning hook to Traffic objective','CRIT','Yen','To-Do'],
+['Jul 12','Review W3 spend, set W4 budget','IMP','Yen','To-Do'],
+['Jul 13–17','Retarget warm audience (Conversions objective) + boost evergreen post','CRIT','Yen','To-Do'],
+['Jul 19','Review W4 spend vs benchmark','IMP','Yen','To-Do'],
+['Jul 20–24','Urgency retargeting for close week + boost CTA push P6-A7','CRIT','Yen','To-Do'],
+['Jul 26','Stop ads, close out W5 final numbers','CRIT','Both','To-Do'],
+['Jul 28–31','Calculate July ROAS, write retro, set August budget','CRIT','Both','To-Do'],
+]},
+{key:'B2C_PRODUCT',label:'🎓 B2C Product (Academy/Women Collective)',cls:'ck-ph-launch',tasks:[
+['Jul 5','Push Cohort #1 enrollment (14/20 → full) + review Module 3 materials','CRIT','Yen','To-Do'],
+['Jul 10','Run Cohort #1 session — capture testimonial + case proof','CRIT','Yen','To-Do'],
+['Jul 12','Design mentorship model + recruit final 2 Women Collective mentors (3/5 confirmed)','CRIT','Yen','To-Do'],
+['Jul 15','Partner with 1-2 universities for first mentee pool','IMP','Yen','To-Do'],
+['Jul 20–22','Lock date + open registration for Women Collective launch webinar (target Aug 12)','CRIT','Yen','To-Do'],
+['Jul 25','Package Cohort #1 testimonials for LP','IMP','Yen','To-Do'],
+['Jul 31','Product retro: cohort fill rate, WC readiness','CRIT','Both','To-Do'],
+]},
+{key:'B2B_CONTENT',label:'🔗 B2B Content',cls:'ck-ph-review',tasks:[
+['Jul 2','Publish LinkedIn Data Carousel V4 (7-minute campaign brief prompt)','IMP','Nghi','To-Do'],
+['Jul 7','Publish LinkedIn Corporate CTA (L4)','IMP','Nghi','To-Do'],
+['Jul 9','Publish LinkedIn Founder Close (C7, ROI calculator)','IMP','Nghi','To-Do'],
+['Jul 16+','Founder thought leadership — both founders post consistently (real POV, not reposts)','IMP','Both','To-Do'],
+]},
+{key:'B2B_ADS',label:'📨 B2B Ads',cls:'ck-ph-close',tasks:[
+['Jul 2','Check LinkedIn InMail W2 pacing (50–80 sends/week)','IMP','Nghi','To-Do'],
+['Jul 9','Boost LinkedIn Sponsored — only posts with ER>3%, $20','IMP','Nghi','To-Do'],
+['Jul 13','InMail follow-up sequence for W2–W3 opens ($40)','IMP','Nghi','To-Do'],
+['Jul 20','InMail close sequence — final CTA to warm B2B leads ($30)','IMP','Nghi','To-Do'],
+]},
+{key:'B2B_PRODUCT',label:'🤝 B2B Product (Advisory)',cls:'ck-ph-prep',tasks:[
+['Jul 2–3','Follow up Redder proposal (sent) + finalize/send Perfectiv proposal','CRIT','Nghi','In-Progress'],
+['Jul 4–18','Contact remaining outreach list (7 targets) + build target list with tracked stages','CRIT','Nghi','To-Do'],
+['Jul 8','Close first paid Advisory deal — Redder or Perfectiv','CRIT','Nghi','To-Do'],
+['Jul 11–17','Sharpen FMCG pitch into a one-pager + define Academy-to-Advisory upsell path','IMP','Nghi','To-Do'],
+['Jul 31','Product retro: Advisory deals closed','CRIT','Both','To-Do'],
+]},
+{key:'CRM',label:'📧 CRM',cls:'ck-ph-ads',tasks:[
+['Jul 2','Confirm Brevo domain + SPF/DKIM setup complete','CRIT','Yen','To-Do'],
+['Jul 3–4','Launch LinkedIn Lead Gen Form + exit-intent popup on /corporate','IMP','Nghi','To-Do'],
+['Jul 5','Build 5-email B2B nurture sequence in Brevo','CRIT','Nghi','To-Do'],
+['Jul 8–9','Segment workshop attendees into B2B sequence + run LinkedIn Outreach SOP (20 connections/day)','IMP','Nghi','To-Do'],
+['Jul 11–25','Run 5-email nurture sequence for each new lead batch (Welcome→Conversation Starter)','DAILY','Nghi','To-Do'],
+['Jul 23','Track B2B funnel: 42% open, 6% CTR, 15% reply vs benchmark','IMP','Nghi','To-Do'],
+['Jul 31','CRM retro: list size, funnel rate, demos booked','IMP','Both','To-Do'],
+]},
+{key:'OPS',label:'🛠️ Ops',cls:'ck-ph-launch',tasks:[
+['Jul 15','Set up Central Hub — Loop/SharePoint single source of truth','CRIT','Both','To-Do'],
+['Jul 16','Stand up Project Tracking board — 6 workstreams, weekly sync','IMP','Both','To-Do'],
+['Jul 28','Recruit 3-5 Advisory Board members — confirm tech-expert shortlist','IMP','Both','To-Do'],
+['Jul 28','Update Q3 runway & forecast in Finance hub','CRIT','Nghi','To-Do'],
+]},
+{key:'WARM',label:'🔥 Warm List',cls:'ck-ph-review',tasks:[
+['Jul 4','Turn early Cohort #1 wins into referenceable stories','IMP','Both','To-Do'],
+['Jul 5','WA blast to warm network — push remaining Cohort #1 seats','CRIT','Yen','To-Do'],
+['Jul 7–20','Personal DM to warm leads not yet converted (weekly sweep)','DAILY','Both','To-Do'],
+['Jul 9','Ask converted Cohort #1 members for referrals','IMP','Yen','To-Do'],
+['Jul 12–17','Build custom audience from engaged warm leads + request warm intros to agency owners for Advisory pipeline','IMP','Nghi','To-Do'],
+['Jul 22','Invite warm network into Women Collective mentor pool','IMP','Yen','To-Do'],
+['Jul 24','CTA push to full warm list — urgency P6-A7','CRIT','Both','To-Do'],
+['Jul 27','Final warm-list sweep — undecided leads get a personal call','CRIT','Both','To-Do'],
+['Jul 31','Warm list retro: inner-circle vs cold conversion rate','IMP','Both','To-Do'],
+]},
+];
+
+// ============================================================
+// CHECKLIST — localStorage state + sort + edit + delete
+// ============================================================
+let ckOwnerFilter='all',ckPriFilter=null;
+let ckColFilter={date:'',pri:'',owner:'',status:''};
+let ckSort={col:null,dir:1}; // col: 'date'|'task'|'pri'|'owner'|'status'
+const CK_KEY='twc_ck_state';
+const CK_CUSTOM_KEY='twc_ck_custom'; // custom tasks added by user
+
+function getCkState(){try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}')}catch{return{}}}
+function setCkState(s){localStorage.setItem(CK_KEY,JSON.stringify(s))}
+function getCkCustom(){try{return JSON.parse(localStorage.getItem(CK_CUSTOM_KEY)||'{}')}catch{return{}}}
+function setCkCustom(c){localStorage.setItem(CK_CUSTOM_KEY,JSON.stringify(c))}
+
+function toggleCkStatus(phKey,idx,event){
+  if(event) event.stopPropagation();
+  const s=getCkState();
+  const k=`${phKey}_${idx}`;
+  const cycle={'To-Do':'In-Progress','In-Progress':'Done','Done':'To-Do'};
+  const ph=phases.find(p=>p.key===phKey);
+  const cur=s[k]||ph.tasks[idx][4];
+  s[k]=cycle[cur]||'To-Do';
+  setCkState(s);
+  renderChecklist();
+}
+
+function deleteCkTask(phKey,idx,event){
+  if(event) event.stopPropagation();
+  if(!confirm('Delete this task?')) return;
+  const ph=phases.find(p=>p.key===phKey);
+  ph.tasks.splice(idx,1);
+  // also clean up state keys above this index
+  const s=getCkState();
+  const newS={};
+  Object.keys(s).forEach(k=>{
+    const [pk,i]=k.split('_');
+    if(pk===phKey){
+      const ni=parseInt(i);
+      if(ni<idx) newS[k]=s[k];
+      else if(ni>idx) newS[`${pk}_${ni-1}`]=s[k];
+    } else newS[k]=s[k];
+  });
+  setCkState(newS);
+  renderChecklist();
+}
+
+function showEditCk(phKey,idx,event){
+  if(event) event.stopPropagation();
+  const ph=phases.find(p=>p.key===phKey);
+  const t=ph.tasks[idx];
+  const editId=`ck-edit-${phKey}-${idx}`;
+  const existing=document.getElementById(editId);
+  if(existing){existing.classList.toggle('show');return;}
+  // find the row element and insert after it
+  const rowEl=document.getElementById(`ckrow-${phKey}-${idx}`);
+  if(!rowEl) return;
+  const editDiv=document.createElement('div');
+  editDiv.className='ck-edit-inline show';
+  editDiv.id=editId;
+  editDiv.innerHTML=`<div class="form-row" style="background:transparent;border:none;padding:0">
+    <div class="form-field" style="max-width:90px"><label>Date</label><input type="text" id="ck-e-date-${phKey}-${idx}" value="${t[0]||''}"></div>
+    <div class="form-field" style="flex:3"><label>Task</label><input type="text" id="ck-e-task-${phKey}-${idx}" value="${t[1]||''}"></div>
+    <div class="form-field" style="max-width:80px"><label>Priority</label>
+      <select id="ck-e-pri-${phKey}-${idx}">
+        ${['CRIT','IMP','B2B','DAILY','PREP'].map(v=>`<option${v===t[2]?' selected':''}>${v}</option>`).join('')}
+      </select></div>
+    <div class="form-field" style="max-width:80px"><label>Owner</label>
+      <select id="ck-e-owner-${phKey}-${idx}">
+        ${['Yen','Nghi','Both'].map(v=>`<option${v===t[3]?' selected':''}>${v}</option>`).join('')}
+      </select></div>
+    <div class="form-field" style="max-width:90px"><label>Status</label>
+      <select id="ck-e-status-${phKey}-${idx}">
+        ${['To-Do','In-Progress','Done'].map(v=>`<option${v===t[4]?' selected':''}>${v}</option>`).join('')}
+      </select></div>
+    <button class="btn-add" style="height:28px;align-self:flex-end" onclick="saveCkEdit('${phKey}',${idx})">💾 Save</button>
+    <button class="btn-sm" style="height:28px;align-self:flex-end" onclick="document.getElementById('${editId}').classList.remove('show')">✕</button>
+  </div>`;
+  rowEl.insertAdjacentElement('afterend',editDiv);
+}
+
+function saveCkEdit(phKey,idx){
+  const ph=phases.find(p=>p.key===phKey);
+  ph.tasks[idx][0]=document.getElementById(`ck-e-date-${phKey}-${idx}`).value;
+  ph.tasks[idx][1]=document.getElementById(`ck-e-task-${phKey}-${idx}`).value;
+  ph.tasks[idx][2]=document.getElementById(`ck-e-pri-${phKey}-${idx}`).value;
+  ph.tasks[idx][3]=document.getElementById(`ck-e-owner-${phKey}-${idx}`).value;
+  ph.tasks[idx][4]=document.getElementById(`ck-e-status-${phKey}-${idx}`).value;
+  // persist status to state
+  const s=getCkState();
+  s[`${phKey}_${idx}`]=ph.tasks[idx][4];
+  setCkState(s);
+  renderChecklist();
+}
+
+function sortCk(col,event){
+  if(event) event.stopPropagation();
+  if(ckSort.col===col) ckSort.dir*=-1;
+  else{ckSort.col=col;ckSort.dir=1;}
+  renderChecklist();
+}
+
+const priOrder={'CRIT':0,'IMP':1,'B2B':2,'DAILY':3,'PREP':4};
+const stOrder={'In-Progress':0,'To-Do':1,'Done':2};
+
+function addCkTask(phKey){
+  const date=document.getElementById(`ck-add-date-${phKey}`).value;
+  const task=document.getElementById(`ck-add-task-${phKey}`).value.trim();
+  const pri=document.getElementById(`ck-add-pri-${phKey}`).value;
+  const owner=document.getElementById(`ck-add-owner-${phKey}`).value;
+  if(!task)return;
+  const ph=phases.find(p=>p.key===phKey);
+  ph.tasks.push([date||'—',task,pri,owner,'To-Do']);
+  document.getElementById(`ck-add-form-${phKey}`).classList.remove('show');
+  renderChecklist();
+}
+
+function renderChecklist(){
+  const s=getCkState();
+  phases.forEach(ph=>{
+    ph.tasks.forEach((t,i)=>{
+      const k=`${ph.key}_${i}`;
+      if(s[k])t[4]=s[k];
+    });
+  });
+  const totalTasks=phases.reduce((a,p)=>a+p.tasks.length,0);
+  const done=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='Done').length,0);
+  const prog=phases.reduce((a,p)=>a+p.tasks.filter(t=>t[4]==='In-Progress').length,0);
+  const todo=totalTasks-done-prog;
+  document.getElementById('ckSummary').innerHTML=`
+    <div class="ck-stat"><div class="num">${totalTasks}</div><div class="lbl">Total tasks</div></div>
+    <div class="ck-stat"><div class="num" style="color:#16a34a">${done}</div><div class="lbl">✅ Done</div></div>
+    <div class="ck-stat"><div class="num" style="color:#d97706">${prog}</div><div class="lbl">🔄 In Progress</div></div>
+    <div class="ck-stat"><div class="num" style="color:#6b7280">${todo}</div><div class="lbl">⬜ To Do</div></div>
+    <div class="ck-stat"><div class="num">${Math.round(done/totalTasks*100)}%</div><div class="lbl">Complete</div></div>`;
+
+  const sortArrow=(col)=>ckSort.col===col?(ckSort.dir===1?' ↑':' ↓'):'';
+  const colHeader=(label,col)=>`<button class="ck-sort-btn${ckSort.col===col?' active':''}" onclick="sortCk('${col}',event)">${label}${sortArrow(col)}</button>`;
+
+  const phasesEl=document.getElementById('ckPhases');
+  phasesEl.innerHTML=phases.map(ph=>{
+    let vis=ph.tasks.map((t,i)=>({t,i})).filter(({t})=>{
+      if(ckOwnerFilter!=='all'&&t[3]!==ckOwnerFilter) return false;
+      if(ckPriFilter&&t[2]!==ckPriFilter) return false;
+      if(ckColFilter.date&&t[0]!==ckColFilter.date) return false;
+      if(ckColFilter.pri&&t[2]!==ckColFilter.pri) return false;
+      if(ckColFilter.owner&&t[3]!==ckColFilter.owner) return false;
+      if(ckColFilter.status&&t[4]!==ckColFilter.status) return false;
+      return true;
+    });
+    // Apply sort
+    if(ckSort.col){
+      vis.sort((a,b)=>{
+        let av,bv;
+        if(ckSort.col==='date'){av=a.t[0];bv=b.t[0];}
+        else if(ckSort.col==='task'){av=a.t[1];bv=b.t[1];}
+        else if(ckSort.col==='pri'){av=priOrder[a.t[2]]??9;bv=priOrder[b.t[2]]??9;return(av-bv)*ckSort.dir;}
+        else if(ckSort.col==='owner'){av=a.t[3];bv=b.t[3];}
+        else if(ckSort.col==='status'){av=stOrder[a.t[4]]??9;bv=stOrder[b.t[4]]??9;return(av-bv)*ckSort.dir;}
+        return(av<bv?-1:av>bv?1:0)*ckSort.dir;
+      });
+    }
+    const phDone=ph.tasks.filter(t=>t[4]==='Done').length;
+    const phTotal=ph.tasks.length;
+    const pct=Math.round(phDone/phTotal*100);
+    const rows=vis.map(({t,i})=>{
+      const dotCls=t[4]==='Done'?'dot-done':t[4]==='In-Progress'?'dot-progress':t[4]==='Blocked'?'dot-blocked':'dot-todo';
+      const stCls=t[4]==='Done'?'st-done':t[4]==='In-Progress'?'st-prog':t[4]==='Blocked'?'st-block':'st-todo';
+      const stTxt=t[4]==='Done'?'✅ Done':t[4]==='In-Progress'?'🔄 In Prog':t[4]==='Blocked'?'🔴 Blocked':'⬜ To Do';
+      const priCls=t[2]==='CRIT'?'pri-crit':t[2]==='IMP'?'pri-imp':t[2]==='B2B'?'pri-b2b':t[2]==='DAILY'?'pri-daily':'pri-prep';
+      return `<div class="ck-row" id="ckrow-${ph.key}-${i}">
+        <div class="ck-dot ${dotCls}" onclick="toggleCkStatus('${ph.key}',${i},event)" title="Click to change status" style="cursor:pointer"></div>
+        <div class="ck-date">${t[0]}</div>
+        <div class="ck-task">${t[1]}</div>
+        <div><span class="ck-pri ${priCls}">${t[2]}</span></div>
+        <div class="ck-owner">${t[3]}</div>
+        <div><span class="ck-status ${stCls}" onclick="toggleCkStatus('${ph.key}',${i},event)" title="Click to change status">${stTxt}</span></div>
+        <div style="display:flex;gap:3px">
+          <button class="ck-action-btn ck-edit-btn" onclick="showEditCk('${ph.key}',${i},event)" title="Edit">✏️</button>
+          <button class="ck-action-btn ck-del-btn" onclick="deleteCkTask('${ph.key}',${i},event)" title="Delete">🗑</button>
+        </div>
+      </div>`;
+    }).join('');
+    return `<div class="ck-phase">
+      <div class="ck-phase-head ${ph.cls}" onclick="this.parentElement.querySelector('.ck-phase-body').style.display=this.parentElement.querySelector('.ck-phase-body').style.display==='none'?'block':'none'">
+        <span>${ph.label}</span>
+        <span>${phDone}/${phTotal} · ${pct}%</span>
+      </div>
+      <div class="ck-phase-body" style="display:block">
+        <div class="progress-bar" style="margin:0"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="ck-table-header">
+          <div></div>
+          <div>${colHeader('Date','date')}</div>
+          <div>${colHeader('Task','task')}</div>
+          <div>${colHeader('Pri','pri')}</div>
+          <div>${colHeader('Owner','owner')}</div>
+          <div>${colHeader('Status','status')}</div>
+          <div style="font-size:10px;font-weight:700;color:var(--gray)">Actions</div>
+        </div>
+        ${rows||'<div style="padding:10px 14px;font-size:11px;color:#9ca3af;font-style:italic">No tasks match filter</div>'}
+        <button class="ck-add-btn" onclick="event.stopPropagation();document.getElementById('ck-add-form-${ph.key}').classList.toggle('show')">+ Add new task</button>
+        <div class="ck-add-form" id="ck-add-form-${ph.key}">
+          <div class="form-row" style="background:transparent;border:none;padding:0">
+            <div class="form-field" style="max-width:100px"><label>Date</label><input type="text" id="ck-add-date-${ph.key}" placeholder="Jun 15"></div>
+            <div class="form-field" style="flex:3"><label>Task</label><input type="text" id="ck-add-task-${ph.key}" placeholder="Task description..."></div>
+            <div class="form-field" style="max-width:90px"><label>Priority</label>
+              <select id="ck-add-pri-${ph.key}"><option>CRIT</option><option>IMP</option><option>B2B</option><option>DAILY</option><option>PREP</option></select></div>
+            <div class="form-field" style="max-width:90px"><label>Owner</label>
+              <select id="ck-add-owner-${ph.key}"><option>Yen</option><option>Nghi</option><option>Both</option></select></div>
+            <button class="btn-add" style="height:28px;align-self:flex-end" onclick="addCkTask('${ph.key}')">+ Add</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  populateCkDateFilter();
+  renderDeliverySummary();
+}
+
+function filterCk(owner,btn){
+  ckOwnerFilter=owner;
+  document.querySelectorAll('#ckFilters .ck-filter').forEach(b=>{if(!b.textContent.includes('CRIT'))b.classList.remove('on')});
+  btn.classList.add('on');
+  renderChecklist();
+}
+function filterCkPri(pri,btn){
+  ckPriFilter=ckPriFilter===pri?null:pri;
+  btn.classList.toggle('on',!!ckPriFilter);
+  renderChecklist();
+}
+function applyCkColFilter(){
+  ckColFilter.date=document.getElementById('ckf-date').value;
+  ckColFilter.pri=document.getElementById('ckf-pri').value;
+  ckColFilter.owner=document.getElementById('ckf-owner').value;
+  ckColFilter.status=document.getElementById('ckf-status').value;
+  renderChecklist();
+}
+function resetCkColFilters(){
+  ckColFilter={date:'',pri:'',owner:'',status:''};
+  ['ckf-date','ckf-pri','ckf-owner','ckf-status'].forEach(id=>document.getElementById(id).value='');
+  renderChecklist();
+}
+function populateCkDateFilter(){
+  const dates=new Set();
+  phases.forEach(ph=>{ph.tasks.forEach(t=>{if(t[0]&&t[0]!=='—')dates.add(t[0]);});});
+  const sel=document.getElementById('ckf-date');
+  const cur=sel.value;
+  // keep first option
+  while(sel.options.length>1) sel.remove(1);
+  [...dates].sort().forEach(d=>{const o=new Option(d,d);sel.add(o);});
+  if(cur) sel.value=cur;
+}
+
+// ============================================================
+// FINANCE — localStorage transactions
+// ============================================================
+const TX_KEY='twc_transactions';
+const DEFAULT_TX=[
+  {date:'2026-01-15',type:'Chi',cat:'Legal / Admin',desc:'Business registration fee',amount:100000,invoice:'Co',invoiceno:'HD001'},
+  {date:'2026-01-20',type:'Chi',cat:'Software / SaaS',desc:'Google Workspace subscription',amount:3500000,invoice:'Co',invoiceno:'HD002'},
+  {date:'2026-02-05',type:'Chi',cat:'Legal / Admin',desc:'Digital signature (USB Token)',amount:1200000,invoice:'Co',invoiceno:'HD003'},
+  {date:'2026-02-10',type:'Chi',cat:'Office supplies',desc:'Printing, office supplies',amount:350000,invoice:'Khong',invoiceno:'—'},
+];
+function getTx(){try{const d=JSON.parse(localStorage.getItem(TX_KEY));return d&&d.length?d:JSON.parse(JSON.stringify(DEFAULT_TX))}catch{return JSON.parse(JSON.stringify(DEFAULT_TX))}}
+function saveTx(arr){localStorage.setItem(TX_KEY,JSON.stringify(arr))}
+
+function addTransaction(){
+  const arr=getTx();
+  const date=document.getElementById('tx-date').value;
+  const type=document.getElementById('tx-type').value;
+  const cat=document.getElementById('tx-cat').value;
+  const desc=document.getElementById('tx-desc').value.trim();
+  const amount=parseFloat(document.getElementById('tx-amount').value)||0;
+  const invoice=document.getElementById('tx-invoice').value;
+  const invoiceno=document.getElementById('tx-invoiceno').value.trim()||'—';
+  if(!desc||!amount)return alert('Fill in Description and Amount.');
+  arr.push({date:date||new Date().toISOString().split('T')[0],type,cat,desc,amount,invoice,invoiceno});
+  arr.sort((a,b)=>a.date.localeCompare(b.date));
+  saveTx(arr);
+  document.getElementById('tx-desc').value='';
+  document.getElementById('tx-amount').value='';
+  document.getElementById('tx-invoiceno').value='';
+  renderTransactions();
+}
+function deleteTx(idx){
+  const arr=getTx();arr.splice(idx,1);saveTx(arr);renderTransactions();
+}
+function renderTransactions(){
+  const arr=getTx();
+  const fmt=n=>n.toLocaleString('vi-VN')+'₫';
+  const body=document.getElementById('txBody');
+  const foot=document.getElementById('txFoot');
+  if(!body)return;
+  body.innerHTML=arr.map((t,i)=>`<tr>
+    <td>${t.date}</td><td><span class="tax-badge ${t.type==='Thu'?'tx-done':'tx-pending'}">${t.type}</span></td>
+    <td>${t.cat}</td><td>${t.desc}</td>
+    <td style="font-weight:700;color:${t.type==='Thu'?'#16a34a':'#b91c1c'}">${t.type==='Thu'?'+':'-'}${fmt(t.amount)}</td>
+    <td><span class="tax-badge ${t.invoice==='Co'?'tx-done':'tx-overdue'}">${t.invoice}</span></td>
+    <td>${t.invoiceno}</td>
+    <td><button class="btn-sm btn-danger" onclick="deleteTx(${i})">✕</button></td>
+  </tr>`).join('');
+  const totalChi=arr.filter(t=>t.type==='Chi').reduce((a,t)=>a+t.amount,0);
+  const totalThu=arr.filter(t=>t.type==='Thu').reduce((a,t)=>a+t.amount,0);
+  foot.innerHTML=`<tr style="background:#f9fafb;font-weight:700">
+    <td colspan="4">TOTAL</td>
+    <td>Thu: <span style="color:#16a34a">+${fmt(totalThu)}</span> · Chi: <span style="color:#b91c1c">-${fmt(totalChi)}</span> · P&L: <span style="${totalThu-totalChi>=0?'color:#16a34a':'color:#b91c1c'}">${fmt(totalThu-totalChi)}</span></td>
+    <td colspan="3">${arr.filter(t=>t.invoice==='Co').length}/${arr.length} with invoice</td>
+  </tr>`;
+}
+
+// ============================================================
+// AD SPEND LOG — localStorage
+// ============================================================
+const SL_KEY='twc_spend_log';
+function getSpendLog(){try{return JSON.parse(localStorage.getItem(SL_KEY)||'[]')}catch{return[]}}
+function saveSpendLog(arr){localStorage.setItem(SL_KEY,JSON.stringify(arr))}
+
+function addSpendLog(){
+  const arr=getSpendLog();
+  const date=document.getElementById('sl-date').value||new Date().toISOString().split('T')[0];
+  const channel=document.getElementById('sl-channel').value;
+  const spend=parseFloat(document.getElementById('sl-spend').value)||0;
+  const impressions=parseInt(document.getElementById('sl-impressions').value)||0;
+  const clicks=parseInt(document.getElementById('sl-clicks').value)||0;
+  const leads=parseInt(document.getElementById('sl-leads').value)||0;
+  if(!spend)return;
+  arr.push({date,channel,spend,impressions,clicks,leads});
+  arr.sort((a,b)=>a.date.localeCompare(b.date));
+  saveSpendLog(arr);
+  document.getElementById('sl-spend').value='';
+  document.getElementById('sl-impressions').value='';
+  document.getElementById('sl-clicks').value='';
+  document.getElementById('sl-leads').value='';
+  renderSpendLog();
+  if(typeof renderPaceTrack==='function')renderPaceTrack();
+}
+function deleteSpendEntry(idx){const arr=getSpendLog();arr.splice(idx,1);saveSpendLog(arr);renderSpendLog();if(typeof renderPaceTrack==='function')renderPaceTrack();}
+function renderSpendLog(){
+  const arr=getSpendLog();
+  const body=document.getElementById('spendLogBody');
+  const foot=document.getElementById('spendLogFoot');
+  if(!body)return;
+  body.innerHTML=arr.map((e,i)=>{
+    const ctr=e.impressions?((e.clicks/e.impressions)*100).toFixed(2)+'%':'—';
+    const cpl=e.leads?(e.spend/e.leads).toFixed(2):'—';
+    return `<tr>
+      <td>${e.date}</td><td>${e.channel}</td>
+      <td style="font-weight:700">$${e.spend.toFixed(2)}</td>
+      <td>${e.impressions.toLocaleString()}</td><td>${e.clicks.toLocaleString()}</td>
+      <td>${ctr}</td><td>${cpl?'$'+cpl:'—'}</td><td>${e.leads}</td>
+      <td><button class="btn-sm btn-danger" onclick="deleteSpendEntry(${i})">✕</button></td>
+    </tr>`;
+  }).join('');
+  if(arr.length){
+    const totSpend=arr.reduce((a,e)=>a+e.spend,0);
+    const totImpr=arr.reduce((a,e)=>a+e.impressions,0);
+    const totClicks=arr.reduce((a,e)=>a+e.clicks,0);
+    const totLeads=arr.reduce((a,e)=>a+e.leads,0);
+    foot.innerHTML=`<tr style="background:#f9fafb;font-weight:700">
+      <td colspan="2">TOTAL (${arr.length} entries)</td>
+      <td>$${totSpend.toFixed(2)}</td><td>${totImpr.toLocaleString()}</td>
+      <td>${totClicks.toLocaleString()}</td>
+      <td>${totImpr?((totClicks/totImpr)*100).toFixed(2)+'%':'—'}</td>
+      <td>${totLeads?'$'+(totSpend/totLeads).toFixed(2):'—'}</td>
+      <td>${totLeads}</td><td></td>
+    </tr>`;
+  }
+}
+
+// ============================================================
+// FB GRAPH API
+// ============================================================
+function saveFBConfig(){
+  localStorage.setItem('twc_fb_token',document.getElementById('fbToken').value);
+  localStorage.setItem('twc_fb_account',document.getElementById('fbAccountId').value);
+}
+function loadFBConfig(){
+  const t=localStorage.getItem('twc_fb_token');const a=localStorage.getItem('twc_fb_account');
+  if(t)document.getElementById('fbToken').value=t;
+  if(a)document.getElementById('fbAccountId').value=a;
+}
+async function fetchFBInsights(){
+  const token=document.getElementById('fbToken').value.trim();
+  const accountId=document.getElementById('fbAccountId').value.trim().replace('act_','');
+  const datePreset=document.getElementById('fbDateRange').value;
+  const statusEl=document.getElementById('fbStatus');
+  const metricsEl=document.getElementById('fbMetrics');
+  if(!token||!accountId){statusEl.className='api-status api-err';statusEl.style.display='block';statusEl.textContent='⚠️ Fill in Token and Account ID first.';return;}
+  statusEl.className='api-status api-load';statusEl.style.display='block';statusEl.textContent='⏳ Fetching from Facebook...';
+  metricsEl.style.display='none';
+  try{
+    const url=`https://graph.facebook.com/v19.0/act_${accountId}/insights?fields=spend,impressions,reach,clicks,cpm,cpc,ctr,frequency&date_preset=${datePreset}&access_token=${token}`;
+    const res=await fetch(url);
+    const data=await res.json();
+    if(data.error){throw new Error(data.error.message);}
+    const d=data.data&&data.data[0];
+    if(!d){throw new Error('No data returned. Check account ID and that campaigns are running.');}
+    document.getElementById('fm-spend').textContent='$'+parseFloat(d.spend||0).toFixed(2);
+    document.getElementById('fm-impressions').textContent=parseInt(d.impressions||0).toLocaleString();
+    document.getElementById('fm-reach').textContent=parseInt(d.reach||0).toLocaleString();
+    document.getElementById('fm-clicks').textContent=parseInt(d.clicks||0).toLocaleString();
+    document.getElementById('fm-ctr').textContent=parseFloat(d.ctr||0).toFixed(2)+'%';
+    document.getElementById('fm-cpm').textContent='$'+parseFloat(d.cpm||0).toFixed(2);
+    document.getElementById('fm-cpc').textContent='$'+parseFloat(d.cpc||0).toFixed(2);
+    document.getElementById('fm-freq').textContent=parseFloat(d.frequency||0).toFixed(2);
+    metricsEl.style.display='grid';
+    statusEl.className='api-status api-ok';statusEl.textContent='✅ Live data fetched — '+new Date().toLocaleTimeString('vi-VN');
+  }catch(e){
+    statusEl.className='api-status api-err';statusEl.textContent='❌ Error: '+e.message;
+  }
+}
+
+// ============================================================
+// EXPORT JSON — for agent consumption
+// ============================================================
+
+// ============================================================
+// POST EDIT — inline edit & localStorage override
+// ============================================================
 
 // ============================================================
 // AI LIBRARY
