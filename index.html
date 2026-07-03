@@ -908,7 +908,7 @@ td{padding:8px 10px;vertical-align:top;font-size:12px}
 </div>
 <div class="callout callout-amber" style="margin:10px 16px 0">
   <b>📋 STRUCTURE — 30-Day Sprint 2 Jul → 31 Jul 2026 (theo H2-26 Workplan, Bucket 01 Value Creation):</b><br><br>
-    5 workstream chạy song song B2C (Yen) + B2B (Nghi): <b>Content</b> · <b>Ads</b> · <b>Product</b> (Academy/Advisory/Women Collective) · <b>CRM</b> · <b>Warm List</b>.<br><br>
+    9 key deliverable — tách riêng theo business line, Ops đứng riêng không gộp CRM: <b>B2C</b> (Content · Ads · Product) · <b>B2B</b> (Content · Ads · Product/Advisory) · <b>CRM</b> · <b>Ops</b> · <b>Warm List</b>.<br><br>
       <b>Nếu chỉ làm 5 việc tới hết Q3:</b> (1) Land Advisory đầu tiên — Redder/Perfectiv (2) Fill Cohort #1 (3) Launch Women Collective Aug 12 (4) Hire Content Lead (5) Stand up Hub + Advisory Board.
 </div>
 <div class="ck-section">
@@ -1624,12 +1624,11 @@ function showHub(name,btn){
 function renderDeliverySummary(){
   const el=document.getElementById('deliverySummary');
   if(!el||typeof phases==='undefined')return;
-  const icons={CONTENT:'📝',ADS:'💰',PRODUCT:'🎓',CRM:'📧',WARM:'🤝'};
   el.innerHTML=phases.map(p=>{
     const done=p.tasks.filter(t=>t[4]==='Done').length;
     const total=p.tasks.length;
     const pct=total?Math.round(done/total*100):0;
-    return `<div class="ck-stat"><div class="num">${pct}%</div><div class="lbl">${icons[p.key]||''} ${p.key} · ${done}/${total}</div></div>`;
+    return `<div class="ck-stat"><div class="num">${pct}%</div><div class="lbl">${p.label} · ${done}/${total}</div></div>`;
   }).join('');
 }
 function showPage(id,btn){
@@ -1660,100 +1659,75 @@ function calcER(i,thr){
 // status: Done In-Progress To-Do
 // ============================================================
 const phases=[
-{key:'CONTENT',label:'📝 CONTENT — B2C + B2B',cls:'ck-ph-prep',tasks:[
-['Jul 2','Publish LinkedIn Data Carousel V4 — "7-phút viết brief campaign"','B2B','Nghi','To-Do'],
-['Jul 2','Hoàn thiện 2/2 founder LinkedIn post tuần này','IMP','Both','In-Progress'],
-['Jul 3','Phỏng vấn ứng viên Content & Social Lead #1','CRIT','Yen','In-Progress'],
-['Jul 4','Phỏng vấn ứng viên Content & Social Lead #2 — chốt offer','CRIT','Yen','To-Do'],
-['Jul 6','Onboard Content & Social Lead — bàn giao calendar + Buffer/Canva','CRIT','Yen','To-Do'],
-['Jul 6','Xuất bản content W3: 2 carousel + 2 static + 1 animation','DAILY','Yen','To-Do'],
-['Jul 7','Publish LinkedIn Corporate CTA (L4) — Session 1 corporate batch','B2B','Nghi','To-Do'],
-['Jul 9','Publish LinkedIn Founder Close (C7) — ROI calculator post','B2B','Nghi','To-Do'],
-['Jul 10','Stand up TikTok + IG + FB always-on presence cho content hire','IMP','Yen','To-Do'],
-['Jul 11','Build content calendar + format library dùng lại được','IMP','Yen','To-Do'],
-['Jul 13','Xuất bản content W4: 2 carousel + 2 static + 1 animation','DAILY','Yen','To-Do'],
-['Jul 15','Content hire luyện AI-assisted content production workflow','PREP','Yen','To-Do'],
-['Jul 16','Founder LinkedIn post — FMCG marketing + AI-human workforce','IMP','Both','To-Do'],
-['Jul 20','Xuất bản content W5: 2 carousel + 2 static + 1 animation','DAILY','Yen','To-Do'],
+{key:'B2C_CONTENT',label:'📝 B2C Content',cls:'ck-ph-prep',tasks:[
+['Jul 2–6','Tuyển + onboard Content & Social Lead (2 candidates → offer → bàn giao calendar/Buffer/Canva)','CRIT','Yen','In-Progress'],
+['Jul 6–26','Xuất bản content batch hàng tuần: 2 carousel + 2 static + 1 animation (W3–W5)','DAILY','Yen','To-Do'],
+['Jul 10–11','Stand up TikTok/IG/FB always-on + build content calendar/format library dùng lại được','IMP','Yen','To-Do'],
 ['Jul 24','Publish CTA push P6-A7 — urgency Session-1','CRIT','Yen','To-Do'],
-['Jul 27','Draft content calendar W6 (Jul27–Aug2) — bắc cầu Women Collective','IMP','Yen','To-Do'],
-['Jul 30','Founder LinkedIn post — real POV, không repost','IMP','Both','To-Do'],
+['Jul 27','Draft content calendar chu kỳ tiếp (Jul27–Aug2) — bắc cầu Women Collective','IMP','Yen','To-Do'],
 ['Jul 31','Content retro: format/hook nào ER cao nhất tháng này','IMP','Both','To-Do'],
 ]},
-{key:'ADS',label:'💰 ADS — B2C + B2B',cls:'ck-ph-ads',tasks:[
-['Jul 2','Check LinkedIn InMail W2 pacing (50–80 sends/tuần)','B2B','Nghi','To-Do'],
-['Jul 3','Review FB/IG test hook ER sau 48h — kill/hold/boost theo rule','CRIT','Yen','To-Do'],
-['Jul 5','Chốt spend log W2 — confirm ~$280 pace vs actual','IMP','Both','To-Do'],
-['Jul 6','Check pixel ≥50 events + audience ≥1,000 — mở khoá retargeting','CRIT','Yen','To-Do'],
-['Jul 6','Launch Retargeting campaign (LI+Web, $80 tranche W3)','CRIT','Yen','To-Do'],
-['Jul 7','Scale hook thắng FB/IG — chuyển Traffic objective $40','IMP','Yen','To-Do'],
-['Jul 8','Test hook mới P2-A1 / P5-A1','IMP','Yen','To-Do'],
-['Jul 9','Boost LinkedIn Sponsored — chỉ post ER>3%, $20','B2B','Nghi','To-Do'],
-['Jul 12','Review spend W3 — CTR>2%? CPL đạt target? set budget W4','IMP','Both','To-Do'],
-['Jul 13','LinkedIn InMail follow-up sequence cho opens W2-W3 ($40)','B2B','Nghi','To-Do'],
-['Jul 14','Retarget warm audience $80 — Conversions objective','CRIT','Yen','To-Do'],
-['Jul 17','Boost evergreen post ($40) — check frequency <3.0','IMP','Yen','To-Do'],
-['Jul 19','Review spend W4 — CPL vs benchmark (B2B $30–65 / B2C $2–8)','IMP','Both','To-Do'],
-['Jul 20','Launch urgency retargeting tuần close ($60)','CRIT','Yen','To-Do'],
-['Jul 20','InMail close sequence — CTA cuối cho warm B2B leads ($30)','B2B','Nghi','To-Do'],
-['Jul 24','Boost post CTA push P6-A7','CRIT','Yen','To-Do'],
-['Jul 26','Dừng urgency ads — W5 close, chốt số liệu cuối','CRIT','Both','To-Do'],
-['Jul 28','Tính ROAS tháng 7 (doanh thu ÷ ~$797 spend)','CRIT','Both','To-Do'],
-['Jul 29','Viết retro ads tháng 7 — wins/misses/top 3 learnings','IMP','Both','To-Do'],
-['Jul 31','Set budget ads tháng 8 — tính luôn launch Women Collective Aug 12','IMP','Both','To-Do'],
+{key:'B2C_ADS',label:'💰 B2C Ads',cls:'ck-ph-ads',tasks:[
+['Jul 2–5','Review FB/IG test hook ER 48h (kill/hold/boost) + chốt spend log W2','CRIT','Yen','To-Do'],
+['Jul 6–8','Mở khoá + launch retargeting (pixel≥50 events, audience≥1,000) + scale hook thắng sang Traffic obj','CRIT','Yen','To-Do'],
+['Jul 12','Review spend W3, set budget W4','IMP','Yen','To-Do'],
+['Jul 13–17','Retarget warm audience (Conversions obj) + boost evergreen post','CRIT','Yen','To-Do'],
+['Jul 19','Review spend W4 vs benchmark','IMP','Yen','To-Do'],
+['Jul 20–24','Urgency retargeting tuần close + boost CTA push P6-A7','CRIT','Yen','To-Do'],
+['Jul 26','Dừng ads, chốt số liệu cuối W5','CRIT','Both','To-Do'],
+['Jul 28–31','Tính ROAS tháng 7, viết retro, set budget tháng 8','CRIT','Both','To-Do'],
 ]},
-{key:'PRODUCT',label:'🎓 PRODUCT — Academy · Advisory · Women Collective',cls:'ck-ph-launch',tasks:[
-['Jul 2','Follow up proposal Redder (đã gửi, chờ phản hồi)','CRIT','Nghi','In-Progress'],
-['Jul 3','Hoàn thiện + gửi proposal Perfectiv (đang draft)','CRIT','Nghi','In-Progress'],
-['Jul 4','Liên hệ nốt outreach list — 7 B2B prospects','CRIT','Nghi','To-Do'],
-['Jul 5','Đẩy enrollment Cohort #1: 14/20 seats — chốt nốt 6 seats','CRIT','Yen','To-Do'],
-['Jul 5','Review + hoàn thiện tài liệu Module 3','IMP','Yen','To-Do'],
-['Jul 8','Chốt deal Advisory trả phí đầu tiên — Redder hoặc Perfectiv','CRIT','Nghi','To-Do'],
+{key:'B2C_PRODUCT',label:'🎓 B2C Product (Academy/Women Collective)',cls:'ck-ph-launch',tasks:[
+['Jul 5','Đẩy enrollment Cohort #1 (14/20 → full) + review tài liệu Module 3','CRIT','Yen','To-Do'],
 ['Jul 10','Chạy session Cohort #1 — thu testimonial + case proof','CRIT','Yen','To-Do'],
-['Jul 11','Mài sharp FMCG operating-model pitch thành one-pager dùng lại được','IMP','Nghi','To-Do'],
-['Jul 12','Thiết kế mentorship model cho Women Collective','IMP','Yen','To-Do'],
-['Jul 12','Tuyển nốt 2 mentor (đã confirm 3/5)','CRIT','Yen','To-Do'],
-['Jul 15','Partner với 1-2 trường đại học cho mentee pool đầu tiên','IMP','Yen','To-Do'],
-['Jul 17','Định nghĩa đường Academy-to-Advisory upsell','IMP','Nghi','To-Do'],
-['Jul 18','Build target list B2B — outreach cadence có tracked stages','IMP','Nghi','To-Do'],
-['Jul 20','Chốt ngày launch webinar Women Collective (target Aug 12) + platform','CRIT','Yen','To-Do'],
-['Jul 22','Mở đăng ký launch webinar Women Collective','CRIT','Yen','To-Do'],
-['Jul 25','Đóng gói testimonial + case proof Cohort #1 cho LP','IMP','Yen','To-Do'],
-['Jul 28','Tuyển 3-5 advisory board — chốt shortlist tech expert','IMP','Both','To-Do'],
-['Jul 31','Product retro: tỷ lệ fill cohort, deal advisory đã chốt, WC readiness','CRIT','Both','To-Do'],
+['Jul 12','Thiết kế mentorship model + tuyển nốt 2 mentor Women Collective (3/5 đã confirm)','CRIT','Yen','To-Do'],
+['Jul 15','Partner 1-2 trường đại học cho mentee pool đầu tiên','IMP','Yen','To-Do'],
+['Jul 20–22','Chốt ngày + mở đăng ký launch webinar Women Collective (target Aug 12)','CRIT','Yen','To-Do'],
+['Jul 25','Đóng gói testimonial Cohort #1 cho LP','IMP','Yen','To-Do'],
+['Jul 31','Product retro: tỷ lệ fill cohort, WC readiness','CRIT','Both','To-Do'],
 ]},
-{key:'CRM',label:'📧 CRM — Email · List Building · Systems',cls:'ck-ph-review',tasks:[
+{key:'B2B_CONTENT',label:'🔗 B2B Content',cls:'ck-ph-review',tasks:[
+['Jul 2','Publish LinkedIn Data Carousel V4 (7-phút viết brief campaign)','B2B','Nghi','To-Do'],
+['Jul 7','Publish LinkedIn Corporate CTA (L4)','B2B','Nghi','To-Do'],
+['Jul 9','Publish LinkedIn Founder Close (C7, ROI calculator)','B2B','Nghi','To-Do'],
+['Jul 16+','Founder thought leadership — cả 2 founder post đều đặn (real POV, không repost)','IMP','Both','To-Do'],
+]},
+{key:'B2B_ADS',label:'📨 B2B Ads',cls:'ck-ph-close',tasks:[
+['Jul 2','Check LinkedIn InMail W2 pacing (50–80 sends/tuần)','B2B','Nghi','To-Do'],
+['Jul 9','Boost LinkedIn Sponsored — chỉ post ER>3%, $20','B2B','Nghi','To-Do'],
+['Jul 13','InMail follow-up sequence cho opens W2–W3 ($40)','B2B','Nghi','To-Do'],
+['Jul 20','InMail close sequence — CTA cuối cho warm B2B leads ($30)','B2B','Nghi','To-Do'],
+]},
+{key:'B2B_PRODUCT',label:'🤝 B2B Product (Advisory)',cls:'ck-ph-prep',tasks:[
+['Jul 2–3','Follow up proposal Redder (đã gửi) + hoàn thiện/gửi proposal Perfectiv','CRIT','Nghi','In-Progress'],
+['Jul 4–18','Liên hệ nốt outreach list (7 targets) + build target list có tracked stages','CRIT','Nghi','To-Do'],
+['Jul 8','Chốt deal Advisory trả phí đầu tiên — Redder hoặc Perfectiv','CRIT','Nghi','To-Do'],
+['Jul 11–17','Mài sharp FMCG pitch thành one-pager + định nghĩa Academy-to-Advisory upsell path','IMP','Nghi','To-Do'],
+['Jul 31','Product retro: deal Advisory đã chốt','CRIT','Both','To-Do'],
+]},
+{key:'CRM',label:'📧 CRM',cls:'ck-ph-ads',tasks:[
 ['Jul 2','Confirm Brevo domain + SPF/DKIM setup xong','CRIT','Yen','To-Do'],
-['Jul 3','Launch LinkedIn Lead Gen Form — offer AI Maturity Assessment','IMP','Nghi','To-Do'],
-['Jul 4','Set up popup exit-intent /corporate — offer ROI Calculator','IMP','Yen','To-Do'],
+['Jul 3–4','Launch LinkedIn Lead Gen Form + popup exit-intent /corporate','IMP','Nghi','To-Do'],
 ['Jul 5','Build 5-email B2B nurture sequence trong Brevo','CRIT','Nghi','To-Do'],
-['Jul 8','Segment workshop attendee có company email vào B2B sequence','IMP','Yen','To-Do'],
-['Jul 9','Chạy LinkedIn Outreach SOP — 20 connections/ngày','DAILY','Nghi','To-Do'],
-['Jul 11','Gửi Email 1 (Welcome+Deliver) cho batch B2B lead mới','DAILY','Nghi','To-Do'],
-['Jul 14','Gửi Email 2 (Chia sẻ+Kết nối) cho lead Day-3','DAILY','Nghi','To-Do'],
+['Jul 8–9','Segment workshop attendee vào B2B sequence + chạy LinkedIn Outreach SOP (20 connections/ngày)','IMP','Nghi','To-Do'],
+['Jul 11–25','Chạy 5-email nurture sequence cho từng batch lead mới (Welcome→Conversation Starter)','DAILY','Nghi','To-Do'],
+['Jul 23','Track funnel B2B: open 42%, CTR 6%, reply 15% vs benchmark','IMP','Nghi','To-Do'],
+['Jul 31','CRM retro: list size, funnel rate, demo đã book','IMP','Both','To-Do'],
+]},
+{key:'OPS',label:'🛠️ Ops',cls:'ck-ph-launch',tasks:[
 ['Jul 15','Set up Central Hub — Loop/SharePoint single source of truth','CRIT','Both','To-Do'],
 ['Jul 16','Stand up Project Tracking board — 6 workstream, weekly sync','IMP','Both','To-Do'],
-['Jul 18','Gửi Email 3 (Story+Inspire) cho lead Day-7','DAILY','Nghi','To-Do'],
-['Jul 21','Gửi Email 4 (Soft Introduce Session-1) cho lead Day-11','DAILY','Nghi','To-Do'],
-['Jul 23','Track funnel B2B: open 42%, CTR 6%, reply 15% vs benchmark','IMP','Nghi','To-Do'],
-['Jul 25','Gửi Email 5 (Conversation Starter) cho lead Day-16','DAILY','Nghi','To-Do'],
+['Jul 28','Tuyển 3-5 Advisory Board — chốt shortlist tech expert','IMP','Both','To-Do'],
 ['Jul 28','Update Q3 runway & forecast trong finance hub','CRIT','Nghi','To-Do'],
-['Jul 31','CRM retro: list size, open/CTR/reply rate, demo đã book','IMP','Both','To-Do'],
 ]},
-{key:'WARM',label:'🤝 WARM LIST — Inner-circle Outreach',cls:'ck-ph-close',tasks:[
-['Jul 2','Draft proposal follow-up riêng cho Redder','CRIT','Nghi','To-Do'],
-['Jul 2','Draft proposal follow-up riêng cho Perfectiv','CRIT','Nghi','To-Do'],
-['Jul 3','Dùng context sẵn có để chốt deal Advisory trả phí đầu tiên','CRIT','Nghi','To-Do'],
+{key:'WARM',label:'🔥 Warm List',cls:'ck-ph-review',tasks:[
 ['Jul 4','Biến early win Cohort #1 thành referenceable story','IMP','Both','To-Do'],
-['Jul 5','WA blast warm network — đẩy nốt 6 seats Cohort #1','CRIT','Yen','To-Do'],
-['Jul 7','DM cá nhân từng warm lead chưa convert','DAILY','Both','To-Do'],
-['Jul 9','Xin 2 referral/người từ Cohort #1 đã convert','IMP','Yen','To-Do'],
-['Jul 12','Build custom audience từ warm lead engaged cho retargeting pool','IMP','Nghi','To-Do'],
-['Jul 14','Reconnect LinkedIn connection cũ — soft qualify message','B2B','Nghi','To-Do'],
-['Jul 17','Xin warm intro tới 3 agency-owner cho pipeline Advisory','B2B','Nghi','To-Do'],
-['Jul 20','DM cá nhân warm lead — urgency: pricing/seats sắp đóng','CRIT','Both','To-Do'],
+['Jul 5','WA blast warm network — đẩy nốt seats Cohort #1','CRIT','Yen','To-Do'],
+['Jul 7–20','DM cá nhân warm lead chưa convert (sweep hàng tuần)','DAILY','Both','To-Do'],
+['Jul 9','Xin referral từ Cohort #1 đã convert','IMP','Yen','To-Do'],
+['Jul 12–17','Build custom audience từ warm lead engaged + xin warm intro tới agency-owner cho pipeline Advisory','IMP','Nghi','To-Do'],
 ['Jul 22','Mời warm network vào mentor pool Women Collective','IMP','Yen','To-Do'],
-['Jul 24','CTA push toàn bộ warm list — urgency message P6-A7','CRIT','Both','To-Do'],
+['Jul 24','CTA push toàn bộ warm list — urgency P6-A7','CRIT','Both','To-Do'],
 ['Jul 27','Sweep cuối warm list — lead còn phân vân gọi điện cá nhân','CRIT','Both','To-Do'],
 ['Jul 31','Warm list retro: conversion rate inner-circle vs cold','IMP','Both','To-Do'],
 ]},
